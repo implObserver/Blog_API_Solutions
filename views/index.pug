@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  if (user)
+    h1 WELCOME BACK #{user.username}
+    a(href="/log-out") LOG OUT
+  else
+    h1 Please Log In
+    a(href="/log-in") LOG IN
+    h1 Or Sign Up 
+    a(href="/sign-up") SIGN UP
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
