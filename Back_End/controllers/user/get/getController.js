@@ -1,11 +1,11 @@
 import passport from "passport";
 
 const user_create_get = (req, res, next) => {
-    res.render("sign-up-form");
+    //res.render("sign-up-form");
 };
 
 const user_auth_get = (req, res, next) => {
-    res.render("log-in-form", { user: req.user });
+    //res.render("log-in-form", { user: req.user });
 };
 
 const user_auth_jwt_protected = async (req, res, next) => {
