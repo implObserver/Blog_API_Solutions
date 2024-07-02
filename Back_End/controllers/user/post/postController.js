@@ -1,13 +1,9 @@
-import { User } from "../models/user.js";
 import { body, validationResult } from "express-validator";
 import asyncHandler from "express-async-handler";
 import passport from "passport";
 import bcrypt from 'bcryptjs';
-import { issueJWT } from "../app/use/dev/auth/token/JWT/issueJWT.js";
-
-const user_create_get = (req, res, next) => {
-    res.render("sign-up-form");
-};
+import { User } from "../../../models/user.js";
+import { issueJWT } from "../../../app/use/dev/auth/token/JWT/issueJWT.js";
 
 const user_create_post = [
     // Validate and sanitize fields.
@@ -51,26 +47,6 @@ const user_create_post = [
     }),
 ];
 
-const user_auth_get = (req, res, next) => {
-    res.render("log-in-form", { user: req.user });
-};
-
-const user_auth_jwt_protected = async (req, res, next) => {
-    passport.authenticate("jwt", {
-        session: false,
-        successRedirect: '/success',
-        failureRedirect: '/failure',
-    })(req, res, next)
-}
-
-const sucessProtected = (req, res, next) => {
-    res.status(200).json({ message: 'sucess' });
-}
-
-const failureProtected = (req, res, next) => {
-    res.status(401).json({ message: 'unauthorized' });
-}
-
 const user_auth_post = asyncHandler(async (req, res, next) => {
     passport.authenticate("local", {
         successRedirect: "/",
@@ -78,22 +54,7 @@ const user_auth_post = asyncHandler(async (req, res, next) => {
     })(req, res, next)
 });
 
-const user_logout_get = (req, res, next) => {
-    req.logout((err) => {
-        if (err) {
-            return next(err);
-        }
-        res.redirect("/");
-    });
-};
-
-export const userController = {
-    user_auth_get,
-    user_auth_post,
-    user_create_get,
+export const postController = {
     user_create_post,
-    user_logout_get,
-    user_auth_jwt_protected,
-    sucessProtected,
-    failureProtected
+    user_auth_post,
 }

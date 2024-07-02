@@ -10,8 +10,9 @@ export const PostSchema = new Schema({
     text: { type: String, required: true },
     elements: [{ type: Schema.Types.ObjectId, ref: "Element", required: true }],
     date: { type: Date, default: Date.now },
+    published: { type: Boolean, required: true },
 });
 
 PostSchema.virtual("url").get(function () {
-    return `api/post/${this._id}`;
+    return `/post/${this._id}`;
 });
