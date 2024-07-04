@@ -1,0 +1,14 @@
+.container {
+    display: grid;
+    padding: 10px;
+}
+
+.input {
+    display: none;
+}
+
+.custom_file_upload {
+    border: 1px rgb(201, 201, 201) solid;
+    padding: 6px;
+    text-align: center;
+}
