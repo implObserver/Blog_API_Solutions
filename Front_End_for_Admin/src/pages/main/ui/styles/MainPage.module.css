@@ -4,6 +4,7 @@
     height: inherit;
     padding: 1vh;
     align-content:start;
+    row-gap: 4px;
 }
 
 .javascript {

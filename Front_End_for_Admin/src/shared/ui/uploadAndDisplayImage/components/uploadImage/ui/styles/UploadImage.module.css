@@ -1,6 +1,5 @@
 .container {
     display: grid;
-    padding: 10px;
 }
 
 .input {
@@ -8,7 +7,9 @@
 }
 
 .custom_file_upload {
-    border: 1px rgb(201, 201, 201) solid;
+    border: 2px rgb(201, 201, 201) dashed;
     padding: 6px;
     text-align: center;
+    align-content: center;
+    min-height: 79.2px;
 }
