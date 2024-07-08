@@ -1,8 +1,9 @@
+import { elementsReducer } from '@/widgets/body';
 import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
   reducer: {
-    
+    elements: elementsReducer,
   },
 });
 

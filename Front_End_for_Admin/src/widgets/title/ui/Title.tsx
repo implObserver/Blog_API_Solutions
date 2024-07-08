@@ -1,7 +1,8 @@
 import { TitleHeader } from '@/entities/titleHeader'
 import styles from './styles/Title.module.css'
 import { CheckTag } from '@/features/checkTag'
-import { Input } from '@/shared/ui/input'
+import { TextArea } from '@/shared/ui/textArea'
+import { TitleName } from '@/entities/titleName'
 
 export const Title = () => {
     return (
@@ -9,7 +10,7 @@ export const Title = () => {
             <TitleHeader>
                 <CheckTag></CheckTag>
             </TitleHeader>
-            <Input></Input>
+            <TitleName></TitleName>
             <span>Author: Observer</span>
         </div>
     )

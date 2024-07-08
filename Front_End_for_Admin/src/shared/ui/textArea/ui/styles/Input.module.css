@@ -1,17 +1,18 @@
-.input {
+.area_text {
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -khtml-border-radius: 3px;
     background: #ffffff !important;
     outline: none;
-    font-size: 33px;
     font-family: Tahoma;
     resize: none;
     border:1px rgb(201, 201, 201) solid;
+    font-size: inherit;
     padding-left: 4px;
+    width: 100%;
 }
 
-.input:focus {
+.area_text:focus {
     border:1px grey solid;
 }

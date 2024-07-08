@@ -5,18 +5,20 @@ export const UploadImage = () => {
     // Define a state variable to store the selected image
     const context = useImageContext();
 
+    const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        context.setImgFile(e.target.files[0]);
+    }
+
     return (
         <div className={styles.container}>
             <input
                 id={'file_upload'}
                 className={styles.input}
                 type="file"
+                accept="image/*"
                 name="myImage"
                 // Event handler to capture file selection and update the state
-                onChange={(event) => {
-                    console.log(event.target.files[0]); // Log the selected file
-                    context.setImgFile(event.target.files[0]); // Update the state with the selected file
-                }}
+                onChange={changeHandler}
             />
 
             <label

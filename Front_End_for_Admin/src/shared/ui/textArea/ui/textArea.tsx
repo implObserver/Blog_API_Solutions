@@ -1,18 +1,18 @@
 import styles from './styles/Input.module.css'
 import TextareaAutosize from 'react-textarea-autosize';
 
-function auto_grow(e) {
-    if (e.keyCode === 13) {
+function auto_grow(e: React.KeyboardEvent<HTMLTextAreaElement>) {
+    if (e.key === 'Enter') {
         e.preventDefault();
     }
 }
 
-export const Input = () => {
+export const TextArea = ({ text }) => {
     return (
         <TextareaAutosize
             onKeyDown={auto_grow}
-            placeholder='Enter name of this post'
-            className={styles.input}
+            placeholder={text}
+            className={styles.area_text}
             wrap='hard'
             maxLength={100} />
     )
