@@ -1,4 +1,4 @@
-import { elementsReducer } from '@/widgets/body';
+import { elementsReducer } from '@/widgets/elementsContainer';
 import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({

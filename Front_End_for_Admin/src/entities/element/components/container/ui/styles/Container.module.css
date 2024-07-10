@@ -1,0 +1,8 @@
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.container:hover {
+    --panel_opacity: 1;
+}

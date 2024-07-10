@@ -7,13 +7,13 @@ function auto_grow(e: React.KeyboardEvent<HTMLTextAreaElement>) {
     }
 }
 
-export const TextArea = ({ text }) => {
+export const TextArea = ({ text, maxLength }) => {
     return (
         <TextareaAutosize
             onKeyDown={auto_grow}
             placeholder={text}
             className={styles.area_text}
             wrap='hard'
-            maxLength={100} />
+            maxLength={maxLength} />
     )
 }

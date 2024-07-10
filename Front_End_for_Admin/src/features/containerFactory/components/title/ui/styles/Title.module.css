@@ -1,0 +1,17 @@
+.h1 {
+    font-size: 34px;
+}
+
+.h2 {
+    font-size: 32px;
+}
+
+.h3 {
+    font-size: 26px;
+}
+
+.h1,
+.h2,
+.h3 {
+    width: 100%;
+}

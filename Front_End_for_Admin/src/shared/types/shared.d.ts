@@ -8,8 +8,8 @@ interface DropdownContextType {
     state: boolean,
 }
 
-interface ElementNodeContextType {
+/*interface ElementNodeContextType {
     setElements: React.Dispatch<React.SetStateAction<React.ReactElement[]>>,
     elements: Array<React.ReactElement>,
     index: number,
-}
+}*/

@@ -1,0 +1,13 @@
+:root {
+    --panel_opacity: 0;
+}
+
+.element {
+    display: flex;
+    gap: 5px;
+    padding-right: 32px;
+}
+
+.element:hover {
+    --panel_opacity: 1;
+}

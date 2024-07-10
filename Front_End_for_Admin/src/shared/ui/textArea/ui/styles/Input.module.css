@@ -7,12 +7,12 @@
     outline: none;
     font-family: Tahoma;
     resize: none;
-    border:1px rgb(201, 201, 201) solid;
+    border: 1px rgb(201, 201, 201) solid;
     font-size: inherit;
     padding-left: 4px;
     width: 100%;
 }
 
 .area_text:focus {
-    border:1px grey solid;
+    border: 1px grey solid;
 }

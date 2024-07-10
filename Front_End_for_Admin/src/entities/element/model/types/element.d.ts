@@ -1,5 +1,14 @@
 interface ElementContextType {
-    text: String,
-    date: Date,
-    tag: String,
+    panel: PanelContextType,
+    container: ContainerContextType,
+
+}
+
+interface PanelContextType {
+    visible: Boolean,
+    children: React.ReactElement[],
+}
+
+interface ContainerContextType {
+    children: React.ReactElement,
 }
