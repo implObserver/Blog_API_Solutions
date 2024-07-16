@@ -1,1 +1,1 @@
-export { Title } from './ui/Title'
+export { CategoryDate } from './ui/CategoryDate'

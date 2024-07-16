@@ -1,13 +1,28 @@
 import { useFactoryContext } from "@/features/containerFactory/lib/context/Context"
 import { TextArea } from "@/shared/ui/textArea";
 import styles from './styles/Title.module.css';
+import { useState } from "react";
+import { useElementContext } from "@/entities/element/lib/context/Context";
+import { TextAreaContext } from "@/shared/ui/textArea/lib/context/Context";
 
 export const Title = () => {
-    const context = useFactoryContext();
-    const h = context.hNum;
+    const context = useElementContext();
+    const [value, setValue] = useState(context.modelContext.container.value);
+    const h = context.modelContext.container.nNum;
+
+    const titleContext: TextAreaContextType = {
+        placeholder: 'Enter a name of this post',
+        value,
+        setValue,
+        maxLength: 100,
+    }
 
     const getTitleTextArea = (placeholder: String) => {
-        return <TextArea text={placeholder} maxLength={100}></TextArea>
+        return (
+            <TextAreaContext.Provider value={titleContext}>
+                <TextArea text={placeholder} maxLength={100}></TextArea>
+            </TextAreaContext.Provider>
+        )
     }
 
     if (h === 'h1') {

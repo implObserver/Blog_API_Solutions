@@ -1,5 +1,7 @@
 .h1 {
+    display: grid;
     font-size: 34px;
+    justify-content: center;
 }
 
 .h2 {

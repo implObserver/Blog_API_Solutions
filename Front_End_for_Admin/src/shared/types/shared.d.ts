@@ -8,6 +8,13 @@ interface DropdownContextType {
     state: boolean,
 }
 
+interface TextAreaContextType {
+    placeholder: string,
+    value: string,
+    setValue: React.Dispatch<React.SetStateAction<String>>,
+    maxLength: number,
+}
+
 /*interface ElementNodeContextType {
     setElements: React.Dispatch<React.SetStateAction<React.ReactElement[]>>,
     elements: Array<React.ReactElement>,

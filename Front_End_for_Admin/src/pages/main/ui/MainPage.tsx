@@ -1,14 +1,12 @@
 import styles from './styles/MainPage.module.css'
-import { Title } from '@/widgets/title'
-import { Preview } from '@/widgets/preview'
-import { ElementsContainer } from '@/widgets/elementsContainer'
+import { Canvas } from '@/widgets/canvas'
+import { CategoryDate } from '@/widgets/title'
 
 export const MainPage = () => {
     return (
         <div className={styles.page__main}>
-            <Title></Title>
-            <Preview></Preview>
-            <ElementsContainer></ElementsContainer>
+            <CategoryDate></CategoryDate>
+            <Canvas></Canvas>
         </div>
     )
 }

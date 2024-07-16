@@ -4,14 +4,12 @@ import { CheckTag } from '@/features/checkTag'
 import { TextArea } from '@/shared/ui/textArea'
 import { TitleName } from '@/entities/titleName'
 
-export const Title = () => {
+export const CategoryDate = () => {
     return (
         <div className={styles.title}>
             <TitleHeader>
                 <CheckTag></CheckTag>
             </TitleHeader>
-            <TitleName></TitleName>
-            <span>Author: Observer</span>
         </div>
     )
 }

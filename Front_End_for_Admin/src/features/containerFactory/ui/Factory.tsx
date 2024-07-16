@@ -1,10 +1,12 @@
 import { useFactoryContext } from "../lib/context/Context"
 import { Text } from "../components/text";
 import { Title } from "../components/title";
+import { useElementContext } from "@/entities/element/lib/context/Context";
+import { Preview } from "../components/preview/ui/Preview";
 
 export const Factory = () => {
-    const context = useFactoryContext();
-    const type = context.type;
+    const context = useElementContext();
+    const type = context.modelContext.container.type;
 
     if (type === "text") {
         return (
@@ -19,6 +21,11 @@ export const Factory = () => {
     if (type === "image") {
         return (
             <div></div>
+        )
+    }
+    if (type === "preview") {
+        return (
+            <Preview></Preview>
         )
     }
 }

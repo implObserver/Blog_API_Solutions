@@ -3,20 +3,22 @@ import styles from './styles/Panel.module.css'
 
 export const Panel = () => {
     const context = useElementContext();
-    const children = context.panel.children;
-
+    const features = context.featuresContext.panel.features;
+    console.log(context)
     const fill = () => {
-        return children.map((children: React.ReactElement, index) => {
+        return features.map((feature: React.ReactElement, index) => {
             return (
                 <div key={index}>
-                    {children}
+                    {feature}
                 </div>
             )
         })
     }
 
     return (
-        <div className={`${styles.panel} ${context.panel.visible ? '' : styles.hidden}`}>
+        <div 
+        className={`${styles.panel} 
+        ${context.modelContext.panel.visible ? '' : styles.hidden}`}>
             {fill()}
         </div>
     )

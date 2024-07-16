@@ -1,14 +1,44 @@
-interface ElementContextType {
-    panel: PanelContextType,
-    container: ContainerContextType,
 
+//interface ElementContextType {
+//index: number,
+// panel: PanelContextType,
+// container: ContainerContextType,
+//}
+
+interface CanvasElement {
+    featuresContext: ElementFeatures,
+    modelContext: ElementModel,
 }
 
-interface PanelContextType {
+interface ElementFeatures {
+    panel: FeaturesPanel,
+    container: FeaturesContainer,
+}
+
+interface FeaturesPanel {
+    features: React.ReactElement[],
+}
+
+interface FeaturesContainer {
+    features: React.ReactElement,
+}
+
+interface ElementModel {
+    index: number,
+    container: ModelContainerContextType,
+    panel: ModelPanelContextType
+}
+
+interface ModelPanelContextType {
     visible: Boolean,
-    children: React.ReactElement[],
 }
 
-interface ContainerContextType {
-    children: React.ReactElement,
+interface ModelContainerContextType {
+    type: string,
+    nNum: string,
+    value: string,
+}
+
+interface ElementModels {
+    elements: Array<ElementModel>
 }

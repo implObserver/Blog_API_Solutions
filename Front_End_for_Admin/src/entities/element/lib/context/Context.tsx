@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export const ElementContext = createContext<undefined | ElementContextType>(undefined);
+export const ElementContext = createContext<undefined | CanvasElement>(undefined);
 
 export const useElementContext = () => {
     const props = useContext(ElementContext);

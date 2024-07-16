@@ -1,4 +1,5 @@
-import { elementsReducer } from '@/widgets/elementsContainer';
+import { elementsActions, elementsReducer, selectElements } from '@/entities/element/index';
+
 import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
@@ -7,6 +8,13 @@ export const store = configureStore({
   },
 });
 
+export const actions = {
+  elementsActions,
+}
+
+export const selectors = {
+  selectElements,
+}
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispath = typeof store.dispatch;
-export default store;
