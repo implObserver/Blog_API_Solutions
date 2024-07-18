@@ -1,5 +1,4 @@
 import { elementsActions, elementsReducer, selectElements } from '@/entities/element/index';
-
 import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({

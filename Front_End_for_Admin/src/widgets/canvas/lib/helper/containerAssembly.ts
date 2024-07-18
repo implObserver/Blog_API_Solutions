@@ -1,10 +1,11 @@
 import { store } from "@/app/model/store/Store";
 import { selectElements } from "@/entities/element"
+import { modelsToElements } from "@/entities/element/lib/helper/ModelsToElements";
 import { useSelector } from "react-redux"
 
 export const containerAssembly = () => {
-    const elements = store.getState().elements.elements;
-
+    const models = store.getState().elements.elements;
+    const elements = modelsToElements(models);
     const selector: Containers = {
         containers: [],
     }
@@ -12,7 +13,8 @@ export const containerAssembly = () => {
     elements.forEach((element, index) => {
         const container: Container = {
             index,
-            model_element: element
+            element,
+            model: models[index],
         }
         selector.containers.push(container);
     });

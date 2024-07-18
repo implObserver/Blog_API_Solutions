@@ -1,37 +1,8 @@
-const title: ElementModel = {
-    index: 0,
-    panel: {
-        visible: false,
-    },
-    container: {
-        type: 'title',
-        nNum: 'h1',
-        value: '',
-    }
-}
+import { elementsToModels } from "./ElementsToModels";
+import { Preview, TextArea, Title } from "./ElementValue";
 
-const preview: ElementModel = {
-    index: 1,
-    panel: {
-        visible: false,
-    },
-    container: {
-        type: 'preview',
-        nNum: 'none',
-        value: '',
-    }
-}
+const title = Title(1);
+const preview = Preview();
+const textArea = TextArea();
 
-const defaultText: ElementModel = {
-    index: 2,
-    panel: {
-        visible: true,
-    },
-    container: {
-        type: 'text',
-        nNum: 'none',
-        value: '',
-    }
-}
-
-export const defaultElements = [title, preview, defaultText];
+export const defaultModels = elementsToModels([title, preview, textArea]);

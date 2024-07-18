@@ -4,5 +4,6 @@ interface Containers {
 
 interface Container {
     index: number,
-    model_element: ElementModel,
+    element: ElementType<Title | TextArea>,
+    model: ModelType<TextAreaModel | PreviewModel | TitleModel>,
 }

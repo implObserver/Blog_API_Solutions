@@ -8,8 +8,8 @@ export const ClickToRemoveElement = () => {
     const dispath = useDispatch<AppDispath>();
     const context = useElementContext();
     const clickHandle = () => {
-        console.log(context.modelContext.index)
-        dispath(elementsActions.removeElement(context.modelContext.index));
+        console.log(context.elementContext.index)
+        dispath(elementsActions.removeElement(context.elementContext.index));
     }
 
     return (

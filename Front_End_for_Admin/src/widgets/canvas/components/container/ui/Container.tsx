@@ -7,7 +7,8 @@ import styles from './styles/Container.module.css'
 
 export const Container = () => {
     const container = useContainerContext();
-    const element = container.model_element;
+    const element = container.element;
+    const model = container.model;
 
     const elementContext: CanvasElement = {
         featuresContext: {
@@ -21,7 +22,8 @@ export const Container = () => {
                 features: <Factory></Factory>,
             }
         },
-        modelContext: element,
+        elementContext: element,
+        model,
     }
 
     return (

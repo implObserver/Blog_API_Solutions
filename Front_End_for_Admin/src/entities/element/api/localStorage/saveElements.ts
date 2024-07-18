@@ -1,6 +1,7 @@
 import { useLocalStorage } from "@/shared/lib/hooks/useLocalStorage"
 
-export const saveElements = (elements: Array<ElementModel>) => {
-    const { setItem } = useLocalStorage('post_constructor_elements');
-    setItem(elements);
+export const saveElements = (models: Array<ModelType<TextAreaModel | PreviewModel | TitleModel>>) => {
+    const { setItem, removeItem } = useLocalStorage('post_constructor_elements');
+    console.log(models[2].value)
+    setItem(models);
 }

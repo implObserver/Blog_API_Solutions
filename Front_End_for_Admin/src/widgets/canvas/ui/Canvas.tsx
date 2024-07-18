@@ -4,7 +4,6 @@ import { Container, ContainerContext } from "../components/container";
 
 export const Canvas = () => {
     const [containers, setContainers] = useState(containerAssembly());
-  
     const fill = () => {
         return containers.map((container, index) => {
             return (

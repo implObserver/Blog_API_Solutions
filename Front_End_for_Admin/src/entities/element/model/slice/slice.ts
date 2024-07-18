@@ -1,25 +1,35 @@
-import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, current, isAction, PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./defaultState";
 import { saveElements } from "../../api/localStorage/saveElements";
+import { elementsToModels } from "../../lib/helper/ElementsToModels";
 
 const elementsSlice = createSlice({
     name: 'elements',
     initialState,
     reducers: {
-        addElement: (state: ElementModels, action: PayloadAction<ElementModel>) => {
+        addElement: (state: ElementModels, action: PayloadAction<ModelType<TextAreaModel | PreviewModel | TitleModel>>) => {
             state.elements.push(action.payload);
         },
-        addElementToIndex: (state: ElementModels, action: PayloadAction<ElementModel>) => {
+        updateElement: (state: ElementModels, action: PayloadAction<UpdateElement>) => {
+            const elements = current(state.elements);
+            const id = action.payload.model.id;
+            elements.forEach((element, index) => {
+                if (element.id === action.payload.model.id) {
+                    state.elements.splice(index, 1, action.payload.newModel);
+                }
+            })
+        },
+        addElementToIndex: (state: ElementModels, action: PayloadAction<ModelType<TextAreaModel | PreviewModel | TitleModel>>) => {
             const elements = current(state.elements);
             const index = elements.indexOf(action.payload);
             console.log(index)
             //const defaultElement = getDefaultElementModel();
             //state.elements.splice(index, 0, defaultElement);
         },
-        addTextAreaModel: (state: ElementModels, action: PayloadAction<ElementModel>) => {
+        addTextAreaModel: (state: ElementModels, action: PayloadAction<ModelType<TextAreaModel | PreviewModel | TitleModel>>) => {
             const elements = current(state.elements);
             const index = elements.indexOf(action.payload) + 1;
-            const textAreaModel: ElementModel = {
+            /*const textAreaModel: ElementModel = {
                 index,
                 panel: {
                     visible: true,
@@ -30,7 +40,7 @@ const elementsSlice = createSlice({
                     type: 'text',
                 }
             }
-            state.elements.splice(index, 0, textAreaModel);
+            state.elements.splice(index, 0, textAreaModel);*/
         },
         removeElement: (state: ElementModels, action: PayloadAction<number>) => {
             const index = action.payload;
@@ -44,7 +54,7 @@ const elementsSlice = createSlice({
 
         },
         saveToLocalStorage: (state: ElementModels) => {
-            saveElements(state.elements);
+            saveElements(current(state.elements));
         }
     }
 })

@@ -1,32 +1,11 @@
 import { useLocalStorage } from "@/shared/lib/hooks/useLocalStorage"
-import { defaultElements } from "../../lib/helper/getDefaultElementModel";
+import { defaultModels } from "../../lib/helper/getDefaultElementModel";
+import { modelsToElements } from "../../lib/helper/ModelsToElements";
 
 export const loadElements = () => {
+    //localStorage.clear()
     const { getItem } = useLocalStorage('post_constructor_elements');
-    const result = getItem();
-    return result ? result : defaultElements;
-}
-
-const title: ElementModel = {
-    index: 0,
-    panel: {
-        visible: false,
-    },
-    container: {
-        type: 'title',
-        nNum: 'h1',
-        value: '',
-    }
-}
-
-const preview: ElementModel = {
-    index: 1,
-    panel: {
-        visible: false,
-    },
-    container: {
-        type: 'preview',
-        nNum: 'none',
-        value: '',
-    }
+    const models = getItem();
+    console.log('wtf')
+    return models ? models : defaultModels;
 }
