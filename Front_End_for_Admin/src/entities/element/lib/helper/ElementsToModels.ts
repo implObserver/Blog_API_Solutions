@@ -1,19 +1,23 @@
 export const elementsToModels = (elements: Array<ElementType<TextArea | Preview | Title>>) => {
-    const models = [];
+    const models: Array<ModelType<TextAreaModel | PreviewModel | TitleModel>> = [];
     elements.forEach(element => {
-        const model =
-            element.getType() === 'preview'
-                ? getPreviewModel(element)
-                : element.getType() === 'title'
-                    ? getTitleModel(element)
-                    : element.getType() === 'text'
-                        ? getTextAreaModel(element)
-                        : '';
-
+        const model = elementToModel(element);
         models.push(model);
     })
 
     return models;
+}
+
+export const elementToModel = (element: ElementType<TextArea | Preview | Title>) => {
+    const model: ModelType<TextAreaModel | PreviewModel | TitleModel> =
+        element.getType() === 'preview'
+            ? getPreviewModel(element)
+            : element.getType() === 'title'
+                ? getTitleModel(element)
+                : element.getType() === 'text'
+                    ? getTextAreaModel(element)
+                    : getTextAreaModel(element);
+    return model;
 }
 
 

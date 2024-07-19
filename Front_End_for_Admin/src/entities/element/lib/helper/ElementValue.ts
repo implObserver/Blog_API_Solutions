@@ -2,7 +2,7 @@ import { useLocalStorage } from "@/shared/lib/hooks/useLocalStorage";
 import { prototype } from "events";
 
 const { getItem, setItem } = useLocalStorage('post_constructor_id_generator');
-console.log('ups')
+
 const counter = getItem();
 
 if (!counter) {
@@ -12,7 +12,6 @@ if (!counter) {
 const Element = () => {
     let id = getItem();
     setItem(id + 1);
-    console.log('ELEMENT')
     const getId = () => {
         return id;
     }

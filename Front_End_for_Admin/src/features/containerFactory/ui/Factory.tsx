@@ -19,11 +19,6 @@ export const Factory = () => {
             <Title></Title>
         )
     }
-    if (type === "image") {
-        return (
-            <div></div>
-        )
-    }
     if (type === "preview") {
         return (
             <Preview></Preview>

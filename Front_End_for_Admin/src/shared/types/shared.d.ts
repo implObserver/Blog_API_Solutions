@@ -10,8 +10,7 @@ interface DropdownContextType {
 
 interface TextAreaContextType {
     placeholder: string,
-    value: string,
-    setValue: React.Dispatch<React.SetStateAction<string>>,
+    value: ElementType<Title | TextArea | Preview>,
     maxLength: number,
 }
 

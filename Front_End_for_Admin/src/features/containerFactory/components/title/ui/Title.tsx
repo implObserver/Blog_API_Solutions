@@ -12,24 +12,25 @@ import { updateElement } from "@/features/containerFactory/lib/helper/updateElem
 export const Title = () => {
     const context = useElementContext();
     console.log(context.model);
-    const [value, setValue] = useState(context.elementContext.getValue());
     const h = context.elementContext.getFontSize();
 
     const titleContext: TextAreaContextType = {
         placeholder: 'Enter a name of this post',
-        value,
-        setValue,
+        value: context.elementContext,
         maxLength: 100,
     }
 
-    context.elementContext.setValue(value);
-    updateElement(context);
+    const handleChange = () => {
+        updateElement(context);
+    }
 
     const getTitleTextArea = (placeholder: String) => {
         return (
-            <TextAreaContext.Provider value={titleContext}>
-                <TextArea text={placeholder} maxLength={100}></TextArea>
-            </TextAreaContext.Provider>
+            <div onKeyUp={handleChange}>
+                <TextAreaContext.Provider value={titleContext}>
+                    <TextArea></TextArea>
+                </TextAreaContext.Provider>
+            </div>
         )
     }
 

@@ -8,7 +8,5 @@ export const updateElement = (context: CanvasElement) => {
         newModel: elementsToModels([context.elementContext])[0],
         model: context.model,
     }
-
     store.dispatch(elementsActions.updateElement(updateContext));
-    store.dispatch(elementsActions.saveToLocalStorage());
 }

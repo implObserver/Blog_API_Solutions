@@ -2,21 +2,26 @@ import { Preview, TextArea, Title } from "./ElementValue";
 
 export const modelsToElements = (models: Array<ModelType<TextAreaModel | PreviewModel | TitleModel>>) => {
     console.log(models)
-    const elements = [];
+    const elements: Array<ElementType<Title | TextArea | Preview>> = [];
 
     models.forEach((model: ModelType<TextAreaModel | PreviewModel | TitleModel>) => {
-        const element =
-            model.type === 'title'
-                ? getTitle(model)
-                : model.type === 'preview'
-                    ? getPreview(model)
-                    : model.type === 'text'
-                        ? getTextArea(model)
-                        : '';
+        const element = modelToElement(model);
         elements.push(element);
     });
 
     return elements;
+}
+
+export const modelToElement = (model: ModelType<TextAreaModel | PreviewModel | TitleModel>) => {
+    const element: ElementType<Title | TextArea | Preview> =
+        model.type === 'title'
+            ? getTitle(model)
+            : model.type === 'preview'
+                ? getPreview(model)
+                : model.type === 'text'
+                    ? getTextArea(model)
+                    : getTextArea(model);
+    return element;
 }
 
 const getTitle = (model: ModelType<TextAreaModel | PreviewModel | TitleModel>) => {

@@ -7,54 +7,46 @@ const elementsSlice = createSlice({
     name: 'elements',
     initialState,
     reducers: {
-        addElement: (state: ElementModels, action: PayloadAction<ModelType<TextAreaModel | PreviewModel | TitleModel>>) => {
-            state.elements.push(action.payload);
+        addElement: (state: ElementModels, action: PayloadAction<UpdateElement>) => {
+            const elements = current(state.elements);
+            const id = action.payload.model.id;
+            elements.forEach((element, index) => {
+                if (element.id === id) {
+                    state.elements.splice(index + 1, 0, action.payload.newModel);
+                }
+            })
+
+            saveElements(current(state.elements));
+            console.log(current(state.elements))
         },
         updateElement: (state: ElementModels, action: PayloadAction<UpdateElement>) => {
             const elements = current(state.elements);
             const id = action.payload.model.id;
             elements.forEach((element, index) => {
-                if (element.id === action.payload.model.id) {
+                if (element.id === id) {
                     state.elements.splice(index, 1, action.payload.newModel);
                 }
             })
+            saveElements(current(state.elements));
         },
-        addElementToIndex: (state: ElementModels, action: PayloadAction<ModelType<TextAreaModel | PreviewModel | TitleModel>>) => {
+        removeElement: (state: ElementModels, action: PayloadAction<ModelType<TextAreaModel | PreviewModel | TitleModel>>) => {
             const elements = current(state.elements);
-            const index = elements.indexOf(action.payload);
-            console.log(index)
-            //const defaultElement = getDefaultElementModel();
-            //state.elements.splice(index, 0, defaultElement);
-        },
-        addTextAreaModel: (state: ElementModels, action: PayloadAction<ModelType<TextAreaModel | PreviewModel | TitleModel>>) => {
-            const elements = current(state.elements);
-            const index = elements.indexOf(action.payload) + 1;
-            /*const textAreaModel: ElementModel = {
-                index,
-                panel: {
-                    visible: true,
-                },
-                container: {
-                    nNum: 'none',
-                    value: '',
-                    type: 'text',
+            const id = action.payload.id;
+            console.log(id)
+            elements.forEach((element, index) => {
+                if (element.id === id) {
+                    console.log(current(state.elements))
+                    state.elements.splice(index, 1);
+                    console.log(current(state.elements))
                 }
-            }
-            state.elements.splice(index, 0, textAreaModel);*/
-        },
-        removeElement: (state: ElementModels, action: PayloadAction<number>) => {
-            const index = action.payload;
-            console.log(current(state.elements[index]))
-            //if (current(state.elements.length) > 1) {
-            //state.elements.splice(index, 1);
-            //}
-            //saveElements(state.elements);
+            })
+            saveElements(current(state.elements));
         },
         changeValue: (state: ElementModels, action: PayloadAction<string>) => {
 
         },
         saveToLocalStorage: (state: ElementModels) => {
-            saveElements(current(state.elements));
+            //saveElements(current(state.elements));
         }
     }
 })
