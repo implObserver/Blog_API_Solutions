@@ -5,6 +5,7 @@ import fs from 'fs';
 import { __pathToKeyFolder } from "./keypair/generateKeypair.js";
 import path from "path";
 import { User } from "../../../../../../../models/user.js";
+import { db } from "../../../../../../../database/postgresSQL/queries.js";
 
 const pathToKey = path.join(__pathToKeyFolder, 'id_rsa_priv.pem');
 const PRIV_KEY = fs.readFileSync(pathToKey, 'utf8');
@@ -14,10 +15,11 @@ const options = {
     secretOrKey: PRIV_KEY,
     algorithms: ['RS256']
 }
-
+//for mongoDB
 const verifyCallback = async (payload, done) => {
     try {
         console.log('try')
+        console.log(payload)
         const user = await User.findOne({ _id: payload.sub });
         if (!user) {
             console.log('uncorrect username')
@@ -31,7 +33,24 @@ const verifyCallback = async (payload, done) => {
     };
 }
 
-const strategy = new JwtStrategy(options, verifyCallback);
+//for postgresDB
+const verifyCallbackPg = async (payload, done) => {
+    try {
+        console.log('try')
+        const user = db.findUser(payload.id);
+        if (!user) {
+            console.log('uncorrect username')
+            return done(null, false, { message: "Incorrect username" });
+        };
+        console.log('Welcome')
+        return done(null, user);
+    } catch (err) {
+        console.log('catch')
+        return done(err);
+    };
+}
+
+const strategy = new JwtStrategy(options, verifyCallbackPg);
 
 export const useJWTStrategy = () => {
     passport.use(strategy);

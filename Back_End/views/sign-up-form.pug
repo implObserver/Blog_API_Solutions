@@ -14,9 +14,10 @@ block content
         required value=(undefined===user ? '' : user.username)
       )
       label(for="password") Password:
-      input#username.form-control(
+      input#password.form-control(
         name="password",
         type="password",
+        autocomplete="on",
       )
     button.btn.btn-primary(type='submit') Sign Up
 

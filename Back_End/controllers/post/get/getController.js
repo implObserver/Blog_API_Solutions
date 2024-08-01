@@ -1,6 +1,7 @@
 import { Post } from "../../../models/post/post.js";
 import asyncHandler from "express-async-handler";
 import { body, validationResult } from "express-validator";
+import { db } from "../../../database/postgresSQL/queries.js";
 
 const post_detail_api = asyncHandler(async (req, res, next) => {
     const post = await Post.findById(req.params.id).exec();
@@ -18,9 +19,11 @@ const post_detail_api = asyncHandler(async (req, res, next) => {
 
 const posts_list_api = asyncHandler(async (req, res, next) => {
     const allPosts = await Post.find({ published: true }).sort({ date: 1 }).exec();
+    const allPostPg = db.getAllPosts();
     res.json({
         title: "Post List",
         post_list: allPosts,
+        post_list_pg: allPostPg,
     });
 });
 

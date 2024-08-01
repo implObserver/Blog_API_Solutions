@@ -3,7 +3,8 @@ import asyncHandler from "express-async-handler";
 import passport from "passport";
 import bcrypt from 'bcryptjs';
 import { User } from "../../../models/user.js";
-import { issueJWT } from "../../../app/use/dev/auth/token/JWT/issueJWT.js";
+import { issueJWT, issueJWTPG } from "../../../app/use/dev/auth/token/JWT/issueJWT.js";
+import { db } from "../../../database/postgresSQL/queries.js";
 
 const user_create_post = [
     // Validate and sanitize fields.
@@ -24,10 +25,18 @@ const user_create_post = [
         const errors = validationResult(req);
         const hashPassword = await bcrypt.hash(req.body.password, 10);
         // Create Author object with escaped and trimmed data
+
+        //for mongoDB
         const user = new User({
             username: req.body.username,
             password: hashPassword,
         });
+
+        //for postgresDB
+        const userPg = {
+            username: req.body.username,
+            password: hashPassword,
+        }
 
         if (!errors.isEmpty()) {
             // There are errors. Render form again with sanitized values/errors messages.
@@ -37,12 +46,14 @@ const user_create_post = [
             });
             return;
         } else {
+            const id = db.setNewUser(userPg); //for postgresDB
+            const jwtpg = issueJWTPG(id);
             // Data from form is valid.
-            const jwt = issueJWT(user);
+            //const jwt = issueJWT(user); //forMongoDB
             // Save author.
             await user.save();
             // Redirect to new author record.
-            res.json({ token: jwt.token });
+            res.json({ token: {}, tokenpg: jwtpg.token });
         }
     }),
 ];
