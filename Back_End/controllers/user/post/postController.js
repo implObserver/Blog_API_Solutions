@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs';
 import { User } from "../../../models/user.js";
 import { issueJWT, issueJWTPG } from "../../../app/use/dev/auth/token/JWT/issueJWT.js";
 import { db } from "../../../database/postgresSQL/queries.js";
+import { prismaDB } from "../../../prisma/queries.js";
 
 const user_create_post = [
     // Validate and sanitize fields.
@@ -46,7 +47,8 @@ const user_create_post = [
             });
             return;
         } else {
-            const id = db.setNewUser(userPg); //for postgresDB
+            const id = prismaDB.setNewUser(userPg);
+            //const id = db.setNewUser(userPg); //for postgresDB
             const jwtpg = issueJWTPG(id);
             // Data from form is valid.
             //const jwt = issueJWT(user); //forMongoDB

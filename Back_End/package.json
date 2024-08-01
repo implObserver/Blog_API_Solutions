@@ -10,6 +10,7 @@
     "serverstart": "DEBUG=express-locallibrary-tutorial:* npm run devstart"
   },
   "dependencies": {
+    "@prisma/client": "^5.17.0",
     "base64url": "^3.0.1",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
@@ -37,6 +38,7 @@
     "pug": "^3.0.3"
   },
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "prisma": "^5.17.0"
   }
 }
