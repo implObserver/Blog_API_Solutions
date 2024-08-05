@@ -1,23 +1,18 @@
-import { useFactoryContext } from "@/features/containerFactory/lib/context/Context"
 import { TextArea } from "@/shared/ui/textArea";
 import styles from './styles/Title.module.css';
-import { useState } from "react";
 import { useElementContext } from "@/entities/element/lib/context/Context";
 import { TextAreaContext } from "@/shared/ui/textArea/lib/context/Context";
-import { useWrapperContext } from "@/entities/element/components/wrapper";
-import { store } from "@/app/model/store/Store";
-import { elementsActions } from "@/entities/element";
 import { updateElement } from "@/features/containerFactory/lib/helper/updateElement";
 
 export const Title = () => {
     const context = useElementContext();
-    console.log(context.model);
     const h = context.elementContext.getFontSize();
 
     const titleContext: TextAreaContextType = {
         placeholder: 'Enter a name of this post',
         value: context.elementContext,
         maxLength: 100,
+        isFocus: context.isFocus
     }
 
     const handleChange = () => {

@@ -12,6 +12,7 @@ interface TextAreaContextType {
     placeholder: string,
     value: ElementType<Title | TextArea | Preview>,
     maxLength: number,
+    isFocus: boolean,
 }
 
 /*interface ElementNodeContextType {

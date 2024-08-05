@@ -1,18 +1,19 @@
-import { elementsActions, elementsReducer, selectElements } from '@/entities/element/index';
+import { modelsActions, modelsReducer, focusReducer, selectModels } from '@/entities/element/index';
 import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
   reducer: {
-    elements: elementsReducer,
+    models: modelsReducer,
+    focus: focusReducer,
   },
 });
 
 export const actions = {
-  elementsActions,
+  elementsActions: modelsActions,
 }
 
 export const selectors = {
-  selectElements,
+  selectModels,
 }
 
 export type RootState = ReturnType<typeof store.getState>;

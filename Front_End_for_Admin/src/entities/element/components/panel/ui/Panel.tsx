@@ -15,9 +15,11 @@ export const Panel = () => {
     }
 
     return (
-        <div
-            className={`${styles.panel} 
-        ${context.elementContext.getVisible() ? '' : styles.hidden}`}>
+        <div className=
+            {`${styles.panel} ${context.elementContext.getVisible()
+                ? ''
+                : styles.hidden}`}>
+                    
             {fill()}
         </div>
     )

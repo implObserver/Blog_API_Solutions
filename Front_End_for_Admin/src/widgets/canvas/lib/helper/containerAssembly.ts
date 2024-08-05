@@ -1,11 +1,8 @@
 import { store } from "@/app/model/store/Store";
-import { selectElements } from "@/entities/element"
-import { modelsToElements, modelToElement } from "@/entities/element/lib/helper/ModelsToElements";
-import { useSelector } from "react-redux"
+import { modelToElement } from "@/entities/element/lib/helper/ModelsToElements";
 
 export const containerAssembly = () => {
-    const models = store.getState().elements.elements;
-    console.log(models)
+    const models = store.getState().models.models;
     const containerContexts: Array<ContainerContext> = [];
 
     models.forEach((model, index) => {
@@ -17,6 +14,5 @@ export const containerAssembly = () => {
         }
         containerContexts.push(containerContext);
     })
-    console.log(containerContexts)
     return containerContexts;
 }

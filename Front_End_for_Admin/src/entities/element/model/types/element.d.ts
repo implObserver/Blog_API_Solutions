@@ -4,10 +4,15 @@
 // container: ContainerContextType,
 //}
 
+interface Focus {
+    index: Number,
+}
+
 interface CanvasElement {
     featuresContext: ElementFeatures,
     elementContext: ElementType<Title | TextArea | Preview>,
     model: ModelType<TextAreaModel | PreviewModel | TitleModel>,
+    isFocus: boolean,
 }
 
 interface ElementFeatures {
@@ -18,6 +23,7 @@ interface ElementFeatures {
 interface UpdateElement {
     newModel: ModelType<TextAreaModel | PreviewModel | TitleModel>,
     model: ModelType<TextAreaModel | PreviewModel | TitleModel>,
+
 }
 
 interface FeaturesPanel {
@@ -26,25 +32,6 @@ interface FeaturesPanel {
 
 interface FeaturesContainer {
     features: React.ReactElement,
-}
-
-interface TextAreaModel {
-    id: number,
-    type: string,
-    value: string,
-}
-
-interface PreviewModel {
-    id: number,
-    type: string,
-    imageUrl: string,
-}
-
-interface TitleModel {
-    id: number,
-    type: string,
-    value: string,
-    fontSize: number,
 }
 
 interface ModelPanelContextType {
@@ -66,10 +53,42 @@ interface ElementValueType {
     getValue: () => string;
 }
 
-interface ElementModels {
-    elements: Array<ModelType<TextAreaModel | PreviewModel | TitleModel>>
+
+//Models
+
+interface Models {
+    models: Array<ModelType<TextAreaModel | PreviewModel | TitleModel>>
 }
 
+interface ModelType<T> {
+    id: number,
+    type: string,
+    value?: string,
+    imageUrl?: string,
+    fontSize?: number,
+}
+
+interface TextAreaModel {
+    id: number,
+    type: string,
+    value: string,
+}
+
+interface PreviewModel {
+    id: number,
+    type: string,
+    imageUrl: string,
+}
+
+interface TitleModel {
+    id: number,
+    type: string,
+    value: string,
+    fontSize: number,
+}
+
+
+//Elements
 interface ElementType<T> {
     getId: () => number,
     getType: () => string,
@@ -79,14 +98,6 @@ interface ElementType<T> {
     getUrl?: () => string,
     setValue?: (val: string) => void,
     setUrl?: (val: string) => void,
-}
-
-interface ModelType<T> {
-    id: number,
-    type: string,
-    value?: string,
-    imageUrl?: string,
-    fontSize?: number,
 }
 
 interface TextArea {

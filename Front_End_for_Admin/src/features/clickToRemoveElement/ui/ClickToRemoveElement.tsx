@@ -1,5 +1,5 @@
 import { AppDispath, selectors } from "@/app/model/store/Store"
-import { elementsActions } from "@/entities/element";
+import { focusActions, modelsActions } from "@/entities/element";
 import { useElementContext } from "@/entities/element/lib/context/Context";
 import { MinusButton } from "@/shared/ui/minusButton"
 import { useDispatch, useSelector } from "react-redux";
@@ -8,8 +8,12 @@ export const ClickToRemoveElement = () => {
     const dispath = useDispatch<AppDispath>();
     const context = useElementContext();
     const clickHandle = () => {
-        console.log(context.elementContext.index)
-        dispath(elementsActions.removeElement(context.elementContext.index));
+        console.log('wtf')
+        dispath(modelsActions.removeModel(context.model));
+        //if (context.) {
+            //dispath(focusActions.setFocus(context.containerContext.index - 1))
+        //}
+        //context.canvasUpdate.toggle();
     }
 
     return (
