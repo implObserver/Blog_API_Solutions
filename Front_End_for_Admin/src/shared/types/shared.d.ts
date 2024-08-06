@@ -15,6 +15,17 @@ interface TextAreaContextType {
     isFocus: boolean,
 }
 
+interface CustomState {
+    toggle: () => void;
+    getState: () => boolean;
+    setState: (state: boolean) => void;
+}
+
+interface PlugContextType {
+    state: boolean,
+    index: string,
+}
+
 /*interface ElementNodeContextType {
     setElements: React.Dispatch<React.SetStateAction<React.ReactElement[]>>,
     elements: Array<React.ReactElement>,

@@ -9,14 +9,15 @@
 .open {
     display: block;
     position: absolute;
-    width: 98%;
-    margin-left: auto;
+    width: min-content;
+    margin-left: 1vw;
     margin-right: auto;
     left: 0;
     right: 0;
     text-align: center;
     animation-duration: 150ms;
     animation-name: open;
+    border: 1px blue solid;
 }
 
 .margin {
