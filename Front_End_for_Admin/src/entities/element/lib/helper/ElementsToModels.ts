@@ -12,11 +12,12 @@ export const elementToModel = (element: ElementType<TextArea | Preview | Title>)
     const model: ModelType<TextAreaModel | PreviewModel | TitleModel> =
         element.getType() === 'preview'
             ? getPreviewModel(element)
-            : element.getType() === 'title'
+            : element.getType().includes('title')
                 ? getTitleModel(element)
                 : element.getType() === 'text'
                     ? getTextAreaModel(element)
                     : getTextAreaModel(element);
+    Object.assign(model, { freshness: 1 });
     return model;
 }
 

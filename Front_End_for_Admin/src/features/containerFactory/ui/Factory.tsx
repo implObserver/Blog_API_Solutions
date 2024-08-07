@@ -11,7 +11,7 @@ export const Factory = () => {
             <Text></Text>
         )
     }
-    if (type === "title") {
+    if (type.includes('title')) {
         return (
             <Title></Title>
         )

@@ -29,6 +29,18 @@ const Image = () => {
     return Object.assign(image, element)
 }
 
+export const ImageArea = () => {
+    const prototype = Image();
+    const visible = true;
+    const getType = () => {
+        return 'view';
+    }
+    const getVisible = () => {
+        return visible;
+    }
+    return Object.assign(prototype, { getType, getVisible })
+}
+
 export const Preview = () => {
     const prototype = Image();
     const visible = false;
@@ -59,10 +71,26 @@ export const TextArea = () => {
     return Object.assign(prototype, { getType, getVisible })
 }
 
-export const Title = (size: number = 3) => {
+export const MainTitle = () => {
     const prototype = Text();
     const visible = false;
-    const fontSize = size;
+    const fontSize = 1;
+    const getType = () => {
+        return 'main_title';
+    }
+    const getVisible = () => {
+        return visible;
+    }
+    const getFontSize = () => {
+        return fontSize;
+    }
+    return Object.assign(prototype, { getType, getVisible, getFontSize })
+}
+
+export const Title = () => {
+    const prototype = Text();
+    const visible = true;
+    const fontSize = 3;
     const getType = () => {
         return 'title';
     }
@@ -76,7 +104,6 @@ export const Title = (size: number = 3) => {
 }
 
 export const Value = () => {
-    const { setItem, getItem } = useLocalStorage('');
     let value = '';
 
     const setValue = (val: string) => {

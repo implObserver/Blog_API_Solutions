@@ -1,4 +1,4 @@
-import { Preview, TextArea, Title } from "./ElementValue";
+import { Preview, TextArea, MainTitle, Title } from "./modelsOfElements";
 
 export const modelsToElements = (models: Array<ModelType<TextAreaModel | PreviewModel | TitleModel>>) => {
     console.log(models)
@@ -14,18 +14,27 @@ export const modelsToElements = (models: Array<ModelType<TextAreaModel | Preview
 
 export const modelToElement = (model: ModelType<TextAreaModel | PreviewModel | TitleModel>) => {
     const element: ElementType<Title | TextArea | Preview> =
-        model.type === 'title'
-            ? getTitle(model)
-            : model.type === 'preview'
-                ? getPreview(model)
-                : model.type === 'text'
-                    ? getTextArea(model)
-                    : getTextArea(model);
+        model.type === 'main_title'
+            ? getMainTitle(model)
+            : model.type === 'title'
+                ? getTitle(model)
+                : model.type === 'preview'
+                    ? getPreview(model)
+                    : model.type === 'text'
+                        ? getTextArea(model)
+                        : getTextArea(model);
     return element;
 }
 
+const getMainTitle = (model: ModelType<TextAreaModel | PreviewModel | TitleModel>) => {
+    const title = MainTitle();
+    title.setId(model.id);
+    title.setValue(model.value);
+    return title;
+}
+
 const getTitle = (model: ModelType<TextAreaModel | PreviewModel | TitleModel>) => {
-    const title = Title(model.fontSize);
+    const title = Title();
     title.setId(model.id);
     title.setValue(model.value);
     return title;

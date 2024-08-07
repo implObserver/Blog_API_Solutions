@@ -6,7 +6,6 @@ import TextareaAutosize from 'react-textarea-autosize';
 export const TextArea = () => {
     const context = useTextAreaContext();
     let value = context.value.getValue();
-
     const auto_grow = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         const element = e.target as HTMLTextAreaElement;
         if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {

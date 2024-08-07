@@ -1,7 +1,7 @@
 import { AppDispath } from "@/app/model/store/Store";
 import { modelsActions } from "@/entities/element";
 import { elementToModel } from "@/entities/element/lib/helper/ElementsToModels";
-import { TextArea } from "@/entities/element/lib/helper/ElementValue";
+import { TextArea } from "@/entities/element/lib/helper/modelsOfElements";
 import { useContainerContext } from "@/features/containerOS/lib/context/Context";
 import { useDispatch } from "react-redux";
 

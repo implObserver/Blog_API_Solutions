@@ -1,7 +1,7 @@
 import { elementsToModels } from "./ElementsToModels";
-import { Preview, TextArea, Title } from "./ElementValue";
+import { Preview, TextArea, MainTitle } from "./modelsOfElements";
 
-const title = Title(1);
+const title = MainTitle();
 const preview = Preview();
 const textArea = TextArea();
 

@@ -2,7 +2,7 @@ import { AppDispath } from "@/app/model/store/Store";
 import { modelsActions } from "@/entities/element";
 import { useElementContext } from "@/entities/element/lib/context/Context";
 import { elementToModel } from "@/entities/element/lib/helper/ElementsToModels";
-import { TextArea } from "@/entities/element/lib/helper/ElementValue";
+import { TextArea } from "@/entities/element/lib/helper/modelsOfElements";
 import { useDropdownContext } from "@/shared/ui/dropdownElement/lib/context/Context.";
 import { useDispatch } from "react-redux";
 

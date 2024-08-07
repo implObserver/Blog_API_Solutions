@@ -35,6 +35,7 @@ export const Container = () => {
         model,
         isFocus: focus.index === context.containerContext.index,
         dropdownStatus,
+        index: context.containerContext.index,
     }
 
     const externalResetContext: ExternalResetContextType = {

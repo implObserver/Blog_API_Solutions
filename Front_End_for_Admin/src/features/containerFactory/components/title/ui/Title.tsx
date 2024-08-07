@@ -8,18 +8,17 @@ export const Title = () => {
     const context = useElementContext();
     const h = context.elementContext.getFontSize();
 
-    const titleContext: TextAreaContextType = {
-        placeholder: 'Enter a name of this post',
-        value: context.elementContext,
-        maxLength: 100,
-        isFocus: context.isFocus
-    }
-
     const handleChange = () => {
         updateElement(context);
     }
 
-    const getTitleTextArea = (placeholder: String) => {
+    const getTitleTextArea = (placeholder: string) => {
+        const titleContext: TextAreaContextType = {
+            placeholder,
+            value: context.elementContext,
+            maxLength: 100,
+            isFocus: context.isFocus
+        }
         return (
             <div onKeyUp={handleChange}>
                 <TextAreaContext.Provider value={titleContext}>

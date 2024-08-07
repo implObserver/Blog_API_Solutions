@@ -7,7 +7,7 @@ import { TextAreaContext } from "@/shared/ui/textArea/lib/context/Context";
 export const Text = () => {
     const context = useElementContext();
     const textAreaContext: TextAreaContextType = {
-        placeholder: '',
+        placeholder: 'Add text',
         value: context.elementContext,
         maxLength: -1,
         isFocus: context.isFocus

@@ -14,5 +14,7 @@ export const containerAssembly = () => {
         }
         containerContexts.push(containerContext);
     })
+
+    console.log(containerContexts)
     return containerContexts;
 }

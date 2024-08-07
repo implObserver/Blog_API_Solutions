@@ -12,6 +12,9 @@ export const Focus = ({ children }) => {
 
     const keyUpHandle = (e: React.KeyboardEvent<HTMLDivElement>) => {
         console.log('wtf')
+        console.log(context.containerContext.index)
+        console.log(select.models.length - 1)
+
         if (e.key === 'ArrowUp' || e.key == 'ArrowDown') {
             e.stopPropagation();
             e.preventDefault();
@@ -31,7 +34,7 @@ export const Focus = ({ children }) => {
                 index--;
             }
             dispath(focusActions.setFocus(index))
-
+            context.canvasUpdate.toggle();
         }
 
         if (e.key === 'ArrowDown' && context.containerContext.index < select.models.length - 1) {
@@ -41,6 +44,7 @@ export const Focus = ({ children }) => {
                 index++;
             }
             dispath(focusActions.setFocus(index))
+            context.canvasUpdate.toggle();
         }
     }
 

@@ -14,6 +14,7 @@ interface CanvasElement {
     model: ModelType<TextAreaModel | PreviewModel | TitleModel>,
     isFocus: boolean,
     dropdownStatus: CustomState,
+    index: number,
 }
 
 interface ElementFeatures {
