@@ -59,7 +59,7 @@ export const Focus = ({ children }) => {
     }
 
     const clickHandle = (e: React.MouseEvent<HTMLDivElement>) => {
-        const element = e.target as SVGAnimateElement;
+        const element = e.target as HTMLElement;
         if (element.tagName === 'svg') {
             const className = element.classList.value;
             if (className.includes('minus')) {

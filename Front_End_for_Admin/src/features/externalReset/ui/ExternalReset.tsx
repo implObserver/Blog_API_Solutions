@@ -10,9 +10,19 @@ export const ExternalReset = ({ children }) => {
 
     useEffect(() => {
         const handler = (e: MouseEvent) => {
-            const element = e.target as HTMLElement;
-            if (element.className.includes('plug')) {
-                if (element.className.includes(context.index)) {
+            let element: HTMLElement | SVGElement;
+            let className: string;
+
+            if (e.target instanceof SVGElement) {
+                element = e.target as SVGElement;
+                className = element.classList.value;
+            } else {
+                element = e.target as HTMLElement;
+                className = element.className;
+            }
+
+            if (className.includes('plug')) {
+                if (className.includes(context.index)) {
                     context.state.setState(false);
                 }
             }

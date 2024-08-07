@@ -8,11 +8,6 @@ import { useElementContext } from "@/entities/element/lib/context/Context";
 export const ClickToAddElement = () => {
     const context = useElementContext();
 
-    const dropdownElementContext: DropdownContextType = {
-        state: context.dropdownStatus.getState(),
-        margin: false,
-    }
-
     const clickHandle = (e: React.MouseEvent<HTMLDivElement>) => {
         context.dropdownStatus.toggle();
     }

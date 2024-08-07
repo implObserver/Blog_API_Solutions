@@ -1,0 +1,6 @@
+.inner {
+    display: grid;
+    width: 30vw;
+    background-color: red;
+    border: 1px white solid;
+}

@@ -6,6 +6,7 @@ interface ImageStateContextType {
 interface DropdownContextType {
     margin: boolean,
     state: boolean,
+    canvas: CustomState,
 }
 
 interface TextAreaContextType {

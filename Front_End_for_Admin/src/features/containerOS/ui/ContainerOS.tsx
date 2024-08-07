@@ -4,7 +4,7 @@ import { Focus } from "../components/focus"
 import { Remove } from "../components/remove"
 import { EmptyContext } from "../lib/context/EmptyContext";
 import { Dropdown } from "@/shared/ui/dropdownElement";
-import { List } from "@/entities/elementList/components/list/ui/List";
+import { ElementList } from "@/entities/elementList/ui/ElementList";
 
 export const ContainerOS = ({ children }) => {
     const isEmpty = useCustomState(false);
@@ -18,9 +18,8 @@ export const ContainerOS = ({ children }) => {
                 </Add>
             </Focus>
             <Dropdown>
-                <List></List>
+                <ElementList></ElementList>
             </Dropdown>
         </EmptyContext.Provider>
-
     )
 }

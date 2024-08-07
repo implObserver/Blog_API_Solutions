@@ -1,6 +1,6 @@
 .inner {
     display: grid;
     width: 30vw;
-    height: 20vh;
     background-color: red;
+    border: 1px white solid;
 }
