@@ -22,6 +22,7 @@ const user_create_post = [
 
     // Process request after validation and sanitization.
     asyncHandler(async (req, res, next) => {
+        console.log(req.body)
         // Extract the validation errors from a request.
         const errors = validationResult(req);
         const hashPassword = await bcrypt.hash(req.body.password, 10);
@@ -41,10 +42,7 @@ const user_create_post = [
 
         if (!errors.isEmpty()) {
             // There are errors. Render form again with sanitized values/errors messages.
-            res.render("sign-up-form", {
-                user: user,
-                errors: errors.array(),
-            });
+
             return;
         } else {
             const id = prismaDB.setNewUser(userPg);

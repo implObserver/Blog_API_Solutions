@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  server: { port: 5000 },
+  server: { port: 5000,  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

@@ -9,10 +9,11 @@ export const UploadImage = () => {
         context.setImgFile(e.target.files[0]);
     }
 
+    const id = `file_upload ${Math.random()}`;
     return (
         <div className={styles.container}>
             <input
-                id={'file_upload'}
+                id={id}
                 className={styles.input}
                 type="file"
                 accept="image/*"
@@ -23,10 +24,10 @@ export const UploadImage = () => {
 
             <label
                 className={styles.custom_file_upload}
-                htmlFor="file_upload"
+                htmlFor={`${id}`}
             >
                 Upload post preview
             </label>
-        </div>
+        </div >
     )
 }

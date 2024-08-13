@@ -7,6 +7,7 @@ const commands = [
     //'npm install prisma --save-dev', //for postgres
     //'npx prisma init', //for postgres
     //'npm install @prisma/client', //for postgres
+    'npm install --save multer',
     'npm install express',
     'npm install express-async-handler',
     'npm install express-validator',

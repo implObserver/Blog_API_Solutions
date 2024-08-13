@@ -1,4 +1,5 @@
 interface ImageStateContextType {
+    model: ModelType<TextAreaModel | PreviewModel | TitleModel>,
     file: File,
     setImgFile: React.Dispatch<React.SetStateAction<File>>,
 }
@@ -25,6 +26,16 @@ interface CustomState {
 interface PlugContextType {
     state: boolean,
     index: string,
+}
+
+interface UserFormContextType {
+    data: userFormType,
+    setData: React.Dispatch<React.SetStateAction<userFormType>>
+}
+
+interface userFormType {
+    username: string,
+    password: string,
 }
 
 /*interface ElementNodeContextType {

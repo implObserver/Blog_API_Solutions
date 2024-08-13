@@ -1,4 +1,4 @@
-import { Preview, TextArea, MainTitle, Title } from "./modelsOfElements";
+import { Preview, TextArea, MainTitle, Title, ImageArea } from "./modelsOfElements";
 
 export const modelsToElements = (models: Array<ModelType<TextAreaModel | PreviewModel | TitleModel>>) => {
     console.log(models)
@@ -20,9 +20,11 @@ export const modelToElement = (model: ModelType<TextAreaModel | PreviewModel | T
                 ? getTitle(model)
                 : model.type === 'preview'
                     ? getPreview(model)
-                    : model.type === 'text'
-                        ? getTextArea(model)
-                        : getTextArea(model);
+                    : model.type === 'view'
+                        ? getView(model)
+                        : model.type === 'text'
+                            ? getTextArea(model)
+                            : getTextArea(model);
     return element;
 }
 
@@ -42,6 +44,13 @@ const getTitle = (model: ModelType<TextAreaModel | PreviewModel | TitleModel>) =
 
 const getPreview = (model: ModelType<TextAreaModel | PreviewModel | TitleModel>) => {
     const preview = Preview();
+    preview.setId(model.id);
+    preview.setUrl(model.imageUrl);
+    return preview;
+}
+
+const getView = (model: ModelType<TextAreaModel | PreviewModel | TitleModel>) => {
+    const preview = ImageArea();
     preview.setId(model.id);
     preview.setUrl(model.imageUrl);
     return preview;

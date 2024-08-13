@@ -6,6 +6,7 @@ import { Preview } from "../components/preview/ui/Preview";
 export const Factory = () => {
     const context = useElementContext();
     const type = context.elementContext.getType();
+    console.log(type)
     if (type === "text") {
         return (
             <Text></Text>
@@ -16,7 +17,7 @@ export const Factory = () => {
             <Title></Title>
         )
     }
-    if (type === "preview") {
+    if (type.includes("view")) {
         return (
             <Preview></Preview>
         )

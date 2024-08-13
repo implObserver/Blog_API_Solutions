@@ -1,11 +1,19 @@
+import expressAsyncHandler from "express-async-handler";
 import passport from "passport";
+import path from "path";
+import { __dirname } from "../../../app/dirname/dirname.js";
 
 const user_create_get = (req, res, next) => {
     res.render("sign-up-form");
 };
 
+const login_form_get = expressAsyncHandler(async (req, res, next) => {
+    console.log(__dirname)
+    res.sendFile('log-in-form.pug', { root: path.join(__dirname, './views/') });
+});
+
 const user_auth_get = (req, res, next) => {
-    res.render("log-in-form", { user: req.user });
+    res.render("log-in-form.pug", { root: path.join(__dirname, './view/') });
 };
 
 const user_auth_jwt_protected = async (req, res, next) => {
@@ -40,4 +48,5 @@ export const getController = {
     failureProtected,
     user_create_get,
     user_logout_get,
+    login_form_get,
 }

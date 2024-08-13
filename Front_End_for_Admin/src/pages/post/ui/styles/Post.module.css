@@ -1,0 +1,17 @@
+.page__main {
+    display: grid;
+    width: inherit;
+    height: inherit;
+    align-content:start;
+    row-gap: 4px;
+}
+
+.javascript {
+    display: grid;
+}
+
+code {
+    display: grid;
+    justify-content: right;
+    border: 1px red solid;
+}

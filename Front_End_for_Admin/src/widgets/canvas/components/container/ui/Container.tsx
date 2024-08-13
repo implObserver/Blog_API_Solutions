@@ -11,6 +11,7 @@ import { DropdownContext } from "@/shared/ui/dropdownElement";
 import { ExternalReset, ExternalResetContext } from "@/features/externalReset";
 import { ShowElementTypes } from "@/features/showElementTypes/ui/ShowElementTypes";
 import { ElementListContext } from "@/entities/elementList/lib/context/Context";
+import { AddImage } from "@/features/clickToAddElement/components/addIImage/ui/AddImage";
 
 export const Container = () => {
     const context = useContainerContext();
@@ -51,7 +52,8 @@ export const Container = () => {
 
     const elementListContext: ElementListContextType = {
         text: <AddText></AddText>,
-        title: <AddTitle></AddTitle>
+        title: <AddTitle></AddTitle>,
+        image: <AddImage></AddImage>,
     }
 
     return (
