@@ -1,9 +1,9 @@
 import { UserForm, UserFormContext } from "@/shared/ui/userForm"
-import styles from './styles/SignupForm.module.css'
-import { authUser } from "../api/authUser";
+import styles from './styles/LoginForm.module.css'
+import { loginUser } from "../api/loginUser";
 import { useState } from "react";
 
-export const SignupForm = () => {
+export const LoginForm = () => {
     const [data, setData] = useState({
         username: '',
         password: '',
@@ -12,18 +12,16 @@ export const SignupForm = () => {
     const formContext: UserFormContextType = {
         data,
         setData,
-        type: 'sign_up'
+        type: 'log_in',
     }
-    console.log({data})
-    
+
     const submitHandle = () => {
-        console.log('wtf')
-        authUser(data);
+        console.log(loginUser(data));
     }
 
     return (
         <div onSubmit={submitHandle}>
-            <span className={styles.name}>Sign Up</span>
+            <span className={styles.name}>Log In</span>
             <UserFormContext.Provider value={formContext}>
                 <UserForm></UserForm>
             </UserFormContext.Provider>

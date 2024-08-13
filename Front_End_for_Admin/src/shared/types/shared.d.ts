@@ -30,7 +30,8 @@ interface PlugContextType {
 
 interface UserFormContextType {
     data: userFormType,
-    setData: React.Dispatch<React.SetStateAction<userFormType>>
+    setData: React.Dispatch<React.SetStateAction<userFormType>>,
+    type: string,
 }
 
 interface userFormType {

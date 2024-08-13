@@ -28,6 +28,7 @@ export const UserForm = () => {
                     type="text"
                     placeholder="username"
                     value={data.username}
+                    autoComplete="on"
                     required>
                 </input>
 
@@ -39,7 +40,8 @@ export const UserForm = () => {
                     name="password"
                     type="password"
                     value={data.password}
-                    autoComplete="on">
+                    autoComplete="on"
+                    required>
                 </input>
             </div>
             <button>Sign Up</button>

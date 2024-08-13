@@ -6,8 +6,8 @@ const getAllUsers = async () => {
 }
 
 const getAllPosts = async () => {
-    const { posts } = await pool.query("SELECT * FROM posts");
-    return posts;
+    const { rows } = await pool.query("SELECT * FROM posts");
+    return rows;
 }
 
 const setNewUser = async (user) => {
@@ -16,8 +16,13 @@ const setNewUser = async (user) => {
 }
 
 const findUser = async (id) => {
-    const { user } = await pool.query("SELECT * FROM users WHERE id=($1)", [id]);
-    return user;
+    const { rows } = await pool.query("SELECT * FROM users WHERE id=($1)", [id]);
+    return rows;
+}
+
+const findUserByName = async (name) => {
+    const { rows } = await pool.query("SELECT * FROM users WHERE name=($1)", [name]);
+    return rows;
 }
 
 export const db = {
@@ -25,4 +30,5 @@ export const db = {
     getAllPosts,
     setNewUser,
     findUser,
+    findUserByName,
 }

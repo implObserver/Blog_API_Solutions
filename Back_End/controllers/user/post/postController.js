@@ -45,7 +45,7 @@ const user_create_post = [
 
             return;
         } else {
-            const id = prismaDB.setNewUser(userPg);
+            const id = await prismaDB.setNewUser(userPg);
             //const id = db.setNewUser(userPg); //for postgresDB
             const jwtpg = issueJWTPG(id);
             // Data from form is valid.

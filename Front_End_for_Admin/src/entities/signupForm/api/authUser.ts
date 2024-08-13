@@ -1,4 +1,4 @@
-export const postUser = async (data: userFormType) => {
+export const authUser = async (data: userFormType) => {
     try {
         const apiUrl = `http://localhost:3000/sign-up`;
         const response = await fetch(apiUrl, {
