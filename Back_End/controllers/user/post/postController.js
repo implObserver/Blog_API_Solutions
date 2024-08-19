@@ -63,14 +63,17 @@ const user_create_post = [
 ];
 
 const user_auth_post = asyncHandler(async (req, res, next) => {
-    console.log(req.body)
-    passport.authenticate("local", {
-        successRedirect: "success",
-        failureRedirect: "failure",
+    await passport.authenticate("local", {
+        failureRedirect: 'failure',
     })(req, res, next)
+});
+
+const user_token_post = asyncHandler(async (req, res, next) => {
+    res.json({ accessToken: req.user.token });
 });
 
 export const postController = {
     user_create_post,
     user_auth_post,
+    user_token_post,
 }

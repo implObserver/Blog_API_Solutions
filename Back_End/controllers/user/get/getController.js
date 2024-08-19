@@ -25,7 +25,7 @@ const user_auth_jwt_protected = async (req, res, next) => {
 }
 
 const sucessProtected = (req, res, next) => {
-    res.status(200).json({ message: 'sucess' });
+    res.status(200).json({ message: 'sucessfck' });
 }
 
 const failureProtected = (req, res, next) => {

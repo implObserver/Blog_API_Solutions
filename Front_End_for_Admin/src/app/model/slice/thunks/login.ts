@@ -9,6 +9,7 @@ export const login = createAsyncThunk(
             const username = data.username;
             const password = data.password;
             const resp = await AuthService.login(username, password);
+            console.log(resp);
             saveToken(resp.data.accessToken);
             return true;
         } catch (error) {
