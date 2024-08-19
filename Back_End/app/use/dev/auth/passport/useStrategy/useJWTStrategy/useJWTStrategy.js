@@ -5,7 +5,7 @@ import fs from 'fs';
 import { __pathToKeyFolder } from "./keypair/generateKeypair.js";
 import path from "path";
 import { User } from "../../../../../../../models/user.js";
-import { db } from "../../../../../../../database/postgresSQL/queries.js";
+import { prismaDB } from "../../../../../../../prisma/queries.js";
 
 const pathToKey = path.join(__pathToKeyFolder, 'id_rsa_priv.pem');
 const PRIV_KEY = fs.readFileSync(pathToKey, 'utf8');
@@ -37,7 +37,7 @@ const verifyCallback = async (payload, done) => {
 const verifyCallbackPg = async (payload, done) => {
     try {
         console.log('try')
-        const user = db.findUser(payload.id);
+        const user = prismaDB.findUser(payload.id);
         if (!user) {
             console.log('uncorrect username')
             return done(null, false, { message: "Incorrect username" });

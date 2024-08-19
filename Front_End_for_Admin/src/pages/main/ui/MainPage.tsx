@@ -1,13 +1,11 @@
+import { Greeting } from '@/widgets/greeting/ui/Greeting'
 import styles from './styles/MainPage.module.css'
-import { Canvas } from '@/widgets/canvas'
-
-import { CategoryDate } from '@/widgets/title'
-import { UserForms } from '@/widgets/userForms'
+import { Link } from 'react-router-dom'
 
 export const MainPage = () => {
     return (
         <div className={styles.page__main}>
-            <UserForms></UserForms>
+            <Greeting></Greeting>
         </div>
     )
 }

@@ -5,6 +5,6 @@ import { apiRouter } from '../../../../routes/api/api.js';
 
 export const useRoutes = () => {
     app.use(indexRouter);
-    app.use(userRouter);
+    //app.use(userRouter);
     app.use(apiRouter);
 }

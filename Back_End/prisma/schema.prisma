@@ -18,6 +18,7 @@ model users {
   name     String?
   password String?
   isAdmin  Boolean @default(false)
+  token    String?
 }
 
 model posts {

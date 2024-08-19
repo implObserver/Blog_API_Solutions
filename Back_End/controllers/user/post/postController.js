@@ -4,7 +4,6 @@ import passport from "passport";
 import bcrypt from 'bcryptjs';
 import { User } from "../../../models/user.js";
 import { issueJWT, issueJWTPG } from "../../../app/use/dev/auth/token/JWT/issueJWT.js";
-import { db } from "../../../database/postgresSQL/queries.js";
 import { prismaDB } from "../../../prisma/queries.js";
 
 const user_create_post = [
@@ -22,7 +21,7 @@ const user_create_post = [
 
     // Process request after validation and sanitization.
     asyncHandler(async (req, res, next) => {
-        console.log(req.body)
+
         // Extract the validation errors from a request.
         const errors = validationResult(req);
         const hashPassword = await bcrypt.hash(req.body.password, 10);
@@ -33,7 +32,7 @@ const user_create_post = [
             username: req.body.username,
             password: hashPassword,
         });
-
+        console.log('1')
         //for postgresDB
         const userPg = {
             username: req.body.username,
@@ -42,26 +41,32 @@ const user_create_post = [
 
         if (!errors.isEmpty()) {
             // There are errors. Render form again with sanitized values/errors messages.
-
+            console.log('noooo')
             return;
         } else {
             const id = await prismaDB.setNewUser(userPg);
+            console.log('2')
             //const id = db.setNewUser(userPg); //for postgresDB
             const jwtpg = issueJWTPG(id);
+            console.log('3')
+            await prismaDB.setToken(id, jwtpg.token);
             // Data from form is valid.
             //const jwt = issueJWT(user); //forMongoDB
             // Save author.
-            await user.save();
+            await user.save().then(
+                res.json({ accessToken: jwtpg.token })
+            );
             // Redirect to new author record.
-            res.json({ token: {}, tokenpg: jwtpg.token });
+            //res.json({ token: jwtpg.token });
         }
     }),
 ];
 
 const user_auth_post = asyncHandler(async (req, res, next) => {
+    console.log(req.body)
     passport.authenticate("local", {
-        successRedirect: "/",
-        failureRedirect: "/",
+        successRedirect: "success",
+        failureRedirect: "failure",
     })(req, res, next)
 });
 

@@ -13,7 +13,7 @@ const login_form_get = expressAsyncHandler(async (req, res, next) => {
 });
 
 const user_auth_get = (req, res, next) => {
-    //res.render("log-in-form.pug", { root: path.join(__dirname, './view/') });
+    res.json({ accessToken: 'jwtpg.token' })
 };
 
 const user_auth_jwt_protected = async (req, res, next) => {

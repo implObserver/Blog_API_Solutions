@@ -7,3 +7,8 @@ declare module '*.jpg';
 declare module '*.webp';
 declare module '*.svg';
 declare module '*.json';
+
+interface AuthStates {
+  isAuth: boolean,
+  isAuthInProgress: boolean,
+}

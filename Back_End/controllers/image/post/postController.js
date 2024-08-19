@@ -1,11 +1,4 @@
-import { body, validationResult } from "express-validator";
 import asyncHandler from "express-async-handler";
-import passport from "passport";
-import bcrypt from 'bcryptjs';
-import { User } from "../../../models/user.js";
-import { issueJWT, issueJWTPG } from "../../../app/use/dev/auth/token/JWT/issueJWT.js";
-import { db } from "../../../database/postgresSQL/queries.js";
-import { prismaDB } from "../../../prisma/queries.js";
 
 const save_post_image = [
     // Validate and sanitize fields.

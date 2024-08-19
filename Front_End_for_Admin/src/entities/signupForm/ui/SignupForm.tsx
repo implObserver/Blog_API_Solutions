@@ -1,24 +1,30 @@
 import { UserForm, UserFormContext } from "@/shared/ui/userForm"
 import styles from './styles/SignupForm.module.css'
-import { authUser } from "../api/authUser";
 import { useState } from "react";
+import { loadToken } from "../api/localStorage/loadToken";
+import { useDispatch } from "react-redux";
+import { AppDispath } from "@/app/model/store/Store";
+import { signup } from "@/app/model/slice/thunks/signup";
 
 export const SignupForm = () => {
-    const [data, setData] = useState({
+    const dispath = useDispatch<AppDispath>();
+
+    const defaultData = {
         username: '',
         password: '',
-    })
+    }
+
+    const [data, setData] = useState(defaultData)
 
     const formContext: UserFormContextType = {
         data,
         setData,
-        type: 'sign_up'
+        type: 'Sign Up'
     }
-    console.log({data})
-    
-    const submitHandle = () => {
-        console.log('wtf')
-        authUser(data);
+
+    const submitHandle = (e) => {
+        e.preventDefault();
+        dispath(signup(data));
     }
 
     return (

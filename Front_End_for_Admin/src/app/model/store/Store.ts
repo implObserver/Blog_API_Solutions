@@ -1,15 +1,18 @@
 import { modelsActions, modelsReducer, focusReducer, selectModels } from '@/entities/element/index';
 import { configureStore } from '@reduxjs/toolkit';
+import { authActions, authReducer } from '../slice/slice';
 
 export const store = configureStore({
   reducer: {
     models: modelsReducer,
     focus: focusReducer,
+    auth: authReducer,
   },
 });
 
 export const actions = {
-  elementsActions: modelsActions,
+  modelsActions,
+  authActions,
 }
 
 export const selectors = {

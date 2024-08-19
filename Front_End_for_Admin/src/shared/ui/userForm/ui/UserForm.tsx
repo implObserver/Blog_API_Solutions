@@ -44,7 +44,7 @@ export const UserForm = () => {
                     required>
                 </input>
             </div>
-            <button>Sign Up</button>
+            <button type='submit'>{context.type}</button>
         </form>
     )
 }
