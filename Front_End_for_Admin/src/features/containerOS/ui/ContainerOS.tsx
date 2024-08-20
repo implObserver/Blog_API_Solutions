@@ -1,10 +1,10 @@
-import { useCustomState } from "@/shared/lib/hooks/useCustomState";
 import { Add } from "../components/add"
 import { Focus } from "../components/focus"
 import { Remove } from "../components/remove"
 import { EmptyContext } from "../lib/context/EmptyContext";
 import { Dropdown } from "@/shared/ui/dropdownElement";
-import { ElementList } from "@/entities/elementList/ui/ElementList";
+import { useCustomState } from "@/shared/lib";
+import { ElementList } from "@/entities/elementList";
 
 export const ContainerOS = ({ children }) => {
     const isEmpty = useCustomState(false);

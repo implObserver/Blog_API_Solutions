@@ -1,6 +1,6 @@
-import { Login as LoginWidget } from "@/widgets/login"
+import { LoginWidget } from "@/widgets/login"
 
-export const Login = () => {
+export const LoginPage = () => {
     return (
         <div>
             <LoginWidget></LoginWidget>

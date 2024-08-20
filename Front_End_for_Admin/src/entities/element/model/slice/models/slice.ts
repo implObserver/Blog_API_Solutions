@@ -46,5 +46,5 @@ const modelsSlice = createSlice({
     }
 })
 
-export const actions = modelsSlice.actions;
-export default modelsSlice.reducer;
+export const modelsActions = modelsSlice.actions;
+export const modelsReducer = modelsSlice.reducer;

@@ -103,7 +103,7 @@ export const Title = () => {
     return Object.assign(prototype, { getType, getVisible, getFontSize })
 }
 
-export const Value = () => {
+const Value = () => {
     let value = '';
 
     const setValue = (val: string) => {
@@ -117,7 +117,7 @@ export const Value = () => {
     return { setValue, getValue };
 }
 
-export const ImageUrl = () => {
+const ImageUrl = () => {
     let url = '';
 
     const setUrl = (val: string) => {

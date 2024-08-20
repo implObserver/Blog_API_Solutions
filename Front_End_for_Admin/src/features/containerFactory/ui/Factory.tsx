@@ -1,7 +1,8 @@
+import { Preview } from "../components/preview";
 import { Text } from "../components/text";
 import { Title } from "../components/title";
-import { useElementContext } from "@/entities/element/lib/context/Context";
-import { Preview } from "../components/preview/ui/Preview";
+
+import { useElementContext } from "@/entities/element";
 
 export const Factory = () => {
     const context = useElementContext();

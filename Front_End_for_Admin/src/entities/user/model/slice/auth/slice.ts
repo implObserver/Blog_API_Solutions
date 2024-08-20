@@ -10,12 +10,9 @@ const authSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-
         builder
             .addCase(login.pending, (state) => {
                 state.isAuthInProgress = true;
-                //localStorage.setItem('post_constructor_authprogress', JSON.stringify(true));
-
             })
             .addCase(login.fulfilled, (state, action) => {
                 try {
@@ -24,7 +21,6 @@ const authSlice = createSlice({
                     console.log("login error");
                 } finally {
                     state.isAuthInProgress = false;
-                    //localStorage.setItem('post_constructor_authprogress', JSON.stringify(false));
                 }
 
             })
@@ -32,7 +28,6 @@ const authSlice = createSlice({
         builder
             .addCase(checkAuth.pending, (state) => {
                 state.isAuthInProgress = true;
-                //localStorage.setItem('post_constructor_authprogress', JSON.stringify(true));
             })
             .addCase(checkAuth.fulfilled, (state, action) => {
                 try {
@@ -41,15 +36,12 @@ const authSlice = createSlice({
                     console.log("auth error");
                 } finally {
                     state.isAuthInProgress = false;
-                    //localStorage.setItem('post_constructor_authprogress', JSON.stringify(false));
                 }
-
             })
 
         builder
             .addCase(signup.pending, (state) => {
                 state.isAuthInProgress = true;
-                //localStorage.setItem('post_constructor_authprogress', JSON.stringify(true));
             })
             .addCase(signup.fulfilled, (state, action) => {
                 try {
@@ -58,7 +50,6 @@ const authSlice = createSlice({
                     console.log("auth error");
                 } finally {
                     state.isAuthInProgress = false;
-                    //localStorage.setItem('post_constructor_authprogress', JSON.stringify(false));
                 }
 
             })

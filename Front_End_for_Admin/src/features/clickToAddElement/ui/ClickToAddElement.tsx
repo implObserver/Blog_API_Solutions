@@ -1,9 +1,5 @@
-import { Dropdown, DropdownContext } from "@/shared/ui/dropdownElement"
+import { useElementContext } from "@/entities/element";
 import { PlusButton } from "@/shared/ui/plusButton"
-import styles from './styles/ClickToAddElement.module.css'
-import { useCustomState } from "@/shared/lib/hooks/useCustomState";
-import { List } from "@/entities/elementList/components/list/ui/List";
-import { useElementContext } from "@/entities/element/lib/context/Context";
 
 export const ClickToAddElement = () => {
     const context = useElementContext();

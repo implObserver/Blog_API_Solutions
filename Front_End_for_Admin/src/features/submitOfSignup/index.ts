@@ -1,0 +1,1 @@
+export { SubmitOfSignup } from './ui/SubmitOfSignup'

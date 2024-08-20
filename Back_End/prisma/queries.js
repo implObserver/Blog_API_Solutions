@@ -18,8 +18,6 @@ const setNewUser = async (user) => {
 }
 
 const setToken = async (id, token) => {
-    console.log(`id: ${id}`)
-    console.log(`token: ${token}`)
     await prisma.users.update({
         where: { id: id },
         data: {

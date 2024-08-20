@@ -1,6 +1,6 @@
-import { Signup as SignupWidget } from "@/widgets/signup"
+import { SignupWidget } from "@/widgets/signup"
 
-export const Signup = () => {
+export const SignupPage = () => {
     return (
         <div>
             <SignupWidget></SignupWidget>

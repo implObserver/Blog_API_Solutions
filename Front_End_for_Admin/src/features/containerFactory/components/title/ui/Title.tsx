@@ -1,8 +1,7 @@
-import { TextArea } from "@/shared/ui/textArea";
+import { TextArea, TextAreaContext } from "@/shared/ui/textArea";
 import styles from './styles/Title.module.css';
-import { useElementContext } from "@/entities/element/lib/context/Context";
-import { TextAreaContext } from "@/shared/ui/textArea/lib/context/Context";
 import { updateElement } from "@/features/containerFactory/lib/helper/updateElement";
+import { useElementContext } from "@/entities/element";
 
 export const Title = () => {
     const context = useElementContext();

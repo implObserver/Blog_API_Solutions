@@ -1,28 +1,27 @@
-import { SignupForm } from "@/entities/signupForm";
 import { useSelector } from "react-redux";
-import { selectAuth } from "@/app/model/slice/selectors";
-import { LoginForm } from "@/entities/loginForm";
+import { selectAuth } from "@/entities/user";
+import { SubmitOfSignup } from "@/features/submitOfSignup";
 
-export const Login = () => {
+export const SignupWidget = () => {
     const select = useSelector(selectAuth);
     if (select.isAuthInProgress) {
         return (
             <div>
-                Sending...
+                Sending!
             </div>
         )
     }
     if (!select.isAuth) {
         return (
             <div>
-                <LoginForm></LoginForm>
+                <SubmitOfSignup></SubmitOfSignup>
             </div>
         )
     }
     if (select.isAuth) {
         return (
             <div>
-                login!
+                Auth!
             </div>
         )
     }

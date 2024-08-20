@@ -1,5 +1,6 @@
-import { AuthService } from "@/entities/signupForm/api/api.auth";
-import { saveToken } from "@/entities/signupForm/api/localStorage/saveToken";
+import { AuthService } from "@/entities/user/api/api.auth";
+import { saveToken } from "@/entities/user/api/localstorage/token/saveToken";
+import { saveUser } from "@/entities/user/api/localstorage/user/saveUser";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const signup = createAsyncThunk(
@@ -9,8 +10,8 @@ export const signup = createAsyncThunk(
             const username = data.username;
             const password = data.password;
             const resp = await AuthService.signup(username, password);
-            console.log(resp)
-            saveToken(resp.data.accessToken);
+            const user = resp.data.user;
+            saveUser(user);
             return true;
         } catch (error) {
             return false;

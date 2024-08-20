@@ -1,0 +1,1 @@
+export { containerAssembly } from './helper/containerAssembly'

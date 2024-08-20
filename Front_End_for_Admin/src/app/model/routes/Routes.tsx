@@ -1,8 +1,9 @@
-import { MainPage } from "@/pages/main/ui/MainPage";
-import { Post } from "@/pages/post/ui/Post";
 import { store } from "../store/Store";
-import { Signup } from "@/pages/signup/Signup";
-import { Login } from "@/pages/login/ui/Login";
+import { HomePage } from "@/pages/home";
+import { SignupPage } from "@/pages/signup";
+import { LoginPage } from "@/pages/login";
+import { PostPage } from "@/pages/post";
+import { MainPage } from "@/pages/main";
 
 const authState = store.getState().auth;
 
@@ -14,7 +15,7 @@ const routes = [
         element: authState.isAuthInProgress
             ? <div>Checking auth...</div>
             : authState.isAuth
-                ? <div>WELCOME!!!...</div>
+                ? <HomePage></HomePage>
                 : <MainPage></MainPage>
     },
     {
@@ -22,7 +23,7 @@ const routes = [
         element: authState.isAuthInProgress
             ? <div>Checking auth...</div>
             : authState.isAuth
-                ? <Post></Post>
+                ? <PostPage></PostPage>
                 : <div>pls auth...</div>
     },
     {
@@ -31,7 +32,7 @@ const routes = [
             ? <div>Checking auth...</div>
             : authState.isAuth
                 ? <div>you auth...</div>
-                : <Signup></Signup>
+                : <SignupPage></SignupPage>
     },
     {
         path: "/login",
@@ -39,7 +40,7 @@ const routes = [
             ? <div>Checking auth...</div>
             : authState.isAuth
                 ? <div>you logged...</div>
-                : <Login></Login>
+                : <LoginPage></LoginPage>
     },
 ];
 

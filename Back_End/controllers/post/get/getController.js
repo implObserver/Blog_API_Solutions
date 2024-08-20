@@ -1,6 +1,5 @@
 import { Post } from "../../../models/post/post.js";
 import asyncHandler from "express-async-handler";
-import { body, validationResult } from "express-validator";
 import { prismaDB } from "../../../prisma/queries.js";
 
 const post_detail_api = asyncHandler(async (req, res, next) => {

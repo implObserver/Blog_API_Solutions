@@ -1,8 +1,6 @@
-import { useElementContext } from "@/entities/element/lib/context/Context";
+import { useElementContext } from "@/entities/element";
 import { updateElement } from "@/features/containerFactory/lib/helper/updateElement";
-import { TextArea } from "@/shared/ui/textArea"
-import { TextAreaContext } from "@/shared/ui/textArea/lib/context/Context";
-
+import { TextArea, TextAreaContext } from "@/shared/ui/textArea"
 
 export const Text = () => {
     const context = useElementContext();

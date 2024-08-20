@@ -1,7 +1,7 @@
-import { containerAssembly } from "../lib/helper/containerAssembly";
 import { Container } from "../components/container";
-import { useCustomState } from "@/shared/lib/hooks/useCustomState";
 import { ContainerContext } from "@/features/containerOS";
+import { useCustomState } from "@/shared/lib";
+import { containerAssembly } from "../lib";
 
 export const Canvas = () => {
     const update = useCustomState();

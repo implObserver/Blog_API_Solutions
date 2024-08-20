@@ -1,5 +1,5 @@
-import { AuthService } from "@/entities/signupForm/api/api.auth";
-import { removeToken } from "@/entities/signupForm/api/localStorage/removeToken";
+import { AuthService } from "@/entities/user/api/api.auth";
+import { removeToken } from "@/entities/user/api/localstorage/token/removeToken";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const logout = createAsyncThunk(

@@ -1,4 +1,4 @@
-import { loadToken } from "@/entities/signupForm/api/localStorage/loadToken";
+import { loadToken } from "@/entities/user/api/localstorage/token/loadToken";
 
 const token = loadToken();
 const defaultAuth = token === null

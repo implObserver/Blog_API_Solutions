@@ -1,5 +1,5 @@
-import { AuthService } from "@/entities/signupForm/api/api.auth";
-import { saveToken } from "@/entities/signupForm/api/localStorage/saveToken";
+import { AuthService } from "@/entities/user/api/api.auth";
+import { saveToken } from "@/entities/user/api/localstorage/token/saveToken";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const checkAuth = createAsyncThunk(
