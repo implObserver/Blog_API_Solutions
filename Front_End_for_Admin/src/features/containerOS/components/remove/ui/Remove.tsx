@@ -1,7 +1,6 @@
 import { AppDispath } from "@/app/model/store/Store";
 import { modelsActions } from "@/entities/element";
-import { useContainerContext } from "@/features/containerOS/lib/context/Context";
-import { useEmptyContext } from "@/features/containerOS/lib/context/EmptyContext";
+import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
 import { useDispatch } from "react-redux";
 
 export const Remove = ({ children }) => {

@@ -1,4 +1,4 @@
-import { useLocalStorage } from "@/shared/lib/hooks/useLocalStorage"
+import { useLocalStorage } from "@/shared/lib";
 import { saveToken } from "../token/saveToken";
 
 export const saveUser = (fullUser: UserWithToken) => {

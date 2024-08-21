@@ -1,4 +1,3 @@
-import { useCallback, useEffect } from 'react';
 import { useTextAreaContext } from '../lib/context/Context';
 import styles from './styles/Input.module.css'
 import TextareaAutosize from 'react-textarea-autosize';

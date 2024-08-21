@@ -1,4 +1,4 @@
-import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./defaultState";
 import { login } from "./thunks/login";
 import { checkAuth } from "./thunks/checkAuth";

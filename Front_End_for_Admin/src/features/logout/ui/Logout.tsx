@@ -1,5 +1,4 @@
-import { removeToken } from "@/entities/user/api/localstorage/token/removeToken"
-import { removeUser } from "@/entities/user/api/localstorage/user/removeUser";
+import { removeToken, removeUser } from "@/entities/user";
 
 export const Logout = ({ children }) => {
     const clickHandle = () => {

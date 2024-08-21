@@ -1,6 +1,6 @@
-import { useState } from "react";
 import styles from './styles/UploadImage.module.css'
 import { useImageContext } from "../../../lib/context/Context";
+
 export const UploadImage = () => {
     // Define a state variable to store the selected image
     const context = useImageContext();

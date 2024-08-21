@@ -1,4 +1,4 @@
-import { useLocalStorage } from "@/shared/lib/hooks/useLocalStorage"
+import { useLocalStorage } from "@/shared/lib";
 import { defaultIndex } from "../../lib/helper/getDefaultIndex";
 
 export const loadFocus = () => {

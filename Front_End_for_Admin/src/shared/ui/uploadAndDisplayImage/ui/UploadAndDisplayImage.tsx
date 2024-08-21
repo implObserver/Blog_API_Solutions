@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { DisplayImage } from "../components/displayImage"
 import { UploadImage } from "../components/uploadImage"
 import styles from './styles/UploadAndDisplayImage.module.css'

@@ -1,4 +1,3 @@
-import { useElementAreaContext } from '../lib/context/Context'
 import styles from './styles/ElementArea.module.css'
 
 export const ElementArea = () => {

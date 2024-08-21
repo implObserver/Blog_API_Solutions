@@ -1,4 +1,4 @@
-import { useLocalStorage } from "@/shared/lib/hooks/useLocalStorage"
+import { useLocalStorage } from "@/shared/lib";
 
 export const loadUser = () => {
     const { getItem } = useLocalStorage('post_constructor_user');

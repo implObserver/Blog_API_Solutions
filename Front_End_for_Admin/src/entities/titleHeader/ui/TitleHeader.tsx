@@ -1,4 +1,4 @@
-import { formattedToday } from '@/shared/lib/helpers/getCurrentDate';
+import { formattedToday } from '@/shared/lib';
 import styles from './styles/TitleHeader.module.css'
 
 export const TitleHeader = ({ children }) => {

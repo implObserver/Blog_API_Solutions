@@ -1,6 +1,6 @@
 import { AppDispath } from "@/app/model/store/Store";
 import { LoginForm } from "@/entities/loginForm";
-import { login } from "@/entities/user/model/slice/auth/thunks/login";
+import { login } from "@/entities/user";
 import { UserFormContext } from "@/shared/ui/userForm";
 import { useState } from "react";
 import { useDispatch } from "react-redux";

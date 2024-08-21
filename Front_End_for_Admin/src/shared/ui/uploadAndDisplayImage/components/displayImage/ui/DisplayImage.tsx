@@ -1,6 +1,6 @@
-import { useState } from "react";
 import styles from './styles/DisplayImage.module.css'
 import { useImageContext } from "../../../lib/context/Context";
+
 export const DisplayImage = () => {
     const context = useImageContext();
     const selectedImage = context.file;

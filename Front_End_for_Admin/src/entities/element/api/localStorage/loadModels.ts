@@ -1,4 +1,4 @@
-import { useLocalStorage } from "@/shared/lib/hooks/useLocalStorage"
+import { useLocalStorage } from "@/shared/lib";
 import { defaultModels } from "../../lib/helper/getDefaultElementModel";
 
 export const loadModels = () => {
