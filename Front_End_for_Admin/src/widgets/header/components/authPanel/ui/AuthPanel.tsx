@@ -1,4 +1,4 @@
-import { selectAuth } from "@/entities/user"
+import { selectAuth, UserPreview } from "@/entities/user"
 import { Logout } from "@/features/logout";
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom";
@@ -22,6 +22,7 @@ export const AuthPanel = () => {
         return (
             <div className={styles.panel_auth}>
                 <span>Hello {user.name}</span>
+                <UserPreview></UserPreview>
                 <Logout>
                     <button>Logout</button>
                 </Logout>

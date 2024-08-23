@@ -39,6 +39,10 @@ interface userFormType {
     password: string,
 }
 
+interface AvatarContextType {
+    image: File,
+}
+
 /*interface ElementNodeContextType {
     setElements: React.Dispatch<React.SetStateAction<React.ReactElement[]>>,
     elements: Array<React.ReactElement>,

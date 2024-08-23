@@ -13,27 +13,46 @@ datasource db {
   url      = env("POSTGRESDB_NEON_BLOG_URI")
 }
 
-model users {
-  id       Int     @id @default(autoincrement())
+model User {
+  id       Int       @id @default(autoincrement())
   name     String?
   password String?
-  isAdmin  Boolean @default(false)
+  isAdmin  Boolean   @default(false)
   token    String?
+  profile  Profile?
+  posts    Post[]
+  Comment  Comment[]
 }
 
-model posts {
-  id          Int      @id @default(autoincrement())
-  authorId    Int
+model Post {
   postingDate DateTime @default(now())
   isPublished Boolean  @default(false)
   tag         String
   elements    Json[]
+
+  comments Comment[]
+
+  userId Int  @unique
+  user   User @relation(fields: [userId], references: [id])
 }
 
-model comments {
-  id          Int      @id @default(autoincrement())
-  authorId    Int
-  postId      Int
+model Comment {
   text        String?
   postingDate DateTime @default(now())
+
+  postId Int  @unique
+  post   Post @relation(fields: [postId], references: [userId])
+
+  userId Int  @unique
+  user   User @relation(fields: [userId], references: [id])
+}
+
+model Profile {
+  name   String
+  gender String
+  age    String
+  avatar Bytes
+
+  userId Int  @unique
+  user   User @relation(fields: [userId], references: [id])
 }
