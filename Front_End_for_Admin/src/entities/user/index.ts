@@ -1,7 +1,5 @@
 export { authActions, authReducer } from './model/slice/auth/slice'
-export { userActions, userReducer } from './model/slice/user/slice'
 export { selectAuth } from './model/slice/auth/selectors'
-export { selectUser } from './model/slice/user/selectors'
 export { loadUser } from './api/localstorage/user/loadUser'
 export { removeUser } from './api/localstorage/user/removeUser'
 export { saveUser } from './api/localstorage/user/saveUser'

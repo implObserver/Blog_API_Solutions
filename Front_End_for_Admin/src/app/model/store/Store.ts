@@ -1,5 +1,5 @@
 import { focusReducer, modelsReducer } from '@/entities/element';
-import { authReducer, userReducer } from '@/entities/user';
+import { authReducer } from '@/entities/user';
 import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
@@ -7,7 +7,6 @@ export const store = configureStore({
     models: modelsReducer,
     focus: focusReducer,
     auth: authReducer,
-    user: userReducer,
   },
 });
 

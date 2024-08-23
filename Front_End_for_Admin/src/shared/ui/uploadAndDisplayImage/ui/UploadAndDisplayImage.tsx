@@ -6,7 +6,7 @@ import { useImageContext } from "../lib/context/Context"
 export const UploadAndDisplayImage = () => {
     const context = useImageContext();
     const file = context.file;
-    console.log(file)
+
     if (file) {
         return (
             <div className={styles.container}>

@@ -12,51 +12,68 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(login.pending, (state) => {
-                state.isAuthInProgress = true;
+                state.states.isAuthInProgress = true;
             })
             .addCase(login.fulfilled, (state, action) => {
                 try {
-                    state.isAuth = action.payload.valueOf();
+                    state.states.isAuth = action.payload.valueOf();
                 } catch (err) {
                     console.log("login error");
                 } finally {
-                    state.isAuthInProgress = false;
+                    state.states.isAuthInProgress = false;
                 }
 
             })
 
         builder
             .addCase(checkAuth.pending, (state) => {
-                state.isAuthInProgress = true;
+                state.states.isAuthInProgress = true;
             })
             .addCase(checkAuth.fulfilled, (state, action) => {
                 try {
-                    state.isAuth = action.payload.valueOf();
+                    state.states.isAuth = action.payload.valueOf();
                 } catch (err) {
                     console.log("auth error");
                 } finally {
-                    state.isAuthInProgress = false;
+                    state.states.isAuthInProgress = false;
                 }
             })
 
         builder
             .addCase(signup.pending, (state) => {
-                state.isAuthInProgress = true;
+                state.states.isAuthInProgress = true;
             })
             .addCase(signup.fulfilled, (state, action) => {
                 try {
-                    state.isAuth = action.payload.valueOf();
+                    state.states.isAuth = action.payload.valueOf();
                 } catch (err) {
                     console.log("auth error");
                 } finally {
-                    state.isAuthInProgress = false;
+                    state.states.isAuthInProgress = false;
                 }
 
             })
 
-        builder.addCase(logout.fulfilled, (state, action) => {
-            console.log(state.isAuth)
-        })
+        builder
+            .addCase(logout.pending, (state) => {
+                state.states.isAuthInProgress = true;
+            })
+            .addCase(logout.fulfilled, (state, action) => {
+                try {
+                    state.states.isAuth = false;
+                    const defaultUser = {
+                        id: 0,
+                        name: 'visitor',
+                        token: undefined,
+                    }
+                    state.user = defaultUser;
+                } catch (err) {
+                    console.log("logout error");
+                } finally {
+                    state.states.isAuthInProgress = false;
+                }
+
+            })
     }
 })
 

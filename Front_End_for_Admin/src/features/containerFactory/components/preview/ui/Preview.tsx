@@ -8,18 +8,30 @@ export const Preview = () => {
     const [selectedImage, setSelectedImage] = useState(null);
     const context = useElementContext();
     const model = context.model;
-    if (selectedImage !== null) {
-        const lol = postImage(selectedImage);
-        console.log(lol)
-    }
+
     const previewContext: ImageStateContextType = {
         model,
         file: selectedImage,
         setImgFile: setSelectedImage,
     }
 
+    function getBase64(file: File) {
+        return new Promise((resolve, reject) => {
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                resolve(reader.result)
+            };
+            reader.onerror = reject
+        })
+    }
+
+    const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const data = await getBase64(e.target.files[0])
+    }
+
     return (
-        <div className={styles.preview}>
+        <div onChange={handleChange} className={styles.preview}>
             <ImageContext.Provider value={previewContext}>
                 <UploadAndDisplayImage></UploadAndDisplayImage>
             </ImageContext.Provider>

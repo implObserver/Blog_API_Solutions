@@ -9,7 +9,6 @@ export const elementsToModels = (elements: Array<ElementType<TextArea | Preview 
 }
 
 export const elementToModel = (element: ElementType<TextArea | Preview | Title>) => {
-    console.log(element.getType())
     const model: ModelType<TextAreaModel | PreviewModel | TitleModel> =
         element.getType().includes('view')
             ? getPreviewModel(element)

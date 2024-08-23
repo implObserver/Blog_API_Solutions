@@ -1,14 +1,16 @@
 import { useSelector } from "react-redux";
 import { selectAuth } from "@/entities/user";
 import { SubmitOfSignup } from "@/features/submitOfSignup";
+import { SpinnerLoader } from "@/shared/ui/spinnerLoader";
 
 export const SignupWidget = () => {
-    const select = useSelector(selectAuth);
+    const select = useSelector(selectAuth).states;
+
     if (select.isAuthInProgress) {
         return (
-            <div>
-                Sending!
-            </div>
+            <>
+                <SpinnerLoader></SpinnerLoader>
+            </>
         )
     }
     if (!select.isAuth) {
@@ -19,10 +21,6 @@ export const SignupWidget = () => {
         )
     }
     if (select.isAuth) {
-        return (
-            <div>
-                Auth!
-            </div>
-        )
+        window.location.href = "http://localhost:5000/";
     }
 }

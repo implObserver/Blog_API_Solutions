@@ -1,12 +1,12 @@
-interface UserWithToken {
+interface User {
     id: number,
     name: string,
     token: string,
 }
 
-interface User {
-    id: number,
-    name: string,
+interface AuthType {
+    states: AuthStates,
+    user: User,
 }
 
 interface AuthStates {
