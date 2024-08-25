@@ -3,22 +3,32 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const getAllUsers = async () => {
-    const { users } = await prisma.users.findMany();
+    const { users } = await prisma.user.findMany();
     return users;
 }
 
 const getAllPosts = async () => {
-    const { posts } = await prisma.posts.findMany();
+    const { posts } = await prisma.post.findMany();
     return posts;
 }
 
 const setNewUser = async (user) => {
-    const id = await prisma.$queryRaw`INSERT INTO users (name, password, "isAdmin") VALUES (${user.username}, ${user.password}, ${false}) RETURNING id`;
-    return id[0].id;
+    try {
+        const newUser = await prisma.user.create({
+            data: {
+                name: user.username,
+                password: user.password,
+                isAdmin: false,
+            },
+        })
+        return newUser.id;
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 const setToken = async (id, token) => {
-    await prisma.users.update({
+    await prisma.user.update({
         where: { id: id },
         data: {
             token: token,
@@ -27,15 +37,19 @@ const setToken = async (id, token) => {
 }
 
 const findUser = async (id) => {
-    const user = await prisma.users.findUnique({
-        where: { id: id }
+    console.log('find')
+    const user = await prisma.user.findUnique({
+        where: { id: id },
     });
     return user;
 }
 
 const findUserByName = async (name) => {
-    const user = await prisma.users.findFirst({
-        where: { name: name }
+    const user = await prisma.user.findFirst({
+        where: { name: name },
+        include: {
+            profile: true,
+        }
     });
     return user;
 }

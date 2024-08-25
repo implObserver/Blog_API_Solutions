@@ -3,9 +3,9 @@ export const Default = () => {
         <>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
-                height="45px"
+                height="100%"
                 viewBox="0 -960 960 960"
-                width="45px" fill="#5f6368">
+                width="100%" fill="#5f6368">
                 <path
                     d="M234-276q51-39 114-61.5T480-360q69 0 
                     132 22.5T726-276q35-41 

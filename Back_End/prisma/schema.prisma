@@ -48,10 +48,10 @@ model Comment {
 }
 
 model Profile {
-  name   String
-  gender String
-  age    String
-  avatar Bytes
+  name   String?
+  gender String?
+  age    String?
+  avatar Bytes?
 
   userId Int  @unique
   user   User @relation(fields: [userId], references: [id])

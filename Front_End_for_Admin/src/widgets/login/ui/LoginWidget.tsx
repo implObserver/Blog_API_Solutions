@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
-import { selectAuth } from "@/entities/user";
+import { selectUserServices } from "@/entities/user";
 import { SubmitOfLogin } from "@/features/submitOfLogin";
 import { SpinnerLoader } from "@/shared/ui/spinnerLoader";
 
 export const LoginWidget = () => {
-    const select = useSelector(selectAuth).states;
+    const services = useSelector(selectUserServices);
 
-    if (select.isAuthInProgress) {
+    if (services.isPending) {
         return (
             <>
                 <SpinnerLoader></SpinnerLoader>
@@ -14,7 +14,7 @@ export const LoginWidget = () => {
         )
     }
 
-    if (!select.isAuth) {
+    if (!services.isAuth) {
         return (
             <div>
                 <SubmitOfLogin></SubmitOfLogin>
@@ -22,7 +22,7 @@ export const LoginWidget = () => {
         )
     }
 
-    if (select.isAuth) {
+    if (services.isAuth) {
         window.location.href = "http://localhost:5000/";
     }
 }

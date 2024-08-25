@@ -1,5 +1,5 @@
+import { Header } from '@/widgets/header'
 import styles from './styles/MainPage.module.css'
-import { Header } from '@/widgets/header/ui/Header'
 
 export const MainPage = () => {
     return (

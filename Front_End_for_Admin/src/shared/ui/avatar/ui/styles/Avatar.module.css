@@ -1,13 +1,13 @@
 .wrapper {
     display: grid;
-    width: 45px;
-    height: 45px;
+    width: inherit;
+    height: inherit;
 }
 
 .circle {
     display: grid;
-    width: 100%;
-    height: 100%;
+    width: inherit;
+    height: inherit;
     border-radius: 50%;
     border: 1px red solid;
     justify-content: center;

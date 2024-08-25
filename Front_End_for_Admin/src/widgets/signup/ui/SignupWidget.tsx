@@ -1,26 +1,26 @@
 import { useSelector } from "react-redux";
-import { selectAuth } from "@/entities/user";
+import { selectUserServices } from "@/entities/user";
 import { SubmitOfSignup } from "@/features/submitOfSignup";
 import { SpinnerLoader } from "@/shared/ui/spinnerLoader";
 
 export const SignupWidget = () => {
-    const select = useSelector(selectAuth).states;
+    const userServices = useSelector(selectUserServices);
 
-    if (select.isAuthInProgress) {
+    if (userServices.isPending) {
         return (
             <>
                 <SpinnerLoader></SpinnerLoader>
             </>
         )
     }
-    if (!select.isAuth) {
+    if (!userServices.isAuth) {
         return (
             <div>
                 <SubmitOfSignup></SubmitOfSignup>
             </div>
         )
     }
-    if (select.isAuth) {
+    if (userServices.isAuth) {
         window.location.href = "http://localhost:5000/";
     }
 }

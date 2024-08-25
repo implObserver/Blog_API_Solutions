@@ -1,0 +1,1 @@
+export { UpdateOfProfile } from './ui/UpdateOfProfile'

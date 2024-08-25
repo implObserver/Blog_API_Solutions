@@ -1,6 +1,8 @@
 .header {
     display: flex;
     column-gap: 10px;
+    height: 50px;
+    border: 1px red solid;
     align-items: center;
     justify-content: space-between;
 }

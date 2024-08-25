@@ -4,6 +4,7 @@ import passport from "passport";
 import bcrypt from 'bcryptjs';
 import { issueJWTPG } from "../../../app/use/dev/auth/token/JWT/issueJWT.js";
 import { prismaDB } from "../../../prisma/queries.js";
+import { profile } from "console";
 
 const user_create_post = [
     // Validate and sanitize fields.
@@ -44,13 +45,32 @@ const user_create_post = [
     }),
 ];
 
-const user_auth_post = asyncHandler(async (req, res, next) => {
-    await passport.authenticate("local", {
-        failureRedirect: 'failure',
-    })(req, res, next)
-});
+const user_auth_post = [
+    body("username")
+        .trim()
+        .isLength({ min: 1 })
+        .escape()
+        .withMessage("Name must be specified."),
+    body("password")
+        .trim()
+        .isLength({ min: 1 })
+        .escape()
+        .withMessage("Password must be specified."),
+
+    asyncHandler(async (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return;
+        } else {
+            await passport.authenticate("local", {
+                failureRedirect: 'failure',
+            })(req, res, next)
+        }
+    }),
+];
 
 const user_token_post = asyncHandler(async (req, res, next) => {
+    console.log(req.user)
     res.json({
         user: {
             id: req.user.id,

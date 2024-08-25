@@ -4,6 +4,17 @@ interface ImageStateContextType {
     setImgFile: React.Dispatch<React.SetStateAction<File>>,
 }
 
+interface ProfileFormContextType {
+    data: ProfileFormType,
+    setData: React.Dispatch<React.SetStateAction<ProfileFormType>>,
+}
+
+interface ProfileFormType {
+    nickname: string,
+    gender: string,
+    age: number,
+}
+
 interface DropdownContextType {
     margin: boolean,
     state: boolean,
@@ -40,7 +51,7 @@ interface userFormType {
 }
 
 interface AvatarContextType {
-    image: File,
+    image: File | String,
 }
 
 /*interface ElementNodeContextType {

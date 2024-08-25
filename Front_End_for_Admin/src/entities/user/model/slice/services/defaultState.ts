@@ -1,5 +1,6 @@
 import { loadToken } from "@/entities/user/api/localstorage/token/loadToken";
 import { loadUser } from "@/entities/user/api/localstorage/user/loadUser";
+import { profile } from "console";
 
 const token = loadToken();
 
@@ -16,6 +17,7 @@ const defaultUser = {
     id: 0,
     name: 'visitor',
     token: undefined,
+    profile: null,
 }
 
 const currentUser = loadUser();
@@ -26,10 +28,8 @@ const user = currentUser === undefined
         ? defaultUser
         : currentUser;
 
-export const initialState: AuthType = {
-    states: {
-        isAuth: defaultAuth,
-        isAuthInProgress: defaultPending,
-    },
+export const initialState: ServicesDataType = {
+    isAuth: defaultAuth,
+    isPending: defaultPending,
     user,
 }

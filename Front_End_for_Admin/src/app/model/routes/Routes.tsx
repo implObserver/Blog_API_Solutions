@@ -2,6 +2,7 @@ import { SignupPage } from "@/pages/signup";
 import { LoginPage } from "@/pages/login";
 import { PostPage } from "@/pages/post";
 import { MainPage } from "@/pages/main";
+import { ProfilePage } from "@/pages/profile";
 
 //localStorage.clear()
 const routes = [
@@ -20,6 +21,10 @@ const routes = [
     {
         path: "/login",
         element: <LoginPage></LoginPage>
+    },
+    {
+        path: "/profile/:id",
+        element: <ProfilePage></ProfilePage>
     },
 ];
 

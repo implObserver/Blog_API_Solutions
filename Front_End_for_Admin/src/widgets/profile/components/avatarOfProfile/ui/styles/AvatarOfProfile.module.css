@@ -1,0 +1,22 @@
+.wrapper_avatar_in_profile {
+    width: 30vw;
+    height: 30vw;
+    max-width: 300px;
+    max-height: 300px;
+    min-width: 90px;
+    min-height: 90px;
+}
+
+.edit {
+   display: grid;
+   position: relative;
+
+   width: 50px;
+   height: 25px;
+   bottom: 70px;
+   left: 40px;
+   justify-content: center;
+   align-items: center;
+   border-radius: 4px;
+   background-color: var(--color__main-theme)
+}

@@ -1,11 +1,11 @@
-import { selectAuth, UserPreview } from "@/entities/user"
+import { selectUserServices, UserPreview } from "@/entities/user"
 import { Logout } from "@/features/logout";
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 import styles from './styles/AuthPanel.module.css'
 
 export const AuthPanel = () => {
-    const user = useSelector(selectAuth).user;
+    const user = useSelector(selectUserServices).user;
 
     if (user.name === 'visitor')
         return (
@@ -21,8 +21,10 @@ export const AuthPanel = () => {
     else {
         return (
             <div className={styles.panel_auth}>
-                <span>Hello {user.name}</span>
-                <UserPreview></UserPreview>
+                <span>{user.name}</span>
+                <div className={styles.wrapper_preview}>
+                    <UserPreview></UserPreview>
+                </div>
                 <Logout>
                     <button>Logout</button>
                 </Logout>
