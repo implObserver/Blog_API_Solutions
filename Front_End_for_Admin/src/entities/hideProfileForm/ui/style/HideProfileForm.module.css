@@ -1,0 +1,13 @@
+.form_profile_hide {
+    display: grid;
+}
+
+.form_profile_hide>button {
+    width: 100%;
+}
+
+.cancel {
+    position: relative;
+    bottom: 48px;
+    left: 64px;
+}

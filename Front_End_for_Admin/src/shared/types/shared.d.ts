@@ -7,6 +7,7 @@ interface ImageStateContextType {
 interface ProfileFormContextType {
     data: ProfileFormType,
     setData: React.Dispatch<React.SetStateAction<ProfileFormType>>,
+    username: string,
 }
 
 interface ProfileFormType {

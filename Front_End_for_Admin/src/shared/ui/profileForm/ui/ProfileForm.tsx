@@ -17,9 +17,9 @@ export const ProfileForm = () => {
     }
 
     return (
-        <form>
+        <form className={styles.form_user}>
             <div className={styles.form_group}>
-                <label htmlFor="username">Nickname:</label>
+                <label htmlFor="nickname">Nickname:</label>
                 <input
                     onChange={handle}
                     className="form-control"
@@ -32,7 +32,7 @@ export const ProfileForm = () => {
                     required>
                 </input>
 
-                <label htmlFor="password">Gender:</label>
+                <label htmlFor="gender">Gender:</label>
                 <input
                     onChange={handle}
                     className="form-control"
@@ -44,7 +44,7 @@ export const ProfileForm = () => {
                     required>
                 </input>
 
-                <label htmlFor="password">Age:</label>
+                <label htmlFor="age">Age:</label>
                 <input
                     onChange={handle}
                     className="form-control"

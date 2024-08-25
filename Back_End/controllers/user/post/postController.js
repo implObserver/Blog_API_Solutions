@@ -80,8 +80,13 @@ const user_token_post = asyncHandler(async (req, res, next) => {
     });
 });
 
+const user_profile_update_post = asyncHandler(async (req, res, next) => {
+    console.log(req.body)
+})
+
 export const postController = {
     user_create_post,
     user_auth_post,
     user_token_post,
+    user_profile_update_post,
 }

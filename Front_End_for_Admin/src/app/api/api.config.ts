@@ -1,3 +1,4 @@
+import { useLocalStorage } from "@/shared/lib";
 import axios from "axios";
 
 export const instance = axios.create({
@@ -14,7 +15,9 @@ export const instance = axios.create({
 // который к каждому запросу добавляет accessToken из localStorage
 instance.interceptors.request.use(
     (config) => {
-        config.headers.Authorization = `${localStorage.getItem("post_constructor_token")}`
+        const { getItem } = useLocalStorage('post_constructor_token');
+        const token = getItem();
+        config.headers.Authorization = token;
         return config
     }
 )

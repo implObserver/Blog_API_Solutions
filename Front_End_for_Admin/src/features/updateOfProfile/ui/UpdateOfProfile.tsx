@@ -19,6 +19,7 @@ export const UpdateOfProfile = () => {
     const formContext: ProfileFormContextType = {
         data,
         setData,
+        username: user.name,
     }
 
     const updateData: UpdateData = {

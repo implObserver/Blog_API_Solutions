@@ -1,7 +1,9 @@
 import passport from "passport";
 import { __dirname } from "../../../app/dirname/dirname.js";
+import { ExtractJwt } from 'passport-jwt';
 
 const user_auth_jwt_protected = async (req, res, next) => {
+    console.log(req.headers)
     passport.authenticate("jwt", {
         session: false,
         failureRedirect: '/failure',

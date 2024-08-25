@@ -19,7 +19,8 @@ const options = {
 const verifyCallbackPg = async (payload, done) => {
     try {
         console.log('try')
-        const user = prismaDB.findUser(payload.id);
+        console.log(payload)
+        const user = prismaDB.findUser(payload.sub);
         if (!user) {
             console.log('uncorrect username')
             return done(null, false, { message: "Incorrect username" });

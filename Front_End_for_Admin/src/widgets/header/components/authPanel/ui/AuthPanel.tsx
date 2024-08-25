@@ -11,10 +11,10 @@ export const AuthPanel = () => {
         return (
             <div className={styles.panel_auth}>
                 <Link to={'/login'}>
-                    <button>Login</button>
+                    <button className={styles.button}>Login</button>
                 </Link>
                 <Link to={'/signup'}>
-                    <button>Sign Up</button>
+                    <button className={styles.button}>Sign Up</button>
                 </Link>
             </div>
         )
@@ -26,7 +26,7 @@ export const AuthPanel = () => {
                     <UserPreview></UserPreview>
                 </div>
                 <Logout>
-                    <button>Logout</button>
+                    <button className={styles.button}>Logout</button>
                 </Logout>
             </div>
         )

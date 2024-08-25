@@ -1,0 +1,11 @@
+.profile {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    column-gap: 10px;
+}
+
+.wrapper_posts_info {
+    display: grid;
+    width: 100%;
+    border:1px red solid;
+}
