@@ -21,10 +21,31 @@ const setNewUser = async (user) => {
                 isAdmin: false,
             },
         })
+
+        await prisma.profile.create({
+            data: {
+                user: {
+                    connect: newUser,
+                },
+                avatar: `public/images/${newUser.id}/avatar/`,
+            }
+        })
+
         return newUser.id;
     } catch (error) {
         console.log(error)
     }
+}
+
+const updateAvatar = async (id) => {
+    const result = await prisma.profile.update({
+        where: { userId: id },
+        data: {
+            avatar: `public/images/${id}/avatar/`,
+        }
+    })
+
+    console.log('wtf')
 }
 
 const setToken = async (id, token) => {
@@ -40,6 +61,10 @@ const findUser = async (id) => {
     console.log('find')
     const user = await prisma.user.findUnique({
         where: { id: id },
+        include: {
+            profile: true,
+            posts: true,
+        },
     });
     return user;
 }
@@ -49,9 +74,24 @@ const findUserByName = async (name) => {
         where: { name: name },
         include: {
             profile: true,
+            posts: true,
         }
     });
     return user;
+}
+
+const findProfile = async (id) => {
+    const profile = await prisma.profile.findUnique({
+        where: { userId: id },
+    });
+    return profile;
+}
+
+const findPosts = async (id) => {
+    const posts = await prisma.post.findMany({
+        where: { userId: id },
+    });
+    return posts;
 }
 
 export const prismaDB = {
@@ -61,4 +101,7 @@ export const prismaDB = {
     findUser,
     findUserByName,
     setToken,
+    findProfile,
+    findPosts,
+    updateAvatar,
 }

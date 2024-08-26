@@ -27,7 +27,7 @@ export const Preview = () => {
     }
 
     const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const data = await getBase64(e.target.files[0])
+        postImage(e.target.files[0])
     }
 
     return (

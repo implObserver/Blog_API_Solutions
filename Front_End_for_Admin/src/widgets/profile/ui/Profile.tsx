@@ -1,5 +1,6 @@
 import { AvatarOfProfile } from "../components/avatarOfProfile/ui/AvatarOfProfile"
 import { DataOfProfile } from "../components/dataOfProfile/ui/DataOfProfile"
+import { Posts } from "../components/posts"
 import styles from './styles/Profile.module.css'
 
 export const Profile = () => {
@@ -11,7 +12,10 @@ export const Profile = () => {
             </div>
             <div >
                 <div className={styles.wrapper_posts_info}>
+                    <Posts></Posts>
+                    <div>
 
+                    </div>
                 </div>
             </div>
         </div>

@@ -25,34 +25,30 @@ model User {
 }
 
 model Post {
-  postingDate DateTime @default(now())
+  userId      Int      @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   isPublished Boolean  @default(false)
+  postingDate DateTime @default(now())
   tag         String
   elements    Json[]
 
   comments Comment[]
-
-  userId Int  @unique
-  user   User @relation(fields: [userId], references: [id])
 }
 
 model Comment {
-  text        String?
+  userId      Int      @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId      Int      @unique
+  post        Post     @relation(fields: [postId], references: [userId], onDelete: Cascade)
   postingDate DateTime @default(now())
-
-  postId Int  @unique
-  post   Post @relation(fields: [postId], references: [userId])
-
-  userId Int  @unique
-  user   User @relation(fields: [userId], references: [id])
+  text        String?
 }
 
 model Profile {
+  userId Int     @unique
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  avatar String?
   name   String?
   gender String?
   age    String?
-  avatar Bytes?
-
-  userId Int  @unique
-  user   User @relation(fields: [userId], references: [id])
 }

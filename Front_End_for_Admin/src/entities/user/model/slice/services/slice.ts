@@ -6,6 +6,8 @@ import { logout } from "./thunks/auth/logout";
 import { signup } from "./thunks/auth/signup";
 import { profile } from "console";
 import { updateProfile } from "./thunks/update/updateProfile";
+import { getProfile } from "./thunks/get/getProfile";
+import { updateAvatar } from "./thunks/update/updateAvatar";
 
 const userServicesSlice = createSlice({
     name: 'services',
@@ -68,6 +70,7 @@ const userServicesSlice = createSlice({
                         name: 'visitor',
                         token: undefined,
                         profile: null,
+                        posts: null,
                     }
                     state.user = defaultUser;
                 } catch (err) {
@@ -87,6 +90,21 @@ const userServicesSlice = createSlice({
                     state.user = action.payload.valueOf();
                 } catch (err) {
                     console.log("update error");
+                } finally {
+                    state.isPending = false;
+                }
+
+            })
+
+        builder
+            .addCase(updateAvatar.pending, (state) => {
+                state.isPending = true;
+            })
+            .addCase(updateAvatar.fulfilled, (state, action) => {
+                try {
+                    state.user = action.payload.valueOf();
+                } catch (err) {
+                    console.log("update avatar error");
                 } finally {
                     state.isPending = false;
                 }

@@ -8,6 +8,7 @@ interface UpdateData {
     user: User,
     profile?: ProfileFormType,
     avatar?: File,
+    posts?: Post,
 }
 
 interface User {
@@ -15,6 +16,7 @@ interface User {
     name: string,
     token: string,
     profile: Profile,
+    posts: Post,
 }
 
 interface Profile {

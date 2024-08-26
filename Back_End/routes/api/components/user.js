@@ -8,5 +8,3 @@ userRouter.post("/user/login", userController.user_auth_post, userController.use
 userRouter.get("/user/logout", userController.user_logout_get);
 userRouter.get("/user/protected", userController.user_auth_jwt_protected);
 userRouter.get("/user/failure", userController.failureProtected);
-
-userRouter.post("/user/:id/profile/update", userController.user_auth_jwt_protected, userController.user_profile_update_post);

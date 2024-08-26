@@ -1,11 +1,21 @@
 import { instance } from "@/app/api/api.config"
 
 export const UpdateService = {
-    updateAvatar(file: File) {
-        return instance.post("/api/user/:{id}/profile/upload/avatar", { file })
-    },
-    deleteAvatar(file: File) {
-        return instance.post("/api/user/:{id}/profile/delete/avatar", { file })
+    updateAvatar(updateData: UpdateData) {
+        let config = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        }
+        const file = new FormData();
+        file.append('file', updateData.avatar);
+        const user = updateData.user;
+
+        let data = {
+            data: file,
+        }
+
+        return instance.post(`/api/user/:${user.id}/profile/update/avatar`, file, config)
     },
     updateProfile(data: UpdateData) {
         const newData = data.profile;

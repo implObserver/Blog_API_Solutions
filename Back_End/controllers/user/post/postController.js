@@ -70,23 +70,19 @@ const user_auth_post = [
 ];
 
 const user_token_post = asyncHandler(async (req, res, next) => {
-    console.log(req.user)
     res.json({
         user: {
             id: req.user.id,
             name: req.user.name,
             token: req.user.token,
+            profile: req.user.profile,
+            posts: req.user.posts,
         }
     });
 });
-
-const user_profile_update_post = asyncHandler(async (req, res, next) => {
-    console.log(req.body)
-})
 
 export const postController = {
     user_create_post,
     user_auth_post,
     user_token_post,
-    user_profile_update_post,
 }

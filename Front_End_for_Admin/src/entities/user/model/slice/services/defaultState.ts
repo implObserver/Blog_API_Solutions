@@ -18,6 +18,7 @@ const defaultUser = {
     name: 'visitor',
     token: undefined,
     profile: null,
+    posts: null,
 }
 
 const currentUser = loadUser();
