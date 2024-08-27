@@ -9,7 +9,7 @@ export const UploadFile = ({ children }) => {
     const context = useUploadContext();
     const dispath = useDispatch<AppDispath>();
     const user = useSelector(selectUserServices).user;
-
+    
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const avatar = e.target.files[0];
         context.setImgFile(avatar);

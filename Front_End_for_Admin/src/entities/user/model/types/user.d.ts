@@ -14,7 +14,6 @@ interface UpdateData {
 interface User {
     id: number,
     name: string,
-    token: string,
     profile: Profile,
     posts: Post,
 }

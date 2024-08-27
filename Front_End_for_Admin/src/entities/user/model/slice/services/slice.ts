@@ -4,10 +4,13 @@ import { login } from "./thunks/auth/login";
 import { checkAuth } from "./thunks/auth/checkAuth";
 import { logout } from "./thunks/auth/logout";
 import { signup } from "./thunks/auth/signup";
-import { profile } from "console";
 import { updateProfile } from "./thunks/update/updateProfile";
-import { getProfile } from "./thunks/get/getProfile";
 import { updateAvatar } from "./thunks/update/updateAvatar";
+import { saveUser } from "@/entities/user/api/localstorage/user/saveUser";
+
+const saveUserFunc = (user: User) => {
+    saveUser(user);
+}
 
 const userServicesSlice = createSlice({
     name: 'services',
@@ -20,8 +23,10 @@ const userServicesSlice = createSlice({
             })
             .addCase(login.fulfilled, (state, action) => {
                 try {
-                    state.isAuth = action.payload.valueOf();
+                    state.user = action.payload;
+                    state.isAuth = true;
                 } catch (err) {
+                    state.isAuth = false;
                     console.log("login error");
                 } finally {
                     state.isPending = false;
@@ -35,8 +40,9 @@ const userServicesSlice = createSlice({
             })
             .addCase(checkAuth.fulfilled, (state, action) => {
                 try {
-                    state.isAuth = action.payload.valueOf();
+                    state.isAuth = true;
                 } catch (err) {
+                    state.isAuth = false;
                     console.log("auth error");
                 } finally {
                     state.isPending = false;
@@ -49,8 +55,9 @@ const userServicesSlice = createSlice({
             })
             .addCase(signup.fulfilled, (state, action) => {
                 try {
-                    state.isAuth = action.payload.valueOf();
+                    state.isAuth = true;
                 } catch (err) {
+                    state.isAuth = false;
                     console.log("auth error");
                 } finally {
                     state.isPending = false;
@@ -65,14 +72,7 @@ const userServicesSlice = createSlice({
             .addCase(logout.fulfilled, (state, action) => {
                 try {
                     state.isAuth = false;
-                    const defaultUser = {
-                        id: 0,
-                        name: 'visitor',
-                        token: undefined,
-                        profile: null,
-                        posts: null,
-                    }
-                    state.user = defaultUser;
+                    state.user = null;
                 } catch (err) {
                     console.log("logout error");
                 } finally {
@@ -87,7 +87,7 @@ const userServicesSlice = createSlice({
             })
             .addCase(updateProfile.fulfilled, (state, action) => {
                 try {
-                    state.user = action.payload.valueOf();
+                    state.user = action.payload;
                 } catch (err) {
                     console.log("update error");
                 } finally {
@@ -102,7 +102,7 @@ const userServicesSlice = createSlice({
             })
             .addCase(updateAvatar.fulfilled, (state, action) => {
                 try {
-                    state.user = action.payload.valueOf();
+                    state.user = action.payload;
                 } catch (err) {
                     console.log("update avatar error");
                 } finally {

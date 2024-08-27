@@ -1,9 +1,8 @@
 import { useLocalStorage } from "@/shared/lib";
-import { saveToken } from "../token/saveToken";
+import Cookies from 'js-cookie';
 
 export const saveUser = (user: User) => {
-    console.log(user.token)
-    saveToken(user.token);
+    console.log(Cookies.get('token'));
     const { setItem } = useLocalStorage('post_constructor_user');
     setItem(user);
 }

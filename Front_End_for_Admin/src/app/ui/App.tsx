@@ -1,3 +1,4 @@
+import { AuthService } from '@/entities/user';
 import { WithRouter } from '../model/providers/WithRouter';
 import styles from './styles/App.module.css';
 

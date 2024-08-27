@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 
 export const Preview = () => {
     const user = useSelector(selectUserServices).user;
-    const avatar = user.profile === undefined ? 'default' : user.profile.avatar;
-
+    const avatar = 'default';
     const avatarContext: AvatarContextType = {
         image: avatar,
     }
 
+    console.log(avatar)
     return (
         <div>
             <AvatarContext.Provider value={avatarContext}>

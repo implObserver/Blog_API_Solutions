@@ -7,7 +7,7 @@ import styles from './styles/AuthPanel.module.css'
 export const AuthPanel = () => {
     const user = useSelector(selectUserServices).user;
 
-    if (user.name === 'visitor')
+    if (user === null)
         return (
             <div className={styles.panel_auth}>
                 <Link to={'/login'}>
@@ -19,8 +19,10 @@ export const AuthPanel = () => {
             </div>
         )
     else {
+        console.log(user)
         return (
             <div className={styles.panel_auth}>
+
                 <span>{user.name}</span>
                 <div className={styles.wrapper_preview}>
                     <UserPreview></UserPreview>

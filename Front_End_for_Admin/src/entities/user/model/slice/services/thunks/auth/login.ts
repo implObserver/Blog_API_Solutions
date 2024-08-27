@@ -1,5 +1,4 @@
 import { AuthService } from "@/entities/user/api/api.auth";
-import { saveToken } from "@/entities/user/api/localstorage/token/saveToken";
 import { loadUser } from "@/entities/user/api/localstorage/user/loadUser";
 import { saveUser } from "@/entities/user/api/localstorage/user/saveUser";
 import { createAsyncThunk } from "@reduxjs/toolkit";
@@ -12,10 +11,7 @@ export const login = createAsyncThunk(
             const password = data.password;
             const resp = await AuthService.login(username, password);
             const user = resp.data.user;
-            saveUser(user);
-            const usertest = loadUser();
-            console.log(usertest);
-            return true;
+            return user;
         } catch (error) {
             return false;
         }

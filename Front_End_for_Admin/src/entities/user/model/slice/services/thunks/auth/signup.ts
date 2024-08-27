@@ -1,7 +1,7 @@
 import { AuthService } from "@/entities/user/api/api.auth";
-import { saveToken } from "@/entities/user/api/localstorage/token/saveToken";
 import { saveUser } from "@/entities/user/api/localstorage/user/saveUser";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import Cookies from 'js-cookie';
 
 export const signup = createAsyncThunk(
     'services/auth/signup',
@@ -11,6 +11,7 @@ export const signup = createAsyncThunk(
             const password = data.password;
             const resp = await AuthService.signup(username, password);
             const user = resp.data.user;
+            Cookies.get("user_id")
             console.log(user)
             saveUser(user);
             return true;
