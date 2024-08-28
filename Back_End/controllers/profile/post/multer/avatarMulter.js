@@ -5,11 +5,13 @@ import path from 'path'
 const storage = multer.diskStorage({
     destination: async (req, file, cb) => {
         const id = req.user.id;
-        const directory = `public/images/${id}/avatar/`
+        const directory = `public/images/${id}/avatar/`;
         fs.readdir(directory, (err, files) => {
-            files.forEach(async (file) => {
-                fs.promises.unlink(path.join(directory, file));
-            });
+            if (files) {
+                files.forEach(async (file) => {
+                    fs.promises.unlink(path.join(directory, file));
+                });
+            }
         })
 
         await fs.promises.mkdir(directory, { recursive: true });

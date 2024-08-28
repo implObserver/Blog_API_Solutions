@@ -3,9 +3,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getPostsOfUser = createAsyncThunk(
     'services/get/usersPosts',
-    async (user: User, thunkAPI) => {
+    async (thunkAPI) => {
         try {
-            const resp = await ReadService.readPostsOfuser(user);
+            const resp = await ReadService.readPostsOfuser();
             const posts = resp.data.posts;
             return posts;
         } catch (error) {

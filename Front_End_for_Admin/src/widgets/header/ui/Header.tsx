@@ -13,6 +13,7 @@ export const Header = () => {
     console.log(Cookies.get('token'));
     console.log(user.isAuth)
     console.log(user.isPending)
+    console.log(user.avatar)
     return (
         <div className={styles.header}>
             <Logo></Logo>

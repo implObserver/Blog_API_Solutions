@@ -4,16 +4,19 @@ import styles from './styles/UploadFile.module.css'
 import { AppDispath } from "@/app/model/store/Store";
 import { selectUserServices, updateProfile } from "@/entities/user";
 import { updateAvatar } from "@/entities/user/model/slice/services/thunks/update/updateAvatar";
+import { getAvatar } from "@/entities/user/model/slice/services/thunks/get/getAvatar";
 
 export const UploadFile = ({ children }) => {
     const context = useUploadContext();
     const dispath = useDispatch<AppDispath>();
-    const user = useSelector(selectUserServices).user;
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const avatar = e.target.files[0];
         context.setImgFile(avatar);
         dispath(updateAvatar(avatar));
+        setTimeout(() => {
+            dispath(getAvatar());
+        }, 100);
     }
 
     return (

@@ -11,7 +11,6 @@ export const instance = axios.create({
     }
 });
 
-
 // создаем перехватчик запросов
 // который к каждому запросу добавляет accessToken из localStorage
 instance.interceptors.request.use(

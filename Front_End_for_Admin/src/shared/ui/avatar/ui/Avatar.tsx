@@ -3,18 +3,16 @@ import { useAvatarContext } from "../lib/context/Context"
 import styles from './styles/Avatar.module.css'
 
 export const Avatar = () => {
-
     const context = useAvatarContext();
+    console.log(context.image)
     return (
         <div className={styles.wrapper}>
             <div className={styles.circle}>
-                {context.image === 'default'
+                {context.image === null
                     ? <Default></Default>
-                    : context.image instanceof File
-                        ? <img className={styles.img}
-                            alt="avatar"
-                            src={URL.createObjectURL(context.image)} />
-                        : <div>error</div>}
+                    : <img className={styles.img}
+                        alt="avatar"
+                        src={context.image} />}
             </div>
         </div>
     )

@@ -2,6 +2,7 @@ interface ServicesDataType {
     user: User,
     isAuth: boolean,
     isPending: boolean,
+    avatar: any,
 }
 
 interface UpdateData {

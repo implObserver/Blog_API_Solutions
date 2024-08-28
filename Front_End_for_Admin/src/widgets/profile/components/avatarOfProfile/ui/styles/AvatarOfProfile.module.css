@@ -1,6 +1,7 @@
 .wrapper_avatar_in_profile {
-    width: 30vw;
-    height: 30vw;
+    display: grid;
+    width: 25vw;
+    height: 25vw;
     max-width: 300px;
     max-height: 300px;
     min-width: 90px;

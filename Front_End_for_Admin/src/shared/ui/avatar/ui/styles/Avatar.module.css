@@ -11,4 +11,11 @@
     border-radius: 50%;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    border: 1px rgb(184, 184, 184) solid;
+}
+
+img {
+    display: grid;
+    height: inherit;
 }

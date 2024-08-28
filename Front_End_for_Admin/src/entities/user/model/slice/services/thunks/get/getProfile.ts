@@ -3,9 +3,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getProfile = createAsyncThunk(
     'services/get/profile',
-    async (user: User, thunkAPI) => {
+    async (thunkAPI) => {
         try {
-            const resp = await ReadService.readProfile(user);
+            const resp = await ReadService.readProfile();
             const profile = resp.data.profile;
             return profile;
         } catch (error) {

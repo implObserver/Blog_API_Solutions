@@ -2,6 +2,8 @@ import { Post } from "../../../models/post/post.js";
 import asyncHandler from "express-async-handler";
 import { prismaDB } from "../../../prisma/queries.js";
 import { __dirname } from "../../../app/dirname/dirname.js";
+import fs from 'fs'
+import path from 'path'
 
 const profile_detail_api = asyncHandler(async (req, res, next) => {
     const profile = prismaDB.findProfile(req.id);
@@ -18,7 +20,14 @@ const profile_detail_api = asyncHandler(async (req, res, next) => {
 })
 
 const profile_avatar_get = asyncHandler(async (req, res, next) => {
-    res.sendFile(`${__dirname}/${req.user.profile.avatar}`);
+    const directory = req.user.profile.avatar;
+    fs.readdir(directory, (err, files) => {
+        if (files) {
+            res.download(path.resolve(`${__dirname}/${req.user.profile.avatar}/${files[0]}`));
+        } else {
+            res.status(404).send('Not found');
+        }
+    })
 })
 
 export const getController = {

@@ -61,7 +61,7 @@ interface userFormType {
 }
 
 interface AvatarContextType {
-    image: File | String,
+    image: string,
 }
 
 /*interface ElementNodeContextType {

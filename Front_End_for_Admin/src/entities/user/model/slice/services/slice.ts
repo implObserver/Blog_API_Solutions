@@ -6,6 +6,7 @@ import { logout } from "./thunks/auth/logout";
 import { signup } from "./thunks/auth/signup";
 import { updateProfile } from "./thunks/update/updateProfile";
 import { updateAvatar } from "./thunks/update/updateAvatar";
+import { getAvatar } from "./thunks/get/getAvatar";
 
 const userServicesSlice = createSlice({
     name: 'services',
@@ -69,6 +70,7 @@ const userServicesSlice = createSlice({
                 try {
                     state.isAuth = false;
                     state.user = null;
+                    state.avatar = null;
                 } catch (err) {
                     console.log("logout error");
                 } finally {
@@ -101,6 +103,21 @@ const userServicesSlice = createSlice({
                     state.user = action.payload;
                 } catch (err) {
                     console.log("update avatar error");
+                } finally {
+                    state.isPending = false;
+                }
+
+            })
+
+        builder
+            .addCase(getAvatar.pending, (state) => {
+                state.isPending = true;
+            })
+            .addCase(getAvatar.fulfilled, (state, action) => {
+                try {
+                    state.avatar = action.payload;
+                } catch (err) {
+                    console.log("get avatar error");
                 } finally {
                     state.isPending = false;
                 }

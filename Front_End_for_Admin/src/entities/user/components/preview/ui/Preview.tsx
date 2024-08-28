@@ -1,21 +1,31 @@
 import { selectUserServices } from "@/entities/user/model/slice/services/selectors"
 import { Avatar } from "@/shared/ui/avatar"
 import { AvatarContext } from "@/shared/ui/avatar/lib/context/Context";
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom";
+import styles from './styles/Preview.module.css'
+import { useEffect } from "react";
+import { AppDispath } from "@/app/model/store/Store";
+import { getAvatar } from "@/entities/user/model/slice/services/thunks/get/getAvatar";
 
 export const Preview = () => {
     const user = useSelector(selectUserServices).user;
-    const avatar = 'default';
+    const avatar = useSelector(selectUserServices).avatar;
+    const dispath = useDispatch<AppDispath>();
+
+    useEffect(() => {
+        dispath(getAvatar());
+    }, [])
+
     const avatarContext: AvatarContextType = {
         image: avatar,
     }
 
     console.log(avatar)
     return (
-        <div>
+        <div className={styles.container}>
             <AvatarContext.Provider value={avatarContext}>
-                <Link to={`/profile/${user.id}`}>
+                <Link className={styles.link} to={`/profile/${user.id}`}>
                     <Avatar></Avatar>
                 </Link>
             </AvatarContext.Provider>
