@@ -15,7 +15,7 @@ interface User {
     id: number,
     name: string,
     profile: Profile,
-    posts: Post,
+    posts: Post[],
 }
 
 interface Profile {

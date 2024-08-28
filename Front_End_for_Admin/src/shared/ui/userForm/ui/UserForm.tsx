@@ -21,7 +21,7 @@ export const UserForm = () => {
                 <label htmlFor="username">Username:</label>
                 <input
                     onChange={handle}
-                    className="form-control"
+                    className={styles.input}
                     id="username"
                     name="username"
                     type="text"
@@ -34,7 +34,7 @@ export const UserForm = () => {
                 <label htmlFor="password">Password:</label>
                 <input
                     onChange={handle}
-                    className="form-control"
+                    className={styles.input}
                     id="password"
                     name="password"
                     type="password"
@@ -43,7 +43,7 @@ export const UserForm = () => {
                     required>
                 </input>
             </div>
-            <button type='submit'>{context.type}</button>
+            <button className={styles.button} type='submit'>{context.type}</button>
         </form>
     )
 }

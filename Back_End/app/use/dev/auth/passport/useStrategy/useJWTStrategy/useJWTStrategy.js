@@ -18,11 +18,10 @@ const options = {
 //for postgresDB
 const verifyCallbackPg = async (payload, done) => {
     try {
-        console.log('try')
         const user = await prismaDB.findUser(payload.sub);
         if (!user) {
             console.log('uncorrect username')
-            return done(null, false, { message: "Incorrect username" });
+            return done(null, false);
         };
         console.log('Welcome')
         return done(null, user);

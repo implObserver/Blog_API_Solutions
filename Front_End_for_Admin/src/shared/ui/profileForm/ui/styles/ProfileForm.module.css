@@ -1,6 +1,5 @@
 .form_user {
     display: grid;
-    width: 100%;
 }
 
 .form_group {
@@ -9,32 +8,26 @@
     row-gap: 5px;
 }
 
-form {
-    appearance: none;
-}
-
-input {
-    display: grid;
+.input {
     outline: 0px rgba(0, 123, 255, 0.6) solid;
     appearance: none;
     transition:
         outline 0.06s,
         box-shadow .15s ease-in-out;
     height: 40px;
-    width: 100%;
     border: rgb(224, 224, 224) 1px solid;
     border-radius: 5px;
     padding: 5px;
 }
 
-input:focus {
+.input:focus {
     outline: 4px rgba(0, 123, 255, 0.3) solid;
 }
 
-button {
+.button {
+    width: max-content;
     appearance: none;
     background-color: rgb(0, 123, 255);
-    width: min-content;
     height: 40px;
     border-radius: 5px;
     font-size: 18px;
@@ -43,4 +36,9 @@ button {
     cursor: pointer;
     padding-left: 8px;
     padding-right: 8px;
+}
+
+.container_buttons {
+    display: flex;
+    column-gap: 5px;
 }

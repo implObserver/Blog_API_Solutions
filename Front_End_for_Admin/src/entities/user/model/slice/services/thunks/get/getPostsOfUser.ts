@@ -1,4 +1,4 @@
-import { ReadService } from "@/entities/user/api/api.read";
+import { ReadService } from "@/entities/user/api/api.get";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getPostsOfUser = createAsyncThunk(

@@ -1,6 +1,4 @@
 import { AuthService } from "@/entities/user/api/api.auth";
-import { loadUser } from "@/entities/user/api/localstorage/user/loadUser";
-import { saveUser } from "@/entities/user/api/localstorage/user/saveUser";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const login = createAsyncThunk(

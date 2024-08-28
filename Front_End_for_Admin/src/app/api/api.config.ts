@@ -1,5 +1,6 @@
 import { useLocalStorage } from "@/shared/lib";
 import axios from "axios";
+import Cookies from 'js-cookie'
 
 export const instance = axios.create({
     // к запросу будет приуепляться cookies
@@ -15,8 +16,7 @@ export const instance = axios.create({
 // который к каждому запросу добавляет accessToken из localStorage
 instance.interceptors.request.use(
     (config) => {
-        const { getItem } = useLocalStorage('post_constructor_token');
-        const token = getItem();
+        const token = Cookies.get('token');
         config.headers.Authorization = token;
         return config
     }

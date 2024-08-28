@@ -22,14 +22,9 @@ export const UpdateOfProfile = () => {
         username: user.name,
     }
 
-    const updateData: UpdateData = {
-        user,
-        profile: data,
-    }
-
     const submitHandle = (e) => {
         e.preventDefault();
-        dispath(updateProfile(updateData));
+        dispath(updateProfile(data));
     }
 
     return (

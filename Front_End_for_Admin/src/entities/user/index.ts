@@ -1,8 +1,5 @@
 export { servicesActions, servicesReducer } from './model/slice/services/slice'
 export { selectUserServices } from './model/slice/services/selectors'
-export { loadUser } from './api/localstorage/user/loadUser'
-export { removeUser } from './api/localstorage/user/removeUser'
-export { saveUser } from './api/localstorage/user/saveUser'
 export { AuthService } from './api/api.auth'
 export { checkAuth } from './model/slice/services/thunks/auth/checkAuth'
 export { login } from './model/slice/services/thunks/auth/login'

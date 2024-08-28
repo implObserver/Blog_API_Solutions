@@ -72,6 +72,7 @@ const user_auth_post = [
 
 const user_token_post = asyncHandler(async (req, res, next) => {
     res.cookie('token', req.user.token);
+    res.cookie('user_id', req.user.id);
     res.json({
         user: {
             id: req.user.id,
@@ -88,9 +89,19 @@ const user_logout_post = asyncHandler(async (req, res, next) => {
     res.json({ res: "logout" })
 })
 
+
+const user_auth_jwt_protected = async (req, res, next) => {
+    console.log(req.headers)
+    passport.authenticate("jwt", {
+        session: false,
+        failureRedirect: '/failure',
+    })(req, res, next)
+}
+
 export const postController = {
     user_create_post,
     user_auth_post,
     user_token_post,
     user_logout_post,
+    user_auth_jwt_protected
 }

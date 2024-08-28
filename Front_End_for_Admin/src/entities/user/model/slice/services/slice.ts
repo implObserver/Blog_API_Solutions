@@ -6,11 +6,6 @@ import { logout } from "./thunks/auth/logout";
 import { signup } from "./thunks/auth/signup";
 import { updateProfile } from "./thunks/update/updateProfile";
 import { updateAvatar } from "./thunks/update/updateAvatar";
-import { saveUser } from "@/entities/user/api/localstorage/user/saveUser";
-
-const saveUserFunc = (user: User) => {
-    saveUser(user);
-}
 
 const userServicesSlice = createSlice({
     name: 'services',

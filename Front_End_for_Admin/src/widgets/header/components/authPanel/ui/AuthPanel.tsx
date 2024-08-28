@@ -22,7 +22,6 @@ export const AuthPanel = () => {
         console.log(user)
         return (
             <div className={styles.panel_auth}>
-
                 <span>{user.name}</span>
                 <div className={styles.wrapper_preview}>
                     <UserPreview></UserPreview>

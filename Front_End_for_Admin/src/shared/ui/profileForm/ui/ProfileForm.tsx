@@ -22,7 +22,7 @@ export const ProfileForm = () => {
                 <label htmlFor="nickname">Nickname:</label>
                 <input
                     onChange={handle}
-                    className="form-control"
+                    className={styles.input}
                     id="nickname"
                     name="nickname"
                     type="text"
@@ -35,7 +35,7 @@ export const ProfileForm = () => {
                 <label htmlFor="gender">Gender:</label>
                 <input
                     onChange={handle}
-                    className="form-control"
+                    className={styles.input}
                     id="gender"
                     name="gender"
                     type="gender"
@@ -47,7 +47,7 @@ export const ProfileForm = () => {
                 <label htmlFor="age">Age:</label>
                 <input
                     onChange={handle}
-                    className="form-control"
+                    className={styles.input}
                     id="age"
                     name="age"
                     type="age"
@@ -56,7 +56,10 @@ export const ProfileForm = () => {
                     required>
                 </input>
             </div>
-            <button type='submit'>save</button>
+            <div className={styles.container_buttons}>
+                <button className={styles.button} type='submit'>save</button>
+                <button className={styles.button} type='submit'>Cancel</button>
+            </div>
         </form>
     )
 }

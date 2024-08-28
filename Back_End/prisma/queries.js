@@ -58,7 +58,6 @@ const setToken = async (id, token) => {
 }
 
 const findUser = async (id) => {
-    console.log('find')
     const user = await prisma.user.findUnique({
         where: { id: id },
         include: {
@@ -66,6 +65,7 @@ const findUser = async (id) => {
             posts: true,
         },
     });
+    console.log(user)
     return user;
 }
 

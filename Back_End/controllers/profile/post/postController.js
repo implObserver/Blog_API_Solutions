@@ -3,20 +3,27 @@ import { prismaDB } from "../../../prisma/queries.js";
 import { json } from "express";
 
 const user_profile_update_post = asyncHandler(async (req, res, next) => {
-    const buffer = req.body
-    //console.log(req.body)
-
-    //const blob = new Blob([buffer], { type: "application/octet-stream" })
-    //console.log(blob)
-    // res.type(blob.type)
-    //blob.arrayBuffer().then((buf) => {
-    //res.send(Buffer.from(buf))
-    //})
+    console.log(req.body)
+    res.json({
+        user: {
+            id: req.user.id,
+            name: req.user.name,
+            profile: req.user.profile,
+            posts: req.user.posts,
+        }
+    });
 })
 
 const user_avatar_update_post = [
     asyncHandler(async (req, res, next) => {
-        res.json({ res: 'res' })
+        res.json({
+            user: {
+                id: req.user.id,
+                name: req.user.name,
+                profile: req.user.profile,
+                posts: req.user.posts,
+            }
+        });
     })
 ]
 

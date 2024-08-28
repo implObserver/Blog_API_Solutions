@@ -9,9 +9,13 @@ export const Posts = () => {
         <div>
             <span>Your posts:</span>
             {
-                user.posts
+                user.posts.length > 0
                     ? <ShowcasePosts></ShowcasePosts>
-                    : <div>You have not posts</div>
+                    :
+                    <>
+                        <div>You have not posts</div>
+                        <button>Add</button>
+                    </>
             }
         </div>
     )
