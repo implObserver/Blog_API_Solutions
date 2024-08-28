@@ -27,6 +27,7 @@ const user_create_post = [
             username: req.body.username,
             password: hashPassword,
         }
+
         if (!errors.isEmpty()) {
             return;
         } else {
@@ -34,14 +35,8 @@ const user_create_post = [
             const jwtpg = issueJWTPG(id);
             await prismaDB.setToken(id, jwtpg.token);
             const user = await prismaDB.findUser(id);
-            res.cookie('token', req.user.token);
-            res.cookie('user_id', req.user.id);
-            res.json({
-                user: {
-                    id: user.id,
-                    name: user.name,
-                }
-            })
+            res.locals.user = user;
+            next();
         }
     }),
 ];
@@ -63,25 +58,10 @@ const user_auth_post = [
         if (!errors.isEmpty()) {
             return;
         } else {
-            await passport.authenticate("local", {
-                failureRedirect: 'failure',
-            })(req, res, next)
+            await passport.authenticate("local", {})(req, res, next)
         }
     }),
 ];
-
-const user_token_post = asyncHandler(async (req, res, next) => {
-    res.cookie('token', req.user.token);
-    res.cookie('user_id', req.user.id);
-    res.json({
-        user: {
-            id: req.user.id,
-            name: req.user.name,
-            profile: req.user.profile,
-            posts: req.user.posts,
-        }
-    });
-});
 
 const user_logout_post = asyncHandler(async (req, res, next) => {
     res.clearCookie("token");
@@ -101,7 +81,6 @@ const user_auth_jwt_protected = async (req, res, next) => {
 export const postController = {
     user_create_post,
     user_auth_post,
-    user_token_post,
     user_logout_post,
     user_auth_jwt_protected
 }

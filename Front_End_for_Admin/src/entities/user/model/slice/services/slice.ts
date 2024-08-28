@@ -50,6 +50,7 @@ const userServicesSlice = createSlice({
             })
             .addCase(signup.fulfilled, (state, action) => {
                 try {
+                    state.user = action.payload;
                     state.isAuth = true;
                 } catch (err) {
                     state.isAuth = false;

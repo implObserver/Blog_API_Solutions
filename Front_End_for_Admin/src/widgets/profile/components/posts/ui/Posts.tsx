@@ -1,6 +1,7 @@
 import { ShowcasePosts } from "@/entities/showcasePosts"
 import { selectUserServices } from "@/entities/user"
 import { useSelector } from "react-redux"
+import styles from './styles/Posts.module.css'
 
 export const Posts = () => {
     const user = useSelector(selectUserServices).user;
@@ -14,7 +15,7 @@ export const Posts = () => {
                     :
                     <>
                         <div>You have not posts</div>
-                        <button>Add</button>
+                        <button className={styles.button}>Add</button>
                     </>
             }
         </div>

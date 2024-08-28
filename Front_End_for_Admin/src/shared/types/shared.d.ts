@@ -10,6 +10,11 @@ interface ProfileFormContextType {
     username: string,
 }
 
+interface PostFormContextType {
+    data: ProfileFormType,
+    setData: React.Dispatch<React.SetStateAction<ProfileFormType>>,
+}
+
 interface ProfileFormType {
     nickname: string,
     gender: string,

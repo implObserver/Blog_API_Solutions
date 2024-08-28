@@ -44,8 +44,6 @@ const updateAvatar = async (id) => {
             avatar: `public/images/${id}/avatar/`,
         }
     })
-
-    console.log('wtf')
 }
 
 const setToken = async (id, token) => {
@@ -65,7 +63,6 @@ const findUser = async (id) => {
             posts: true,
         },
     });
-    console.log(user)
     return user;
 }
 
