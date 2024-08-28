@@ -1,60 +1,40 @@
+import { getPostId } from '@/shared/lib';
 import { usePostFormContext } from '../lib/context/Context';
 import styles from './styles/PostForm.module.css'
+import Cookies from 'js-cookie'
 
 export const PostForm = () => {
+    const id = getPostId();
+
     const context = usePostFormContext();
 
     const data = {
-        nickname: context.data.nickname,
-        gender: context.data.gender,
-        age: context.data.age,
+        title: context.data.title,
     }
 
     const handle = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newData = { ...data };
-        newData[e.target.id] = e.target.value
+        const parts = e.target.id.split('_');
+        newData[parts[parts.length - 1]] = e.target.value
         context.setData(newData);
     }
 
     return (
         <form className={styles.form_user}>
             <div className={styles.form_group}>
-                <label htmlFor="nickname">Nickname:</label>
+                <label htmlFor="title">Post Title:</label>
                 <input
                     onChange={handle}
                     className={styles.input}
-                    id="nickname"
-                    name="nickname"
+                    id={`${id}_title`}
+                    name="title"
                     type="text"
-                    placeholder="nickname"
-                    value={data.nickname}
+                    placeholder="Enter a name of this post"
+                    value={data.title}
                     autoComplete="on"
                     required>
                 </input>
 
-                <label htmlFor="gender">Gender:</label>
-                <input
-                    onChange={handle}
-                    className={styles.input}
-                    id="gender"
-                    name="gender"
-                    type="gender"
-                    value={data.gender}
-                    autoComplete="on"
-                    required>
-                </input>
-
-                <label htmlFor="age">Age:</label>
-                <input
-                    onChange={handle}
-                    className={styles.input}
-                    id="age"
-                    name="age"
-                    type="age"
-                    value={data.age}
-                    autoComplete="on"
-                    required>
-                </input>
             </div>
             <div className={styles.container_buttons}>
                 <button className={styles.button} type='submit'>save</button>

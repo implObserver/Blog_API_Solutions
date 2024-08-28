@@ -7,5 +7,6 @@
 .wrapper_posts_info {
     display: grid;
     width: 100%;
+    padding: 3px;
     border:1px red solid;
 }

@@ -15,6 +15,7 @@
         outline 0.06s,
         box-shadow .15s ease-in-out;
     height: 40px;
+    width: 300px;
     border: rgb(224, 224, 224) 1px solid;
     border-radius: 5px;
     padding: 5px;

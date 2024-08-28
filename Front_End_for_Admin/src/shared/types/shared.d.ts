@@ -11,14 +11,18 @@ interface ProfileFormContextType {
 }
 
 interface PostFormContextType {
-    data: ProfileFormType,
-    setData: React.Dispatch<React.SetStateAction<ProfileFormType>>,
+    data: PostFormType,
+    setData: React.Dispatch<React.SetStateAction<PostFormType>>,
 }
 
 interface ProfileFormType {
     nickname: string,
     gender: string,
     age: number,
+}
+
+interface PostFormType {
+    title: string,
 }
 
 interface DropdownContextType {
