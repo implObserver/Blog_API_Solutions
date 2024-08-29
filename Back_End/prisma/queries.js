@@ -2,6 +2,18 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+const dropUsers = async (id) => {
+    const users = await prisma.user.findMany({})
+    const comments = await prisma.comment.findMany({})
+    const profiles = await prisma.profile.findMany({})
+    const posts = await prisma.post.findMany({})
+    //await prisma.$queryRaw('DROP schema users CASCADE')
+    console.log(users)
+    console.log(comments)
+    console.log(profiles)
+    console.log(posts)
+}
+
 const getAllUsers = async () => {
     const { users } = await prisma.user.findMany();
     return users;
@@ -91,6 +103,23 @@ const findPosts = async (id) => {
     return posts;
 }
 
+const addPost = async (user, title) => {
+    const user1 = findUser(user.id);
+    try {
+        await prisma.post.create({
+            data: {
+                title,
+                user: {
+                    connect: { id: user.id },
+                },
+            }
+        })
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
 export const prismaDB = {
     getAllUsers,
     getAllPosts,
@@ -101,4 +130,6 @@ export const prismaDB = {
     findProfile,
     findPosts,
     updateAvatar,
+    addPost,
+    dropUsers
 }

@@ -11,9 +11,7 @@ export const Header = () => {
     //dispath(logout());
     const user = useSelector(selectUserServices);
     console.log(Cookies.get('token'));
-    console.log(user.isAuth)
-    console.log(user.isPending)
-    console.log(user.avatar)
+    console.log(user)
     return (
         <div className={styles.header}>
             <Logo></Logo>

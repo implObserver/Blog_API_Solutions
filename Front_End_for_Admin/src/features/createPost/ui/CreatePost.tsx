@@ -3,6 +3,7 @@ import { HidePostForm } from "@/entities/hidePostForm/ui/HidePostForm";
 import { HideProfileForm } from "@/entities/hideProfileForm";
 import { LoginForm } from "@/entities/loginForm";
 import { selectUserServices, updateProfile } from "@/entities/user";
+import { addPost } from "@/entities/user/model/slice/services/thunks/update/addPost";
 import { PostFormContext } from "@/shared/ui/postForm/lib/context/Context";
 import { ProfileFormContext } from "@/shared/ui/profileForm/lib/context/Context";
 import { useState } from "react";
@@ -24,7 +25,7 @@ export const CreatePost = () => {
     const submitHandle = (e) => {
         e.preventDefault();
         console.log('create post')
-        //dispath(updateProfile(data));
+        dispath(addPost(data));
     }
 
     return (

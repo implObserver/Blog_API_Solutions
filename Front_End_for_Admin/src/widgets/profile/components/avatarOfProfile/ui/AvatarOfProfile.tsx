@@ -12,15 +12,13 @@ export const AvatarOfProfile = () => {
     }
 
     return (
-        <div>
-            <div className={styles.wrapper_avatar_in_profile}>
-                <UserPreview></UserPreview>
-                <UploadContext.Provider value={uploadContext}>
-                    <UploadFile>
-                        <div className={styles.edit}>Edit</div>
-                    </UploadFile>
-                </UploadContext.Provider>
-            </div>
+        <div className={styles.wrapper_avatar_in_profile}>
+            <UserPreview></UserPreview>
+            <UploadContext.Provider value={uploadContext}>
+                <UploadFile>
+                    <div className={styles.edit}>Edit</div>
+                </UploadFile>
+            </UploadContext.Provider>
         </div>
     )
 }

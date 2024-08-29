@@ -10,3 +10,10 @@
     padding: 3px;
     border:1px red solid;
 }
+
+.wrapper_profile_info {
+    display: grid;
+    justify-content: center;
+    border: 1px red solid;;
+    padding: 10px;
+}

@@ -1,13 +1,17 @@
 import asyncHandler from "express-async-handler";
+import { prismaDB } from "../../../prisma/queries.js";
 
 const user_post_add_post = asyncHandler(async (req, res, next) => {
-    console.log(req.body)
+    let user = req.user;
+    const title = req.body.title;
+    await prismaDB.addPost(user, title)
+    user = await prismaDB.findUser(req.user.id);
     res.json({
         user: {
-            id: req.user.id,
-            name: req.user.name,
-            profile: req.user.profile,
-            posts: req.user.posts,
+            id: user.id,
+            name: user.name,
+            profile: user.profile,
+            posts: user.posts,
         }
     });
 })

@@ -7,6 +7,7 @@ import { signup } from "./thunks/auth/signup";
 import { updateProfile } from "./thunks/update/updateProfile";
 import { updateAvatar } from "./thunks/update/updateAvatar";
 import { getAvatar } from "./thunks/get/getAvatar";
+import { addPost } from "./thunks/update/addPost";
 
 const userServicesSlice = createSlice({
     name: 'services',
@@ -27,7 +28,6 @@ const userServicesSlice = createSlice({
                 } finally {
                     state.isPending = false;
                 }
-
             })
 
         builder
@@ -59,7 +59,6 @@ const userServicesSlice = createSlice({
                 } finally {
                     state.isPending = false;
                 }
-
             })
 
         builder
@@ -76,7 +75,6 @@ const userServicesSlice = createSlice({
                 } finally {
                     state.isPending = false;
                 }
-
             })
 
         builder
@@ -91,7 +89,6 @@ const userServicesSlice = createSlice({
                 } finally {
                     state.isPending = false;
                 }
-
             })
 
         builder
@@ -106,7 +103,6 @@ const userServicesSlice = createSlice({
                 } finally {
                     state.isPending = false;
                 }
-
             })
 
         builder
@@ -121,7 +117,20 @@ const userServicesSlice = createSlice({
                 } finally {
                     state.isPending = false;
                 }
+            })
 
+        builder
+            .addCase(addPost.pending, (state) => {
+                state.isPending = true;
+            })
+            .addCase(addPost.fulfilled, (state, action) => {
+                try {
+                    state.user = action.payload;
+                } catch (err) {
+                    console.log("get avatar error");
+                } finally {
+                    state.isPending = false;
+                }
             })
     }
 })

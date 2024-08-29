@@ -18,7 +18,7 @@ export const UpdateService = {
     updateProfile(profile: ProfileFormType) {
         return instance.post(`/api/user/:${id}/profile/update/`, profile)
     },
-    addPost(post: Post) {
-        return instance.post(`/api/user/:${id}/posts/add`, post)
+    addPost(dataPost: PostFormType) {
+        return instance.post(`/api/user/:${id}/posts/add`, dataPost)
     }
 }

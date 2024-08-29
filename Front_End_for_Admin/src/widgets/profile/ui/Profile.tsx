@@ -6,7 +6,7 @@ import styles from './styles/Profile.module.css'
 export const Profile = () => {
     return (
         <div className={styles.profile}>
-            <div>
+            <div className={styles.wrapper_profile_info}>
                 <AvatarOfProfile></AvatarOfProfile>
                 <DataOfProfile></DataOfProfile>
             </div>

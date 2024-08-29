@@ -7,7 +7,7 @@ export const ShowcasePosts = () => {
         return posts.map((post, index) => {
             return (
                 <div>
-                    {post.userId}
+                    {post.title}
                 </div>
             )
         })
