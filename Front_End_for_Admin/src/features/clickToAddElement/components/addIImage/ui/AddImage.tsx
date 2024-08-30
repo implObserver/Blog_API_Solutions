@@ -5,15 +5,20 @@ import {
     modelsActions,
     useElementContext
 } from "@/entities/element";
+import { selectCounter } from "@/entities/element/model/slice/counter/selectors";
+import { counterActions } from "@/entities/element/model/slice/counter/slice";
 import { useDropdownContext } from "@/shared/ui/dropdownElement";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export const AddImage = () => {
     const context = useElementContext();
+    const counter = useSelector(selectCounter);
     const dropdown = useDropdownContext();
     const dispatch = useDispatch<AppDispath>();
     const clickHandle = () => {
-        const textArea = ImageArea();
+        const id = counter.count;
+        dispatch(counterActions.increment());
+        const textArea = ImageArea(id);
         const newModel = elementToModel(textArea);
         console.log(newModel)
         const elementContext: UpdateElement = {

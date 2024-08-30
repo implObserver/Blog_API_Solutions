@@ -89,6 +89,10 @@ interface TitleModel {
     fontSize: number,
 }
 
+interface Counter {
+    count: number,
+}
+
 
 //Elements
 interface ElementType<T> {

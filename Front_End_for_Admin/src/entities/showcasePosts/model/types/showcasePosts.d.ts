@@ -1,4 +1,5 @@
 interface Post {
+    id: Number,
     title: string,
     postingDate: Date,
     isPublished: boolean,

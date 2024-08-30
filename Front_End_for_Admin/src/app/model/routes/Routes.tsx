@@ -26,6 +26,10 @@ const routes = [
         path: "/profile/:id",
         element: <ProfilePage></ProfilePage>
     },
+    {
+        path: "/user/:userid/post/:postid",
+        element: <PostPage></PostPage>
+    },
 ];
 
 export default routes;

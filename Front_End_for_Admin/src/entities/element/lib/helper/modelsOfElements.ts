@@ -1,36 +1,24 @@
+import { store } from "@/app/model/store/Store";
 import { useLocalStorage } from "@/shared/lib/hooks/useLocalStorage";
 import { prototype } from "events";
+import { counterActions } from "../../model/slice/counter/slice";
 
-const { getItem, setItem } = useLocalStorage('post_constructor_id_generator');
-
-const counter = getItem();
-
-if (!counter) {
-    setItem(0);
-}
-
-const Element = () => {
-    let id = getItem();
-    setItem(id + 1);
+const Element = (id: number) => {
     const getId = () => {
         return id;
     }
-
-    const setId = (val: number) => {
-        id = val;
-    }
-    return { getId, setId }
+    return { getId }
 }
 
-const Image = () => {
-    const element = Element();
+const Image = (id: number) => {
+    const element = Element(id);
     const image = ImageUrl();
 
     return Object.assign(image, element)
 }
 
-export const ImageArea = () => {
-    const prototype = Image();
+export const ImageArea = (id: number) => {
+    const prototype = Image(id);
     const visible = true;
     const getType = () => {
         return 'view';
@@ -41,8 +29,8 @@ export const ImageArea = () => {
     return Object.assign(prototype, { getType, getVisible })
 }
 
-export const Preview = () => {
-    const prototype = Image();
+export const Preview = (id: number) => {
+    const prototype = Image(id);
     const visible = false;
     const getType = () => {
         return 'preview';
@@ -53,14 +41,14 @@ export const Preview = () => {
     return Object.assign(prototype, { getType, getVisible })
 }
 
-const Text = () => {
-    const element = Element();
+const Text = (id: number) => {
+    const element = Element(id);
     const value = Value();
     return Object.assign(value, element)
 }
 
-export const TextArea = () => {
-    const prototype = Text();
+export const TextArea = (id: number) => {
+    const prototype = Text(id);
     const visible = true;
     const getType = () => {
         return 'text';
@@ -71,8 +59,8 @@ export const TextArea = () => {
     return Object.assign(prototype, { getType, getVisible })
 }
 
-export const MainTitle = () => {
-    const prototype = Text();
+export const MainTitle = (id: number) => {
+    const prototype = Text(id);
     const visible = false;
     const fontSize = 1;
     const getType = () => {
@@ -87,8 +75,8 @@ export const MainTitle = () => {
     return Object.assign(prototype, { getType, getVisible, getFontSize })
 }
 
-export const Title = () => {
-    const prototype = Text();
+export const Title = (id: number) => {
+    const prototype = Text(id);
     const visible = true;
     const fontSize = 3;
     const getType = () => {

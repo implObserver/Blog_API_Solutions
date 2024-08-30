@@ -2,10 +2,14 @@ import { Container } from "../components/container";
 import { ContainerContext } from "@/features/containerOS";
 import { useCustomState } from "@/shared/lib";
 import { containerAssembly } from "../lib";
+import { useShowcasePostsContext } from "@/entities/showcasePosts";
+import { useLocation } from "react-router-dom";
 
 export const Canvas = () => {
     const update = useCustomState();
-    const containerContexts = containerAssembly();
+    const post = useLocation().state;
+    const containerContexts = containerAssembly(post.elements);
+    console.log(post)
     const fill = () => {
         return containerContexts.map((containerContext, index) => {
             const container: Container = {

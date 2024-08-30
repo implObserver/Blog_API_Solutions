@@ -1,4 +1,4 @@
-import { loadModels } from "../../../api/localStorage/loadModels";
+import { defaultModels } from "@/entities/element/lib/helper/getDefaultElementModel";
 
 /*const defaultElement: ElementModel = {
     panel: {
@@ -16,5 +16,5 @@ saveElements([defaultElement])
 */
 
 export const initialState: Models = {
-    models: loadModels(),
+    models: defaultModels,
 }

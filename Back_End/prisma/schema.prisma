@@ -32,7 +32,7 @@ model Post {
   isPublished Boolean  @default(false)
   postingDate DateTime @default(now())
   tag         String?
-  elements    Json?
+  elements    Json[]
 
   comments Comment[]
 }

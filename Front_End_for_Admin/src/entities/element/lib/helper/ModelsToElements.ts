@@ -29,36 +29,32 @@ export const modelToElement = (model: ModelType<TextAreaModel | PreviewModel | T
 }
 
 const getMainTitle = (model: ModelType<TextAreaModel | PreviewModel | TitleModel>) => {
-    const title = MainTitle();
-    title.setId(model.id);
+    const title = MainTitle(model.id);
+    console.log(model.id);
     title.setValue(model.value);
     return title;
 }
 
 const getTitle = (model: ModelType<TextAreaModel | PreviewModel | TitleModel>) => {
-    const title = Title();
-    title.setId(model.id);
+    const title = Title(model.id);
     title.setValue(model.value);
     return title;
 }
 
 const getPreview = (model: ModelType<TextAreaModel | PreviewModel | TitleModel>) => {
-    const preview = Preview();
-    preview.setId(model.id);
+    const preview = Preview(model.id);
     preview.setUrl(model.imageUrl);
     return preview;
 }
 
 const getView = (model: ModelType<TextAreaModel | PreviewModel | TitleModel>) => {
-    const preview = ImageArea();
-    preview.setId(model.id);
+    const preview = ImageArea(model.id);
     preview.setUrl(model.imageUrl);
     return preview;
 }
 
 const getTextArea = (model: ModelType<TextAreaModel | PreviewModel | TitleModel>) => {
-    const textArea = TextArea();
-    textArea.setId(model.id);
+    const textArea = TextArea(model.id);
     textArea.setValue(model.value);
     return textArea;
 }

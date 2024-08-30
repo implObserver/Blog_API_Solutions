@@ -1,6 +1,5 @@
 import { createSlice, current, isAction, PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./defaultState";
-import { saveModels } from "../../../api/localStorage/saveModels";
 
 const modelsSlice = createSlice({
     name: 'models',
@@ -14,8 +13,6 @@ const modelsSlice = createSlice({
                     state.models.splice(index + 1, 0, action.payload.newModel);
                 }
             })
-
-            saveModels(current(state.models));
         },
         updateModel: (state: Models, action: PayloadAction<UpdateElement>) => {
             const elements = current(state.models);
@@ -25,7 +22,6 @@ const modelsSlice = createSlice({
                     state.models.splice(index, 1, action.payload.newModel);
                 }
             })
-            saveModels(current(state.models));
         },
         removeModel: (state: Models, action: PayloadAction<ModelType<TextAreaModel | PreviewModel | TitleModel>>) => {
             const elements = current(state.models);
@@ -35,13 +31,12 @@ const modelsSlice = createSlice({
                     state.models.splice(index, 1);
                 }
             })
-            saveModels(current(state.models));
         },
         changeValue: (state: Models, action: PayloadAction<string>) => {
 
         },
-        saveToLocalStorage: (state: Models) => {
-            //saveElements(current(state.elements));
+        loadPostModels: (state: Models, action: PayloadAction<ModelType<TextAreaModel | PreviewModel | TitleModel>[]>) => {
+            state.models = action.payload;
         }
     }
 })

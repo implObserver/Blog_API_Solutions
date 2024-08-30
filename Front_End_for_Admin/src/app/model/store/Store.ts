@@ -1,4 +1,5 @@
 import { focusReducer, modelsReducer, selectFocus, selectModels } from '@/entities/element';
+import { counterReducer } from '@/entities/element/model/slice/counter/slice';
 import { servicesReducer, selectUserServices } from '@/entities/user';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
@@ -16,6 +17,7 @@ import storage from 'redux-persist/lib/storage';
 const rootReducer = combineReducers({
   models: modelsReducer,
   focus: focusReducer,
+  counter: counterReducer,
   userServices: servicesReducer,
 })
 

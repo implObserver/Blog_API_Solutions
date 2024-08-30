@@ -1,8 +1,11 @@
 import { store } from "@/app/model/store/Store";
+import { modelsActions } from "@/entities/element";
 import { modelToElement } from "@/entities/element/lib/helper/ModelsToElements";
 
-export const containerAssembly = () => {
+export const containerAssembly = (postModels: ModelType<TextAreaModel | PreviewModel | TitleModel>[]) => {
     const models = store.getState().models.models;
+   
+    console.log(models)
     const containerContexts: Array<ContainerContext> = [];
 
     models.forEach((model, index) => {

@@ -104,7 +104,23 @@ const findPosts = async (id) => {
 }
 
 const addPost = async (user, title) => {
-    const user1 = findUser(user.id);
+    const defaultElements = [{
+        id: 0,
+        type: 'main_title',
+        value: '',
+        fontSize: 1,
+    },
+    {
+        id: 1,
+        type: 'preview',
+        imageUrl: '',
+    },
+    {
+        id: 2,
+        type: 'text',
+        value: '',
+    }];
+
     try {
         await prisma.post.create({
             data: {
@@ -112,6 +128,7 @@ const addPost = async (user, title) => {
                 user: {
                     connect: { id: user.id },
                 },
+                elements: defaultElements,
             }
         })
     } catch (error) {
