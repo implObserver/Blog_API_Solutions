@@ -11,7 +11,7 @@ export const ReadService = {
     },
     getAvatar() {
         return instance.get(`/api/user/:${userID}/profile/avatar`, {
-            responseType: 'blob', // Специфицируем, что ожидаем blob
+            responseType: 'blob',
         });
     },
 }

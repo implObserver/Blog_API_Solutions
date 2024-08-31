@@ -5,18 +5,19 @@ import { AppDispath } from "@/app/model/store/Store";
 import { selectUserServices, updateProfile } from "@/entities/user";
 import { updateAvatar } from "@/entities/user/model/slice/services/thunks/update/updateAvatar";
 import { getAvatar } from "@/entities/user/model/slice/services/thunks/get/getAvatar";
+import { useState } from "react";
 
 export const UploadFile = ({ children }) => {
-    const context = useUploadContext();
-    const dispath = useDispatch<AppDispath>();
+    const dispatch = useDispatch<AppDispath>();
 
-    const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const avatar = e.target.files[0];
-        context.setImgFile(avatar);
-        dispath(updateAvatar(avatar));
-        setTimeout(() => {
-            dispath(getAvatar());
-        }, 100);
+    const changeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { files } = e.target;
+        if (files.length) {
+            const avatar = files[0];
+            await dispatch(updateAvatar(avatar));
+            dispatch(getAvatar());
+        }
+
     }
 
     return (

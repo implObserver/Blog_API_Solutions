@@ -17,78 +17,76 @@ const userServicesSlice = createSlice({
         const handlePending = (state: ServicesDataType) => {
             state.isPending = true;
         };
-        const handleFulfilled = (state, action) => {
+        const handleFulfilled = (state: ServicesDataType) => {
             state.isPending = false;
-            return action.payload;
         };
         const handleRejected = (state: ServicesDataType) => {
             state.isPending = false;
         };
+        const handleFulfilledLogout = (state: ServicesDataType) => {
+            state.isAuth = false;
+            state.user = null;
+            state.avatar = null;
+            state.isPending = false;
+        }
         builder
             .addCase(login.pending, handlePending)
             .addCase(login.fulfilled, (state, action) => {
+                handleFulfilled(state);
                 state.user = action.payload;
                 state.isAuth = true;
-                state.isPending = false;
             })
             .addCase(login.rejected, handleRejected)
 
         builder
             .addCase(checkAuth.pending, handlePending)
             .addCase(checkAuth.fulfilled, (state, action) => {
+                handleFulfilled(state);
                 state.isAuth = true;
-                state.isPending = false;
             })
             .addCase(checkAuth.rejected, handleRejected)
 
         builder
             .addCase(signup.pending, handlePending)
             .addCase(signup.fulfilled, (state, action) => {
+                handleFulfilled(state);
                 state.user = action.payload;
                 state.isAuth = true;
-                state.isPending = false;
             })
             .addCase(signup.rejected, handleRejected)
 
         builder
             .addCase(logout.pending, handlePending)
-            .addCase(logout.fulfilled, (state, action) => {
-                state.isAuth = false;
-                state.user = null;
-                state.avatar = null;
-                state.isPending = false;
-            })
+            .addCase(logout.fulfilled, handleFulfilledLogout)
             .addCase(logout.rejected, handleRejected)
 
         builder
             .addCase(updateProfile.pending, handlePending)
             .addCase(updateProfile.fulfilled, (state, action) => {
+                handleFulfilled(state);
                 state.user = action.payload;
-                state.isPending = false;
             })
             .addCase(updateProfile.rejected, handleRejected)
 
         builder
             .addCase(updateAvatar.pending, handlePending)
-            .addCase(updateAvatar.fulfilled, (state, action) => {
-                state.isPending = false;
-            })
+            .addCase(updateAvatar.fulfilled, handleFulfilled)
             .addCase(updateAvatar.rejected, handleRejected)
 
         builder
             .addCase(getAvatar.pending, handlePending)
             .addCase(getAvatar.fulfilled, (state, action) => {
-                state.isPending = false;
+                handleFulfilled(state);
                 state.avatar = action.payload;
-
+                
             })
             .addCase(getAvatar.rejected, handleRejected)
 
         builder
             .addCase(addPost.pending, handlePending)
             .addCase(addPost.fulfilled, (state, action) => {
+                handleFulfilled(state);
                 state.user = action.payload;
-                state.isPending = false;
             })
             .addCase(addPost.rejected, handleRejected)
     }
