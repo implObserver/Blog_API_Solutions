@@ -14,14 +14,12 @@ export const ShowcasePosts = () => {
     const dispatch = useDispatch<AppDispath>();
 
     useEffect(() => {
-        console.log('wtf')
         dispatch(postsActions.uploadPosts(context))
     }, [])
 
     const posts = useSelector(selectPosts).posts;
     const fill = () => {
         return posts.map((post, index) => {
-            console.log(post)
             return (
                 <div key={post.id}>
                     <Link

@@ -1,7 +1,9 @@
 import { AppDispath } from "@/app/model/store/Store";
 import { focusActions, selectModels } from "@/entities/element";
+import { selectPosts } from "@/entities/showcasePosts/model/slice/selectors";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 export const Focus = ({ children }) => {
     const context = useContainerContext();
@@ -10,10 +12,6 @@ export const Focus = ({ children }) => {
     const isEmpty = useEmptyContext();
 
     const keyUpHandle = (e: React.KeyboardEvent<HTMLDivElement>) => {
-        console.log('wtf')
-        console.log(context.containerContext.index)
-        console.log(select.models.length - 1)
-
         if (e.key === 'ArrowUp' || e.key == 'ArrowDown') {
             e.stopPropagation();
             e.preventDefault();
@@ -63,12 +61,15 @@ export const Focus = ({ children }) => {
 
     const clickHandle = (e: React.MouseEvent<HTMLDivElement>) => {
         const element = e.target as HTMLElement;
+        console.log(element)
         if (element.tagName === 'svg') {
             const className = element.classList.value;
             if (className.includes('minus')) {
                 dispath(focusActions.setFocus(context.containerContext.index - 1));
                 context.canvasUpdate.toggle();
             }
+        } else if (element.tagName === 'TEXTAREA') {
+            dispath(focusActions.setFocus(context.containerContext.index));
         }
     }
 

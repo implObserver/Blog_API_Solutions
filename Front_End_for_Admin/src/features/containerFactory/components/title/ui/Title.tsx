@@ -2,13 +2,15 @@ import { TextArea, TextAreaContext } from "@/shared/ui/textArea";
 import styles from './styles/Title.module.css';
 import { updateElement } from "@/features/containerFactory/lib/helper/updateElement";
 import { useElementContext } from "@/entities/element";
+import { useLocation } from "react-router-dom";
 
 export const Title = () => {
     const context = useElementContext();
     const h = context.elementContext.getFontSize();
+    const index = useLocation().state;
 
     const handleChange = () => {
-        updateElement(context);
+        updateElement(context, index);
     }
 
     const getTitleTextArea = (placeholder: string) => {

@@ -1,9 +1,11 @@
 import { useElementContext } from "@/entities/element";
 import { updateElement } from "@/features/containerFactory/lib/helper/updateElement";
 import { TextArea, TextAreaContext } from "@/shared/ui/textArea"
+import { useLocation } from "react-router-dom";
 
 export const Text = () => {
     const context = useElementContext();
+    const index = useLocation().state;
     const textAreaContext: TextAreaContextType = {
         placeholder: 'Add text',
         value: context.elementContext,
@@ -12,7 +14,7 @@ export const Text = () => {
     }
 
     const handleChange = () => {
-        updateElement(context);
+        updateElement(context, index);
     }
 
     return (
