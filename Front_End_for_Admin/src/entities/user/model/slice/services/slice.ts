@@ -14,124 +14,83 @@ const userServicesSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
+        const handlePending = (state: ServicesDataType) => {
+            state.isPending = true;
+        };
+        const handleFulfilled = (state, action) => {
+            state.isPending = false;
+            return action.payload;
+        };
+        const handleRejected = (state: ServicesDataType) => {
+            state.isPending = false;
+        };
         builder
-            .addCase(login.pending, (state) => {
-                state.isPending = true;
-            })
+            .addCase(login.pending, handlePending)
             .addCase(login.fulfilled, (state, action) => {
-                try {
-                    state.user = action.payload;
-                    state.isAuth = true;
-                } catch (err) {
-                    state.isAuth = false;
-                    console.log("login error");
-                } finally {
-                    state.isPending = false;
-                }
+                state.user = action.payload;
+                state.isAuth = true;
+                state.isPending = false;
             })
+            .addCase(login.rejected, handleRejected)
 
         builder
-            .addCase(checkAuth.pending, (state) => {
-                state.isPending = true;
-            })
+            .addCase(checkAuth.pending, handlePending)
             .addCase(checkAuth.fulfilled, (state, action) => {
-                try {
-                    state.isAuth = true;
-                } catch (err) {
-                    state.isAuth = false;
-                    console.log("auth error");
-                } finally {
-                    state.isPending = false;
-                }
+                state.isAuth = true;
+                state.isPending = false;
             })
+            .addCase(checkAuth.rejected, handleRejected)
 
         builder
-            .addCase(signup.pending, (state) => {
-                state.isPending = true;
-            })
+            .addCase(signup.pending, handlePending)
             .addCase(signup.fulfilled, (state, action) => {
-                try {
-                    state.user = action.payload;
-                    state.isAuth = true;
-                } catch (err) {
-                    state.isAuth = false;
-                    console.log("auth error");
-                } finally {
-                    state.isPending = false;
-                }
+                state.user = action.payload;
+                state.isAuth = true;
+                state.isPending = false;
             })
+            .addCase(signup.rejected, handleRejected)
 
         builder
-            .addCase(logout.pending, (state) => {
-                state.isPending = true;
-            })
+            .addCase(logout.pending, handlePending)
             .addCase(logout.fulfilled, (state, action) => {
-                try {
-                    state.isAuth = false;
-                    state.user = null;
-                    state.avatar = null;
-                } catch (err) {
-                    console.log("logout error");
-                } finally {
-                    state.isPending = false;
-                }
+                state.isAuth = false;
+                state.user = null;
+                state.avatar = null;
+                state.isPending = false;
             })
+            .addCase(logout.rejected, handleRejected)
 
         builder
-            .addCase(updateProfile.pending, (state) => {
-                state.isPending = true;
-            })
+            .addCase(updateProfile.pending, handlePending)
             .addCase(updateProfile.fulfilled, (state, action) => {
-                try {
-                    state.user = action.payload;
-                } catch (err) {
-                    console.log("update error");
-                } finally {
-                    state.isPending = false;
-                }
+                state.user = action.payload;
+                state.isPending = false;
             })
+            .addCase(updateProfile.rejected, handleRejected)
 
         builder
-            .addCase(updateAvatar.pending, (state) => {
-                state.isPending = true;
-            })
+            .addCase(updateAvatar.pending, handlePending)
             .addCase(updateAvatar.fulfilled, (state, action) => {
-                try {
-                    state.user = action.payload;
-                } catch (err) {
-                    console.log("update avatar error");
-                } finally {
-                    state.isPending = false;
-                }
+                state.isPending = false;
             })
+            .addCase(updateAvatar.rejected, handleRejected)
 
         builder
-            .addCase(getAvatar.pending, (state) => {
-                state.isPending = true;
-            })
+            .addCase(getAvatar.pending, handlePending)
             .addCase(getAvatar.fulfilled, (state, action) => {
-                try {
-                    state.avatar = action.payload;
-                } catch (err) {
-                    console.log("get avatar error");
-                } finally {
-                    state.isPending = false;
-                }
+                state.isPending = false;
+                state.avatar = action.payload;
+
             })
+            .addCase(getAvatar.rejected, handleRejected)
 
         builder
-            .addCase(addPost.pending, (state) => {
-                state.isPending = true;
-            })
+            .addCase(addPost.pending, handlePending)
             .addCase(addPost.fulfilled, (state, action) => {
-                try {
-                    state.user = action.payload;
-                } catch (err) {
-                    console.log("get avatar error");
-                } finally {
-                    state.isPending = false;
-                }
+                state.user = action.payload;
+                state.isPending = false;
             })
+            .addCase(addPost.rejected, handleRejected)
     }
 })
 

@@ -4,7 +4,7 @@ import { AvatarContext } from "@/shared/ui/avatar/lib/context/Context";
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 import styles from './styles/Preview.module.css'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AppDispath } from "@/app/model/store/Store";
 import { getAvatar } from "@/entities/user/model/slice/services/thunks/get/getAvatar";
 
@@ -12,9 +12,11 @@ export const Preview = () => {
     const user = useSelector(selectUserServices).user;
     const avatar = useSelector(selectUserServices).avatar;
     const dispath = useDispatch<AppDispath>();
-
+    console.log('avatar')
     useEffect(() => {
-        dispath(getAvatar());
+        if (avatar === null || avatar === undefined) {
+            dispath(getAvatar());
+        }
     }, [])
 
     const avatarContext: AvatarContextType = {

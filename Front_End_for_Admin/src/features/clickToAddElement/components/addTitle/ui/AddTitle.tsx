@@ -6,16 +6,20 @@ import {
     Title,
     useElementContext
 } from "@/entities/element";
+import { selectCounter } from "@/entities/element/model/slice/counter/selectors";
 import { useDropdownContext } from "@/shared/ui/dropdownElement";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export const AddTitle = () => {
     const context = useElementContext();
     const dropdown = useDropdownContext();
     const dispatch = useDispatch<AppDispath>();
+    const counter = useSelector(selectCounter
 
+    );
     const clickHandle = () => {
-        const textArea = Title();
+        const id = counter.count;
+        const textArea = Title(id);
         const newModel = elementToModel(textArea);
         const elementContext: UpdateElement = {
             model: context.model,

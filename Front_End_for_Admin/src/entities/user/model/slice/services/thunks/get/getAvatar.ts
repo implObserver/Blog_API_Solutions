@@ -7,6 +7,7 @@ export const getAvatar = createAsyncThunk(
         try {
             const resp = await ReadService.getAvatar();
             const data = resp.data;
+            const blob = new Blob([data], { type: resp.data.type });
             const imageUrl = URL.createObjectURL(data);
             return imageUrl;
         } catch (error) {

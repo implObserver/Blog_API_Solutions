@@ -12,9 +12,7 @@ export const Profile = () => {
             </div>
             <div >
                 <div className={styles.wrapper_posts_info}>
-                    <div>
-                        <Posts></Posts>
-                    </div>
+                    <Posts></Posts>
                 </div>
             </div>
         </div>

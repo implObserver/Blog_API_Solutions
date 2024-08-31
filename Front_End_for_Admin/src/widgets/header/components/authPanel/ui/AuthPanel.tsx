@@ -19,7 +19,6 @@ export const AuthPanel = () => {
             </div>
         )
     else {
-        console.log(user)
         return (
             <div className={styles.panel_auth}>
                 <span>{user.name}</span>

@@ -4,7 +4,6 @@ import styles from './styles/Avatar.module.css'
 
 export const Avatar = () => {
     const context = useAvatarContext();
-    console.log(context.image)
     return (
         <div className={styles.wrapper}>
             <div className={styles.circle}>

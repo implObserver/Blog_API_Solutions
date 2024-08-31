@@ -9,9 +9,7 @@ import Cookies from 'js-cookie'
 export const Header = () => {
     //const dispath = useDispatch<AppDispath>();
     //dispath(logout());
-    const user = useSelector(selectUserServices);
-    console.log(Cookies.get('token'));
-    console.log(user)
+
     return (
         <div className={styles.header}>
             <Logo></Logo>
