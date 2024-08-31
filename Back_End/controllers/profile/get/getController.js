@@ -21,11 +21,13 @@ const profile_detail_api = asyncHandler(async (req, res, next) => {
 
 const profile_avatar_get = asyncHandler(async (req, res, next) => {
     const directory = req.user.profile.avatar;
+    const defaultDirectory = `${__dirname}/public/images/default/avatar/default.svg`;
+
     fs.readdir(directory, (err, files) => {
         if (files) {
-            res.sendFile(path.resolve(`${__dirname}/${req.user.profile.avatar}/${files[0]}`));
+            res.sendFile(path.resolve(`${__dirname}/${directory}/${files[0]}`));
         } else {
-            res.status(404).send('Not found');
+            res.sendFile(path.resolve(defaultDirectory));
         }
     })
 })

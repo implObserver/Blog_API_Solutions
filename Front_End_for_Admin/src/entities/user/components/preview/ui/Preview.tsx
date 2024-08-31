@@ -16,7 +16,7 @@ export const Preview = () => {
 
     const dispatch = useDispatch<AppDispath>();
     const avatarURL = file ? URL.createObjectURL(file) : null;
-
+ 
     useEffect(() => {
         if (!file) {
             dispatch(getAvatar());
