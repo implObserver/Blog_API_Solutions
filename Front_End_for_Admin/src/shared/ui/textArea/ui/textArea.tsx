@@ -7,10 +7,14 @@ export const TextArea = () => {
     let value = context.value.getValue();
     const auto_grow = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         const element = e.target as HTMLTextAreaElement;
-        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        if (e.key === 'ArrowLeft'
+            || e.key === 'ArrowRight') {
             e.stopPropagation();
         } else {
-            context.value.setValue(element.value);
+            if (e.key !== 'ArrowUp'
+                && e.key !== 'ArrowDown') {
+                context.value.setValue(element.value);
+            }
         }
     };
 

@@ -1,7 +1,6 @@
 import { AppDispath } from "@/app/model/store/Store";
 import {
     elementToModel,
-    modelsActions,
     TextArea,
     useElementContext
 } from "@/entities/element";
@@ -31,7 +30,6 @@ export const AddText = () => {
         }
         dispatch(postsActions.addModel(elementContext));
         context.dropdownStatus.toggle();
-        dropdown.canvas.toggle();
     }
     return (
         <div onMouseDown={clickHandle}>

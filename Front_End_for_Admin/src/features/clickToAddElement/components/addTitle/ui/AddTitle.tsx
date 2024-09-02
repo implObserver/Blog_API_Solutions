@@ -2,7 +2,6 @@ import { AppDispath } from "@/app/model/store/Store";
 import {
     elementToModel,
     focusActions,
-    modelsActions,
     Title,
     useElementContext
 } from "@/entities/element";
@@ -31,7 +30,6 @@ export const AddTitle = () => {
         dispatch(postsActions.addModel(elementContext));
         dispatch(focusActions.setFocus(context.index + 1));
         context.dropdownStatus.toggle();
-        dropdown.canvas.toggle();
     }
 
     return (

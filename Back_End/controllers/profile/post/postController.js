@@ -18,7 +18,6 @@ const user_profile_update_post = asyncHandler(async (req, res, next) => {
 const user_avatar_update_post = [
     asyncHandler(async (req, res, next) => {
         console.log(req.user)
-        
         res.json({
             user: {
                 id: req.user.id,

@@ -5,7 +5,7 @@ import { PlugContext } from "@/shared/ui/plug";
 import { useExternalResetContext } from "../lib/context/Context";
 
 export const ExternalReset = ({ children }) => {
-    const externalElementRef = useRef<HTMLDivElement>();
+    const externalElementRef = useRef<HTMLDivElement>(null);
     const context = useExternalResetContext();
 
     useEffect(() => {
@@ -14,7 +14,7 @@ export const ExternalReset = ({ children }) => {
             let className: string;
 
             if (e.target instanceof SVGElement) {
-                element = e.target as SVGElement;
+                element = e.target;
                 className = element.classList.value;
             } else {
                 element = e.target as HTMLElement;
@@ -35,7 +35,7 @@ export const ExternalReset = ({ children }) => {
         return () => {
             document.removeEventListener('mousedown', handler);
         }
-    },)
+    }, [context]); // Добавлены зависимости
 
     const plugContext: PlugContextType = {
         state: context.state.getState(),
@@ -46,7 +46,7 @@ export const ExternalReset = ({ children }) => {
         <div ref={externalElementRef} className={`${context.state.getState() ? `${styles.light} ${context.index}` : ''}`}>
             <PlugContext.Provider value={plugContext}>
                 {children}
-                <Plug></Plug>
+                <Plug />
             </PlugContext.Provider>
         </div>
     )

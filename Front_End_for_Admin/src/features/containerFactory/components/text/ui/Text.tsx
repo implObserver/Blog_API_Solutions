@@ -13,8 +13,10 @@ export const Text = () => {
         isFocus: context.isFocus
     }
 
-    const handleChange = () => {
-        updateElement(context, index);
+    const handleChange = (e: React.KeyboardEvent<HTMLDivElement>) => {
+        if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') {
+            updateElement(context, index);
+        }
     }
 
     return (

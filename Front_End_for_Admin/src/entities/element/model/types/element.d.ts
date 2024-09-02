@@ -25,7 +25,6 @@ interface ElementFeatures {
 interface UpdateElement {
     newModel: ModelType<TextAreaModel | PreviewModel | TitleModel>,
     model: ModelType<TextAreaModel | PreviewModel | TitleModel>,
-
 }
 
 interface FeaturesPanel {

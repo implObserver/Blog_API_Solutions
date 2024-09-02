@@ -1,5 +1,5 @@
 import { AppDispath } from "@/app/model/store/Store";
-import { elementToModel, modelsActions, TextArea } from "@/entities/element";
+import { elementToModel, TextArea } from "@/entities/element";
 import { selectCounter } from "@/entities/element/model/slice/counter/selectors";
 import { counterActions } from "@/entities/element/model/slice/counter/slice";
 import { postsActions } from "@/entities/showcasePosts/model/slice/slice";
@@ -26,13 +26,7 @@ export const Add = ({ children }) => {
                 model,
                 newModel,
             }
-            /*const elementContext: UpdateElement = {
-                model,
-                newModel,
-            }*/
             dispath(postsActions.addModel(context));
-            console.log('wtf')
-            //dispath(modelsActions.addModel(elementContext));
         }
     }
 

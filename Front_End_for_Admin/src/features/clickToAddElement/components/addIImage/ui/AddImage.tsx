@@ -2,7 +2,6 @@ import { AppDispath } from "@/app/model/store/Store";
 import {
     elementToModel,
     ImageArea,
-    modelsActions,
     useElementContext
 } from "@/entities/element";
 import { selectCounter } from "@/entities/element/model/slice/counter/selectors";
@@ -32,7 +31,6 @@ export const AddImage = () => {
         }
         dispatch(postsActions.addModel(elementContext));
         context.dropdownStatus.toggle();
-        dropdown.canvas.toggle();
     }
     return (
         <div onMouseDown={clickHandle}>

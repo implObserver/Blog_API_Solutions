@@ -1,6 +1,6 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./defaultState";
-initialState
+
 export const postsSlice = createSlice({
     name: 'posts',
     initialState,
@@ -44,10 +44,7 @@ export const postsSlice = createSlice({
             })
         },
         uploadPosts: (state: Posts, action: PayloadAction<Post[]>) => {
-            if (state.posts.length === 0) {
-                console.log()
-                state.posts = action.payload;
-            }
+            state.posts = action.payload;
         }
     }
 })

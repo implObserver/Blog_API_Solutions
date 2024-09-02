@@ -12,60 +12,64 @@ import { ExternalReset, ExternalResetContext } from "@/features/externalReset";
 import { ShowElementTypes } from "@/features/showElementTypes/ui/ShowElementTypes";
 import { ElementListContext } from "@/entities/elementList/lib/context/Context";
 import { AddImage } from "@/features/clickToAddElement/components/addIImage/ui/AddImage";
+import React, { useMemo } from "react";
 
-export const Container = () => {
+export const Container = React.memo(() => {
     const context = useContainerContext();
-    const element = context.containerContext.element;
-    const model = context.containerContext.model;
     const focus = useSelector(selectFocus);
     const dropdownStatus = useCustomState();
 
-    const elementContext: CanvasElement = {
+    // Мемоизация element и model
+    const { element, model } = context.containerContext;
+
+    // Создание контекста для элемента
+    const elementContext = useMemo(() => ({
         featuresContext: {
             panel: {
                 features: [
-                    <ClickToAddElement></ClickToAddElement>,
-                    <ClickToRemoveElement></ClickToRemoveElement>
+                    <ClickToAddElement key="add" />,
+                    <ClickToRemoveElement key="remove" />,
                 ],
             },
             container: {
-                features: <Factory></Factory>,
-            }
+                features: <Factory key="factory" />,
+            },
         },
         elementContext: element,
         model,
         isFocus: focus.index === context.containerContext.index,
         dropdownStatus,
         index: context.containerContext.index,
-    }
+    }), [element, model, focus.index, dropdownStatus, context.containerContext.index]);
 
-    const externalResetContext: ExternalResetContextType = {
+    // Контекст для внешнего сброса
+    const externalResetContext = useMemo(() => ({
         state: dropdownStatus,
-        index: `${context.containerContext.index} container`
-    }
+        index: `${context.containerContext.index} container`,
+    }), [dropdownStatus, context.containerContext.index]);
 
-    const dropdownElementContext: DropdownContextType = {
-        canvas: context.canvasUpdate,
+    // Контекст для выпадающего списка
+    const dropdownElementContext = useMemo(() => ({
         state: dropdownStatus.getState(),
         margin: false,
-    }
+    }), [dropdownStatus]);
 
-    const elementListContext: ElementListContextType = {
-        text: <AddText></AddText>,
-        title: <AddTitle></AddTitle>,
-        image: <AddImage></AddImage>,
-    }
+    // Контекст для списка элементов
+    const elementListContext = useMemo(() => ({
+        text: <AddText key="text" />,
+        title: <AddTitle key="title" />,
+        image: <AddImage key="image" />,
+    }), []);
 
     return (
-        <div
-            className={styles.container}>
+        <div className={styles.container}>
             <ExternalResetContext.Provider value={externalResetContext}>
                 <ExternalReset>
                     <DropdownContext.Provider value={dropdownElementContext}>
                         <ElementListContext.Provider value={elementListContext}>
                             <ElementContext.Provider value={elementContext}>
                                 <ContainerOS>
-                                    <Element></Element>
+                                    <Element />
                                 </ContainerOS>
                             </ElementContext.Provider>
                         </ElementListContext.Provider>
@@ -73,5 +77,5 @@ export const Container = () => {
                 </ExternalReset>
             </ExternalResetContext.Provider>
         </div>
-    )
-}
+    );
+});

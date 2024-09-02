@@ -1,15 +1,17 @@
 import styles from './styles/UploadImage.module.css'
 import { useImageContext } from "../../../lib/context/Context";
+import { useMemo } from 'react';
 
 export const UploadImage = () => {
-    // Define a state variable to store the selected image
     const context = useImageContext();
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         context.setImgFile(e.target.files[0]);
     }
 
-    const id = `file_upload ${Math.random()}`;
+    // Мемоизация id, чтобы он не пересоздавался при каждом рендере
+    const id = useMemo(() => `file_upload_${Math.random()}`, []);
+
     return (
         <div className={styles.container}>
             <input
@@ -18,16 +20,15 @@ export const UploadImage = () => {
                 type="file"
                 accept="image/*"
                 name="myImage"
-                // Event handler to capture file selection and update the state
-                onChange={changeHandler}
+                onChange={changeHandler} // Обработчик события для захвата выбора файла
             />
 
             <label
                 className={styles.custom_file_upload}
-                htmlFor={`${id}`}
+                htmlFor={id}
             >
                 Upload post preview
             </label>
-        </div >
-    )
+        </div>
+    );
 }

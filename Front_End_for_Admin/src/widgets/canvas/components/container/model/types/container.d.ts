@@ -3,14 +3,14 @@ interface Containers {
 }
 
 interface Container {
-    canvasUpdate: CustomState
+    canvasUpdate?: CustomState
     containerContext: ContainerContext
 }
 
 interface CustomState {
     toggle: () => void,
-    setState: (val: Boolean) => void,
-    getState: () => Boolean,
+    setState: (val: boolean) => void,
+    getState: () => boolean,
 }
 
 interface ContainerContext {

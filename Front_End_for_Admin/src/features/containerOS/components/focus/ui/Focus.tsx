@@ -1,5 +1,5 @@
 import { AppDispath } from "@/app/model/store/Store";
-import { focusActions, selectModels } from "@/entities/element";
+import { focusActions } from "@/entities/element";
 import { selectPosts } from "@/entities/showcasePosts/model/slice/selectors";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,8 +7,11 @@ import { useLocation } from "react-router-dom";
 
 export const Focus = ({ children }) => {
     const context = useContainerContext();
+    const index = useLocation().state;
+    const posts = useSelector(selectPosts).posts;
+    const post = posts[index];
+
     const dispath = useDispatch<AppDispath>();
-    const select = useSelector(selectModels);
     const isEmpty = useEmptyContext();
 
     const keyUpHandle = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -19,29 +22,27 @@ export const Focus = ({ children }) => {
 
         if (isEmpty.getState() && context.containerContext.index > 2) {
             if (context.containerContext.index > 0) {
-                dispath(focusActions.setFocus(context.containerContext.index - 1))
-                context.canvasUpdate.toggle();
+                //dispath(focusActions.setFocus(context.containerContext.index - 1))
             }
         }
 
         if (e.key === 'ArrowUp' && context.containerContext.index > 0) {
             let index = context.containerContext.index - 1;
-            const model = select.models[index];
+            const model = post.elements[index];
             if (model.type === 'preview') {
                 index--;
             }
-            dispath(focusActions.setFocus(index))
-            context.canvasUpdate.toggle();
+            //dispath(focusActions.setFocus(index))
         }
 
-        if (e.key === 'ArrowDown' && context.containerContext.index < select.models.length - 1) {
+        if (e.key === 'ArrowDown' && context.containerContext.index < post.elements.length - 1) {
             let index = context.containerContext.index + 1;
-            const model = select.models[index];
+            const model = post.elements[index];
+            console.log('fooocus')
             if (model.type === 'preview') {
                 index++;
             }
-            dispath(focusActions.setFocus(index))
-            context.canvasUpdate.toggle();
+            //dispath(focusActions.setFocus(index))
         }
     }
 
@@ -54,8 +55,7 @@ export const Focus = ({ children }) => {
 
         if (e.key === 'Enter') {
             e.preventDefault();
-            dispath(focusActions.setFocus(context.containerContext.index + 1))
-            context.canvasUpdate.toggle();
+            //dispath(focusActions.setFocus(context.containerContext.index + 1))
         }
     }
 
@@ -66,10 +66,9 @@ export const Focus = ({ children }) => {
             const className = element.classList.value;
             if (className.includes('minus')) {
                 dispath(focusActions.setFocus(context.containerContext.index - 1));
-                context.canvasUpdate.toggle();
             }
         } else if (element.tagName === 'TEXTAREA') {
-            dispath(focusActions.setFocus(context.containerContext.index));
+            //dispath(focusActions.setFocus(context.containerContext.index));
         }
     }
 

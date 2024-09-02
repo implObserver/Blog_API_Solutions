@@ -19,6 +19,6 @@ interface Comment {
 
 interface CellOfPost {
     index: number,
-    newModel: ModelType<TextAreaModel | PreviewModel | TitleModel>,
+    newModel?: ModelType<TextAreaModel | PreviewModel | TitleModel>,
     model: ModelType<TextAreaModel | PreviewModel | TitleModel>,
 }

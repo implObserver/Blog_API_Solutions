@@ -9,6 +9,7 @@ import { selectPosts } from "../model/slice/selectors";
 
 export const ShowcasePosts = () => {
     const context = useShowcasePostsContext();
+    console.log(context)
     const userID = Cookies.get('user_id');
 
     const dispatch = useDispatch<AppDispath>();
@@ -18,8 +19,10 @@ export const ShowcasePosts = () => {
     }, [])
 
     const posts = useSelector(selectPosts).posts;
+    console.log(posts)
     const fill = () => {
         return posts.map((post, index) => {
+            console.log(posts.length)
             return (
                 <div key={post.id}>
                     <Link

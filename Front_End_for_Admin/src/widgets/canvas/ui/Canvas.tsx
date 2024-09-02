@@ -11,16 +11,16 @@ import { modelsToContainers } from "../lib/helper/containerAssembly";
 import { selectPosts } from "@/entities/showcasePosts/model/slice/selectors";
 
 export const Canvas = () => {
-    const update = useCustomState();
     const index = useLocation().state;
-    console.log(index)
+
     const post = useSelector(selectPosts).posts[index];
+    /*
+    */
     const containerContexts = modelsToContainers(post.elements);
 
     const fill = () => {
         return containerContexts.map((containerContext, index) => {
             const container: Container = {
-                canvasUpdate: update,
                 containerContext,
             }
             return (

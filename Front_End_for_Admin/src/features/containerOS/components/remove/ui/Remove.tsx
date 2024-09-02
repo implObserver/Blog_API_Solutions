@@ -1,18 +1,23 @@
 import { AppDispath } from "@/app/model/store/Store";
-import { modelsActions } from "@/entities/element";
+import { postsActions } from "@/entities/showcasePosts/model/slice/slice";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 export const Remove = ({ children }) => {
     const context = useContainerContext();
     const model = context.containerContext.model;
     const dispath = useDispatch<AppDispath>();
     const isEmpty = useEmptyContext();
-
+    const index = useLocation().state;
     const keyUpHandle = (e: React.KeyboardEvent<HTMLDivElement>) => {
 
         if (isEmpty.getState() && context.containerContext.index > 2) {
-            dispath(modelsActions.removeModel(model));
+            const context: CellOfPost = {
+                index,
+                model,
+            }
+            dispath(postsActions.removeModel(context));
             isEmpty.setState(false);
         }
 

@@ -1,4 +1,4 @@
-import { focusReducer, modelsReducer, selectFocus, selectModels } from '@/entities/element';
+import { focusReducer, selectFocus, } from '@/entities/element';
 import { counterReducer } from '@/entities/element/model/slice/counter/slice';
 import { postsReducer } from '@/entities/showcasePosts/model/slice/slice';
 import { servicesReducer, selectUserServices } from '@/entities/user';
@@ -16,7 +16,6 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 const rootReducer = combineReducers({
-  models: modelsReducer,
   focus: focusReducer,
   counter: counterReducer,
   userServices: servicesReducer,
@@ -41,7 +40,6 @@ export const store = configureStore({
 });
 
 export const selectors = {
-  models: selectModels,
   focus: selectFocus,
   userServices: selectUserServices,
 }
