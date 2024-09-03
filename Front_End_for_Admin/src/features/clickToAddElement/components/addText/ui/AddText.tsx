@@ -6,6 +6,8 @@ import {
 } from "@/entities/element";
 import { selectCounter } from "@/entities/element/model/slice/counter/selectors";
 import { counterActions } from "@/entities/element/model/slice/counter/slice";
+import { selectModelsOfOpenedPost } from "@/entities/element/model/slice/elementsOfPost/selectors";
+import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
 import { postsActions } from "@/entities/showcasePosts/model/slice/slice";
 import { useDropdownContext } from "@/shared/ui/dropdownElement";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,22 +15,33 @@ import { useLocation } from "react-router-dom";
 
 export const AddText = () => {
     const context = useElementContext();
-    const dropdown = useDropdownContext();
-    const dispatch = useDispatch<AppDispath>();
-    const counter = useSelector(selectCounter);
     const index = useLocation().state;
-
+    const model = context.model;
+    const models = useSelector(selectModelsOfOpenedPost).models;
+    console.log(model)
+    const dispath = useDispatch<AppDispath>();
     const clickHandle = () => {
-        const id = counter.count;
-        dispatch(counterActions.increment());
-        const textArea = TextArea(id);
+        dispath(counterActions.increment());
+        const textArea = TextArea();
         const newModel = elementToModel(textArea);
-        const elementContext: CellOfPost = {
+        const updateModelsContext: CellOfPost = {
             index,
-            model: context.model,
+            model,
             newModel,
         }
-        dispatch(postsActions.addModel(elementContext));
+        const modelContext: UpdateElement = {
+            model,
+            newModel,
+        }
+        const updateContext: UpdateModels = {
+            index,
+            models,
+        }
+
+        dispath(modlelsOfOpenedPostActions.addModel(modelContext));
+        dispath(postsActions.updateModels(updateContext));
+        dispath(postsActions.addModel(updateModelsContext));
+
         context.dropdownStatus.toggle();
     }
     return (

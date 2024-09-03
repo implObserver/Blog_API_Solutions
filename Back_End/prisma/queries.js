@@ -97,6 +97,7 @@ const findProfile = async (id) => {
 }
 
 const findPosts = async (id) => {
+    console.log(id)
     const posts = await prisma.post.findMany({
         where: { userId: id },
     });
@@ -137,6 +138,55 @@ const addPost = async (user, title) => {
 
 }
 
+const updateModels = async (data) => {
+    const id = data.id;
+    const models = data.models;
+    console.log('noooo')
+    try {
+        const updatedModels = await prisma.post.update({
+            where: {
+                id: id,
+            },
+            data: {
+                elements: {
+                    set: models,
+                },
+            },
+        });
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const updatePost = async (user, post) => {
+    try {
+        const postObj = {
+            title: post.title,
+            isPublished: post.isPublished,
+            postingDate: post.postingDate,
+            tag: post.tag,
+            elements: post.elements,
+        }
+        const updatedPost = await prisma.user.update({
+            where: {
+                id: user.id,
+            },
+            data: {
+                posts: {
+                    update: [
+                        {
+                            where: { id: post.id }, // Укажите ID поста для обновления
+                            data: postObj,
+                        },
+                    ],
+                },
+            },
+        });
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const prismaDB = {
     getAllUsers,
     getAllPosts,
@@ -148,5 +198,7 @@ export const prismaDB = {
     findPosts,
     updateAvatar,
     addPost,
-    dropUsers
+    dropUsers,
+    updatePost,
+    updateModels,
 }

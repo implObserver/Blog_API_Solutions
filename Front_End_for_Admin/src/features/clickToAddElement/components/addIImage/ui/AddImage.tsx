@@ -13,17 +13,13 @@ import { useLocation } from "react-router-dom";
 
 export const AddImage = () => {
     const context = useElementContext();
-    const dropdown = useDropdownContext();
     const dispatch = useDispatch<AppDispath>();
-    const counter = useSelector(selectCounter);
-    const index = useLocation().state;
+    const index = useLocation().state.index;
 
     const clickHandle = () => {
-        const id = counter.count;
         dispatch(counterActions.increment());
-        const textArea = ImageArea(id);
+        const textArea = ImageArea();
         const newModel = elementToModel(textArea);
-        console.log(newModel)
         const elementContext: CellOfPost = {
             index,
             model: context.model,

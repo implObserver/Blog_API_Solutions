@@ -1,11 +1,11 @@
 import { UpdateService } from "@/entities/user/api/api.post";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const addPost = createAsyncThunk(
-    'services/add/post/',
-    async (dataPost: PostFormType, thunkAPI) => {
+export const updateModelsOfPost = createAsyncThunk(
+    'services/update/post/models',
+    async (data: PostUpdate, thunkAPI) => {
         try {
-            const resp = await UpdateService.addPost(dataPost);
+            const resp = await UpdateService.updateModelsOfPost(data);
             const user = resp.data.user;
             return user;
         } catch (error) {

@@ -12,7 +12,7 @@ interface CanvasElement {
     featuresContext: ElementFeatures,
     elementContext: ElementType<Title | TextArea | Preview>,
     model: ModelType<TextAreaModel | PreviewModel | TitleModel>,
-    isFocus: boolean,
+    isFocus?: boolean,
     dropdownStatus: CustomState,
     index: number,
 }

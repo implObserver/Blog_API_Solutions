@@ -1,23 +1,24 @@
 import { store } from "@/app/model/store/Store";
 import { useLocalStorage } from "@/shared/lib/hooks/useLocalStorage";
 import { prototype } from "events";
-import { counterActions } from "../../model/slice/counter/slice";
 
-const Element = (id: number) => {
+
+const Element = (id?: number) => {
+    const defaultId = id === undefined ? store.getState().counter.count : id;
     const getId = () => {
-        return id;
+        return defaultId;
     }
     return { getId }
 }
 
-const Image = (id: number) => {
+const Image = (id?: number) => {
     const element = Element(id);
     const image = ImageUrl();
 
     return Object.assign(image, element)
 }
 
-export const ImageArea = (id: number) => {
+export const ImageArea = (id?: number) => {
     const prototype = Image(id);
     const visible = true;
     const getType = () => {
@@ -29,7 +30,7 @@ export const ImageArea = (id: number) => {
     return Object.assign(prototype, { getType, getVisible })
 }
 
-export const Preview = (id: number) => {
+export const Preview = (id?: number) => {
     const prototype = Image(id);
     const visible = false;
     const getType = () => {
@@ -41,13 +42,13 @@ export const Preview = (id: number) => {
     return Object.assign(prototype, { getType, getVisible })
 }
 
-const Text = (id: number) => {
+const Text = (id?: number) => {
     const element = Element(id);
     const value = Value();
     return Object.assign(value, element)
 }
 
-export const TextArea = (id: number) => {
+export const TextArea = (id?: number) => {
     const prototype = Text(id);
     const visible = true;
     const getType = () => {
@@ -59,7 +60,7 @@ export const TextArea = (id: number) => {
     return Object.assign(prototype, { getType, getVisible })
 }
 
-export const MainTitle = (id: number) => {
+export const MainTitle = (id?: number) => {
     const prototype = Text(id);
     const visible = false;
     const fontSize = 1;
@@ -75,7 +76,7 @@ export const MainTitle = (id: number) => {
     return Object.assign(prototype, { getType, getVisible, getFontSize })
 }
 
-export const Title = (id: number) => {
+export const Title = (id?: number) => {
     const prototype = Text(id);
     const visible = true;
     const fontSize = 3;

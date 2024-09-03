@@ -1,7 +1,7 @@
 import { Preview, TextArea, MainTitle, Title, ImageArea } from "./modelsOfElements";
 
 export const modelsToElements = (models: Array<ModelType<TextAreaModel | PreviewModel | TitleModel>>) => {
-    console.log(models)
+    
     const elements: Array<ElementType<Title | TextArea | Preview>> = [];
 
     models.forEach((model: ModelType<TextAreaModel | PreviewModel | TitleModel>) => {
@@ -30,7 +30,6 @@ export const modelToElement = (model: ModelType<TextAreaModel | PreviewModel | T
 
 const getMainTitle = (model: ModelType<TextAreaModel | PreviewModel | TitleModel>) => {
     const title = MainTitle(model.id);
-    console.log(model.id);
     title.setValue(model.value);
     return title;
 }

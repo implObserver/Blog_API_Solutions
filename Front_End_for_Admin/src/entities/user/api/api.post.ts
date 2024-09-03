@@ -20,5 +20,11 @@ export const UpdateService = {
     },
     addPost(dataPost: PostFormType) {
         return instance.post(`/api/user/:${id}/posts/add`, dataPost)
+    },
+    updatePost(post: Post) {
+        return instance.post(`/api/user/:${id}/posts/update`, post)
+    },
+    updateModelsOfPost(data: PostUpdate) {
+        return instance.post(`/api/user/:${id}/posts/update/models`, data)
     }
 }

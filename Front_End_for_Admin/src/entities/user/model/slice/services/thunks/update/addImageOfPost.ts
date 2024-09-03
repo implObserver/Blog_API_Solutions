@@ -6,7 +6,6 @@ export const addImageOfPost = createAsyncThunk(
     async (avatar: File, thunkAPI) => {
         try {
             const resp = await UpdateService.updateAvatar(avatar);
-            console.log(resp)
             const user = resp.data.user;
             return user;
         } catch (error) {

@@ -7,7 +7,6 @@ import { useElementContext } from "@/entities/element";
 export const Factory = () => {
     const context = useElementContext();
     const type = context.elementContext.getType();
-    console.log(type)
     if (type === "text") {
         return (
             <Text></Text>

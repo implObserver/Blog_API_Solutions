@@ -24,7 +24,6 @@ export const CreatePost = () => {
 
     const submitHandle = (e) => {
         e.preventDefault();
-        console.log('create post')
         dispath(addPost(data));
     }
 

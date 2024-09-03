@@ -10,6 +10,7 @@ const counterSlice = createSlice({
         },
         increment: (state: Counter) => {
             state.count++;
+            console.log(state.count)
         }
     }
 })

@@ -1,10 +1,9 @@
 import { AddText, AddTitle, ClickToAddElement } from "@/features/clickToAddElement";
 import { ClickToRemoveElement } from "@/features/clickToRemoveElement";
 import { Factory } from "@/features/containerFactory";
-import { Element, ElementContext } from "@/entities/element";
+import { Element, ElementContext, selectFocus } from "@/entities/element";
 import styles from './styles/Container.module.css'
 import { useSelector } from "react-redux";
-import { selectFocus } from "@/entities/element/model/slice/focus/selectors";
 import { ContainerOS, useContainerContext } from "@/features/containerOS";
 import { useCustomState } from "@/shared/lib/hooks/useCustomState";
 import { DropdownContext } from "@/shared/ui/dropdownElement";
@@ -16,7 +15,6 @@ import React, { useMemo } from "react";
 
 export const Container = React.memo(() => {
     const context = useContainerContext();
-    const focus = useSelector(selectFocus);
     const dropdownStatus = useCustomState();
 
     // Мемоизация element и model
@@ -37,10 +35,9 @@ export const Container = React.memo(() => {
         },
         elementContext: element,
         model,
-        isFocus: focus.index === context.containerContext.index,
         dropdownStatus,
         index: context.containerContext.index,
-    }), [element, model, focus.index, dropdownStatus, context.containerContext.index]);
+    }), [element, model, dropdownStatus, context.containerContext.index]);
 
     // Контекст для внешнего сброса
     const externalResetContext = useMemo(() => ({
@@ -76,6 +73,7 @@ export const Container = React.memo(() => {
                     </DropdownContext.Provider>
                 </ExternalReset>
             </ExternalResetContext.Provider>
+            {Date.now()}
         </div>
     );
 });

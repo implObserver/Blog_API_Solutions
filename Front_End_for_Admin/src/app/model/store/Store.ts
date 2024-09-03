@@ -1,5 +1,7 @@
 import { focusReducer, selectFocus, } from '@/entities/element';
 import { counterReducer } from '@/entities/element/model/slice/counter/slice';
+import { modlelsOfOpenedPostReducer } from '@/entities/element/model/slice/elementsOfPost/slice';
+import { localPostsReducer } from '@/entities/element/model/slice/localPosts/slice';
 import { postsReducer } from '@/entities/showcasePosts/model/slice/slice';
 import { servicesReducer, selectUserServices } from '@/entities/user';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
@@ -20,6 +22,8 @@ const rootReducer = combineReducers({
   counter: counterReducer,
   userServices: servicesReducer,
   posts: postsReducer,
+  localPosts: localPostsReducer,
+  modelsOfOpenedPost: modlelsOfOpenedPostReducer,
 })
 
 const persistConfig = {

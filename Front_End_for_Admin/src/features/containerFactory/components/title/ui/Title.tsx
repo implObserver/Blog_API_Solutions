@@ -1,16 +1,27 @@
 import { TextArea, TextAreaContext } from "@/shared/ui/textArea";
 import styles from './styles/Title.module.css';
 import { updateElement } from "@/features/containerFactory/lib/helper/updateElement";
-import { useElementContext } from "@/entities/element";
+import { elementToModel, selectFocus, useElementContext } from "@/entities/element";
 import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispath } from "@/app/model/store/Store";
+import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
 
 export const Title = () => {
     const context = useElementContext();
     const h = context.elementContext.getFontSize();
-    const index = useLocation().state;
+    const focus = useSelector(selectFocus).index;
+    const dispatch = useDispatch<AppDispath>();
 
-    const handleChange = () => {
-        updateElement(context, index);
+    const handleChange = (e: React.KeyboardEvent<HTMLDivElement>) => {
+        if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') {
+            const newModel = elementToModel(context.elementContext)
+            const updateContext: UpdateElement = {
+                model: context.model,
+                newModel,
+            }
+            dispatch(modlelsOfOpenedPostActions.updateModel(updateContext));
+        }
     }
 
     const getTitleTextArea = (placeholder: string) => {
@@ -18,7 +29,7 @@ export const Title = () => {
             placeholder,
             value: context.elementContext,
             maxLength: 100,
-            isFocus: context.isFocus
+            isFocus: focus === context.index,
         }
         return (
             <div onKeyUp={handleChange}>

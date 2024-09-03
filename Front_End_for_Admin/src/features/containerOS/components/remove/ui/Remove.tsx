@@ -1,4 +1,6 @@
 import { AppDispath } from "@/app/model/store/Store";
+import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
+import { localPostsActions } from "@/entities/element/model/slice/localPosts/slice";
 import { postsActions } from "@/entities/showcasePosts/model/slice/slice";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +19,9 @@ export const Remove = ({ children }) => {
                 index,
                 model,
             }
+
             dispath(postsActions.removeModel(context));
+            dispath(modlelsOfOpenedPostActions.removeModel(model))
             isEmpty.setState(false);
         }
 

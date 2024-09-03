@@ -9,6 +9,7 @@ interface Post {
 }
 
 interface Posts {
+    isPending?: Boolean,
     posts: Post[],
 }
 
@@ -18,7 +19,12 @@ interface Comment {
 }
 
 interface CellOfPost {
-    index: number,
+    index?: number,
     newModel?: ModelType<TextAreaModel | PreviewModel | TitleModel>,
     model: ModelType<TextAreaModel | PreviewModel | TitleModel>,
+}
+
+interface UpdateModels {
+    index: number,
+    models: ModelType<TextAreaModel | PreviewModel | TitleModel>[],
 }

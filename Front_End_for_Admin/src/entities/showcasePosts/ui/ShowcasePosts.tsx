@@ -3,26 +3,24 @@ import { useShowcasePostsContext } from "../lib/context/Context"
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispath } from "@/app/model/store/Store";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { postsActions } from "../model/slice/slice";
 import { selectPosts } from "../model/slice/selectors";
+import { getPostsOfUser } from "../model/slice/thunks/get/getPostsOfUser";
+import { localPostsActions } from "@/entities/element/model/slice/localPosts/slice";
+import { selectLocalPosts } from "@/entities/element/model/slice/localPosts/selectors";
 
 export const ShowcasePosts = () => {
     const context = useShowcasePostsContext();
-    console.log(context)
     const userID = Cookies.get('user_id');
+    const pending = useSelector(selectPosts).isPending;
+   
+    const fill = useMemo(() => {
+        return context.map((post, index) => {
+            const state = {
 
-    const dispatch = useDispatch<AppDispath>();
-
-    useEffect(() => {
-        dispatch(postsActions.uploadPosts(context))
-    }, [])
-
-    const posts = useSelector(selectPosts).posts;
-    console.log(posts)
-    const fill = () => {
-        return posts.map((post, index) => {
-            console.log(posts.length)
+                elements: post.elements,
+            }
             return (
                 <div key={post.id}>
                     <Link
@@ -33,12 +31,14 @@ export const ShowcasePosts = () => {
                     </Link>
                 </div>
             )
-        })
-    }
+        });
+    }, [])
 
-    return (
-        <div>
-            {fill()}
-        </div>
-    )
+    if (!pending) {
+        return (
+            <div>
+                {fill}
+            </div>
+        )
+    }
 }

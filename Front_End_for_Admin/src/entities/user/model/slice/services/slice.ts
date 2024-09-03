@@ -8,6 +8,8 @@ import { updateProfile } from "./thunks/update/updateProfile";
 import { updateAvatar } from "./thunks/update/updateAvatar";
 import { getAvatar } from "./thunks/get/getAvatar";
 import { addPost } from "./thunks/update/addPost";
+import { updatePost } from "./thunks/update/updatePost";
+import { updateModelsOfPost } from "./thunks/update/updateModelsOfPost";
 
 const userServicesSlice = createSlice({
     name: 'services',
@@ -78,7 +80,7 @@ const userServicesSlice = createSlice({
             .addCase(getAvatar.fulfilled, (state, action) => {
                 handleFulfilled(state);
                 state.avatar = action.payload;
-                
+
             })
             .addCase(getAvatar.rejected, handleRejected)
 
@@ -89,6 +91,24 @@ const userServicesSlice = createSlice({
                 state.user = action.payload;
             })
             .addCase(addPost.rejected, handleRejected)
+
+        builder
+            .addCase(updatePost.pending, handlePending)
+            .addCase(updatePost.fulfilled, (state, action) => {
+                handleFulfilled(state);
+                console.log(action.payload)
+                state.user = action.payload;
+            })
+            .addCase(updatePost.rejected, handleRejected)
+
+        builder
+            .addCase(updateModelsOfPost.pending, handlePending)
+            .addCase(updateModelsOfPost.fulfilled, (state, action) => {
+                handleFulfilled(state);
+                console.log(action.payload)
+                state.user = action.payload;
+            })
+            .addCase(updateModelsOfPost.rejected, handleRejected)
     }
 })
 

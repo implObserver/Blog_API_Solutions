@@ -5,6 +5,11 @@ interface ServicesDataType {
     avatar: any,
 }
 
+interface PostUpdate {
+    id: number,
+    models?: ModelType<TextAreaModel | PreviewModel | TitleModel>[],
+}
+
 interface UpdateData {
     user: User,
     profile?: ProfileFormType,

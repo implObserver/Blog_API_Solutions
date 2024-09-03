@@ -1,9 +1,8 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./defaultState";
-import { getPostsOfUser } from "./thunks/get/getPostsOfUser";
 
-export const postsSlice = createSlice({
-    name: 'posts',
+export const localPostsSlice = createSlice({
+    name: 'posts/local',
     initialState,
     reducers: {
         addModel: (state: Posts, action: PayloadAction<CellOfPost>) => {
@@ -43,36 +42,11 @@ export const postsSlice = createSlice({
                 }
             })
         },
-        updateModels: (state: Posts, action: PayloadAction<UpdateModels>) => {
-            const index = action.payload.index;
-            state.posts[index].elements = action.payload.models;
-        },
         uploadPosts: (state: Posts, action: PayloadAction<Post[]>) => {
             state.posts = action.payload;
         }
     },
-    extraReducers: (builder) => {
-        const handlePending = (state: Posts) => {
-            state.isPending = true;
-        };
-        const handleFulfilled = (state: Posts) => {
-            state.isPending = false;
-        };
-        const handleRejected = (state: Posts) => {
-            state.isPending = false;
-        };
-
-        builder
-            .addCase(getPostsOfUser.pending, handlePending)
-            .addCase(getPostsOfUser.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (state.posts.length === 0) {
-                    state.posts = action.payload;
-                }
-            })
-            .addCase(getPostsOfUser.rejected, handleRejected)
-    }
 })
 
-export const postsActions = postsSlice.actions;
-export const postsReducer = postsSlice.reducer;
+export const localPostsActions = localPostsSlice.actions;
+export const localPostsReducer = localPostsSlice.reducer;
