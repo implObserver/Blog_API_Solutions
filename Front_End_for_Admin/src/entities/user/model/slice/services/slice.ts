@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./defaultState";
 import { login } from "./thunks/auth/login";
 import { checkAuth } from "./thunks/auth/checkAuth";
@@ -14,7 +14,49 @@ import { updateModelsOfPost } from "./thunks/update/updateModelsOfPost";
 const userServicesSlice = createSlice({
     name: 'services',
     initialState,
-    reducers: {},
+    reducers: {
+        addModel: (state: ServicesDataType, action: PayloadAction<CellOfPost>) => {
+            const index = action.payload.index;
+            const post = state.user.posts[index];
+            console.log(`payload: ${action.payload}`)
+            const elements = post.elements;
+            const id = action.payload.model.id;
+            elements.forEach((element, index) => {
+                if (element.id === id && index > 1) {
+                    elements.splice(index + 1, 0, action.payload.newModel);
+                }
+            })
+
+        },
+        updateModel: (state: ServicesDataType, action: PayloadAction<CellOfPost>) => {
+            const index = action.payload.index;
+            const post = state.user.posts[index];
+            const elements = post.elements;
+            const id = action.payload.model.id;
+            elements.forEach((element, index) => {
+                if (element.id === id) {
+                    elements.splice(index, 1, action.payload.newModel);
+                }
+            })
+        },
+        removeModel: (state: ServicesDataType, action: PayloadAction<CellOfPost>) => {
+            const index = action.payload.index;
+            const post = state.user.posts[index];
+
+            const elements = post.elements;
+            const id = action.payload.model.id;
+            elements.forEach((element, index) => {
+                if (element.id === id && index > 2) {
+                    elements.splice(index, 1);
+                }
+            })
+        },
+        updateModels: (state: ServicesDataType, action: PayloadAction<UpdateModels>) => {
+            const index = action.payload.index;
+            const post = state.user.posts[index];
+            post.elements = action.payload.models;
+        },
+    },
     extraReducers: (builder) => {
         const handlePending = (state: ServicesDataType) => {
             state.isPending = true;

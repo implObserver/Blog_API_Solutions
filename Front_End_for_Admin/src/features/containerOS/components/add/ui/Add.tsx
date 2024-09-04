@@ -1,11 +1,9 @@
 import { AppDispath } from "@/app/model/store/Store";
 import { elementToModel, TextArea } from "@/entities/element";
-import { selectCounter } from "@/entities/element/model/slice/counter/selectors";
 import { counterActions } from "@/entities/element/model/slice/counter/slice";
 import { selectModelsOfOpenedPost } from "@/entities/element/model/slice/elementsOfPost/selectors";
 import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
-import { localPostsActions } from "@/entities/element/model/slice/localPosts/slice";
-import { postsActions } from "@/entities/showcasePosts/model/slice/slice";
+import { servicesActions } from "@/entities/user";
 import { useContainerContext } from "@/features/containerOS/lib";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -15,8 +13,8 @@ export const Add = ({ children }) => {
     const index = useLocation().state;
     const model = context.containerContext.model;
     const models = useSelector(selectModelsOfOpenedPost).models;
-    console.log(model)
     const dispath = useDispatch<AppDispath>();
+    
     const keyDownHandle = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -37,8 +35,8 @@ export const Add = ({ children }) => {
                 models,
             }
             dispath(modlelsOfOpenedPostActions.addModel(modelContext));
-            dispath(postsActions.updateModels(updateContext));
-            dispath(postsActions.addModel(context));
+            dispath(servicesActions.updateModels(updateContext));
+            dispath(servicesActions.addModel(context));
         }
     }
 

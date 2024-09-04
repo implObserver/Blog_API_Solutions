@@ -1,16 +1,13 @@
 import { AppDispath } from "@/app/model/store/Store";
 import {
     elementToModel,
-    focusActions,
     Title,
     useElementContext
 } from "@/entities/element";
-import { selectCounter } from "@/entities/element/model/slice/counter/selectors";
 import { counterActions } from "@/entities/element/model/slice/counter/slice";
 import { selectModelsOfOpenedPost } from "@/entities/element/model/slice/elementsOfPost/selectors";
 import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
-import { postsActions } from "@/entities/showcasePosts/model/slice/slice";
-import { useDropdownContext } from "@/shared/ui/dropdownElement";
+import { servicesActions } from "@/entities/user";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
@@ -26,7 +23,7 @@ export const AddTitle = () => {
         dispath(counterActions.increment());
         const textArea = Title();
         const newModel = elementToModel(textArea);
-        const updateModelsContext: CellOfPost = {
+        const postContext: CellOfPost = {
             index,
             model,
             newModel,
@@ -41,8 +38,8 @@ export const AddTitle = () => {
         }
 
         dispath(modlelsOfOpenedPostActions.addModel(modelContext));
-        dispath(postsActions.updateModels(updateContext));
-        dispath(postsActions.addModel(updateModelsContext));
+        dispath(servicesActions.updateModels(updateContext));
+        dispath(servicesActions.addModel(postContext));
 
         context.dropdownStatus.toggle();
     }

@@ -35,7 +35,7 @@ export const ExternalReset = ({ children }) => {
         return () => {
             document.removeEventListener('mousedown', handler);
         }
-    }, [context]); // Добавлены зависимости
+    }, [context]);
 
     const plugContext: PlugContextType = {
         state: context.state.getState(),

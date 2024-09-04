@@ -6,7 +6,7 @@ import { CreatePost } from "@/features/createPost/ui/CreatePost"
 
 export const Posts = () => {
     const user = useSelector(selectUserServices).user;
-    console.log(user)
+    
     return (
         <div>
             <span>Your posts:</span>

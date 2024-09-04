@@ -1,14 +1,12 @@
 import { AppDispath } from "@/app/model/store/Store";
 import { focusActions } from "@/entities/element";
 import { selectModelsOfOpenedPost } from "@/entities/element/model/slice/elementsOfPost/selectors";
-import { selectPosts } from "@/entities/showcasePosts/model/slice/selectors";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 export const Focus = ({ children }) => {
     const context = useContainerContext();
-    const index = useLocation().state;
     const dispath = useDispatch<AppDispath>();
     const isEmpty = useEmptyContext();
     const models = useSelector(selectModelsOfOpenedPost).models;
@@ -29,7 +27,7 @@ export const Focus = ({ children }) => {
             let index = context.containerContext.index - 1;
             console.log(index)
             const model = models[index];
-            
+
             if (model.type === 'preview') {
                 console.log(model)
                 index--;
@@ -44,9 +42,9 @@ export const Focus = ({ children }) => {
             if (model.type === 'preview' || '') {
                 index++;
             }
-            if (index < models.length) {
-                dispath(focusActions.setFocus(index))
-            }
+
+            dispath(focusActions.setFocus(index))
+
         }
     }
 

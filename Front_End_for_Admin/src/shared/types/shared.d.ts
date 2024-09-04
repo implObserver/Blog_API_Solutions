@@ -35,6 +35,7 @@ interface TextAreaContextType {
     value: ElementType<Title | TextArea | Preview>,
     maxLength: number,
     isFocus: boolean,
+    ref?: React.MutableRefObject<HTMLTextAreaElement | null>,
 }
 
 interface CustomState {

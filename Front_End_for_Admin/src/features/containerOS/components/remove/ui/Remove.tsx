@@ -1,7 +1,7 @@
 import { AppDispath } from "@/app/model/store/Store";
+import { selectModelsOfOpenedPost } from "@/entities/element/model/slice/elementsOfPost/selectors";
 import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
-import { localPostsActions } from "@/entities/element/model/slice/localPosts/slice";
-import { postsActions } from "@/entities/showcasePosts/model/slice/slice";
+import { servicesActions } from "@/entities/user";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -12,19 +12,24 @@ export const Remove = ({ children }) => {
     const dispath = useDispatch<AppDispath>();
     const isEmpty = useEmptyContext();
     const index = useLocation().state;
-    const keyUpHandle = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const models = useSelector(selectModelsOfOpenedPost).models;
 
+    const keyUpHandle = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (isEmpty.getState() && context.containerContext.index > 2) {
             const context: CellOfPost = {
                 index,
                 model,
             }
 
-            dispath(postsActions.removeModel(context));
-            dispath(modlelsOfOpenedPostActions.removeModel(model))
+            const updateContext: UpdateModels = {
+                index,
+                models,
+            }
+            dispath(modlelsOfOpenedPostActions.removeModel(model));
+            dispath(servicesActions.updateModels(updateContext));
+            dispath(servicesActions.removeModel(context));
             isEmpty.setState(false);
         }
-
     }
 
     const keyDownHandle = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -35,7 +40,6 @@ export const Remove = ({ children }) => {
                 isEmpty.setState(true);
             }
         }
-
     }
 
     return (

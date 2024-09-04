@@ -32,6 +32,9 @@ export const modlelsOfOpenedPostSlice = createSlice({
                 }
             })
         },
+        removeModels: (state: Models) => {
+            state.models = [];
+        },
         uploadPosts: (state: Models, action: PayloadAction<ModelType<TextAreaModel | PreviewModel | TitleModel>[]>) => {
             state.models = action.payload;
         }

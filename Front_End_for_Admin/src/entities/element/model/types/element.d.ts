@@ -92,7 +92,14 @@ interface Counter {
     count: number,
 }
 
+interface Refs {
+    refs: Ref[],
+}
 
+interface Ref {
+    id: number,
+    ref: React.MutableRefObject<HTMLTextAreaElement | null>,
+}
 //Elements
 interface ElementType<T> {
     getId: () => number,

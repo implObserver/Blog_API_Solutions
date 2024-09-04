@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { useTextAreaContext } from '../lib/context/Context';
 import styles from './styles/Input.module.css'
 import TextareaAutosize from 'react-textarea-autosize';
@@ -6,13 +5,6 @@ import TextareaAutosize from 'react-textarea-autosize';
 export const TextArea = () => {
     const context = useTextAreaContext();
     let value = context.value.getValue();
-    const inputRef = useRef<HTMLTextAreaElement | null>(null);
-
-    useEffect(() => {
-        if (context.isFocus) {
-            inputRef.current?.focus();
-        }
-    }, [context])
     
     const auto_grow = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         const element = e.target as HTMLTextAreaElement;
@@ -37,7 +29,7 @@ export const TextArea = () => {
     return (
         <div key={Math.random()}>
             <TextareaAutosize
-                ref={inputRef}
+                autoFocus={context.isFocus}
                 onKeyUp={auto_grow}
                 placeholder={context.placeholder}
                 defaultValue={value}

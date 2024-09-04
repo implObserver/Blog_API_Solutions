@@ -5,7 +5,6 @@ import React, { useMemo } from 'react';
 export const Wrapper = React.memo(() => {
     const context = useElementContext();
 
-    // Используем useMemo для мемоизации списка features
     const features = useMemo(() => {
         return context.featuresContext.container.features;
     }, [context.featuresContext.container.features]);
