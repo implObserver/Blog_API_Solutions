@@ -10,6 +10,7 @@ import { getAvatar } from "./thunks/get/getAvatar";
 import { addPost } from "./thunks/update/addPost";
 import { updatePost } from "./thunks/update/updatePost";
 import { updateModelsOfPost } from "./thunks/update/updateModelsOfPost";
+import { getPostImage } from "./thunks/get/getPostImage";
 
 const userServicesSlice = createSlice({
     name: 'services',
@@ -147,10 +148,18 @@ const userServicesSlice = createSlice({
             .addCase(updateModelsOfPost.pending, handlePending)
             .addCase(updateModelsOfPost.fulfilled, (state, action) => {
                 handleFulfilled(state);
-                console.log(action.payload)
                 state.user = action.payload;
             })
             .addCase(updateModelsOfPost.rejected, handleRejected)
+
+        builder
+            .addCase(getPostImage.pending, handlePending)
+            .addCase(getPostImage.fulfilled, (state, action) => {
+                console.log(action.payload)
+                handleFulfilled(state);
+            })
+            .addCase(getPostImage.rejected, handleRejected)
+
     }
 })
 

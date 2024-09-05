@@ -48,8 +48,13 @@ const user_post_update_posts_models = asyncHandler(async (req, res, next) => {
     });
 })
 
+const image_update_post = asyncHandler(async (req, res, next) => {
+    res.json('done')
+})
+
 export const postController = {
     user_post_add_post,
     user_post_update_posts,
     user_post_update_posts_models,
+    image_update_post,
 }

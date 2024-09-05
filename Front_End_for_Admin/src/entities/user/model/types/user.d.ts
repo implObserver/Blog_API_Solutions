@@ -2,7 +2,7 @@ interface ServicesDataType {
     user: User,
     isAuth: boolean,
     isPending: boolean,
-    avatar: any,
+    avatar: string,
 }
 
 interface PostUpdate {
@@ -39,4 +39,9 @@ interface AuthType {
 interface AuthData {
     username: string,
     password: string,
+}
+
+interface ImageUpdate {
+    nameFolder: string,
+    file: File,
 }

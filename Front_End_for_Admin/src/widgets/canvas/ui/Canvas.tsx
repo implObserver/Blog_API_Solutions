@@ -19,7 +19,7 @@ export const Canvas = React.memo(() => {
         const posts = user.posts;
         let elements = posts.length === 0 ? [] : posts[index].elements;
         const containerContexts = modelsToContainers(elements);
-
+        console.log(elements)
         useEffect(() => {
             dispatch(modlelsOfOpenedPostActions.uploadPosts(elements));
 
@@ -56,7 +56,7 @@ export const Canvas = React.memo(() => {
                 {fill()}
             </div>
         );
-        
+
     } else {
         return (
             <div>Empty</div>

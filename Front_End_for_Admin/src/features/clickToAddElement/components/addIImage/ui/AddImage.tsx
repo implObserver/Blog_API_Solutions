@@ -20,7 +20,9 @@ export const AddImage = () => {
 
     const clickHandle = () => {
         dispath(counterActions.increment());
+        const url = Date.now();
         const textArea = ImageArea();
+        textArea.setUrl(url.toString())
         const newModel = elementToModel(textArea);
         const postContext: CellOfPost = {
             index,

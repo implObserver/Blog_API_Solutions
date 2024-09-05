@@ -105,6 +105,7 @@ const findPosts = async (id) => {
 }
 
 const addPost = async (user, title) => {
+    const date = Date.now();
     const defaultElements = [{
         id: 0,
         type: 'main_title',
@@ -114,7 +115,7 @@ const addPost = async (user, title) => {
     {
         id: 1,
         type: 'preview',
-        imageUrl: '',
+        imageUrl: `${date}`,
     },
     {
         id: 2,

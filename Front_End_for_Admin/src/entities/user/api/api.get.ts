@@ -14,4 +14,9 @@ export const ReadService = {
             responseType: 'blob',
         });
     },
+    getPostImage(url: string) {
+        return instance.get(`/api/user/:${userID}/posts/image/${url}`, {
+            responseType: 'blob',
+        });
+    },
 }

@@ -9,7 +9,7 @@ export const UploadAndDisplayImage = () => {
 
     // Мемоизация переменной file
     const file = useMemo(() => context.file, [context.file]);
-
+    console.log(file)
     if (file) {
         return (
             <div className={styles.container}>

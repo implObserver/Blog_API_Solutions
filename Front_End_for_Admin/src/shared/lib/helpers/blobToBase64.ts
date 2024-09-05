@@ -1,10 +1,14 @@
-export function fileToBase64(file: File) {
+export function fileToBase64(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
 
         reader.onloadend = () => {
-            // Получаем результат чтения в формате Base64
-            resolve(reader.result);
+            // Проверяем, что результат чтения не null, и приводим его к типу string
+            if (reader.result) {
+                resolve(reader.result as string);
+            } else {
+                reject(new Error('Ошибка: результат чтения файла null'));
+            }
         };
 
         reader.onerror = () => {

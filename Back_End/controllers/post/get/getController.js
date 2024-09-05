@@ -1,5 +1,8 @@
 import asyncHandler from "express-async-handler";
 import { prismaDB } from "../../../prisma/queries.js";
+import { __dirname } from "../../../app/dirname/dirname.js";
+import fs from 'fs'
+import path from 'path'
 
 const posts_of_user_get = asyncHandler(async (req, res, next) => {
     const posts = await prismaDB.findPosts(req.user.id);
@@ -23,7 +26,26 @@ const posts_list_api = asyncHandler(async (req, res, next) => {
     });
 });
 
+const image_of_post_get = asyncHandler(async (req, res, next) => {
+    console.log(req.params)
+    const folderName = req.params.imageid;
+    const folderPath = `${__dirname}/public/images/${req.user.id}/${folderName}`;
+    fs.readdir(folderPath, (err, files) => {
+        if (err) {
+            console.log(err)
+            return res.json({ message: 'Папка не найдена' });
+        }
+
+        if (files.length === 0) {
+            return res.json({ message: 'Папка пуста' });
+        }
+        const filePath = path.join(folderPath, files[0]); // Берем первый файл
+        res.sendFile(filePath);
+    });
+});
+
 export const getController = {
     posts_list_api,
     posts_of_user_get,
+    image_of_post_get,
 }

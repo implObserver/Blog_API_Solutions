@@ -1,22 +1,10 @@
-export const postImage = async (file: File) => {
+import { ReadService } from "@/entities/user/api/api.get";
+import { UpdateService } from "@/entities/user/api/api.post";
+
+export const uploadImage = async (data: ImageUpdate) => {
     try {
-        const formData = new FormData();
-        formData.append('file', file);
-
-        const apiUrl = `http://localhost:3000/api/images/1`;
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            mode: 'cors',
-            body: formData,
-        });
-        const data = await response.json();
-        return data;
+        UpdateService.addImage(data);
     } catch (error) {
-        console.log('Error:', error);
+        console.log(error);
     }
-};
-
-const queryParameters = () => {
-
-
 }

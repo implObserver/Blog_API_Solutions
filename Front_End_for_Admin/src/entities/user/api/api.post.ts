@@ -26,5 +26,16 @@ export const UpdateService = {
     },
     updateModelsOfPost(data: PostUpdate) {
         return instance.post(`/api/user/:${id}/posts/update/models`, data)
+    },
+    addImage(data: ImageUpdate) {
+        const nameFolder = data.nameFolder;
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        }
+        const file = new FormData();
+        file.append('file', data.file);
+        return instance.post(`/api/user/:${id}/posts/image/${nameFolder}/update`, file, config)
     }
 }
