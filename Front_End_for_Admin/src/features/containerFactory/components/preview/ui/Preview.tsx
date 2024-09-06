@@ -7,12 +7,15 @@ import { AppDispath } from "@/app/model/store/Store";
 import { loadImage } from "../api/loadImage";
 import { uploadImage } from "../api/uploadImage";
 import { deleteImage } from "../api/deleteImage";
+import { updatePost } from "@/entities/user/model/slice/services/thunks/update/updatePost";
+import { saveWork } from "@/entities/user/lib/helper/saveWork";
+import { useLocation } from "react-router-dom";
 
 export const Preview = () => {
     const [selectedImage, setSelectedImage] = useState(null);
     const context = useElementContext();
     const model = context.model;
-    const dispatch = useDispatch<AppDispath>();
+    const index = useLocation().state;
 
     useEffect(() => {
         const uploadImage = async () => {
@@ -28,16 +31,6 @@ export const Preview = () => {
         setImgFile: setSelectedImage,
     }
     console.log(`imageID ${model.imageUrl}`)
-    function getBase64(file: File) {
-        return new Promise((resolve, reject) => {
-            var reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = function () {
-                resolve(reader.result)
-            };
-            reader.onerror = reject
-        })
-    }
 
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
         const element = e.target as HTMLDivElement;

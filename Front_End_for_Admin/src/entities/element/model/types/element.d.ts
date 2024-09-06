@@ -100,6 +100,10 @@ interface Ref {
     id: number,
     ref: React.MutableRefObject<HTMLTextAreaElement | null>,
 }
+
+interface SnapShot {
+    snapshot: Post,
+}
 //Elements
 interface ElementType<T> {
     getId: () => number,

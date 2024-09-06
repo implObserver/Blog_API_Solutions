@@ -183,6 +183,7 @@ const updatePost = async (user, post) => {
                 },
             },
         });
+        console.log(updatedPost)
     } catch (error) {
         console.log(error)
     }

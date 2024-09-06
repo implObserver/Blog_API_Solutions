@@ -3,10 +3,11 @@ import { selectUserServices } from "@/entities/user"
 import { useSelector } from "react-redux"
 import styles from './styles/Posts.module.css'
 import { CreatePost } from "@/features/createPost/ui/CreatePost"
+import { ToBackFromPost } from "@/features/toBackFromPost"
 
 export const Posts = () => {
     const user = useSelector(selectUserServices).user;
-    
+
     return (
         <div>
             <span>Your posts:</span>
@@ -15,7 +16,9 @@ export const Posts = () => {
                     ?
                     <>
                         <ShowcasePostsContext.Provider value={user.posts}>
-                            <ShowcasePosts></ShowcasePosts>
+                            <ToBackFromPost>
+                                <ShowcasePosts></ShowcasePosts>
+                            </ToBackFromPost>
                         </ShowcasePostsContext.Provider>
                     </>
                     :

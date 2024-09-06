@@ -31,7 +31,6 @@ export const Text = () => {
         <div onKeyUp={handleChange}>
             <TextAreaContext.Provider value={textAreaContext}>
                 <TextArea></TextArea>
-                {Date.now()}
             </TextAreaContext.Provider>
         </div>
     )

@@ -8,6 +8,8 @@ import { modelsToContainers } from "../lib/helper/containerAssembly";
 import { getVirtualModels } from "../lib/helper/getVirtualModels";
 import { selectUserServices, servicesActions } from "@/entities/user";
 import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
+import { updatePost } from "@/entities/user/model/slice/services/thunks/update/updatePost";
+import { snapshotSliceActions } from "@/entities/showcasePosts/model/slice/snapshot/slice";
 
 export const Canvas = React.memo(() => {
     const location = useLocation();
@@ -17,12 +19,16 @@ export const Canvas = React.memo(() => {
         const service = useSelector(selectUserServices);
         const user = service.user;
         const posts = user.posts;
-        let elements = posts.length === 0 ? [] : posts[index].elements;
+        const post = posts[index];
+        let elements = posts.length === 0 ? [] : post.elements;
         const containerContexts = modelsToContainers(elements);
         console.log(elements)
+
         useEffect(() => {
             dispatch(modlelsOfOpenedPostActions.uploadPosts(elements));
+        }, [])
 
+        useEffect(() => {
             const handle = () => {
                 const updateContext: UpdateModels = {
                     index,
@@ -32,8 +38,20 @@ export const Canvas = React.memo(() => {
             };
 
             window.addEventListener('beforeunload', handle);
+
             return () => {
                 window.removeEventListener('beforeunload', handle);
+            };
+
+        }, [])
+
+        useEffect(() => {
+            const updateInterval = setInterval(() => {
+                const models = getVirtualModels();
+                dispatch(snapshotSliceActions.updateSnapshot(models));
+            }, 5000);
+            return () => {
+                clearInterval(updateInterval);
             };
         }, [])
 

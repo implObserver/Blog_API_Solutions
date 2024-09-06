@@ -25,6 +25,28 @@ const profile_avatar_get = asyncHandler(async (req, res, next) => {
 
     fs.readdir(directory, (err, files) => {
         if (files) {
+            const extname = path.extname(files[0]).toLowerCase();
+            let contentType = 'application/octet-stream';
+
+            switch (extname) {
+                case '.avif':
+                    contentType = 'image/avif';
+                    break;
+                case '.jpeg':
+                case '.jpg':
+                    contentType = 'image/jpeg';
+                    break;
+                case '.png':
+                    contentType = 'image/png';
+                    break;
+                case '.svg':
+                    contentType = 'image/svg+xml';
+                    break;
+                default:
+                    return res.status(415).send('Unsupported Media Type');
+            }
+
+            res.set('Content-Type', contentType);
             res.sendFile(path.resolve(`${__dirname}/${directory}/${files[0]}`));
         } else {
             res.sendFile(path.resolve(defaultDirectory));

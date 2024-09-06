@@ -25,26 +25,29 @@ export const Focus = ({ children }) => {
 
         if (e.key === 'ArrowUp' && context.containerContext.index > 0) {
             let index = context.containerContext.index - 1;
-            console.log(index)
-            const model = models[index];
+            if (index > 0) {
+                console.log(index)
+                const model = models[index];
 
-            if (model.type === 'preview') {
-                console.log(model)
-                index--;
+                if (model.type === 'preview' || model.type === 'view') {
+                    console.log(model)
+                    index--;
+                }
+                console.log(index)
+                dispath(focusActions.setFocus(index))
             }
-            console.log(index)
-            dispath(focusActions.setFocus(index))
         }
 
         if (e.key === 'ArrowDown') {
             let index = context.containerContext.index + 1;
-            const model = context.containerContext.model;
-            if (model.type === 'preview' || '') {
-                index++;
+            if (index < models.length) {
+                const model = models[index];
+                if (model.type === 'preview' || model.type === 'view') {
+                    index++;
+                }
+
+                dispath(focusActions.setFocus(index))
             }
-
-            dispath(focusActions.setFocus(index))
-
         }
     }
 

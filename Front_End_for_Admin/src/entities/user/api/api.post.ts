@@ -2,7 +2,7 @@ import { instance } from "@/app/api/api.config"
 import Cookies from 'js-cookie'
 const id = Cookies.get('user_id');
 
-export const UpdateService = {
+export const PostService = {
     updateAvatar(avatar: File) {
         const config = {
             headers: {
@@ -21,9 +21,6 @@ export const UpdateService = {
     addPost(dataPost: PostFormType) {
         return instance.post(`/api/user/:${id}/posts/add`, dataPost)
     },
-    updatePost(post: Post) {
-        return instance.post(`/api/user/:${id}/posts/update`, post)
-    },
     updateModelsOfPost(data: PostUpdate) {
         return instance.post(`/api/user/:${id}/posts/update/models`, data)
     },
@@ -37,5 +34,8 @@ export const UpdateService = {
         const file = new FormData();
         file.append('file', data.file);
         return instance.post(`/api/user/:${id}/posts/image/${nameFolder}/update`, file, config)
+    },
+    removeImage(folderName: string) {
+        
     }
 }

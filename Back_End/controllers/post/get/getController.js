@@ -29,17 +29,44 @@ const posts_list_api = asyncHandler(async (req, res, next) => {
 const image_of_post_get = asyncHandler(async (req, res, next) => {
     console.log(req.params)
     const folderName = req.params.imageid;
+    console.log('1')
     const folderPath = `${__dirname}/public/images/${req.user.id}/${folderName}`;
+    console.log('2')
     fs.readdir(folderPath, (err, files) => {
         if (err) {
             console.log(err)
             return res.json({ message: 'Папка не найдена' });
         }
-
+        
         if (files.length === 0) {
             return res.json({ message: 'Папка пуста' });
         }
-        const filePath = path.join(folderPath, files[0]); // Берем первый файл
+        const filePath = path.join(folderPath, files[0]);
+        const extname = path.extname(files[0]).toLowerCase();
+
+        let contentType = 'application/octet-stream';
+
+        switch (extname) {
+            case '.avif':
+                console.log(extname)
+                contentType = 'image/avif';
+                break;
+            case '.jpeg':
+            case '.jpg':
+                contentType = 'image/jpeg';
+                break;
+            case '.png':
+                contentType = 'image/png';
+                break;
+            case '.svg':
+                contentType = 'image/svg+xml';
+                break;
+            default:
+                return res.status(415).send('Unsupported Media Type');
+        }
+
+        res.set('Content-Type', contentType);
+        console.log(res.getHeaders())
         res.sendFile(filePath);
     });
 });
