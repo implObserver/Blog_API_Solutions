@@ -20,12 +20,14 @@ export const ShowcasePosts = () => {
 
     const fill = useMemo(() => {
         return context.map((post, index) => {
+            const count = ++index;
+            console.log(count)
             return (
                 <div key={post.id}>
                     <Link
                         onClick={() => clickHandle(post)}
                         to={`/user/${userID}/post/${post.id}`}
-                        state={index}
+                        state={post.id}
                     >
                         {post.title}
                     </Link>

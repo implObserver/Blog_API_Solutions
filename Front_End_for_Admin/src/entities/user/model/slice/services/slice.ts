@@ -132,6 +132,7 @@ const userServicesSlice = createSlice({
             .addCase(addPost.fulfilled, (state, action) => {
                 handleFulfilled(state);
                 state.user = action.payload;
+                console.log(action.payload)
             })
             .addCase(addPost.rejected, handleRejected)
 
@@ -140,7 +141,9 @@ const userServicesSlice = createSlice({
             .addCase(updatePost.fulfilled, (state, action) => {
                 handleFulfilled(state);
                 console.log(action.payload)
-                state.user = action.payload;
+                if (action.payload !== false) {
+                    state.user = action.payload;
+                }
             })
             .addCase(updatePost.rejected, handleRejected)
 

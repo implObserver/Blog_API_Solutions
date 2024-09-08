@@ -16,9 +16,9 @@ export const Preview = () => {
     const context = useElementContext();
     const model = context.model;
     const index = useLocation().state;
-
     useEffect(() => {
         const uploadImage = async () => {
+            console.log(model.imageUrl)
             const imageUrl = await loadImage(model.imageUrl);
             setSelectedImage(imageUrl);
         }

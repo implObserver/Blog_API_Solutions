@@ -8,8 +8,9 @@ import { useDispatch, useSelector } from "react-redux"
 export const ToBackFromPost = ({ children }) => {
     const snapshot = useSelector(selectSnapshot).snapshot;
     const dispatch = useDispatch<AppDispath>();
-
+    
     useEffect(() => {
+        console.log(snapshot)
         if (snapshot) {
             console.log('wtf')
             dispatch(updatePost(snapshot))

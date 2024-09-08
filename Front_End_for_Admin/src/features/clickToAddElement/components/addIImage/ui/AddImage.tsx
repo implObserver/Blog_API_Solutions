@@ -22,6 +22,7 @@ export const AddImage = () => {
         dispath(counterActions.increment());
         const url = Date.now();
         const textArea = ImageArea();
+        console.log(url.toString())
         textArea.setUrl(url.toString())
         const newModel = elementToModel(textArea);
         const postContext: CellOfPost = {

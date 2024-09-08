@@ -14,12 +14,14 @@ import { snapshotSliceActions } from "@/entities/showcasePosts/model/slice/snaps
 export const Canvas = React.memo(() => {
     const location = useLocation();
     const index = location.state;
-    if (index) {
+    console.log(index)
+    console.log(typeof index)
+    if (index || index === 0) {
         const dispatch = useDispatch<AppDispath>();
         const service = useSelector(selectUserServices);
         const user = service.user;
         const posts = user.posts;
-        const post = posts[index];
+        const post = posts.find(post => post.id === index);
         let elements = posts.length === 0 ? [] : post.elements;
         const containerContexts = modelsToContainers(elements);
         console.log(elements)

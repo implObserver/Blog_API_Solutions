@@ -106,6 +106,7 @@ const findPosts = async (id) => {
 
 const addPost = async (user, title) => {
     const date = Date.now();
+    console.log(`wtffff ${Date.now()}`)
     const defaultElements = [{
         id: 0,
         type: 'main_title',
@@ -189,6 +190,11 @@ const updatePost = async (user, post) => {
     }
 }
 
+const removeAll = async () => {
+    await prisma.user.deleteMany({})
+
+}
+
 export const prismaDB = {
     getAllUsers,
     getAllPosts,
@@ -203,4 +209,5 @@ export const prismaDB = {
     dropUsers,
     updatePost,
     updateModels,
+    removeAll,
 }

@@ -17,11 +17,15 @@ const user_post_add_post = asyncHandler(async (req, res, next) => {
 })
 
 const user_post_update_put = asyncHandler(async (req, res, next) => {
+    console.log('wtfff')
     let user = req.user;
     const post = req.body;
+    console.log(post)
     await prismaDB.updatePost(user, post);
+    console.log('update')
     user = await prismaDB.findUser(req.user.id);
-    console.log(user.posts[4].elements)
+    console.log('find')
+    console.log(user.posts)
     res.json({
         user: {
             id: user.id,
