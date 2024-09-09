@@ -11,3 +11,13 @@
     padding-left: 8px;
     padding-right: 8px;
 }
+
+.text {
+    font-size: min(4vh, 64px);
+}
+
+@media screen and (max-height: 500px) {
+    .text {
+        font-size: 36px;
+    }
+}

@@ -7,6 +7,9 @@ import { selectSnapshot } from "@/entities/showcasePosts/model/slice/snapshot/se
 import { selectModelsOfOpenedPost } from "@/entities/element/model/slice/elementsOfPost/selectors";
 import { AppDispath } from "@/app/model/store/Store";
 import { snapshotSliceActions } from "../model/slice/snapshot/slice";
+import { PostPreview } from "../components/ui/PostPreview";
+import styles from './styles/ShowcasePosts.module.css'
+
 export const ShowcasePosts = () => {
     const context = useShowcasePostsContext();
     const userID = Cookies.get('user_id');
@@ -25,11 +28,12 @@ export const ShowcasePosts = () => {
             return (
                 <div key={post.id}>
                     <Link
+                        className={styles.link}
                         onClick={() => clickHandle(post)}
                         to={`/user/${userID}/post/${post.id}`}
                         state={post.id}
                     >
-                        {post.title}
+                        <PostPreview post={post}></PostPreview>
                     </Link>
                 </div>
             )
@@ -37,7 +41,7 @@ export const ShowcasePosts = () => {
     }, [])
 
     return (
-        <div>
+        <div className={styles.container}>
             {fill}
         </div>
     )

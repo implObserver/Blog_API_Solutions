@@ -4,20 +4,21 @@
     height: 22vw;
     max-width: 300px;
     max-height: 300px;
-    min-width: 90px;
-    min-height: 90px;
+    min-width: 300px;
+    min-height: 300px;
+    justify-content: center;
+    align-items: center;
 }
 
 .edit {
-   display: grid;
-   position: relative;
-
-   width: 50px;
-   height: 25px;
-   bottom: 70px;
-   left: 40px;
-   justify-content: center;
-   align-items: center;
-   border-radius: 4px;
-   background-color: var(--color__main-theme)
+    display: grid;
+    position: relative;
+    width: 50px;
+    height: 25px;
+    bottom: 60px;
+    left: 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    background-color: var(--color__main-theme)
 }

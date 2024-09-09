@@ -10,7 +10,7 @@ export const Posts = () => {
 
     return (
         <div>
-            <span>Your posts:</span>
+            <span className={styles.text}>Your posts:</span>
             {
                 user.posts.length > 0
                     ?

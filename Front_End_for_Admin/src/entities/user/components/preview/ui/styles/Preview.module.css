@@ -1,11 +1,19 @@
 .container {
     display: grid;
-    height: inherit;
     width: inherit;
+    height: inherit;
+    max-width: inherit;
+    max-height: inherit;
+    min-width: inherit;
+    min-height: inherit;
 }
 
 .link {
     display: grid;
-    height: inherit;
     width: inherit;
+    height: inherit;
+    max-width: inherit;
+    max-height: inherit;
+    min-width: inherit;
+    min-height: inherit;
 }

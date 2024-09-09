@@ -2,12 +2,20 @@
     display: grid;
     width: inherit;
     height: inherit;
+    max-width: inherit;
+    max-height: inherit;
+    min-width: inherit;
+    min-height: inherit;
 }
 
 .circle {
     display: grid;
     width: inherit;
     height: inherit;
+    max-width: inherit;
+    max-height: inherit;
+    min-width: inherit;
+    min-height: inherit;
     border-radius: 50%;
     justify-content: center;
     align-items: center;
@@ -17,5 +25,10 @@
 
 img {
     display: grid;
+    width: inherit;
     height: inherit;
+    max-width: inherit;
+    max-height: inherit;
+    min-width: inherit;
+    min-height: inherit;
 }

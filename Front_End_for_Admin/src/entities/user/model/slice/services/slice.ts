@@ -18,7 +18,7 @@ const userServicesSlice = createSlice({
     reducers: {
         addModel: (state: ServicesDataType, action: PayloadAction<CellOfPost>) => {
             const index = action.payload.index;
-            const post = state.user.posts[index];
+            const post = state.user.posts.find(post => post.id === index);
             console.log(`payload: ${action.payload}`)
             const elements = post.elements;
             const id = action.payload.model.id;
@@ -31,7 +31,7 @@ const userServicesSlice = createSlice({
         },
         updateModel: (state: ServicesDataType, action: PayloadAction<CellOfPost>) => {
             const index = action.payload.index;
-            const post = state.user.posts[index];
+            const post = state.user.posts.find(post => post.id === index);
             const elements = post.elements;
             const id = action.payload.model.id;
             elements.forEach((element, index) => {
@@ -42,7 +42,7 @@ const userServicesSlice = createSlice({
         },
         removeModel: (state: ServicesDataType, action: PayloadAction<CellOfPost>) => {
             const index = action.payload.index;
-            const post = state.user.posts[index];
+            const post = state.user.posts.find(post => post.id === index);
 
             const elements = post.elements;
             const id = action.payload.model.id;
@@ -54,7 +54,7 @@ const userServicesSlice = createSlice({
         },
         updateModels: (state: ServicesDataType, action: PayloadAction<UpdateModels>) => {
             const index = action.payload.index;
-            const post = state.user.posts[index];
+            const post = state.user.posts.find(post => post.id === index);
             post.elements = action.payload.models;
         },
     },
