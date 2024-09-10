@@ -1,5 +1,5 @@
 import { AppDispath } from "@/app/model/store/Store";
-import { selectSnapshot } from "@/entities/showcasePosts/model/slice/snapshot/selectors"
+import { selectSnapshot } from "@/entities/postPreview/model/slice/snapshot/selectors"
 import { servicesActions } from "@/entities/user";
 import { updatePost } from "@/entities/user/model/slice/services/thunks/update/updatePost";
 import { useEffect } from "react";

@@ -6,6 +6,7 @@
 }
 
 .link {
+    display: grid;
     text-decoration: none;
 }
 
