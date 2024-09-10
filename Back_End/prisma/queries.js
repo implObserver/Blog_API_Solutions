@@ -190,6 +190,15 @@ const updatePost = async (user, post) => {
     }
 }
 
+const deletePost = async (postId) => {
+    const numericPostId = parseInt(postId, 10);
+    await prisma.post.delete({
+        where: {
+            id: numericPostId,
+        },
+    })
+}
+
 const removeAll = async () => {
     await prisma.user.deleteMany({})
 
@@ -210,4 +219,5 @@ export const prismaDB = {
     updatePost,
     updateModels,
     removeAll,
+    deletePost,
 }

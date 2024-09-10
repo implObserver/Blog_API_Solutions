@@ -9,6 +9,10 @@ import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/eleme
 
 export const Title = () => {
     const context = useElementContext();
+    const type = context.model.type;
+    const className = type === 'main_title'
+        ? styles.main_title
+        : styles.title;
     const h = context.elementContext.getFontSize();
     const focus = useSelector(selectFocus).index;
     const dispatch = useDispatch<AppDispath>();
@@ -32,7 +36,7 @@ export const Title = () => {
             isFocus: focus === context.index,
         }
         return (
-            <div onKeyUp={handleChange}>
+            <div className={className} onKeyUp={handleChange}>
                 <TextAreaContext.Provider value={titleContext}>
                     <TextArea></TextArea>
                 </TextAreaContext.Provider>

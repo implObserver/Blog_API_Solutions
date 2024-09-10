@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 import styles from './styles/Posts.module.css'
 import { CreatePost } from "@/features/createPost/ui/CreatePost"
 import { ToBackFromPost } from "@/features/toBackFromPost"
+import { CanvasOfPosts } from "../components/canvasOfPosts/ui/CanvasOfPosts"
 
 export const Posts = () => {
     const user = useSelector(selectUserServices).user;
@@ -16,9 +17,7 @@ export const Posts = () => {
                     ?
                     <>
                         <ShowcasePostsContext.Provider value={user.posts}>
-                            <ToBackFromPost>
-                                <ShowcasePosts></ShowcasePosts>
-                            </ToBackFromPost>
+                            <CanvasOfPosts></CanvasOfPosts>
                         </ShowcasePostsContext.Provider>
                     </>
                     :

@@ -4,6 +4,7 @@ import { PostPage } from "@/pages/post";
 import { MainPage } from "@/pages/main";
 import { ProfilePage } from "@/pages/profile";
 
+
 //localStorage.clear()
 const routes = [
     {

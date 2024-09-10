@@ -5,7 +5,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 export const TextArea = () => {
     const context = useTextAreaContext();
     let value = context.value.getValue();
-    
+
     const auto_grow = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         const element = e.target as HTMLTextAreaElement;
         if (e.key === 'ArrowLeft'
@@ -27,7 +27,7 @@ export const TextArea = () => {
     };
 
     return (
-        <div key={Math.random()}>
+        <div className={styles.container} key={Math.random()}>
             <TextareaAutosize
                 autoFocus={context.isFocus}
                 onKeyUp={auto_grow}

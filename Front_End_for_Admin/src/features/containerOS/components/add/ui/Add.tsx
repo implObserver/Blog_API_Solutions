@@ -18,8 +18,8 @@ export const Add = ({ children }) => {
     const keyDownHandle = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key === 'Enter') {
             e.preventDefault();
-            const textArea = TextArea();
             dispath(counterActions.increment());
+            const textArea = TextArea();
             const newModel = elementToModel(textArea);
             const context: CellOfPost = {
                 index,

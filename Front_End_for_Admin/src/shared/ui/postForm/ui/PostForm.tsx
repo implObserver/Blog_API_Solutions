@@ -37,7 +37,7 @@ export const PostForm = () => {
 
             </div>
             <div className={styles.container_buttons}>
-                <button className={styles.button} type='submit'>save</button>
+                <button className={styles.button} type='submit'>Save</button>
                 <button className={styles.button} type='submit'>Cancel</button>
             </div>
         </form>

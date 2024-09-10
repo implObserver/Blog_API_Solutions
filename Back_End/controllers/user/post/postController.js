@@ -71,7 +71,6 @@ const user_logout_post = asyncHandler(async (req, res, next) => {
 
 
 const user_auth_jwt_protected = async (req, res, next) => {
-    console.log(req.headers)
     passport.authenticate("jwt", {
         session: false,
         failureRedirect: '/failure',

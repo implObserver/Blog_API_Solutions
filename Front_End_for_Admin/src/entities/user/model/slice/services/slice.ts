@@ -11,6 +11,7 @@ import { addPost } from "./thunks/update/addPost";
 import { updatePost } from "./thunks/update/updatePost";
 import { updateModelsOfPost } from "./thunks/update/updateModelsOfPost";
 import { getPostImage } from "./thunks/get/getPostImage";
+import { deletePost } from "./thunks/delete/deletePost";
 
 const userServicesSlice = createSlice({
     name: 'services',
@@ -135,6 +136,15 @@ const userServicesSlice = createSlice({
                 console.log(action.payload)
             })
             .addCase(addPost.rejected, handleRejected)
+
+        builder
+            .addCase(deletePost.pending, handlePending)
+            .addCase(deletePost.fulfilled, (state, action) => {
+                handleFulfilled(state);
+                state.user = action.payload;
+                console.log(action.payload)
+            })
+            .addCase(deletePost.rejected, handleRejected)
 
         builder
             .addCase(updatePost.pending, handlePending)

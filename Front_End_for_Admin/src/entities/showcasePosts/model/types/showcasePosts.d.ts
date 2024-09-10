@@ -28,3 +28,7 @@ interface UpdateModels {
     index: number,
     models: ModelType<TextAreaModel | PreviewModel | TitleModel>[],
 }
+
+interface PostPreviewContextType {
+    deleteFeature: React.ReactElement,
+}

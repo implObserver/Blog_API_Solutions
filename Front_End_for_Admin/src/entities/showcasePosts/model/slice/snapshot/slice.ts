@@ -10,6 +10,7 @@ export const snapshotSlice = createSlice({
         },
         updateSnapshot: (state: SnapShot, action: PayloadAction<ModelType<TextAreaModel | PreviewModel | TitleModel>[]>) => {
             const post = state.snapshot;
+            console.log(action.payload)
             post.elements = action.payload;
         },
     },

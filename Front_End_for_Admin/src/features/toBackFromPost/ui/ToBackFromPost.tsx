@@ -12,7 +12,6 @@ export const ToBackFromPost = ({ children }) => {
     useEffect(() => {
         console.log(snapshot)
         if (snapshot) {
-            console.log('wtf')
             dispatch(updatePost(snapshot))
         }
     }, [])

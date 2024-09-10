@@ -24,6 +24,22 @@ const image_of_post_delete = asyncHandler(async (req, res, next) => {
     }
 })
 
+const post_delete = asyncHandler(async (req, res, next) => {
+    console.log(req.params)
+    const postId = req.params.postid;
+    prismaDB.deletePost(postId);
+    const user = await prismaDB.findUser(req.user.id);
+    res.json({
+        user: {
+            id: user.id,
+            name: user.name,
+            profile: user.profile,
+            posts: user.posts,
+        }
+    });
+})
+
 export const deleteController = {
     image_of_post_delete,
+    post_delete,
 }

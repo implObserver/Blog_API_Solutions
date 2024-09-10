@@ -12,7 +12,8 @@ export const HideProfileForm = () => {
         if (element.textContent === 'Edit') {
             setHide(false);
         }
-        if (element.textContent === 'Cancel') {
+        if (element.textContent === 'Cancel'
+        ) {
             setHide(true);
         }
     }

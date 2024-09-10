@@ -10,7 +10,8 @@ export const HidePostForm = () => {
         if (element.textContent === 'Add') {
             setHide(false);
         }
-        if (element.textContent === 'Cancel') {
+        if (element.textContent === 'Cancel'
+        ) {
             setHide(true);
         }
     }
