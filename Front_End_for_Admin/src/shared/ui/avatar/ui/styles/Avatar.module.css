@@ -23,12 +23,9 @@
     border: 1px rgb(184, 184, 184) solid;
 }
 
-img {
+.img {
     display: grid;
-    width: inherit;
-    height: inherit;
-    max-width: inherit;
-    max-height: inherit;
-    min-width: inherit;
-    min-height: inherit;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
