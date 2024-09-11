@@ -58,8 +58,19 @@ interface ElementValueType {
 //Models
 
 interface Models {
-    models: Array<ModelType<TextAreaModel | PreviewModel | TitleModel>>
+    models: Array<ModelType<ModelSubtype>>
 }
+
+interface BaseModel {
+    id: number,
+    type: string,
+}
+
+type ModelSubtype = TitleModel
+    | TextAreaModel
+    | PreviewModel
+    | ListHeaderModel
+    | ListElementModel;
 
 interface ModelType<T> {
     id: number,
@@ -67,23 +78,27 @@ interface ModelType<T> {
     value?: string,
     imageUrl?: string,
     fontSize?: number,
+    strong?: string,
 }
 
-interface TextAreaModel {
-    id: number,
-    type: string,
+interface ListHeaderModel extends BaseModel {
     value: string,
 }
 
-interface PreviewModel {
-    id: number,
-    type: string,
+interface ListElementModel extends BaseModel {
+    strong: string,
+    value: string,
+}
+
+interface TextAreaModel extends BaseModel {
+    value: string,
+}
+
+interface PreviewModel extends BaseModel {
     imageUrl: string,
 }
 
-interface TitleModel {
-    id: number,
-    type: string,
+interface TitleModel extends BaseModel {
     value: string,
     fontSize: number,
 }
@@ -105,38 +120,55 @@ interface SnapShot {
     snapshot: Post,
 }
 //Elements
+
+interface BaseElement {
+    getId: () => number;
+    getType: () => string;
+    getVisible: () => boolean;
+}
+
+type ElementSubtype = Title
+    | TextArea
+    | Preview
+    | ListHeader
+    | ListElement;
+
 interface ElementType<T> {
-    getId: () => number,
-    getType: () => string,
-    getVisible: () => boolean,
-    getValue?: () => string,
-    getFontSize?: () => number,
-    getUrl?: () => string,
-    setValue?: (val: string) => void,
-    setUrl?: (val: string) => void,
+    getId: () => number;
+    getType: () => string;
+    getVisible: () => boolean;
+    getValue?: () => string;
+    getFontSize?: () => number;
+    getUrl?: () => string;
+    setValue?: (val: string) => void;
+    setUrl?: (val: string) => void;
+    getStrong?: () => string;
 }
 
-interface TextArea {
-    getId: () => number,
-    getType: () => string,
-    getVisible: () => boolean,
-    getValue: () => string,
-    setValue: (val: string) => void,
+interface TextArea extends BaseElement {
+    getValue: () => string;
+    setValue: (val: string) => void;
 }
 
-interface Title {
-    getId: () => number,
-    getType: () => string,
-    getVisible: () => boolean,
+interface Title extends BaseElement {
     getValue: () => string,
     getFontSize: () => number,
     setValue: (val: string) => void,
 }
 
-interface Preview {
-    getId: () => number,
-    getType: () => string,
-    getVisible: () => boolean,
-    getUrl: () => string,
-    setUrl: (val: string) => void,
+interface Preview extends BaseElement {
+    getUrl: () => string;
+    setUrl: (val: string) => void;
+}
+
+interface ListHeader extends BaseElement {
+    getValue: () => string;
+    setValue: (val: string) => void;
+}
+
+interface ListElement extends BaseElement {
+    getValue: () => string;
+    setValue: (val: string) => void;
+    getStrong: () => string;
+    setStrong: (val: string) => void;
 }

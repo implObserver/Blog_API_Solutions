@@ -1,3 +1,4 @@
+import { List } from "../components/list";
 import { Preview } from "../components/preview";
 import { Text } from "../components/text";
 import { Title } from "../components/title";
@@ -20,6 +21,11 @@ export const Factory = () => {
     if (type.includes("view")) {
         return (
             <Preview></Preview>
+        )
+    }
+    if (type === "list_header") {
+        return (
+            <List></List>
         )
     }
 }

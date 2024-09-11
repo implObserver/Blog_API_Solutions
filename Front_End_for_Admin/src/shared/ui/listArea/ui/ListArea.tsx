@@ -1,9 +1,9 @@
-import { useTextAreaContext } from '../lib/context/Context';
+import { useListAreaContext } from '../lib/context/Context';
 import styles from './styles/Input.module.css'
 import TextareaAutosize from 'react-textarea-autosize';
 
-export const TextArea = () => {
-    const context = useTextAreaContext();
+export const ListArea = () => {
+    const context = useListAreaContext();
     const value = context.value.getValue();
 
     const auto_grow = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -27,17 +27,17 @@ export const TextArea = () => {
     };
 
     return (
-        <div className={styles.container} key={Math.random()}>
+        <li className={styles.container} key={Math.random()}>
             <TextareaAutosize
                 autoFocus={context.isFocus}
                 onKeyUp={auto_grow}
                 placeholder={context.placeholder}
                 defaultValue={value}
-                className={styles.area_text}
+                className={styles.area_list}
                 wrap='hard'
                 maxLength={context.maxLength}
                 onFocus={focusHandle}>
             </TextareaAutosize>
-        </div>
+        </li>
     )
 }

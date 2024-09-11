@@ -48,11 +48,48 @@ const Text = (id?: number) => {
     return Object.assign(value, element)
 }
 
+const ListText = (id?: number) => {
+    const element = Element(id);
+    const strong = Value();
+    const value = Value();
+    const getStrong = () => {
+        return strong.getValue();
+    }
+    const setStrong = (value: string) => {
+        return strong.setValue(value);
+    }
+    return Object.assign(value, element, { getStrong, setStrong });
+}
+
 export const TextArea = (id?: number) => {
     const prototype = Text(id);
     const visible = true;
     const getType = () => {
         return 'text';
+    }
+    const getVisible = () => {
+        return visible;
+    }
+    return Object.assign(prototype, { getType, getVisible })
+}
+
+export const ListHeader = (id?: number) => {
+    const prototype = Text(id);
+    const visible = true;
+    const getType = () => {
+        return 'list_header';
+    }
+    const getVisible = () => {
+        return visible;
+    }
+    return Object.assign(prototype, { getType, getVisible })
+}
+
+export const ListElement = (id?: number) => {
+    const prototype = ListText(id);
+    const visible = true;
+    const getType = () => {
+        return 'list_element';
     }
     const getVisible = () => {
         return visible;
