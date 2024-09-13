@@ -10,8 +10,8 @@ interface Focus {
 
 interface CanvasElement {
     featuresContext: ElementFeatures,
-    elementContext: ElementType<Title | TextArea | Preview>,
-    model: ModelType<TextAreaModel | PreviewModel | TitleModel>,
+    elementContext: ElementType<ElementSubtype>,
+    model: ModelType<ModelSubtype>,
     isFocus?: boolean,
     dropdownStatus: CustomState,
     index: number,
@@ -23,8 +23,8 @@ interface ElementFeatures {
 }
 
 interface UpdateElement {
-    newModel: ModelType<TextAreaModel | PreviewModel | TitleModel>,
-    model: ModelType<TextAreaModel | PreviewModel | TitleModel>,
+    newModel: ModelType<ModelSubtype>,
+    model: ModelType<ModelSubtype>,
 }
 
 interface FeaturesPanel {
@@ -103,6 +103,10 @@ interface TitleModel extends BaseModel {
     fontSize: number,
 }
 
+interface CodeAreaModel extends BaseModel {
+    value: string,
+}
+
 interface Counter {
     count: number,
 }
@@ -143,6 +147,7 @@ interface ElementType<T> {
     setValue?: (val: string) => void;
     setUrl?: (val: string) => void;
     getStrong?: () => string;
+    setStrong?: (val: string) => void;
 }
 
 interface TextArea extends BaseElement {
@@ -171,4 +176,9 @@ interface ListElement extends BaseElement {
     setValue: (val: string) => void;
     getStrong: () => string;
     setStrong: (val: string) => void;
+}
+
+interface Code extends BaseElement {
+    getValue: () => string;
+    setValue: (val: string) => void;
 }

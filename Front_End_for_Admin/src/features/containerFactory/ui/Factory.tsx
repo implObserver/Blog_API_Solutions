@@ -1,4 +1,6 @@
-import { List } from "../components/list";
+import { Code } from "../components/code/ui/Code";
+import { ListElement } from "../components/listElement";
+import { ListHeader } from "../components/listHeader";
 import { Preview } from "../components/preview";
 import { Text } from "../components/text";
 import { Title } from "../components/title";
@@ -25,7 +27,17 @@ export const Factory = () => {
     }
     if (type === "list_header") {
         return (
-            <List></List>
+            <ListHeader></ListHeader>
+        )
+    }
+    if (type === "list_element") {
+        return (
+            <ListElement></ListElement>
+        )
+    }
+    if (type === "code") {
+        return (
+            <Code></Code>
         )
     }
 }

@@ -1,4 +1,4 @@
-import { Preview, TextArea, MainTitle, Title, ImageArea, ListHeader, ListElement } from "./modelsOfElements";
+import { Preview, TextArea, MainTitle, Title, ImageArea, ListHeader, ListElement, CodeArea } from "./modelsOfElements";
 
 export const modelsToElements = (models: Array<ModelType<ModelSubtype>>) => {
 
@@ -13,24 +13,40 @@ export const modelsToElements = (models: Array<ModelType<ModelSubtype>>) => {
 }
 
 export const modelToElement = (model: ModelType<ModelSubtype>) => {
-    const element: ElementType<ElementSubtype> =
-        model.type === 'main_title'
-            ? getMainTitle(model)
-            : model.type === 'title'
-                ? getTitle(model)
-                : model.type === 'preview'
-                    ? getPreview(model)
-                    : model.type === 'view'
-                        ? getView(model)
-                        : model.type === 'text'
-                            ? getTextArea(model)
-                            : model.type === 'list_header'
-                                ? getListHeader(model)
-                                : model.type === 'list_element'
-                                    ? getListElement(model)
-                                    : getTextArea(model);
+    let element: ElementType<ElementSubtype>;
+
+    switch (model.type) {
+        case 'main_title':
+            element = getMainTitle(model);
+            break;
+        case 'title':
+            element = getTitle(model);
+            break;
+        case 'preview':
+            element = getPreview(model);
+            break;
+        case 'view':
+            element = getView(model);
+            break;
+        case 'text':
+            element = getTextArea(model);
+            break;
+        case 'list_header':
+            element = getListHeader(model);
+            break;
+        case 'list_element':
+            element = getListElement(model);
+            break;
+        case 'code':
+            element = getCodeArea(model);
+            break;
+        default:
+            element = getTextArea(model);
+            break;
+    }
+
     return element;
-}
+};
 
 const getMainTitle = (model: ModelType<ModelSubtype>) => {
     const title = MainTitle(model.id);
@@ -73,4 +89,10 @@ const getListElement = (model: ModelType<ModelSubtype>) => {
     listElement.setValue(model.value);
     listElement.setStrong(model.strong);
     return listElement;
+}
+
+const getCodeArea = (model: ModelType<ModelSubtype>) => {
+    const codeArea = CodeArea(model.id);
+    codeArea.setValue(model.value);
+    return codeArea;
 }

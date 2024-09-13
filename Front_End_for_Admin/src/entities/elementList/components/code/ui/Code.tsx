@@ -1,11 +1,11 @@
 import { useElementListContext } from '@/entities/elementList/lib/context/Context';
-import styles from './styles/List.module.css'
+import styles from './styles/Code.module.css'
 
-export const List = () => {
+export const Code = () => {
     const context = useElementListContext();
     return (
         <div className={styles.inner}>
-            {context.list_header}
+            {context.code}
         </div>
     )
 }

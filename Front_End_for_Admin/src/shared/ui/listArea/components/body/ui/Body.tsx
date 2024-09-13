@@ -1,20 +1,11 @@
-import { useEffect, useRef } from 'react';
-import { useTextAreaContext } from '../lib/context/Context';
-import styles from './styles/Input.module.css'
+import { useEffect, useRef, useState } from 'react';
+import styles from './styles/Body.module.css'
 import TextareaAutosize from 'react-textarea-autosize';
+import { useListAreaContext } from '../../../lib/context/Context';
 
-export const TextArea = () => {
-    const context = useTextAreaContext();
+export const Body = () => {
+    const context = useListAreaContext();
     const value = context.value.getValue();
-    const ref = useRef<HTMLInputElement | null>(null);
-    useEffect(() => {
-        if (context.isFocus) {
-            ref.current.scrollTo({
-                left: ref.current.scrollWidth,
-                behavior: 'smooth' // Для плавной прокрутки
-            });
-        }
-    }, [])
 
     const auto_grow = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         const element = e.target as HTMLTextAreaElement;
@@ -37,13 +28,13 @@ export const TextArea = () => {
     };
 
     return (
-        <div ref={ref} className={styles.container} key={Math.random()}>
+        <div className={styles.container}>
             <TextareaAutosize
                 autoFocus={context.isFocus}
                 onKeyUp={auto_grow}
                 placeholder={context.placeholder}
                 defaultValue={value}
-                className={styles.area_text}
+                className={styles.area_list}
                 wrap='hard'
                 maxLength={context.maxLength}
                 onFocus={focusHandle}>

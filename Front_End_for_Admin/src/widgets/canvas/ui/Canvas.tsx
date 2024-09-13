@@ -14,8 +14,7 @@ import { snapshotSliceActions } from "@/entities/postPreview/model/slice/snapsho
 export const Canvas = React.memo(() => {
     const location = useLocation();
     const index = location.state;
-    console.log(index)
-    console.log(typeof index)
+
     if (index || index === 0) {
         const dispatch = useDispatch<AppDispath>();
         const service = useSelector(selectUserServices);

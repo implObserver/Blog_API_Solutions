@@ -61,6 +61,18 @@ const ListText = (id?: number) => {
     return Object.assign(value, element, { getStrong, setStrong });
 }
 
+export const CodeArea = (id?: number) => {
+    const prototype = Text(id);
+    const visible = true;
+    const getType = () => {
+        return 'code';
+    }
+    const getVisible = () => {
+        return visible;
+    }
+    return Object.assign(prototype, { getType, getVisible })
+}
+
 export const TextArea = (id?: number) => {
     const prototype = Text(id);
     const visible = true;

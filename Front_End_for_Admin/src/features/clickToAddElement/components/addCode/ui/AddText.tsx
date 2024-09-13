@@ -4,16 +4,15 @@ import {
     TextArea,
     useElementContext
 } from "@/entities/element";
-import { ListHeader } from "@/entities/element/lib/helper/modelsOfElements";
+import { CodeArea } from "@/entities/element/lib/helper/modelsOfElements";
 import { counterActions } from "@/entities/element/model/slice/counter/slice";
 import { selectModelsOfOpenedPost } from "@/entities/element/model/slice/elementsOfPost/selectors";
 import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
 import { servicesActions } from "@/entities/user";
-
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-export const AddListHeader = () => {
+export const AddCode = () => {
     const context = useElementContext();
     const index = useLocation().state;
     const model = context.model;
@@ -22,8 +21,8 @@ export const AddListHeader = () => {
 
     const clickHandle = () => {
         dispath(counterActions.increment());
-        const listHeader = ListHeader();
-        const newModel = elementToModel(listHeader);
+        const codeArea = CodeArea();
+        const newModel = elementToModel(codeArea);
 
         const postContext: CellOfPost = {
             index,
@@ -46,7 +45,7 @@ export const AddListHeader = () => {
     }
     return (
         <div onMouseDown={clickHandle}>
-            List
+            Code
         </div>
     )
 }

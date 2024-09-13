@@ -1,5 +1,6 @@
 import { AppDispath } from "@/app/model/store/Store";
 import { elementToModel, TextArea } from "@/entities/element";
+import { ListElement } from "@/entities/element/lib/helper/modelsOfElements";
 import { counterActions } from "@/entities/element/model/slice/counter/slice";
 import { selectModelsOfOpenedPost } from "@/entities/element/model/slice/elementsOfPost/selectors";
 import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
@@ -14,13 +15,21 @@ export const Add = ({ children }) => {
     const model = context.containerContext.model;
     const models = useSelector(selectModelsOfOpenedPost).models;
     const dispath = useDispatch<AppDispath>();
-    
+
     const keyDownHandle = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key === 'Enter') {
             e.preventDefault();
             dispath(counterActions.increment());
-            const textArea = TextArea();
-            const newModel = elementToModel(textArea);
+            let newModel: ModelType<ModelSubtype>;
+            if (model.type === 'list_header'
+                || model.type === 'list_element') {
+                const listElement = ListElement();
+                newModel = elementToModel(listElement);
+            } else {
+                const textArea = TextArea();
+                newModel = elementToModel(textArea);
+            }
+
             const context: CellOfPost = {
                 index,
                 model,

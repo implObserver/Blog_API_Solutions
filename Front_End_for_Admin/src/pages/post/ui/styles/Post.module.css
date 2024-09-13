@@ -1,9 +1,11 @@
 .page__main {
     display: grid;
     width: inherit;
-    height: inherit;
+    height: min-content;
+    padding: 5px;
     align-content:start;
     row-gap: 4px;
+    border: 1px red solid;
 }
 
 .javascript {

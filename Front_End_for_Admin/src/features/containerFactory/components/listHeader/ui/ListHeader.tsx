@@ -2,10 +2,12 @@ import { AppDispath } from "@/app/model/store/Store";
 import { elementToModel, selectFocus, useElementContext } from "@/entities/element";
 import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
 import { ListArea } from "@/shared/ui/listArea";
+import { ListAreaContext } from "@/shared/ui/listArea/lib/context/Context";
 import { TextArea, TextAreaContext } from "@/shared/ui/textArea"
 import { useDispatch, useSelector } from "react-redux";
+import styles from './styles/ListHeader.module.css'
 
-export const List = () => {
+export const ListHeader = () => {
     const context = useElementContext();
     const focus = useSelector(selectFocus).index;
     const dispatch = useDispatch<AppDispath>();
@@ -29,9 +31,9 @@ export const List = () => {
     }
 
     return (
-        <div onKeyUp={handleChange}>
+        <div className={styles.list_header} onKeyUp={handleChange}>
             <TextAreaContext.Provider value={textAreaContext}>
-                <ListArea></ListArea>
+                <TextArea></TextArea>
             </TextAreaContext.Provider>
         </div>
     )

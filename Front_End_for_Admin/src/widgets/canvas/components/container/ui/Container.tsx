@@ -10,6 +10,8 @@ import { ExternalReset, ExternalResetContext } from "@/features/externalReset";
 import { ElementListContext } from "@/entities/elementList/lib/context/Context";
 import { AddImage } from "@/features/clickToAddElement/components/addIImage/ui/AddImage";
 import React, { useMemo } from "react";
+import { AddListHeader } from "@/features/clickToAddElement/components/addList/ui/AddList";
+import { AddCode } from "@/features/clickToAddElement/components/addCode";
 
 export const Container = React.memo(() => {
     const context = useContainerContext();
@@ -49,6 +51,8 @@ export const Container = React.memo(() => {
         text: <AddText key="text" />,
         title: <AddTitle key="title" />,
         image: <AddImage key="image" />,
+        list_header: <AddListHeader key="list_header" />,
+        code: <AddCode key="image" />,
     }), []);
 
     return (

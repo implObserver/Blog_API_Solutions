@@ -1,5 +1,5 @@
 interface ImageStateContextType {
-    model: ModelType<TextAreaModel | PreviewModel | TitleModel>,
+    model: ModelType<ModelSubtype>,
     file: File,
     setImgFile: React.Dispatch<React.SetStateAction<File>>,
 }
@@ -32,7 +32,8 @@ interface DropdownContextType {
 
 interface TextAreaContextType {
     placeholder: string,
-    value: ElementType<Title | TextArea | Preview>,
+    strongPlaceholder?: string,
+    value: ElementType<ElementSubtype>,
     maxLength: number,
     isFocus: boolean,
     ref?: React.MutableRefObject<HTMLTextAreaElement | null>,

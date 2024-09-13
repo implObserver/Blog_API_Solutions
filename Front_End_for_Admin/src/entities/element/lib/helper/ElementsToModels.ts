@@ -28,6 +28,9 @@ export const elementToModel = (element: ElementType<ElementSubtype>) => {
         case elementType === 'list_element':
             model = getListElementModel(element);
             break;
+        case elementType === 'code':
+            model = getCodeAreaModel(element);
+            break;
         default:
             model = getTextAreaModel(element); // По умолчанию
             break;
@@ -66,11 +69,30 @@ const getTextAreaModel = (element: ElementType<ElementSubtype>) => {
     return model;
 }
 
+const getCodeAreaModel = (element: ElementType<ElementSubtype>) => {
+    const model: CodeAreaModel = {
+        id: element.getId(),
+        type: element.getType(),
+        value: element.getValue(),
+    }
+    return model;
+}
+
 const getListHeaderModel = (element: ElementType<ElementSubtype>) => {
     const model: ListHeaderModel = {
         id: element.getId(),
         type: element.getType(),
         value: element.getValue(),
+    }
+    return model;
+}
+
+const getListElementModel = (element: ElementType<ElementSubtype>) => {
+    const model: ListElementModel = {
+        id: element.getId(),
+        type: element.getType(),
+        value: element.getValue(),
+        strong: element.getStrong(),
     }
     return model;
 }
