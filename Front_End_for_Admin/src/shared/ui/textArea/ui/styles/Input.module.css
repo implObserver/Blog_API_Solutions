@@ -13,4 +13,7 @@
     width: 80vw;
     max-width: 1600px;
     word-break: break-all;
+    height: 100%;
+   
+    overflow: hidden;
 }

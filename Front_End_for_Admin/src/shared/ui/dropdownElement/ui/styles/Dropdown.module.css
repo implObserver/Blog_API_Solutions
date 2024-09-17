@@ -7,7 +7,7 @@
 }
 
 .open {
-    display: block;
+    display: flex;
     position: absolute;
     width: min-content;
     margin-left: 1vw;

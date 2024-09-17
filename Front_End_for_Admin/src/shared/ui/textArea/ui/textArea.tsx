@@ -6,15 +6,16 @@ import TextareaAutosize from 'react-textarea-autosize';
 export const TextArea = () => {
     const context = useTextAreaContext();
     const value = context.value.getValue();
-    const ref = useRef<HTMLInputElement | null>(null);
-    useEffect(() => {
+    //const ref = useRef<HTMLInputElement | null>(null);
+
+    /*useEffect(() => {
         if (context.isFocus) {
             ref.current.scrollTo({
                 left: ref.current.scrollWidth,
                 behavior: 'smooth' // Для плавной прокрутки
             });
         }
-    }, [])
+    }, [])*/
 
     const auto_grow = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         const element = e.target as HTMLTextAreaElement;
@@ -37,7 +38,7 @@ export const TextArea = () => {
     };
 
     return (
-        <div ref={ref} className={styles.container} key={Math.random()}>
+        <div className={styles.container} key={Math.random()}>
             <TextareaAutosize
                 autoFocus={context.isFocus}
                 onKeyUp={auto_grow}

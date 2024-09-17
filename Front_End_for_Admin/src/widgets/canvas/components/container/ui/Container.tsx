@@ -9,15 +9,20 @@ import { DropdownContext } from "@/shared/ui/dropdownElement";
 import { ExternalReset, ExternalResetContext } from "@/features/externalReset";
 import { ElementListContext } from "@/entities/elementList/lib/context/Context";
 import { AddImage } from "@/features/clickToAddElement/components/addIImage/ui/AddImage";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { AddListHeader } from "@/features/clickToAddElement/components/addList/ui/AddList";
 import { AddCode } from "@/features/clickToAddElement/components/addCode";
+import { getScrollPosition } from "@/widgets/canvas/lib/helper/getScrollPosition";
 
 export const Container = React.memo(() => {
     const context = useContainerContext();
     const dropdownStatus = useCustomState();
 
     const { element, model } = context.containerContext;
+
+    useEffect(() => {
+
+    }, [dropdownStatus])
 
     const elementContext = useMemo(() => ({
         featuresContext: {
@@ -70,6 +75,7 @@ export const Container = React.memo(() => {
                     </DropdownContext.Provider>
                 </ExternalReset>
             </ExternalResetContext.Provider>
+            {Date.now()}
         </div>
     );
 });

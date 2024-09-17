@@ -1,9 +1,12 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, ScrollRestoration, createBrowserRouter } from "react-router-dom";
 import routes from "../routes/Routes";
+const router = createBrowserRouter(routes);
 
-export const WithRouter = () => {
-    const router = createBrowserRouter(routes);
+export const WithRouter: React.FC = () => {
     return (
-        <RouterProvider router={router} />
-    )
+        <>
+            <RouterProvider router={router}>
+            </RouterProvider>
+        </>
+    );
 }

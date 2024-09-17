@@ -17,7 +17,9 @@ const user_post_add_post = asyncHandler(async (req, res, next) => {
 })
 
 const user_post_update_put = asyncHandler(async (req, res, next) => {
-    console.log('wtfff')
+    const payloadSize = JSON.stringify(req.body).length; // в байтах
+    const megabyteSize = payloadSize / (1024 * 1024); // в мегабайтах
+    console.log(`${megabyteSize} mb SIZE`)
     let user = req.user;
     const post = req.body;
     console.log(post)

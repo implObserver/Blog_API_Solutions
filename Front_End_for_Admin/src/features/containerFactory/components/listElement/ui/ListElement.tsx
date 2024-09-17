@@ -22,6 +22,7 @@ export const ListElement = () => {
 
     const handleChange = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') {
+            console.log(context.elementContext.getStrong())
             const newModel = elementToModel(context.elementContext)
             const updateContext: UpdateElement = {
                 model: context.model,

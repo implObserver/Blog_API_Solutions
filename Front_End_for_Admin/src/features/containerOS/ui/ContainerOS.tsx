@@ -11,6 +11,9 @@ export const ContainerOS = ({ children }) => {
     return (
         <>
             <EmptyContext.Provider value={isEmpty}>
+                <Dropdown>
+                    <ElementList></ElementList>
+                </Dropdown>
                 <Focus>
                     <Add>
                         <Remove>
@@ -18,9 +21,6 @@ export const ContainerOS = ({ children }) => {
                         </Remove>
                     </Add>
                 </Focus>
-                <Dropdown>
-                    <ElementList></ElementList>
-                </Dropdown>
             </EmptyContext.Provider>
         </>
 

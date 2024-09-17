@@ -10,6 +10,7 @@ import { selectUserServices, servicesActions } from "@/entities/user";
 import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
 import { updatePost } from "@/entities/user/model/slice/services/thunks/update/updatePost";
 import { snapshotSliceActions } from "@/entities/postPreview/model/slice/snapshot/slice";
+import { getScrollPosition } from "../lib/helper/getScrollPosition";
 
 export const Canvas = React.memo(() => {
     const location = useLocation();
@@ -23,7 +24,6 @@ export const Canvas = React.memo(() => {
         const post = posts.find(post => post.id === index);
         let elements = posts.length === 0 ? [] : post.elements;
         const containerContexts = modelsToContainers(elements);
-        console.log(elements)
 
         useEffect(() => {
             dispatch(modlelsOfOpenedPostActions.uploadPosts(elements));
