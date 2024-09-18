@@ -1,0 +1,1 @@
+export { AvatarOfProfile } from './ui/AvatarOfProfile'

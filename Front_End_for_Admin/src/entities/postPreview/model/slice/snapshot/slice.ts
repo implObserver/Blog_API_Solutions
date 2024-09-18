@@ -1,4 +1,4 @@
-import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./defaultState";
 
 export const snapshotSlice = createSlice({
@@ -10,7 +10,6 @@ export const snapshotSlice = createSlice({
         },
         updateSnapshot: (state: SnapShot, action: PayloadAction<ModelType<TextAreaModel | PreviewModel | TitleModel>[]>) => {
             const post = state.snapshot;
-            console.log(action.payload)
             post.elements = action.payload;
         },
     },

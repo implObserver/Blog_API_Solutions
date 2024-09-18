@@ -1,6 +1,6 @@
 import { ProfileForm } from "@/shared/ui/profileForm";
 import { useProfileFormContext } from "@/shared/ui/profileForm/lib/context/Context";
-import { ButtonHTMLAttributes, useState } from "react"
+import { useState } from "react"
 import styles from './style/HideProfileForm.module.css'
 
 export const HideProfileForm = () => {

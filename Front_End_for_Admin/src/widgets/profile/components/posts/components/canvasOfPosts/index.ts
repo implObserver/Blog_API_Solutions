@@ -1,0 +1,1 @@
+export { CanvasOfPosts } from './ui/CanvasOfPosts'

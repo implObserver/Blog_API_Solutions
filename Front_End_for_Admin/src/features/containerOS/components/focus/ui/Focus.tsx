@@ -3,7 +3,6 @@ import { focusActions } from "@/entities/element";
 import { selectModelsOfOpenedPost } from "@/entities/element/model/slice/elementsOfPost/selectors";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 
 export const Focus = ({ children }) => {
     const context = useContainerContext();

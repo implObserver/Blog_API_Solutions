@@ -2,13 +2,9 @@ import { ImageContext, UploadAndDisplayImage } from "@/shared/ui/uploadAndDispla
 import { useEffect, useState } from "react";
 import styles from './styles/Preview.module.css'
 import { useElementContext } from "@/entities/element";
-import { useDispatch } from "react-redux";
-import { AppDispath } from "@/app/model/store/Store";
 import { loadImage } from "../api/loadImage";
 import { uploadImage } from "../api/uploadImage";
 import { deleteImage } from "../api/deleteImage";
-import { updatePost } from "@/entities/user/model/slice/services/thunks/update/updatePost";
-import { saveWork } from "@/entities/user/lib/helper/saveWork";
 import { useLocation } from "react-router-dom";
 
 export const Preview = () => {

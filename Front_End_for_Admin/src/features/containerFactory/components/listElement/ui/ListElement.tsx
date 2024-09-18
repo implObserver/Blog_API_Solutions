@@ -3,7 +3,6 @@ import { elementToModel, selectFocus, useElementContext } from "@/entities/eleme
 import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
 import { ListArea } from "@/shared/ui/listArea";
 import { ListAreaContext } from "@/shared/ui/listArea/lib/context/Context";
-import { TextArea, TextAreaContext } from "@/shared/ui/textArea"
 import { useDispatch, useSelector } from "react-redux";
 import styles from './styles/ListElement.module.css'
 
@@ -22,7 +21,6 @@ export const ListElement = () => {
 
     const handleChange = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') {
-            console.log(context.elementContext.getStrong())
             const newModel = elementToModel(context.elementContext)
             const updateContext: UpdateElement = {
                 model: context.model,

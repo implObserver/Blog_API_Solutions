@@ -1,8 +1,6 @@
 import { TextArea, TextAreaContext } from "@/shared/ui/textArea";
 import styles from './styles/Title.module.css';
-import { updateElement } from "@/features/containerFactory/lib/helper/updateElement";
 import { elementToModel, selectFocus, useElementContext } from "@/entities/element";
-import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispath } from "@/app/model/store/Store";
 import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";

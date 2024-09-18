@@ -11,20 +11,15 @@ export const PostPreview = ({ post }) => {
     useEffect(() => {
         const loadPreview = async () => {
             const blob = await loadImage(folderName);
-            console.log(blob)
             try {
                 setPreview(URL.createObjectURL(blob));
             } catch {
                 setPreview(null);
             }
-
         }
         loadPreview();
     }, [])
 
-
-
-    console.log(preview)
     if (preview) {
         return (
             <div className={styles.container}>

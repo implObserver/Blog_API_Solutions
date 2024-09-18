@@ -1,4 +1,4 @@
-import { Code } from "../components/code/ui/Code";
+import { Code } from "../components/code";
 import { ListElement } from "../components/listElement";
 import { ListHeader } from "../components/listHeader";
 import { Preview } from "../components/preview";

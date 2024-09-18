@@ -1,7 +1,6 @@
 import { getPostId } from '@/shared/lib';
 import { usePostFormContext } from '../lib/context/Context';
 import styles from './styles/PostForm.module.css'
-import Cookies from 'js-cookie'
 
 export const PostForm = () => {
     const id = getPostId();

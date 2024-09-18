@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
 import styles from './styles/Body.module.css'
 import TextareaAutosize from 'react-textarea-autosize';
 import { useListAreaContext } from '../../../lib/context/Context';
@@ -17,7 +16,7 @@ export const Body = () => {
                 && e.key !== 'ArrowRight') {
                 context.value.setValue(element.value);
             } else {
-                console.log('wtf')
+                
             }
         }
     };

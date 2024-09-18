@@ -1,4 +1,13 @@
-import { Preview, TextArea, MainTitle, Title, ImageArea, ListHeader, ListElement, CodeArea } from "./modelsOfElements";
+import {
+    Preview,
+    TextArea,
+    MainTitle,
+    Title,
+    ImageArea,
+    ListHeader,
+    ListElement,
+    CodeArea
+} from "./modelsOfElements";
 
 export const modelsToElements = (models: Array<ModelType<ModelSubtype>>) => {
 

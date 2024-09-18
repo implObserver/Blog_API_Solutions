@@ -1,0 +1,1 @@
+export { DataOfProfile } from './ui/DataOfProfile'

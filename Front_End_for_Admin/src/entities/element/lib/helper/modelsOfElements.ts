@@ -1,7 +1,4 @@
 import { store } from "@/app/model/store/Store";
-import { useLocalStorage } from "@/shared/lib/hooks/useLocalStorage";
-import { prototype } from "events";
-
 
 const Element = (id?: number) => {
     const defaultId = id === undefined ? store.getState().counter.count : id;
@@ -11,11 +8,58 @@ const Element = (id?: number) => {
     return { getId }
 }
 
+const Value = () => {
+    let value = '';
+
+    const setValue = (val: string) => {
+        value = val;
+    }
+
+    const getValue = () => {
+        return value;
+    }
+
+    return { setValue, getValue };
+}
+
+const ImageUrl = () => {
+    let url = '';
+
+    const setUrl = (val: string) => {
+        url = val;
+    }
+
+    const getUrl = () => {
+        return url;
+    }
+
+    return { setUrl, getUrl };
+}
+
 const Image = (id?: number) => {
     const element = Element(id);
     const image = ImageUrl();
 
     return Object.assign(image, element)
+}
+
+const Text = (id?: number) => {
+    const element = Element(id);
+    const value = Value();
+    return Object.assign(value, element)
+}
+
+const ListText = (id?: number) => {
+    const element = Element(id);
+    const strong = Value();
+    const value = Value();
+    const getStrong = () => {
+        return strong.getValue();
+    }
+    const setStrong = (value: string) => {
+        return strong.setValue(value);
+    }
+    return Object.assign(value, element, { getStrong, setStrong });
 }
 
 export const ImageArea = (id?: number) => {
@@ -40,25 +84,6 @@ export const Preview = (id?: number) => {
         return visible;
     }
     return Object.assign(prototype, { getType, getVisible })
-}
-
-const Text = (id?: number) => {
-    const element = Element(id);
-    const value = Value();
-    return Object.assign(value, element)
-}
-
-const ListText = (id?: number) => {
-    const element = Element(id);
-    const strong = Value();
-    const value = Value();
-    const getStrong = () => {
-        return strong.getValue();
-    }
-    const setStrong = (value: string) => {
-        return strong.setValue(value);
-    }
-    return Object.assign(value, element, { getStrong, setStrong });
 }
 
 export const CodeArea = (id?: number) => {
@@ -139,32 +164,4 @@ export const Title = (id?: number) => {
         return fontSize;
     }
     return Object.assign(prototype, { getType, getVisible, getFontSize })
-}
-
-const Value = () => {
-    let value = '';
-
-    const setValue = (val: string) => {
-        value = val;
-    }
-
-    const getValue = () => {
-        return value;
-    }
-
-    return { setValue, getValue };
-}
-
-const ImageUrl = () => {
-    let url = '';
-
-    const setUrl = (val: string) => {
-        url = val;
-    }
-
-    const getUrl = () => {
-        return url;
-    }
-
-    return { setUrl, getUrl };
 }

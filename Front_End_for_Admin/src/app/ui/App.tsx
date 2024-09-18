@@ -1,8 +1,6 @@
-import { AuthService } from '@/entities/user';
 import { WithRouter } from '../model/providers/WithRouter';
 import styles from './styles/App.module.css';
-import { ScrollRestoration } from 'react-router-dom';
-import ErrorBoundary from './ErrorBoundary';
+import ErrorBoundary from './errorBoundary/ErrorBoundary';
 
 export const App = () => {
   return (

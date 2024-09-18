@@ -1,8 +1,6 @@
 import { AppDispath } from "@/app/model/store/Store";
 import { elementToModel, selectFocus, useElementContext } from "@/entities/element";
 import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
-import { ListArea } from "@/shared/ui/listArea";
-import { ListAreaContext } from "@/shared/ui/listArea/lib/context/Context";
 import { TextArea, TextAreaContext } from "@/shared/ui/textArea"
 import { useDispatch, useSelector } from "react-redux";
 import styles from './styles/ListHeader.module.css'

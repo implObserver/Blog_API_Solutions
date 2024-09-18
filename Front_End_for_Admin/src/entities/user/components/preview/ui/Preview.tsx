@@ -4,7 +4,7 @@ import { AvatarContext } from "@/shared/ui/avatar/lib/context/Context";
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 import styles from './styles/Preview.module.css'
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { AppDispath } from "@/app/model/store/Store";
 import { getAvatar } from "@/entities/user/model/slice/services/thunks/get/getAvatar";
 import { base64ToFile } from "@/shared/lib";

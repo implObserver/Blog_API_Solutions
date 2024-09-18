@@ -1,1 +1,1 @@
-export { AddCode } from './ui/AddText'
+export { AddCode } from './ui/AddCode'

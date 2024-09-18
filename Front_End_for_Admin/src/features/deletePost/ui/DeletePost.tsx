@@ -5,14 +5,13 @@ import { deletePost } from '@/entities/user/model/slice/services/thunks/delete/d
 
 export const DeletePost = ({ postId }) => {
     const dispatch = useDispatch<AppDispath>();
-    console.log(postId)
+
     const clickHandle = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
         if (confirm('Are you sure delete this post?')) {
             dispatch(deletePost(postId));
             console.log('Post was deleted');
         } else {
-            // Do nothing!
             console.log('Post was not deleted');
         }
     }

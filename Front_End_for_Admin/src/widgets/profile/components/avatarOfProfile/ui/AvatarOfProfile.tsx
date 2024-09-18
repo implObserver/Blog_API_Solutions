@@ -1,8 +1,6 @@
 import { selectUserServices, UserPreview } from "@/entities/user"
 import styles from './styles/AvatarOfProfile.module.css'
-import { useState } from "react";
 import { UploadFile } from "@/features/uploadFile";
-import { UploadContext } from "@/features/uploadFile/lib/context/Context.";
 import { useSelector } from "react-redux";
 import { SpinnerLoader } from "@/shared/ui/spinnerLoader";
 

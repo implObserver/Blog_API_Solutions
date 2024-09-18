@@ -3,7 +3,6 @@ import { elementToModel, selectFocus, useElementContext } from "@/entities/eleme
 import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
 import { CodeArea } from "@/shared/ui/codeArea";
 import { CodeAreaContext } from "@/shared/ui/codeArea/lib/context/Context";
-import { TextArea, TextAreaContext } from "@/shared/ui/textArea"
 import { useDispatch, useSelector } from "react-redux";
 
 export const Code = () => {
@@ -19,10 +18,8 @@ export const Code = () => {
     }
 
     const handleChange = (e: React.KeyboardEvent<HTMLDivElement>) => {
-        console.log('cod')
         if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') {
             const newModel = elementToModel(context.elementContext);
-            console.log(newModel)
             const updateContext: UpdateElement = {
                 model: context.model,
                 newModel,

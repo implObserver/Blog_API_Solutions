@@ -1,7 +1,6 @@
 import { AppDispath } from "@/app/model/store/Store";
 import {
     elementToModel,
-    TextArea,
     useElementContext
 } from "@/entities/element";
 import { CodeArea } from "@/entities/element/lib/helper/modelsOfElements";

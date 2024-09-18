@@ -7,7 +7,6 @@ import { deleteImage } from "@/features/containerFactory/components/preview/api/
 import { MinusButton } from "@/shared/ui/minusButton"
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import styles from './styles/ClickToRemove.module.css'
 
 export const ClickToRemoveElement = () => {
     const dispath = useDispatch<AppDispath>();

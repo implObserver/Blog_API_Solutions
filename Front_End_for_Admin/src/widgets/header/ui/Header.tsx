@@ -1,16 +1,12 @@
 import { AuthPanel } from "../components/authPanel/ui/AuthPanel";
 import styles from './styles/Header.module.css'
 import { Logo } from "../components/logo";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispath } from "@/app/model/store/Store";
-import { logout, selectUserServices } from "@/entities/user";
-import Cookies from 'js-cookie'
+import { useSelector } from "react-redux";
+import { selectUserServices } from "@/entities/user";
 
 export const Header = () => {
-    //const dispath = useDispatch<AppDispath>();
-    //dispath(logout());
-    const user = useSelector(selectUserServices).user;
-    console.log(user)
+    //const user = useSelector(selectUserServices).user;
+
     return (
         <div className={styles.header}>
             <Logo></Logo>

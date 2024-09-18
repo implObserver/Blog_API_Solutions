@@ -9,7 +9,6 @@ export const UploadImage = () => {
         context.setImgFile(e.target.files[0]);
     }
 
-    // Мемоизация id, чтобы он не пересоздавался при каждом рендере
     const id = useMemo(() => `file_upload_${Math.random()}`, []);
 
     return (
@@ -20,7 +19,7 @@ export const UploadImage = () => {
                 type="file"
                 accept="image/*"
                 name="myImage"
-                onChange={changeHandler} // Обработчик события для захвата выбора файла
+                onChange={changeHandler}
             />
 
             <label

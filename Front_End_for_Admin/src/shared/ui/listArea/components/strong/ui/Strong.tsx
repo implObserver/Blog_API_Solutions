@@ -1,20 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './styles/Strong.module.css'
-import TextareaAutosize from 'react-textarea-autosize';
 import { useListAreaContext } from '../../../lib/context/Context';
 
 export const Strong = () => {
     const context = useListAreaContext()
     const strong = context.value.getStrong();
     const inputRef = useRef<HTMLInputElement | null>(null);
-    console.log('lol')
 
     useEffect(() => {
-        console.log('wwwww')
         adjustWidth();
     }, [strong]);
 
-    console.log(strong.length)
     const strong_grow = (e: React.KeyboardEvent<HTMLInputElement>) => {
         const element = e.target as HTMLTextAreaElement;
         if (e.key === 'ArrowLeft'
@@ -26,7 +22,7 @@ export const Strong = () => {
                 adjustWidth();
                 context.value.setStrong(element.value);
             } else {
-                console.log('wtf')
+                
             }
         }
     };
