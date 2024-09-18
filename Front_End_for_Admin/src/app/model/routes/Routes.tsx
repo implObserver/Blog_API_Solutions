@@ -3,17 +3,17 @@ import { LoginPage } from "@/pages/login";
 import { PostPage } from "@/pages/post";
 import { MainPage } from "@/pages/main";
 import { ProfilePage } from "@/pages/profile";
-//<ScrollRestoration getKey={(location) => location.pathname} />
+
 //localStorage.clear()
-import MainLayout from "@/app/ui/layouts/MainLayout"; // Импортируем MainLayout
+import MainLayout from "@/app/ui/layouts/MainLayout";
 
 const routes = [
     {
         path: "/",
-        element: <MainLayout />, // Используем MainLayout
+        element: <MainLayout />,
         children: [
             {
-                path: "", // Это будет основной контент для главной страницы
+                path: "",
                 element: <MainPage />,
             },
             {

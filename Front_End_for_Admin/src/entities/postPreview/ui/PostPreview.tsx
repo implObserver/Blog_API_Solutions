@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { loadImage } from "../api/loadImage";
+import { loadImage } from "../lib/helper/loadImage";
 import styles from './styles/PostPreviewStyles.module.css'
 import { usePostPreviewContext } from "../lib/context/Context";
 

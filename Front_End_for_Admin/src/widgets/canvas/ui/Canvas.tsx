@@ -7,8 +7,8 @@ import { AppDispath } from "@/app/model/store/Store";
 import { modelsToContainers } from "../lib/helper/containerAssembly";
 import { getVirtualModels } from "../lib/helper/getVirtualModels";
 import { selectUserServices, servicesActions } from "@/entities/user";
-import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
-import { snapshotSliceActions } from "@/entities/postPreview/model/slice/snapshot/slice";
+import { modlelsOfOpenedPostActions } from "@/entities/element";
+import { snapshotSliceActions } from "@/entities/postPreview";
 
 export const Canvas = React.memo(() => {
     const location = useLocation();

@@ -1,8 +1,8 @@
 import { selectUserServices } from "@/entities/user"
 import { useSelector } from "react-redux"
 import styles from './styles/Posts.module.css'
-import { CreatePost } from "@/features/createPost/ui/CreatePost"
-import { CanvasOfPosts } from "../components/canvasOfPosts/ui/CanvasOfPosts"
+import { CanvasOfPosts } from "../components/canvasOfPosts"
+import { CreatePost } from "@/features/createPost"
 
 export const Posts = () => {
     const user = useSelector(selectUserServices).user;

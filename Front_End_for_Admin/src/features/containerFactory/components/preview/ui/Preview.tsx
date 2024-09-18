@@ -2,20 +2,22 @@ import { ImageContext, UploadAndDisplayImage } from "@/shared/ui/uploadAndDispla
 import { useEffect, useState } from "react";
 import styles from './styles/Preview.module.css'
 import { useElementContext } from "@/entities/element";
-import { loadImage } from "../api/loadImage";
-import { uploadImage } from "../api/uploadImage";
-import { deleteImage } from "../api/deleteImage";
-import { useLocation } from "react-router-dom";
+
+import {
+    addPostImage,
+    deletePostImage,
+    getPostImage
+} from "@/entities/user";
 
 export const Preview = () => {
     const [selectedImage, setSelectedImage] = useState(null);
     const context = useElementContext();
     const model = context.model;
-    const index = useLocation().state;
+
     useEffect(() => {
         const uploadImage = async () => {
             console.log(model.imageUrl)
-            const imageUrl = await loadImage(model.imageUrl);
+            const imageUrl = await getPostImage(model.imageUrl);
             setSelectedImage(imageUrl);
         }
         uploadImage();
@@ -31,7 +33,7 @@ export const Preview = () => {
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
         const element = e.target as HTMLDivElement;
         if (element.textContent === 'Remove') {
-            deleteImage(model.imageUrl);
+            deletePostImage(model.imageUrl);
         }
     }
 
@@ -40,7 +42,7 @@ export const Preview = () => {
             nameFolder: model.imageUrl,
             file: e.target.files[0],
         }
-        uploadImage(context);
+        addPostImage(context);
     }
 
     return (

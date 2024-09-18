@@ -1,17 +1,18 @@
-import { selectUserServices, servicesActions } from "@/entities/user";
+import { selectUserServices, updatePost } from "@/entities/user";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from 'js-cookie'
 import { AppDispath } from "@/app/model/store/Store";
-import { snapshotSliceActions } from "@/entities/postPreview/model/slice/snapshot/slice";
 import { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { PostPreview } from "@/entities/postPreview/ui/PostPreview";
-import styles from './styles/CanvasOfPosts.module.css'
-import { selectSnapshot } from "@/entities/postPreview/model/slice/snapshot/selectors";
-import { updatePost } from "@/entities/user/model/slice/services/thunks/update/updatePost";
-import { PostPreviewContext } from "@/entities/postPreview/lib/context/Context";
-import { DeletePost } from "@/features/deletePost/ui/DeletePost";
-import { selectModelsOfOpenedPost } from "@/entities/element/model/slice/elementsOfPost/selectors";
+import styles from './styles/CanvasOfPosts.module.css';
+import { DeletePost } from "@/features/deletePost";
+import { selectModelsOfOpenedPost } from "@/entities/element";
+import {
+    PostPreview,
+    PostPreviewContext,
+    selectSnapshot,
+    snapshotSliceActions
+} from "@/entities/postPreview";
 
 export const CanvasOfPosts = () => {
     const service = useSelector(selectUserServices);

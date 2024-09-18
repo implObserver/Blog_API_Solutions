@@ -1,9 +1,10 @@
 import { AppDispath } from "@/app/model/store/Store"
-import { useElementContext } from "@/entities/element";
-import { selectModelsOfOpenedPost } from "@/entities/element/model/slice/elementsOfPost/selectors";
-import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
-import { servicesActions } from "@/entities/user";
-import { deleteImage } from "@/features/containerFactory/components/preview/api/deleteImage";
+import {
+    modlelsOfOpenedPostActions,
+    selectModelsOfOpenedPost,
+    useElementContext
+} from "@/entities/element";
+import { deletePostImage, servicesActions } from "@/entities/user";
 import { MinusButton } from "@/shared/ui/minusButton"
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -29,7 +30,7 @@ export const ClickToRemoveElement = () => {
         dispath(servicesActions.removeModel(context));
         const imageUrl = elementContext.model.imageUrl;
         if (imageUrl) {
-            deleteImage(imageUrl);
+            deletePostImage(imageUrl);
         }
     }
 

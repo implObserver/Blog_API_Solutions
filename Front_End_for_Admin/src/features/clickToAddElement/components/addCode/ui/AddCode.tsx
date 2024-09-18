@@ -1,12 +1,12 @@
 import { AppDispath } from "@/app/model/store/Store";
 import {
+    CodeArea,
+    counterActions,
     elementToModel,
+    modlelsOfOpenedPostActions,
+    selectModelsOfOpenedPost,
     useElementContext
 } from "@/entities/element";
-import { CodeArea } from "@/entities/element/lib/helper/modelsOfElements";
-import { counterActions } from "@/entities/element/model/slice/counter/slice";
-import { selectModelsOfOpenedPost } from "@/entities/element/model/slice/elementsOfPost/selectors";
-import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
 import { servicesActions } from "@/entities/user";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
