@@ -1,6 +1,4 @@
-import { selectUserServices } from "@/entities/user/model/slice/services/selectors"
-import { Avatar } from "@/shared/ui/avatar"
-import { AvatarContext } from "@/shared/ui/avatar/lib/context/Context";
+import { Avatar, AvatarContext } from "@/shared/ui/avatar"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 import styles from './styles/Preview.module.css'
@@ -8,6 +6,7 @@ import { useEffect } from "react";
 import { AppDispath } from "@/app/model/store/Store";
 import { getAvatar } from "@/entities/user/model/slice/services/thunks/get/getAvatar";
 import { base64ToFile } from "@/shared/lib";
+import { selectUserServices } from "@/entities/user/model/slice/services/selectors";
 
 export const Preview = () => {
     const user = useSelector(selectUserServices).user;
@@ -16,7 +15,7 @@ export const Preview = () => {
 
     const dispatch = useDispatch<AppDispath>();
     const avatarURL = file ? URL.createObjectURL(file) : null;
- 
+
     useEffect(() => {
         if (!file) {
             dispatch(getAvatar());

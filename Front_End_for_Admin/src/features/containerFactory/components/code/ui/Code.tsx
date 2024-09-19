@@ -1,8 +1,11 @@
 import { AppDispath } from "@/app/model/store/Store";
-import { elementToModel, selectFocus, useElementContext } from "@/entities/element";
-import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
-import { CodeArea } from "@/shared/ui/codeArea";
-import { CodeAreaContext } from "@/shared/ui/codeArea/lib/context/Context";
+import {
+    elementToModel,
+    modlelsOfOpenedPostActions,
+    selectFocus,
+    useElementContext
+} from "@/entities/element";
+import { CodeArea, CodeAreaContext } from "@/shared/ui/codeArea";
 import { useDispatch, useSelector } from "react-redux";
 
 export const Code = () => {

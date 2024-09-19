@@ -10,4 +10,4 @@ imageRouter.get('post/:postid/images', () => {
 imageRouter.get('post/:postid/images/:imageid', () => {
 
 });
-imageRouter.post('/images/:imageid', uploadImages.single('file'), imageController.save_post_image);
+//imageRouter.post('/images/:imageid', uploadImages.single('file'), imageController.save_post_image);

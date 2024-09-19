@@ -4,5 +4,10 @@
 }
 
 .area_code {
-    width: 50vw;
+    width: 70vw; /* или любое другое значение */
+}
+
+.editable:empty:before {
+    content: attr(data-placeholder);
+    color: #bbb; /* Цвет для placeholder */
 }

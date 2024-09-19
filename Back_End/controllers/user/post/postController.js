@@ -13,6 +13,9 @@ const user_create_post = [
         .isLength({ min: 1 })
         .escape()
         .withMessage("Name must be specified."),
+    body('email')
+        .isEmail()
+        .withMessage('Invalid email address.'),
     body("password")
         .trim()
         .isLength({ min: 1 })

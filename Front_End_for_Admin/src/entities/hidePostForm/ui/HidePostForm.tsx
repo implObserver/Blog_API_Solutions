@@ -1,6 +1,6 @@
 import { useState } from "react"
 import styles from './style/HidePostForm.module.css'
-import { PostForm } from "@/shared/ui/postForm/ui/PostForm";
+import { PostForm } from "@/shared/ui/postForm";
 
 export const HidePostForm = () => {
     const [isHide, setHide] = useState(true);

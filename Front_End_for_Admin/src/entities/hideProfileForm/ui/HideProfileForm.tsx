@@ -1,5 +1,4 @@
-import { ProfileForm } from "@/shared/ui/profileForm";
-import { useProfileFormContext } from "@/shared/ui/profileForm/lib/context/Context";
+import { ProfileForm, useProfileFormContext } from "@/shared/ui/profileForm";
 import { useState } from "react"
 import styles from './style/HideProfileForm.module.css'
 

@@ -1,7 +1,6 @@
-import { Plug } from "@/shared/ui/plug/ui/Plug";
 import { useEffect, useRef } from "react";
 import styles from './styles/ExternalReset.module.css';
-import { PlugContext } from "@/shared/ui/plug";
+import { Plug, PlugContext } from "@/shared/ui/plug";
 import { useExternalResetContext } from "../lib/context/Context";
 
 export const ExternalReset = ({ children }) => {

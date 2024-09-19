@@ -1,4 +1,4 @@
 import { getController } from "./get/getController.js"
-import { postController } from "./post/postController.js";
+import { putController } from "./put/putController.js";
 
-export const profilesController = Object.assign(getController, postController, {});
+export const profilesController = Object.assign(getController, putController);

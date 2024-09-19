@@ -4,7 +4,6 @@ import { modlelsOfOpenedPostReducer } from '@/entities/element/model/slice/eleme
 import { snapshotSliceReducer } from '@/entities/postPreview/model/slice/snapshot/slice';
 import { servicesReducer, selectUserServices } from '@/entities/user';
 import { scrollRestorationReducer } from '@/features/scrollRestoration/model/slice/slice';
-import { scrollReducer } from '@/widgets/canvas/model/slice/scroll/slice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,

@@ -1,6 +1,8 @@
 import { AppDispath } from "@/app/model/store/Store";
-import { focusActions } from "@/entities/element";
-import { selectModelsOfOpenedPost } from "@/entities/element/model/slice/elementsOfPost/selectors";
+import {
+    focusActions,
+    selectModelsOfOpenedPost
+} from "@/entities/element";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -51,13 +53,14 @@ export const Focus = ({ children }) => {
     }
 
     const keyDownHandle = (e: React.KeyboardEvent<HTMLDivElement>) => {
-
+        const index = context.containerContext.index;
+        const model = models[index];
         if (e.key === 'ArrowUp' || e.key == 'ArrowDown') {
             e.stopPropagation();
             e.preventDefault();
         }
 
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && model.type !== 'code') {
             e.preventDefault();
             dispath(focusActions.setFocus(context.containerContext.index + 1))
         }

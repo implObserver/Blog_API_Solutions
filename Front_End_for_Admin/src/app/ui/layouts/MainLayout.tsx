@@ -11,7 +11,7 @@ export const MainLayout: React.FC = () => {
     const { pathname } = useLocation();
     const dispatch = useDispatch<AppDispath>();
     const scrolls = useSelector(selectScrollRestoration).scrolls;
-
+    //localStorage.clear()
     gsap.registerPlugin(ScrollToPlugin);
     
     useEffect(() => {
@@ -31,7 +31,6 @@ export const MainLayout: React.FC = () => {
         const scroll = scrolls.find(scroll => scroll.pathname === pathname);
 
         if (scroll) {
-            console.log(scroll.scrollY)
             setTimeout(() => {
                 gsap.to(window, { duration: 0, scrollTo: { y: scroll.scrollY, autoKill: false } });
             }, 100);

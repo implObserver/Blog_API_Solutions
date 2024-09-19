@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux";
 import styles from './styles/UploadFile.module.css'
 import { AppDispath } from "@/app/model/store/Store";
-import { updateAvatar } from "@/entities/user/model/slice/services/thunks/update/updateAvatar";
-import { getAvatar } from "@/entities/user/model/slice/services/thunks/get/getAvatar";
+import { getAvatar, updateAvatar } from "@/entities/user";
+
+
 
 export const UploadFile = ({ children }) => {
     const dispatch = useDispatch<AppDispath>();

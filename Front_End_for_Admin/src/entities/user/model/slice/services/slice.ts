@@ -9,7 +9,6 @@ import { updateAvatar } from "./thunks/update/updateAvatar";
 import { getAvatar } from "./thunks/get/getAvatar";
 import { addPost } from "./thunks/update/addPost";
 import { updatePost } from "./thunks/update/updatePost";
-import { updateModelsOfPost } from "./thunks/update/updateModelsOfPost";
 
 import { deletePost } from "./thunks/delete/deletePost";
 
@@ -156,14 +155,6 @@ const userServicesSlice = createSlice({
                 }
             })
             .addCase(updatePost.rejected, handleRejected)
-
-        builder
-            .addCase(updateModelsOfPost.pending, handlePending)
-            .addCase(updateModelsOfPost.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                state.user = action.payload;
-            })
-            .addCase(updateModelsOfPost.rejected, handleRejected)
     }
 })
 

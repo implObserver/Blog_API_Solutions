@@ -1,9 +1,13 @@
 import { AppDispath } from "@/app/model/store/Store";
-import { elementToModel, TextArea } from "@/entities/element";
-import { ListElement } from "@/entities/element/lib/helper/modelsOfElements";
-import { counterActions } from "@/entities/element/model/slice/counter/slice";
-import { selectModelsOfOpenedPost } from "@/entities/element/model/slice/elementsOfPost/selectors";
-import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
+import {
+    counterActions,
+    elementToModel,
+    ListElement,
+    modlelsOfOpenedPostActions,
+    selectModelsOfOpenedPost,
+    TextArea
+} from "@/entities/element";
+
 import { servicesActions } from "@/entities/user";
 import { useContainerContext } from "@/features/containerOS/lib";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +21,8 @@ export const Add = ({ children }) => {
     const dispath = useDispatch<AppDispath>();
 
     const keyDownHandle = (e: React.KeyboardEvent<HTMLDivElement>) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && model.type !== 'code') {
+            console.log('wtf')
             e.preventDefault();
             dispath(counterActions.increment());
             let newModel: ModelType<ModelSubtype>;

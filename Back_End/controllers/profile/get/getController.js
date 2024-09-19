@@ -1,4 +1,3 @@
-import { Post } from "../../../models/post/post.js";
 import asyncHandler from "express-async-handler";
 import { prismaDB } from "../../../prisma/queries.js";
 import { __dirname } from "../../../app/dirname/dirname.js";

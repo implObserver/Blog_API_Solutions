@@ -1,7 +1,7 @@
 import { AppDispath } from "@/app/model/store/Store";
 import { HideProfileForm } from "@/entities/hideProfileForm";
 import { selectUserServices, updateProfile } from "@/entities/user";
-import { ProfileFormContext } from "@/shared/ui/profileForm/lib/context/Context";
+import { ProfileFormContext } from "@/shared/ui/profileForm";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 

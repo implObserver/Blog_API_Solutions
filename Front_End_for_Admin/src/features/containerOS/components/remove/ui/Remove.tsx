@@ -1,6 +1,8 @@
 import { AppDispath } from "@/app/model/store/Store";
-import { selectModelsOfOpenedPost } from "@/entities/element/model/slice/elementsOfPost/selectors";
-import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
+import {
+    modlelsOfOpenedPostActions,
+    selectModelsOfOpenedPost
+} from "@/entities/element";
 import { servicesActions } from "@/entities/user";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
 import { useDispatch, useSelector } from "react-redux";

@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import styles from './styles/DelepePost.module.css'
 import { AppDispath } from '@/app/model/store/Store';
-import { deletePost } from '@/entities/user/model/slice/services/thunks/delete/deletePost';
+import { deletePost } from '@/entities/user';
 
 export const DeletePost = ({ postId }) => {
     const dispatch = useDispatch<AppDispath>();

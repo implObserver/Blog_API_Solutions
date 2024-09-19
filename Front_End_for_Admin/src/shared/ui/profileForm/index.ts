@@ -1,2 +1,2 @@
 export { ProfileForm } from './ui/ProfileForm'
-export { ProfileFormContext } from './lib/context/Context'
+export { ProfileFormContext, useProfileFormContext } from './lib/context/Context'

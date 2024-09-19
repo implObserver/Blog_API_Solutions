@@ -1,8 +1,7 @@
 import { AppDispath } from "@/app/model/store/Store";
-import { HidePostForm } from "@/entities/hidePostForm/ui/HidePostForm";
-import { selectUserServices } from "@/entities/user";
-import { addPost } from "@/entities/user/model/slice/services/thunks/update/addPost";
-import { PostFormContext } from "@/shared/ui/postForm/lib/context/Context";
+import { HidePostForm } from "@/entities/hidePostForm";
+import { addPost, selectUserServices } from "@/entities/user";
+import { PostFormContext } from "@/shared/ui/postForm";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
