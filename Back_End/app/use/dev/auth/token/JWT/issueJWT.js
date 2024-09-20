@@ -25,7 +25,6 @@ export const getAcessToken = (id) => {
     const acessToken = jwt.sign(acessPayload, PRIV_KEY, { expiresIn: acessExpiresIn, algorithm: 'RS256' });
     return {
         token: 'Bearer ' + acessToken,
-        expires: acessExpiresIn
     }
 }
 
@@ -38,11 +37,9 @@ export const getRefreshToken = (id) => {
         sub: _id,
         iat: Math.floor(Date.now() / 1000),
     }
-
     const refreshToken = jwt.sign(refreshPayload, PRIV_KEY, { expiresIn: refreshExpiresIn, algorithm: 'RS256' });
     return {
-        token: 'Bearer ' + refreshToken,
-        expires: acessExpiresIn
+        token: 'Bearer ' + refreshToken
     }
 }
 

@@ -5,14 +5,23 @@ export const signup = createAsyncThunk(
     'services/auth/signup',
     async (data: AuthData, thunkAPI) => {
         try {
-            const username = data.username;
+            const email = data.email;
             const password = data.password;
-            const resp = await AuthService.signup(username, password);
+            const resp = await AuthService.signup(email, password);
+            console.log(resp)
             const user = resp.data.user;
-            return user;
+            const res = {
+                error: false,
+                msg: user,
+            }
+            return res;
         } catch (error) {
             console.log(error)
-            return error.response.data.error[0].msg;
+            const res = {
+                error: true,
+                msg: error.response.data.error,
+            }
+            return res;
         }
     }
 )

@@ -7,7 +7,7 @@ import { prismaDB } from "../../../prisma/queries.js";
 
 const user_create_post = [
     // Validate and sanitize fields.
-    body('mail')
+    body('email')
         .isEmail()
         .withMessage('Invalid email address.'),
     body("password")
@@ -17,38 +17,35 @@ const user_create_post = [
         .withMessage("Password must be specified."),
 
     asyncHandler(async (req, res, next) => {
-        console.log('ww')
         const errors = validationResult(req);
         const hashPassword = await bcrypt.hash(req.body.password, 10);
 
         const userPg = {
-            username: req.body.username,
+            email: req.body.email,
             password: hashPassword,
         }
-
         if (!errors.isEmpty()) {
-            console.log(errors)
-            return res.status(400).send({ error: errors.array() });
+            console.log(errors.errors[0].msg)
+            return res.status(400).send({ error: errors.errors[0].msg });
         } else {
             const id = await prismaDB.setNewUser(userPg);
             const refreshToken = getRefreshToken(id).token;
-            const acessToken = getAcessToken(id).token;
-            await prismaDB.setToken(id, refreshToken.token);
+            console.log('ww')
+            await prismaDB.setToken(id, refreshToken);
             const user = await prismaDB.findUser(id);
             res.locals.user = user;
             res.locals.refreshToken = refreshToken;
-            res.locals.acessToken = acessToken;
+            const users = await prismaDB.getAllUsers();
+            console.log(users)
             next();
         }
     }),
 ];
 
 const user_auth_post = [
-    body("username")
-        .trim()
-        .isLength({ min: 1 })
-        .escape()
-        .withMessage("Name must be specified."),
+    body('email')
+        .isEmail()
+        .withMessage('Invalid email address.'),
     body("password")
         .trim()
         .isLength({ min: 1 })
@@ -56,11 +53,28 @@ const user_auth_post = [
         .withMessage("Password must be specified."),
 
     asyncHandler(async (req, res, next) => {
+        console.log(req.body)
         const errors = validationResult(req);
+        console.log(errors)
         if (!errors.isEmpty()) {
-            return;
+            console.log(errors)
+            return res.status(400).send({ error: errors.errors[0].msg });
         } else {
-            await passport.authenticate("local", {})(req, res, next)
+            passport.authenticate("local", (err, user, info) => {
+                if (err) {
+                    return next(err); // если есть ошибка, передаем ее дальше
+                }
+                if (!user) {
+                    return res.status(400).send({ error: info.message }); // неверный логин/пароль
+                }
+                
+                req.login(user, (err) => {
+                    if (err) {
+                        return next(err);
+                    }
+                    return res.status(200).send({ message: "Authenticated successfully", user });
+                });
+            })(req, res, next);
         }
     }),
 ];
@@ -107,7 +121,7 @@ const refresh_acessToken = asyncHandler(async (req, res, next) => {
 
 const refresh_refreshToken = asyncHandler(async (req, res, next) => {
     console.log('refresh')
-    const tokens = req.cookies;
+    const tokens = req.query;
     let refreshToken = tokens.refreshToken;
 
     if (!refreshToken) return res.sendStatus(401);

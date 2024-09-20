@@ -10,4 +10,4 @@ userRouter.post("/user/refresh-acess-token", userController.refresh_acessToken, 
 userRouter.post("/user/refresh-refresh-token", userController.refresh_refreshToken, userController.set_cookie, userController.user_get);
 userRouter.get("/user/protected", userController.user_auth_jwt_protected);
 userRouter.get("/user/failure", userController.failureProtected);
-userRouter.get("/confirm-email", userController.user_auth_jwt_protected, userController.confirm_email);
+userRouter.get("/confirm-email/", userController.confirm_email, userController.redirect_main);

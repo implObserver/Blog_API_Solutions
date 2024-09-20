@@ -1,26 +1,38 @@
 import asyncHandler from "express-async-handler";
 import nodemailer from 'nodemailer'
 import crypto from 'crypto'
+import { prismaDB } from "../../../../prisma/queries.js";
+
 
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.yandex.ru',
+    port: 465, // Обычно используемые порты: 587 или 465 для защищенных соединений
+    secure: true, // Установите в true, если используете порт 465
     auth: {
-        user: process.env.GMAIL_TRANSPORTER,
-        pass: process.env.PASSWORD_TRANSPORTER,
+        user: process.env.YANDEX_USER, // ваш адрес на Яндекс Почте
+        pass: process.env.YANDEX_PASSWORD, // пароль от почты
     },
 });
 
 const send_email = asyncHandler(async (req, res, next) => {
-    const token = res.locals.token;
+    const id = res.locals.user.id;
+    const refreshToken = res.locals.refreshToken;
+    const email = res.locals.user.email;
     const secretKey = crypto.randomBytes(16).toString('hex');
-    const url = `http://${process.env.HOST}:3000/api/confirm-email?token=${token}&key=${secretKey}`;
-    await transporter.sendMail({
-        to: email,
-        subject: 'Подтвердите свой адрес электронной почты',
-        html: `Подтвердите свою почту, перейдя по этой <a href="${url}">ссылке</a>`,
-    });
+    prismaDB.setVerifyCode(id, secretKey);
+    const url = `http://${process.env.HOST}:3000/api/confirm-email?refreshToken=${refreshToken}&key=${secretKey}`;
 
-    res.status(200).send('Мы отправили сообщение на вашу почту. Пожалуйста подтвердите его, чтобы закончить регистрацию!');
+    try {
+        await transporter.sendMail({
+            from: process.env.YANDEX_USER,
+            to: email,
+            subject: 'Подтвердите свой адрес электронной почты',
+            html: `Подтвердите свою почту, перейдя по этой <a href="${url}">ссылке</a>`,
+        });
+    } catch (error) {
+        console.log(error)
+    }
+    res.status(403).send({ error: 'Ваш электронный адрес не подтвержден. Пожалуйста, проверьте свою почту.' });
 })
 
 export const transporterMiddlewares = {

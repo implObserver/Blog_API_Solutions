@@ -14,16 +14,17 @@ datasource db {
 }
 
 model User {
-  id         Int       @id @default(autoincrement())
-  name       String?   @unique
-  email      String?   @unique
-  password   String?
-  isAdmin    Boolean   @default(false)
-  isVerified Boolean   @default(false)
-  token      String?
-  profile    Profile?
-  posts      Post[]
-  comments   Comment[]
+  id           Int       @id @default(autoincrement())
+  name         String?   @unique
+  email        String?   @unique
+  password     String?
+  isAdmin      Boolean   @default(false)
+  isVerified   Boolean   @default(false)
+  refreshToken String?
+  profile      Profile?
+  posts        Post[]
+  comments     Comment[]
+  verifyCode   String?
 }
 
 model Post {

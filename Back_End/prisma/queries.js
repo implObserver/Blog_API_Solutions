@@ -15,7 +15,7 @@ const dropUsers = async (id) => {
 }
 
 const getAllUsers = async () => {
-    const { users } = await prisma.user.findMany();
+    const users = await prisma.user.findMany();
     return users;
 }
 
@@ -28,7 +28,8 @@ const setNewUser = async (user) => {
     try {
         const newUser = await prisma.user.create({
             data: {
-                name: user.username,
+                email: user.email,
+                name: user.email,
                 password: user.password,
                 isAdmin: false,
             },
@@ -62,7 +63,7 @@ const setToken = async (id, token) => {
     await prisma.user.update({
         where: { id: id },
         data: {
-            token: token,
+            refreshToken: token,
         }
     })
 }
@@ -94,6 +95,15 @@ const setVerify = async (id) => {
         where: { id: id },
         data: {
             isVerified: true,
+        }
+    })
+}
+
+const setVerifyCode = async (id, code) => {
+    await prisma.user.update({
+        where: { id: id },
+        data: {
+            verifyCode: code,
         }
     })
 }
@@ -213,8 +223,24 @@ const removeAll = async () => {
 }
 
 const findUserByRefreshToken = async (token) => {
+    console.log('wtf')
+    console.log(token)
     const user = await prisma.user.findFirst({
         where: { refreshToken: token },
+    });
+    console.log(await prisma.user.findFirst({
+        where: { refreshToken: token },
+    }))
+    return user;
+}
+
+const findUserByEmail = async (email) => {
+    const user = await prisma.user.findFirst({
+        where: { email: email },
+        include: {
+            profile: true,
+            posts: true,
+        }
     });
     return user;
 }
@@ -237,4 +263,6 @@ export const prismaDB = {
     deletePost,
     setVerify,
     findUserByRefreshToken,
+    setVerifyCode,
+    findUserByEmail,
 }

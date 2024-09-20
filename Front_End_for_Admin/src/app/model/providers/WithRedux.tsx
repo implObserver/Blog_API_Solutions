@@ -13,7 +13,7 @@ const clearReduxPersist = () => {
 };
 
 export const WithRedux = ({ children }) => {
-    clearReduxPersist()
+    //clearReduxPersist()
     return (
         <>
             <Provider store={store}>

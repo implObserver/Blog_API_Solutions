@@ -5,10 +5,11 @@ export const UserForm = () => {
     const context = useUserFormContext();
 
     const data = {
-        username: context.data.username,
+        email: context.data.email,
         password: context.data.password,
     }
 
+    console.log(context)
     const handle = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newData = { ...data };
         newData[e.target.id] = e.target.value
@@ -18,15 +19,15 @@ export const UserForm = () => {
     return (
         <form>
             <div className={styles.form_group}>
-                <label htmlFor="username">Username:</label>
+                <label htmlFor="email">Email:</label>
                 <input
                     onChange={handle}
                     className={styles.input}
-                    id="username"
-                    name="username"
+                    id="email"
+                    name="email"
                     type="text"
-                    placeholder="username"
-                    value={data.username}
+                    placeholder="email"
+                    value={data.email}
                     autoComplete="on"
                     required>
                 </input>

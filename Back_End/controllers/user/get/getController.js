@@ -8,6 +8,7 @@ const failureProtected = (req, res, next) => {
 }
 
 const authProtected = (req, res, next) => {
+    console.log(req.isAuthenticated())
     if (req.isAuthenticated()) {
         res.locals.user = req.user;
         next()
@@ -39,19 +40,20 @@ const user_get = asyncHandler(async (req, res, next) => {
 
 const confirm_email = asyncHandler(async (req, res, next) => {
     try {
+        const refreshToken = req.query.refreshToken;
+        const secretKey = req.query.verifyCode;
+        const users = await prismaDB.getAllUsers();
         // Получаем информацию о пользователе из токена
-        const userId = req.user.id; // Здесь id пользователя должен быть доступен через токен JWT
-        const user = await prismaDB.findById(userId);
-
+        const user = await prismaDB.findUserByRefreshToken(refreshToken);
         // Проверка, существует ли пользователь
         if (!user) {
             return res.status(400).send('Пользователь не найден');
+        } else if (user.secretKey !== secretKey) {
+            return res.status(400).send('Неверная ссылка');
         }
-
         // Обновляем значение isVerified
-        prismaDB.setVerify(userId);
-
-        res.send('Электронная почта подтверждена!');
+        prismaDB.setVerify(user.id);
+        next();
     } catch (error) {
         res.status(400).send('Что-то пошло не так. Пожалуйста, повторите позже.');
     }

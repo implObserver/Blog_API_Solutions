@@ -8,6 +8,6 @@ export const usePassport = () => {
     usePassportSession();
     setSerializeUser();
     setDeserializeUser();
-    useJWTStrategy();
     useLocalStrategy();
+    useJWTStrategy();
 }

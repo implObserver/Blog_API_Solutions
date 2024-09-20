@@ -2,12 +2,12 @@ import { instance } from "@/app/api/api.config"
 
 
 export const AuthService = {
-    signup(mail: string, password: string) {
-        return instance.post("/api/user/signup", { mail, password })
+    signup(email: string, password: string) {
+        return instance.post("/api/user/signup", { email, password })
     },
 
-    login(username: string, password: string) {
-        return instance.post("/api/user/login", { username, password })
+    login(email: string, password: string) {
+        return instance.post("/api/user/login", { email, password })
     },
 
     refreshToken() {

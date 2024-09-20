@@ -98,12 +98,13 @@ const userServicesSlice = createSlice({
             .addCase(signup.pending, handlePending)
             .addCase(signup.fulfilled, (state, action) => {
                 handleFulfilled(state);
-                if (action.payload.id >= 0) {
-                    state.user = action.payload;
+                console.log(action.payload)
+                if (!action.payload.error) {
+                    state.user = action.payload.msg;
                     state.isAuth = true;
                     state.error = null;
                 } else {
-                    state.error = action.payload;
+                    state.error = action.payload.msg;
                 }
             })
             .addCase(signup.rejected, handleRejected)

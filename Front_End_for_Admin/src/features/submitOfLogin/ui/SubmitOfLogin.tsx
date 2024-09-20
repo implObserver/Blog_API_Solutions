@@ -7,12 +7,12 @@ import { useDispatch } from "react-redux";
 
 export const SubmitOfLogin = () => {
     const dispath = useDispatch<AppDispath>();
-
+    //localStorage.clear()
     const [data, setData] = useState({
-        username: '',
+        email: '',
         password: '',
     })
-
+    console.log(data)
     const formContext: UserFormContextType = {
         data,
         setData,

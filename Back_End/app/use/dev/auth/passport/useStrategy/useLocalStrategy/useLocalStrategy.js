@@ -4,12 +4,12 @@ import bcrypt from 'bcryptjs';
 import { prismaDB } from "../../../../../../../prisma/queries.js";
 
 //for postgresDB
-const verifyCallbackPg = async (username, password, done) => {
+const verifyCallbackPg = async (email, password, done) => {
     try {
-        const user = await prismaDB.findUserByName(username);
+        const user = await prismaDB.findUserByEmail(email);
         if (!user) {
-            console.log('Incorrect username')
-            return done(null, false, { message: "Incorrect username" });
+            console.log('Incorrect email')
+            return done(null, false, { message: "Incorrect email" });
         };
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
