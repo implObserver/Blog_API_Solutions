@@ -3,4 +3,5 @@ export const initialState: ServicesDataType = {
     isPending: false,
     user: null,
     avatar: null,
+    error: null,
 }

@@ -1,4 +1,4 @@
- import axios from "axios";
+import axios from "axios";
 import Cookies from 'js-cookie'
 
 export const instance = axios.create({
@@ -12,13 +12,14 @@ export const instance = axios.create({
 
 // создаем перехватчик запросов
 // который к каждому запросу добавляет accessToken из localStorage
-instance.interceptors.request.use(
+/*instance.interceptors.request.use(
     (config) => {
         const token = Cookies.get('token');
+        console.log(token)
         config.headers.Authorization = token;
         return config
     }
-)
+)*/
 
 
 // создаем перехватчик ответов
@@ -43,9 +44,8 @@ instance.interceptors.response.use(
         ) {
             try {
                 // запрос на обновление токенов
-                const resp = await instance.get("/api/refresh");
+                await instance.get("/api/user/refresh-acess-token");
                 // сохраняем новый accessToken в localStorage
-                localStorage.setItem("post_constructor_token", resp.data.accessToken);
                 // переотправляем запрос с обновленным accessToken
                 return instance.request(originalRequest);
             } catch (error) {

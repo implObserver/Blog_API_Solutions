@@ -89,6 +89,15 @@ const findUserByName = async (name) => {
     return user;
 }
 
+const setVerify = async (id) => {
+    await prisma.user.update({
+        where: { id: id },
+        data: {
+            isVerified: true,
+        }
+    })
+}
+
 const findProfile = async (id) => {
     const profile = await prisma.profile.findUnique({
         where: { userId: id },
@@ -201,7 +210,13 @@ const deletePost = async (postId) => {
 
 const removeAll = async () => {
     await prisma.user.deleteMany({})
+}
 
+const findUserByRefreshToken = async (token) => {
+    const user = await prisma.user.findFirst({
+        where: { refreshToken: token },
+    });
+    return user;
 }
 
 export const prismaDB = {
@@ -220,4 +235,6 @@ export const prismaDB = {
     updateModels,
     removeAll,
     deletePost,
+    setVerify,
+    findUserByRefreshToken,
 }

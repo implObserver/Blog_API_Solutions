@@ -12,19 +12,69 @@ const PUB_KEY = fs.readFileSync(pathToPubKey, 'utf8');
 //jwt.verify(signedJWT, PUB_KEY, { algorithms: ['RS256'] }, (err, payload) => {});
 
 //for postgresDB
-export const issueJWTPG = (id) => {
+export const getAcessToken = (id) => {
     const _id = id;
-    const expiresIn = '1d';
 
-    const payload = {
+    const acessExpiresIn = '15m';
+
+    const acessPayload = {
         sub: _id,
-        iat: Date.now()
+        iat: Math.floor(Date.now() / 1000),
     }
 
-    const signedToken = jwt.sign(payload, PRIV_KEY, { expiresIn: expiresIn, algorithm: 'RS256' });
+    const acessToken = jwt.sign(acessPayload, PRIV_KEY, { expiresIn: acessExpiresIn, algorithm: 'RS256' });
+    return {
+        token: 'Bearer ' + acessToken,
+        expires: acessExpiresIn
+    }
+}
+
+export const getRefreshToken = (id) => {
+    const _id = id;
+
+    const refreshExpiresIn = '1d';
+
+    const refreshPayload = {
+        sub: _id,
+        iat: Math.floor(Date.now() / 1000),
+    }
+
+    const refreshToken = jwt.sign(refreshPayload, PRIV_KEY, { expiresIn: refreshExpiresIn, algorithm: 'RS256' });
+    return {
+        token: 'Bearer ' + refreshToken,
+        expires: acessExpiresIn
+    }
+}
+
+export const issueJWTPG = (id) => {
+    const _id = id;
+
+    const acessExpiresIn = '15m';
+
+    const acessPayload = {
+        sub: _id,
+        iat: Math.floor(Date.now() / 1000),
+    }
+
+    const acessToken = jwt.sign(acessPayload, PRIV_KEY, { expiresIn: acessExpiresIn, algorithm: 'RS256' });
+
+    const refreshExpiresIn = '1d';
+
+    const refreshPayload = {
+        sub: _id,
+        iat: Math.floor(Date.now() / 1000),
+    }
+
+    const refreshToken = jwt.sign(refreshPayload, PRIV_KEY, { expiresIn: refreshExpiresIn, algorithm: 'RS256' });
 
     return {
-        token: 'Bearer ' + signedToken,
-        expires: expiresIn
+        refreshToken: {
+            token: 'Bearer ' + refreshToken,
+            expires: refreshExpiresIn
+        },
+        acessToken: {
+            token: 'Bearer ' + acessToken,
+            expires: acessExpiresIn
+        }
     }
 }

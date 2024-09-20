@@ -4,8 +4,9 @@ import { SubmitOfLogin } from "@/features/submitOfLogin";
 import { SpinnerLoader } from "@/shared/ui/spinnerLoader";
 
 export const LoginWidget = () => {
+    //localStorage.clear()
     const services = useSelector(selectUserServices);
-
+    console.log(services.error)
     if (services.isPending) {
         return (
             <>

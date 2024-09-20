@@ -3,10 +3,10 @@ import { exec } from 'child_process';
 const commands = [
     'npm install --save-dev nodemon',
     //'npm install mongoose', //for mongoDB
-    //'npm install pg', //for postgres
-    //'npm install prisma --save-dev', //for postgres
-    //'npx prisma init', //for postgres
-    //'npm install @prisma/client', //for postgres
+    'npm install pg', //for postgres
+    'npm install prisma --save-dev', //for postgres
+    'npx prisma init', //for postgres
+    'npm install @prisma/client', //for postgres
     'npm install --save multer',
     'npm install express',
     'npm install express-async-handler',

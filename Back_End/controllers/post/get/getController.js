@@ -37,7 +37,7 @@ const image_of_post_get = asyncHandler(async (req, res, next) => {
             console.log(err)
             return res.json({ message: 'Папка не найдена' });
         }
-        
+
         if (files.length === 0) {
             return res.json({ message: 'Папка пуста' });
         }

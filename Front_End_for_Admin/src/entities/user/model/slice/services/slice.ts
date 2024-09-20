@@ -57,6 +57,9 @@ const userServicesSlice = createSlice({
             const post = state.user.posts.find(post => post.id === index);
             post.elements = action.payload.models;
         },
+        clearErrors: (state: ServicesDataType) => {
+            state.error = null;
+        },
     },
     extraReducers: (builder) => {
         const handlePending = (state: ServicesDataType) => {
@@ -95,8 +98,13 @@ const userServicesSlice = createSlice({
             .addCase(signup.pending, handlePending)
             .addCase(signup.fulfilled, (state, action) => {
                 handleFulfilled(state);
-                state.user = action.payload;
-                state.isAuth = true;
+                if (action.payload.id >= 0) {
+                    state.user = action.payload;
+                    state.isAuth = true;
+                    state.error = null;
+                } else {
+                    state.error = action.payload;
+                }
             })
             .addCase(signup.rejected, handleRejected)
 

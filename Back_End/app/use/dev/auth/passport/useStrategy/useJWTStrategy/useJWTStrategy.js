@@ -6,12 +6,20 @@ import { __pathToKeyFolder } from "./keypair/generateKeypair.js";
 import path from "path";
 import { prismaDB } from "../../../../../../../prisma/queries.js";
 
-const pathToKey = path.join(__pathToKeyFolder, 'id_rsa_priv.pem');
-const PRIV_KEY = fs.readFileSync(pathToKey, 'utf8');
+const pathToKey = path.join(__pathToKeyFolder, 'id_rsa_pub.pem');
+const PUB_KEY = fs.readFileSync(pathToKey, 'utf8');
+
+const cookieExtractor = (req) => {
+    let token = null;
+    console.log(req.cookies)
+    if (req && req.cookies) token = req.cookies['acessToken'];
+    const tokenValue = token.startsWith('Bearer ') ? token.slice(7) : token;
+    return tokenValue;
+};
 
 const options = {
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: PRIV_KEY,
+    jwtFromRequest: cookieExtractor,
+    secretOrKey: PUB_KEY,
     algorithms: ['RS256']
 }
 

@@ -8,13 +8,13 @@ export const __pathToKeyFolder = dirname(fileURLToPath(import.meta.url));
 const getKeyPair = () => {
     const keyPair = crypto.generateKeyPairSync('rsa', {
         modulusLength: 4096,
-        PublicKeyEncoding: {
-            type: 'pkcs1',
-            format: 'pem'
+        publicKeyEncoding: {
+            type: 'spki', // Используйте spki для публичного ключа
+            format: 'pem',
         },
         privateKeyEncoding: {
-            type: 'pkcs1',
-            format: 'pem'
+            type: 'pkcs8', // Используйте pkcs8 для приватного ключа
+            format: 'pem',
         },
     });
     fs.writeFileSync(__pathToKeyFolder + '/id_rsa_pub.pem', keyPair.publicKey.toString());

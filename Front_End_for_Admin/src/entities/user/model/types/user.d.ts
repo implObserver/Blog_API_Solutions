@@ -1,8 +1,9 @@
 interface ServicesDataType {
     user: User,
     isAuth: boolean,
-    isPending: boolean,
+    isPending?: boolean,
     avatar: string,
+    error?: string,
 }
 
 interface PostUpdate {

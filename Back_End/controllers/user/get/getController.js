@@ -1,6 +1,7 @@
 import passport from "passport";
 import { __dirname } from "../../../app/dirname/dirname.js";
 import asyncHandler from "express-async-handler";
+import { prismaDB } from "../../../prisma/queries.js";
 
 const failureProtected = (req, res, next) => {
     res.status(401).json({ message: 'unauthorized' });
@@ -36,9 +37,30 @@ const user_get = asyncHandler(async (req, res, next) => {
     });
 })
 
+const confirm_email = asyncHandler(async (req, res, next) => {
+    try {
+        // Получаем информацию о пользователе из токена
+        const userId = req.user.id; // Здесь id пользователя должен быть доступен через токен JWT
+        const user = await prismaDB.findById(userId);
+
+        // Проверка, существует ли пользователь
+        if (!user) {
+            return res.status(400).send('Пользователь не найден');
+        }
+
+        // Обновляем значение isVerified
+        prismaDB.setVerify(userId);
+
+        res.send('Электронная почта подтверждена!');
+    } catch (error) {
+        res.status(400).send('Что-то пошло не так. Пожалуйста, повторите позже.');
+    }
+});
+
 export const getController = {
     failureProtected,
     user_logout_get,
     user_get,
     authProtected,
+    confirm_email,
 }

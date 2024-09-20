@@ -15,6 +15,7 @@ const debug = createDebugMessages('authentification-basics:server');
  */
 
 const port = normalizePort(process.env.PORT || '3000');
+const host = process.env.HOST || '0.0.0.0'; // '0.0.0.0' позволяет слушать на всех интерфейсах
 app.set('port', port);
 
 /**
@@ -27,7 +28,7 @@ const server = createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(port, host);
 server.on('error', onError);
 server.on('listening', onListening);
 
