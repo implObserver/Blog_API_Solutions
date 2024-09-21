@@ -11,11 +11,17 @@ const verifyCallbackPg = async (email, password, done) => {
             console.log('Incorrect email')
             return done(null, false, { message: "Incorrect email" });
         };
+
+        if(!user.isVerified) {
+            console.log('Почтовый ящик не подтвержден')
+            return done(null, false, { message: "Почтовый ящик не подтвержден" });
+        }
+
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
-            return done(null, false, { message: "Incorrect password" });
+            return done(null, false, { message: "Incorrect email" });
         };
-    
+
         return done(null, user);
     } catch (err) {
         console.log('catch')
@@ -24,7 +30,7 @@ const verifyCallbackPg = async (email, password, done) => {
     };
 }
 
-const strategy = new LocalStrategy(verifyCallbackPg);
+const strategy = new LocalStrategy({ usernameField: 'email' }, verifyCallbackPg);
 
 export const useLocalStrategy = () => {
     passport.use(strategy);

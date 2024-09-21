@@ -7,9 +7,18 @@ export const updateProfile = createAsyncThunk(
         try {
             const resp = await UpdateService.updateProfile(profile);
             const user = resp.data.user;
-            return user;
+            const res = {
+                error: false,
+                msg: user,
+            }
+            return res;
         } catch (error) {
-            return false;
+            console.log(error)
+            const res = {
+                error: true,
+                msg: error.response.data.error,
+            }
+            return res;
         }
     }
 )

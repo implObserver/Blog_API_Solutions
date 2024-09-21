@@ -81,8 +81,13 @@ const userServicesSlice = createSlice({
             .addCase(login.pending, handlePending)
             .addCase(login.fulfilled, (state, action) => {
                 handleFulfilled(state);
-                state.user = action.payload;
-                state.isAuth = true;
+                if (!action.payload.error) {
+                    state.user = action.payload.msg;
+                    state.isAuth = true;
+                    state.error = null;
+                } else {
+                    state.error = action.payload.msg;
+                }
             })
             .addCase(login.rejected, handleRejected)
 
@@ -118,7 +123,12 @@ const userServicesSlice = createSlice({
             .addCase(updateProfile.pending, handlePending)
             .addCase(updateProfile.fulfilled, (state, action) => {
                 handleFulfilled(state);
-                state.user = action.payload;
+                if (!action.payload.error) {
+                    state.user = action.payload.msg;
+                    state.error = null;
+                } else {
+                    state.error = action.payload.msg;
+                }
             })
             .addCase(updateProfile.rejected, handleRejected)
 

@@ -1,11 +1,17 @@
-import { useSelector } from "react-redux";
-import { selectUserServices } from "@/entities/user";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUserServices, servicesActions } from "@/entities/user";
 import { SubmitOfLogin } from "@/features/submitOfLogin";
 import { SpinnerLoader } from "@/shared/ui/spinnerLoader";
+import { AppDispath } from "@/app/model/store/Store";
+import { useEffect } from "react";
 
 export const LoginWidget = () => {
     //localStorage.clear()
     const services = useSelector(selectUserServices);
+    const dispatch = useDispatch<AppDispath>();
+    useEffect(() => {
+        dispatch(servicesActions.clearErrors());
+    }, [])
     console.log(services.error)
     if (services.isPending) {
         return (
@@ -19,6 +25,7 @@ export const LoginWidget = () => {
         return (
             <div>
                 <SubmitOfLogin></SubmitOfLogin>
+                <span>{services.error ? services.error : ''}</span>
             </div>
         )
     }

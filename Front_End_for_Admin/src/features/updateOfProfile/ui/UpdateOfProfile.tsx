@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 export const UpdateOfProfile = () => {
     const dispath = useDispatch<AppDispath>();
     const user = useSelector(selectUserServices).user;
+    const username = user.profile.name? user.profile.name : user.email;
 
     const [data, setData] = useState({
         nickname: '',
@@ -18,7 +19,7 @@ export const UpdateOfProfile = () => {
     const formContext: ProfileFormContextType = {
         data,
         setData,
-        username: user.name,
+        username,
     }
 
     const submitHandle = (e) => {

@@ -6,28 +6,27 @@ import { useEffect } from "react";
 import { AppDispath } from "@/app/model/store/Store";
 
 export const SignupWidget = () => {
-    const userServices = useSelector(selectUserServices);
     const services = useSelector(selectUserServices);
     const dispatch = useDispatch<AppDispath>();
     useEffect(() => {
         dispatch(servicesActions.clearErrors());
     }, [])
-    if (userServices.isPending) {
+    if (services.isPending) {
         return (
             <>
                 <SpinnerLoader></SpinnerLoader>
             </>
         )
     }
-    if (!userServices.isAuth) {
+    if (!services.isAuth) {
         return (
             <div>
                 <SubmitOfSignup></SubmitOfSignup>
-                <span>{userServices.error ? userServices.error : ''}</span>
+                <span>{services.error ? services.error : ''}</span>
             </div>
         )
     }
-    if (userServices.isAuth) {
+    if (services.isAuth) {
         window.location.href = "http://localhost:5000/";
     }
 }

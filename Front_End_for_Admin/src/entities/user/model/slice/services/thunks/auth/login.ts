@@ -9,9 +9,18 @@ export const login = createAsyncThunk(
             const password = data.password;
             const resp = await AuthService.login(email, password);
             const user = resp.data.user;
-            return user;
+            const res = {
+                error: false,
+                msg: user,
+            }
+            return res;
         } catch (error) {
-            return false;
+            console.log(error)
+            const res = {
+                error: true,
+                msg: error.response.data.error,
+            }
+            return res;
         }
     }
 )

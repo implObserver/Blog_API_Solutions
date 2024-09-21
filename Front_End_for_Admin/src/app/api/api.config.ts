@@ -10,17 +10,6 @@ export const instance = axios.create({
     }
 });
 
-// создаем перехватчик запросов
-// который к каждому запросу добавляет accessToken из localStorage
-/*instance.interceptors.request.use(
-    (config) => {
-        const token = Cookies.get('token');
-        console.log(token)
-        config.headers.Authorization = token;
-        return config
-    }
-)*/
-
 
 // создаем перехватчик ответов
 // который в случае невалидного accessToken попытается его обновить
@@ -32,28 +21,26 @@ instance.interceptors.response.use(
     },
     // в случае просроченного accessToken пытаемся его обновить:
     async (error) => {
-        // предотвращаем зацикленный запрос, добавляя свойство _isRetry 
+        // предотвращаем зацикленный запрос, добавляя свойство _isRetry
         const originalRequest = { ...error.config };
-        originalRequest._isRetry = true;
-        if (
-            // проверим, что ошибка именно из-за невалидного accessToken
-            error.response.status === 401 &&
-            // проверим, что запрос не повторный
-            error.config &&
-            !error.config._isRetry
-        ) {
+
+        // Проверка, что ошибка именно из-за невалидного accessToken
+        if (error.response && error.response.status === 401 && !originalRequest._isRetry) {
             try {
-                // запрос на обновление токенов
-                await instance.get("/api/user/refresh-acess-token");
-                // сохраняем новый accessToken в localStorage
-                // переотправляем запрос с обновленным accessToken
-                return instance.request(originalRequest);
-            } catch (error) {
-                console.log("AUTH ERROR");
+                originalRequest._isRetry = true;
+                // Запрос на обновление токена
+                const resp = await instance.get("/api/user/refresh-acess-token");
+
+                // Переотправляем запрос с обновленным токеном, так как токены автоматически сохраняются в HttpOnly cookie
+                return instance(originalRequest);
+            } catch (refreshError) {
+                console.log("AUTH ERROR: Unable to refresh token");
+                // Здесь вы можете обработать ситуацию по своему усмотрению
+                // Например, перенаправить на страницу входа или показать сообщение об ошибке
             }
         }
-        // на случай, если возникла другая ошибка (не связанная с авторизацией)
-        // пробросим эту ошибку 
+        // На случай, если возникла другая ошибка (не связанная с авторизацией)
+        // пробросим эту ошибку
         throw error;
     }
 );

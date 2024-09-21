@@ -27,11 +27,9 @@ const posts_list_api = asyncHandler(async (req, res, next) => {
 });
 
 const image_of_post_get = asyncHandler(async (req, res, next) => {
-    console.log(req.params)
     const folderName = req.params.imageid;
-    console.log('1')
     const folderPath = `${__dirname}/public/images/${req.user.id}/${folderName}`;
-    console.log('2')
+
     fs.readdir(folderPath, (err, files) => {
         if (err) {
             console.log(err)
@@ -66,7 +64,6 @@ const image_of_post_get = asyncHandler(async (req, res, next) => {
         }
 
         res.set('Content-Type', contentType);
-        console.log(res.getHeaders())
         res.sendFile(filePath);
     });
 });

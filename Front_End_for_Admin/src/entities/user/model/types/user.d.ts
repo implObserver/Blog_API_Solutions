@@ -20,14 +20,14 @@ interface UpdateData {
 
 interface User {
     id: number,
-    name: string,
+    email: string,
     profile: Profile,
     posts: Post[],
 }
 
 interface Profile {
-    name: String,
-    gender: String,
+    name: string,
+    gender: string,
     age: number,
     avatar: File,
 }

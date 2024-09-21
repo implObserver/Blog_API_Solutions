@@ -11,7 +11,7 @@ export const MainLayout: React.FC = () => {
     const { pathname } = useLocation();
     const dispatch = useDispatch<AppDispath>();
     const scrolls = useSelector(selectScrollRestoration).scrolls;
-    //localStorage.clear()
+
     gsap.registerPlugin(ScrollToPlugin);
     
     useEffect(() => {

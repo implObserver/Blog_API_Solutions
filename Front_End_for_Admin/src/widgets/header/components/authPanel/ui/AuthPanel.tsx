@@ -19,9 +19,11 @@ export const AuthPanel = () => {
             </div>
         )
     else {
+        console.log(user.profile.name)
+        const username = user.profile.name !== null ? user.profile.name : user.email;
         return (
             <div className={styles.panel_auth}>
-                <span>{user.name}</span>
+                <span>{username}</span>
                 <div className={styles.wrapper_preview}>
                     <UserPreview></UserPreview>
                 </div>

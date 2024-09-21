@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux'
 import { selectUserServices } from '@/entities/user'
 
 export const MainPage = () => {
-    const user = useSelector(selectUserServices).user;
-    console.log(user)
+    //localStorage.clear()
     return (
         <div className={styles.page__main}>
             <Header></Header>

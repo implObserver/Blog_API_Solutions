@@ -2,18 +2,15 @@ import asyncHandler from "express-async-handler";
 import { prismaDB } from "../../../prisma/queries.js";
 import { __dirname } from "../../../app/dirname/dirname.js";
 import fs from 'fs'
-import path from 'path'
 
 const image_of_post_delete = asyncHandler(async (req, res, next) => {
     const namefolder = req.params.nameFolder;
     const folderPath = `${__dirname}/public/images/${req.user.id}/${namefolder}`;
-    // Проверка существования папки перед удалением
-    console.log(folderPath)
+
     if (!fs.existsSync(folderPath)) {
         return res.status(404).json({ message: 'Папка не найдена' });
     }
 
-    // Удаление папки с использованием fs.rmSync
     try {
         fs.rmSync(folderPath, { recursive: true, force: true });
         console.log('Папка успешно удалена');
@@ -25,18 +22,11 @@ const image_of_post_delete = asyncHandler(async (req, res, next) => {
 })
 
 const post_delete = asyncHandler(async (req, res, next) => {
-    console.log(req.params)
     const postId = req.params.postid;
     prismaDB.deletePost(postId);
     const user = await prismaDB.findUser(req.user.id);
-    res.json({
-        user: {
-            id: user.id,
-            name: user.name,
-            profile: user.profile,
-            posts: user.posts,
-        }
-    });
+    res.locals.user = user;
+    next();
 })
 
 export const deleteController = {

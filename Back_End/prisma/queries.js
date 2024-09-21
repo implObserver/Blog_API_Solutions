@@ -29,7 +29,6 @@ const setNewUser = async (user) => {
         const newUser = await prisma.user.create({
             data: {
                 email: user.email,
-                name: user.email,
                 password: user.password,
                 isAdmin: false,
             },
@@ -76,17 +75,7 @@ const findUser = async (id) => {
             posts: true,
         },
     });
-    return user;
-}
-
-const findUserByName = async (name) => {
-    const user = await prisma.user.findFirst({
-        where: { name: name },
-        include: {
-            profile: true,
-            posts: true,
-        }
-    });
+    console.log(user)
     return user;
 }
 
@@ -245,12 +234,34 @@ const findUserByEmail = async (email) => {
     return user;
 }
 
+const updateProfile = async (user, profile) => {
+    try {
+        const name = profile.nickname;
+        const gender = profile.gender;
+        const age = profile.age;
+
+        const updatedPost = await prisma.profile.update({
+            where: {
+                userId: user.id,
+            },
+            data: {
+                name: name,
+                gender: gender,
+                age: age,
+            },
+        });
+        console.log(updatedPost)
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
 export const prismaDB = {
     getAllUsers,
     getAllPosts,
     setNewUser,
     findUser,
-    findUserByName,
     setToken,
     findProfile,
     findPosts,
@@ -265,4 +276,5 @@ export const prismaDB = {
     findUserByRefreshToken,
     setVerifyCode,
     findUserByEmail,
+    updateProfile,
 }

@@ -5,8 +5,8 @@ import { selectUserServices } from "@/entities/user";
 import { AuthPanel } from '../components/authPanel';
 
 export const Header = () => {
-    //const user = useSelector(selectUserServices).user;
-
+    const user = useSelector(selectUserServices).user;
+    console.log(user)
     return (
         <div className={styles.header}>
             <Logo></Logo>

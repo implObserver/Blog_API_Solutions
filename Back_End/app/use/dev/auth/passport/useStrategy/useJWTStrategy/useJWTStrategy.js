@@ -11,8 +11,8 @@ const PUB_KEY = fs.readFileSync(pathToKey, 'utf8');
 
 const cookieExtractor = (req) => {
     let token = null;
-    console.log(req.cookies)
     if (req && req.cookies) token = req.cookies['acessToken'];
+    console.log(req.cookies)
     const tokenValue = token.startsWith('Bearer ') ? token.slice(7) : token;
     return tokenValue;
 };
