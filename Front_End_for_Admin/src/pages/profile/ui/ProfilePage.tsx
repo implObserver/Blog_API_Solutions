@@ -9,7 +9,6 @@ export const ProfilePage = () => {
     if (services.isAuth) {
         return (
             <div className={styles.page_profile}>
-                <Header></Header>
                 <Profile></Profile>
             </div>
         )

@@ -11,9 +11,9 @@ export const UpdateOfProfile = () => {
     const username = user.profile.name? user.profile.name : user.email;
 
     const [data, setData] = useState({
-        nickname: '',
-        gender: '',
-        age: 0,
+        nickname: user.profile.name,
+        gender: user.profile.gender,
+        age: user.profile.age,
     })
 
     const formContext: ProfileFormContextType = {

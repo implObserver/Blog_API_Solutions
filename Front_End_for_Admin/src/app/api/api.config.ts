@@ -1,5 +1,7 @@
 import axios from "axios";
-import Cookies from 'js-cookie'
+import axiosRetry from 'axios-retry';
+
+let retryCount = 0;
 
 export const instance = axios.create({
     // к запросу будет приуепляться cookies
@@ -10,37 +12,62 @@ export const instance = axios.create({
     }
 });
 
-
-// создаем перехватчик ответов
-// который в случае невалидного accessToken попытается его обновить
-// и переотправить запрос с обновленным accessToken
-instance.interceptors.response.use(
-    // в случае валидного accessToken ничего не делаем:
-    (config) => {
-        return config;
+// Настройка axios-retry
+axiosRetry(instance, {
+    retries: 2, // Количество повторных попыток (всего 3: один оригинальный + 2 повтора)
+    retryCondition: (error) => {
+        return error.response && error.response.status === 401;
     },
-    // в случае просроченного accessToken пытаемся его обновить:
+});
+
+// Переменная для отслеживания количества текущих попыток
+let currentRetryCount = 0;
+
+// Интерсептор ответа
+instance.interceptors.response.use(
+    (response) => {
+        // Сбрасываем счетчик на успешных ответах
+        currentRetryCount = 0;
+        return response;
+    },
     async (error) => {
-        // предотвращаем зацикленный запрос, добавляя свойство _isRetry
-        const originalRequest = { ...error.config };
+        if (error.response) {
+            if (error.response.status === 401) {
+                // Увеличиваем счетчик попыток при ошибках 401
+                currentRetryCount++;
 
-        // Проверка, что ошибка именно из-за невалидного accessToken
-        if (error.response && error.response.status === 401 && !originalRequest._isRetry) {
-            try {
-                originalRequest._isRetry = true;
-                // Запрос на обновление токена
-                const resp = await instance.get("/api/user/refresh-acess-token");
-
-                // Переотправляем запрос с обновленным токеном, так как токены автоматически сохраняются в HttpOnly cookie
-                return instance(originalRequest);
-            } catch (refreshError) {
-                console.log("AUTH ERROR: Unable to refresh token");
-                // Здесь вы можете обработать ситуацию по своему усмотрению
-                // Например, перенаправить на страницу входа или показать сообщение об ошибке
+                if (currentRetryCount === 1) {
+                    // Действие при первой повторной попытке
+                    console.error('Попытка обновить acess token');
+                    await instance.get("/api/user/refresh-acess-token");
+                    // Здесь можете добавить логику для перенаправления пользователя на страницу логина или другое действие
+                } else if (currentRetryCount === 2) {
+                    // Действие при третьей повторной попытке
+                    console.error('Попытка обновить refresh token');
+                    await instance.get("/api/user/refresh-refresh-token");
+                    // Здесь можете добавить логику, когда неудачные попытки превышают 3
+                } else if (currentRetryCount === 3) {
+                    console.log(error)
+                    console.error('ошибка авторизации');
+                }
             }
+        } else {
+            // Если ошибка не связана с ответом сервера
+            console.error('An unexpected error occurred:', error);
         }
-        // На случай, если возникла другая ошибка (не связанная с авторизацией)
-        // пробросим эту ошибку
-        throw error;
+
+        // Если ошибка - это 401, передаем ее дальше, чтобы axios-retry мог обработать повторные попытки
+        return Promise.reject(error);
     }
 );
+
+// Пример использования axios с обработкой 401 ошибки
+const fetchData = async () => {
+    try {
+        const response = await instance.get('/protected-resource');
+        console.log('Data:', response.data);
+    } catch (error) {
+        // Дополнительная обработка ошибок, если не удалось выполнить запрос
+        console.error('Request failed:', error.message);
+    }
+};

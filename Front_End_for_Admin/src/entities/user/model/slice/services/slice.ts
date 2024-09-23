@@ -81,6 +81,7 @@ const userServicesSlice = createSlice({
             .addCase(login.pending, handlePending)
             .addCase(login.fulfilled, (state, action) => {
                 handleFulfilled(state);
+                console.log(action.payload)
                 if (!action.payload.error) {
                     state.user = action.payload.msg;
                     state.isAuth = true;

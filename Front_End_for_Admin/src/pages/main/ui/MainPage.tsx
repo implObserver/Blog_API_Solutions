@@ -7,7 +7,7 @@ export const MainPage = () => {
     //localStorage.clear()
     return (
         <div className={styles.page__main}>
-            <Header></Header>
+            
         </div>
     )
 }

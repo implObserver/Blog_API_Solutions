@@ -19,7 +19,7 @@ const verifyCallbackPg = async (email, password, done) => {
 
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
-            return done(null, false, { message: "Incorrect email" });
+            return done(null, false, { message: "Incorrect password" });
         };
 
         return done(null, user);

@@ -52,7 +52,16 @@ const user_auth_post = [
         if (!errors.isEmpty()) {
             return res.status(400).send({ error: errors.errors[0].msg });
         } else {
-            await passport.authenticate("local", {})(req, res, next)
+            await passport.authenticate("local", (err, user, info) => {
+                if (err) {
+                    //console.log(err)
+                    return res.status(500).json({ error: 'Internal server error' });
+                }
+                if (!user) {
+                    console.log(info)
+                    return res.status(401).json({ error: info.error || info.message });  // поменяйте это для более конкретных ошибок
+                }
+            })(req, res, next)
         }
     }),
 ];

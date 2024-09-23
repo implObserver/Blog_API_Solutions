@@ -46,7 +46,6 @@ const image_of_post_get = asyncHandler(async (req, res, next) => {
 
         switch (extname) {
             case '.avif':
-                console.log(extname)
                 contentType = 'image/avif';
                 break;
             case '.jpeg':

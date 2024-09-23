@@ -8,10 +8,6 @@ const dropUsers = async (id) => {
     const profiles = await prisma.profile.findMany({})
     const posts = await prisma.post.findMany({})
     //await prisma.$queryRaw('DROP schema users CASCADE')
-    console.log(users)
-    console.log(comments)
-    console.log(profiles)
-    console.log(posts)
 }
 
 const getAllUsers = async () => {
@@ -75,7 +71,6 @@ const findUser = async (id) => {
             posts: true,
         },
     });
-    console.log(user)
     return user;
 }
 
@@ -236,20 +231,32 @@ const findUserByEmail = async (email) => {
 
 const updateProfile = async (user, profile) => {
     try {
-        const name = profile.nickname;
-        const gender = profile.gender;
-        const age = profile.age;
+        const { nickname: name, gender, age } = profile;
+
+        const dataToUpdate = {};
+
+        if (name) {
+            dataToUpdate.name = name;
+        }
+        if (gender) {
+            dataToUpdate.gender = gender;
+        }
+        if (age) {
+            dataToUpdate.age = age;
+        }
+
+        if (Object.keys(dataToUpdate).length === 0) {
+            console.log("Нет данных для обновления");
+            return;
+        }
 
         const updatedPost = await prisma.profile.update({
             where: {
                 userId: user.id,
             },
-            data: {
-                name: name,
-                gender: gender,
-                age: age,
-            },
+            data: dataToUpdate,
         });
+
         console.log(updatedPost)
     } catch (error) {
         console.log(error)

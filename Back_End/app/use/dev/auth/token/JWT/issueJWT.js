@@ -15,7 +15,7 @@ const PUB_KEY = fs.readFileSync(pathToPubKey, 'utf8');
 export const getAcessToken = (id) => {
     const _id = id;
 
-    const acessExpiresIn = '15s';
+    const acessExpiresIn = '30m';
 
     const acessPayload = {
         sub: _id,
@@ -31,7 +31,7 @@ export const getAcessToken = (id) => {
 export const getRefreshToken = (id) => {
     const _id = id;
 
-    const refreshExpiresIn = '1d';
+    const refreshExpiresIn = '2d';
 
     const refreshPayload = {
         sub: _id,

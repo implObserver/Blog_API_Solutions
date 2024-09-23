@@ -7,9 +7,6 @@ const save_post_image = [
     asyncHandler(async (req, res, next) => {
         // Extract the validation errors from a request.
         // const errors = validationResult(req);
-        console.log('wdw')
-        console.log(req.headers)
-        console.log(req.key)
         res.json({ token: 'lol' });
     }),
 ];

@@ -26,10 +26,9 @@ export const ProfileForm = () => {
                     id="nickname"
                     name="nickname"
                     type="text"
-                    placeholder="nickname"
+                    placeholder="Enter nickname"
                     value={data.nickname}
-                    autoComplete="on"
-                    required>
+                    autoComplete="on">
                 </input>
 
                 <label htmlFor="gender">Gender:</label>
@@ -39,9 +38,9 @@ export const ProfileForm = () => {
                     id="gender"
                     name="gender"
                     type="gender"
+                    placeholder="Enter your gender"
                     value={data.gender}
-                    autoComplete="on"
-                    required>
+                    autoComplete="on">
                 </input>
 
                 <label htmlFor="age">Age:</label>
@@ -51,9 +50,9 @@ export const ProfileForm = () => {
                     id="age"
                     name="age"
                     type="age"
+                    placeholder="Enter your age"
                     value={data.age}
-                    autoComplete="on"
-                    required>
+                    autoComplete="on">
                 </input>
             </div>
             <div className={styles.container_buttons}>
