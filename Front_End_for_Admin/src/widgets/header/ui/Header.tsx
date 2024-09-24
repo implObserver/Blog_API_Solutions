@@ -5,7 +5,6 @@ import { selectUserServices } from "@/entities/user";
 import { AuthPanel } from '../components/authPanel';
 
 export const Header = () => {
-    console.log('wtf')
     return (
         <div className={styles.header}>
             <Logo></Logo>

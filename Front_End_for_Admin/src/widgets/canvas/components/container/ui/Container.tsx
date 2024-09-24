@@ -23,7 +23,7 @@ export const Container = React.memo(() => {
 
     const { element, model } = context.containerContext;
 
-    const elementContext = useMemo(() => ({
+    const elementContext = {
         featuresContext: {
             panel: {
                 features: [
@@ -39,17 +39,17 @@ export const Container = React.memo(() => {
         model,
         dropdownStatus,
         index: context.containerContext.index,
-    }), [element, model, context.containerContext.index]);
+    };
 
-    const externalResetContext = useMemo(() => ({
+    const externalResetContext = {
         state: dropdownStatus,
         index: `${context.containerContext.index} container`,
-    }), [dropdownStatus, context.containerContext.index]);
+    };
 
-    const dropdownElementContext = useMemo(() => ({
+    const dropdownElementContext = {
         state: dropdownStatus.getState(),
         margin: false,
-    }), [dropdownStatus]);
+    };
 
     const elementListContext: ElementListContextType = useMemo(() => ({
         text: <AddText key="text" />,

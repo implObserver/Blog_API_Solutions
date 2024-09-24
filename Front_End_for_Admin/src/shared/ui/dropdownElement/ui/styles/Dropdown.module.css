@@ -20,6 +20,10 @@
     border: 1px blue solid;
 }
 
+.close {
+    display: none;
+}
+
 .margin {
     margin-top: 10px;
 }

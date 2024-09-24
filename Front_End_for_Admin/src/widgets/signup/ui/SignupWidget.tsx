@@ -8,9 +8,11 @@ import { AppDispath } from "@/app/model/store/Store";
 export const SignupWidget = () => {
     const services = useSelector(selectUserServices);
     const dispatch = useDispatch<AppDispath>();
+
     useEffect(() => {
         dispatch(servicesActions.clearErrors());
     }, [])
+    
     if (services.isPending) {
         return (
             <>

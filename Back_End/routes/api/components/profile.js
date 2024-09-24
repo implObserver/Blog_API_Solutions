@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { userController } from '../../../controllers/user/index.js';
 import { profilesController } from '../../../controllers/profile/index.js';
-import { uploadAvatar } from '../../../controllers/profile/put/multer/avatarMulter.js';
 
 export const profileRouter = Router();
 
@@ -15,7 +14,7 @@ profileRouter.put(
 profileRouter.put(
     "/user/:id/profile/update/avatar",
     userController.user_auth_jwt_protected,
-    uploadAvatar.single('file'),
+    profilesController.upload_avatar.single('file'),
     profilesController.user_avatar_update_put,
     userController.user_get
 );

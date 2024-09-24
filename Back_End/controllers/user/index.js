@@ -1,8 +1,8 @@
-import { cookieMiddlewares } from "./middlewares/cookie/cookieController.js";
-import { getController } from "./get/getController.js"
-import { postController } from "./post/postController.js";
-import { transporterMiddlewares } from "./middlewares/transporter/transporter.js";
-import { redirectMiddlewares } from "./middlewares/redirect/redirect.js";
+import { cookieMiddlewares } from "./helper/middlewares/cookie/cookieController.js";
+import { getController } from "./controllers/get/getController.js"
+import { postController } from "./controllers/post/postController.js";
+import { transporterMiddlewares } from "./helper/middlewares/transporter/transporter.js";
+import { redirectMiddlewares } from "./helper/middlewares/redirect/redirect.js";
 
 export const userController = {
     ...getController,

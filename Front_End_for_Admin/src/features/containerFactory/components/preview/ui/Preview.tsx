@@ -28,7 +28,6 @@ export const Preview = () => {
         file: selectedImage,
         setImgFile: setSelectedImage,
     }
-    console.log(`imageID ${model.imageUrl}`)
 
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
         const element = e.target as HTMLDivElement;

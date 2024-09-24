@@ -1,7 +1,7 @@
 import asyncHandler from "express-async-handler";
 import nodemailer from 'nodemailer'
 import crypto from 'crypto'
-import { prismaDB } from "../../../../prisma/queries.js";
+import { prismaDB } from "../../../../../prisma/queries.js";
 
 
 const transporter = nodemailer.createTransport({
@@ -27,7 +27,7 @@ const send_email = asyncHandler(async (req, res, next) => {
             from: process.env.YANDEX_USER,
             to: email,
             subject: 'Подтвердите свой адрес электронной почты',
-            html: `Подтвердите свою почту, перейдя по этой <a href="${url}">ссылке</a>`,
+            html: `Подтвердите свою почту, перейдя по этой ссылке <a href="${url}">ссылке</a>`,
         });
     } catch (error) {
         console.log(error)

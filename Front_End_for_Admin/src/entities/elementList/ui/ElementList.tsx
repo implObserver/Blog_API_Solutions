@@ -6,6 +6,7 @@ import { Image } from '../components/image'
 import styles from './styles/ElementList.module.css'
 
 export const ElementList = () => {
+    console.log('rerender')
     return (
         <div className={styles.list}>
             <List></List>

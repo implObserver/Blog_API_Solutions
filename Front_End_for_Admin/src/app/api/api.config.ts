@@ -1,5 +1,4 @@
 import axios from "axios";
-import axiosRetry from 'axios-retry';
 
 let retryCount = 0;
 
@@ -13,12 +12,6 @@ export const instance = axios.create({
 });
 
 // Настройка axios-retry
-axiosRetry(instance, {
-    retries: 2, // Количество повторных попыток (всего 3: один оригинальный + 2 повтора)
-    retryCondition: (error) => {
-        return error.response && error.response.status === 401;
-    },
-});
 
 // Переменная для отслеживания количества текущих попыток
 let currentRetryCount = 0;
@@ -47,7 +40,6 @@ instance.interceptors.response.use(
                     await instance.get("/api/user/refresh-refresh-token");
                     // Здесь можете добавить логику, когда неудачные попытки превышают 3
                 } else if (currentRetryCount === 3) {
-                    console.log(error)
                     console.error('ошибка авторизации');
                 }
             }

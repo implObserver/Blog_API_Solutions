@@ -1,15 +1,15 @@
 import passport from "passport";
-import { __dirname } from "../../../app/dirname/dirname.js";
+import { __dirname } from "../../../../app/dirname/dirname.js";
 import asyncHandler from "express-async-handler";
-import { prismaDB } from "../../../prisma/queries.js";
-import { getAcessToken, getRefreshToken } from "../../../app/use/dev/auth/token/JWT/issueJWT.js";
+import { prismaDB } from "../../../../prisma/queries.js";
+import { getAcessToken, getRefreshToken } from "../../../../app/use/dev/auth/token/JWT/issueJWT.js";
 
 const failureProtected = (req, res, next) => {
     res.status(401).json({ message: 'unauthorized' });
 }
 
 const authProtected = (req, res, next) => {
-    console.log(req.isAuthenticated())
+    console.log(req)
     if (req.isAuthenticated()) {
         res.locals.user = req.user;
         res.locals.refreshToken = req.user.refreshToken;
@@ -30,6 +30,7 @@ const user_logout_get = (req, res, next) => {
 };
 
 const user_get = asyncHandler(async (req, res, next) => {
+    console.log('user get')
     const user = res.locals.user;
     res.json({
         user: {

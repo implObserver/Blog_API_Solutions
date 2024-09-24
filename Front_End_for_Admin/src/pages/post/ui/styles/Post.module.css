@@ -6,7 +6,6 @@
     align-content:start;
     row-gap: 4px;
     padding-bottom: 40px;
-    border: 1px red solid;
 }
 
 .javascript {
@@ -16,5 +15,4 @@
 code {
     display: grid;
     justify-content: right;
-    border: 1px red solid;
 }

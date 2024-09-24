@@ -6,13 +6,13 @@ import { AppDispath } from "@/app/model/store/Store";
 import { useEffect } from "react";
 
 export const LoginWidget = () => {
-    //localStorage.clear()
     const services = useSelector(selectUserServices);
     const dispatch = useDispatch<AppDispath>();
+    
     useEffect(() => {
         dispatch(servicesActions.clearErrors());
     }, [])
-    console.log(services.error)
+
     if (services.isPending) {
         return (
             <>
@@ -20,7 +20,7 @@ export const LoginWidget = () => {
             </>
         )
     }
-
+    console.log(services.error)
     if (!services.isAuth) {
         return (
             <div>

@@ -5,7 +5,8 @@ import path from 'path'
 const storage = multer.diskStorage({
     destination: async (req, file, cb) => {
         const id = req.user.id;
-        const directory = `public/images/${id}/avatar/`;
+        const nameFolder = req.params.nameFolder;
+        const directory = `public/images/${id}/${nameFolder}/`;
         fs.readdir(directory, (err, files) => {
             if (files) {
                 files.forEach(async (file) => {
@@ -23,4 +24,8 @@ const storage = multer.diskStorage({
     },
 });
 
-export const uploadAvatar = multer({ storage });
+const upload_image_of_post = multer({ storage });
+
+export const multerController = {
+    upload_image_of_post
+}

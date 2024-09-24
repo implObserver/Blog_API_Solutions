@@ -2,8 +2,9 @@ import { body, validationResult } from "express-validator";
 import asyncHandler from "express-async-handler";
 import passport from "passport";
 import bcrypt from 'bcryptjs';
-import { getRefreshToken } from "../../../app/use/dev/auth/token/JWT/issueJWT.js";
-import { prismaDB } from "../../../prisma/queries.js";
+import { getRefreshToken } from "../../../../app/use/dev/auth/token/JWT/issueJWT.js";
+import { prismaDB } from "../../../../prisma/queries.js";
+import sanitize from "sanitize-html";
 
 const user_create_post = [
     body('email')
@@ -23,6 +24,7 @@ const user_create_post = [
             email: req.body.email,
             password: hashPassword,
         }
+
         if (!errors.isEmpty()) {
             return res.status(400).send({ error: errors.errors[0].msg });
         } else {
@@ -61,6 +63,14 @@ const user_auth_post = [
                     console.log(info)
                     return res.status(401).json({ error: info.error || info.message });  // поменяйте это для более конкретных ошибок
                 }
+                req.logIn(user, (loginErr) => {
+                    if (loginErr) {
+                        return res.status(500).json({ error: 'Login failed' });
+                    }
+                    console.log('Successfully authenticated:', user);
+                    // Передаем управление следующему обработчику
+                    return next();  // Теперь вызываем next()
+                });
             })(req, res, next)
         }
     }),

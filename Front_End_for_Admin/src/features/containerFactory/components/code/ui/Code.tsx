@@ -7,6 +7,7 @@ import {
 } from "@/entities/element";
 import { CodeArea, CodeAreaContext } from "@/shared/ui/codeArea";
 import { useDispatch, useSelector } from "react-redux";
+import styles from './styles/Code.module.css'
 
 export const Code = () => {
     const context = useElementContext();
@@ -32,7 +33,7 @@ export const Code = () => {
     }
 
     return (
-        <div onKeyUp={handleChange}>
+        <div className={styles.code} onKeyUp={handleChange}>
             <CodeAreaContext.Provider value={codeAreaContext}>
                 <CodeArea></CodeArea>
             </CodeAreaContext.Provider>

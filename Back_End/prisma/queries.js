@@ -109,7 +109,7 @@ const findPosts = async (id) => {
 
 const addPost = async (user, title) => {
     const date = Date.now();
-    console.log(`wtffff ${Date.now()}`)
+    
     const defaultElements = [{
         id: 0,
         type: 'main_title',

@@ -1,8 +1,8 @@
 import asyncHandler from "express-async-handler";
-import { prismaDB } from "../../../prisma/queries.js";
-import { __dirname } from "../../../app/dirname/dirname.js";
+import { __dirname } from "../../../../app/dirname/dirname.js";
 import fs from 'fs'
 import path from 'path'
+import { prismaDB } from "../../../../prisma/queries.js";
 
 const posts_of_user_get = asyncHandler(async (req, res, next) => {
     const posts = await prismaDB.findPosts(req.user.id);

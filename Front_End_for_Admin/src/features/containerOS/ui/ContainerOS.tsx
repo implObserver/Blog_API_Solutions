@@ -8,6 +8,7 @@ import { EmptyContext } from "../lib";
 
 export const ContainerOS = ({ children }) => {
     const isEmpty = useCustomState(false);
+    
     return (
         <>
             <EmptyContext.Provider value={isEmpty}>

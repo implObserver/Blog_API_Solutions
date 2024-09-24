@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { userController } from '../../../controllers/user/index.js';
-import { uploadImageOfPost } from '../../../controllers/post/post/multer/ImageOfPostMulter.js';
 import { postsController } from '../../../controllers/post/index.js';
 
 export const postRouter = Router();
@@ -35,7 +34,7 @@ postRouter.get(
 postRouter.post(
     '/user/:userid/posts/image/:nameFolder/update',
     userController.user_auth_jwt_protected,
-    uploadImageOfPost.single('file'),
+    postsController.upload_image_of_post.single('file'),
     postsController.image_update_post
 )
 

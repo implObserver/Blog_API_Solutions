@@ -1,6 +1,6 @@
 import asyncHandler from "express-async-handler";
-import { prismaDB } from "../../../prisma/queries.js";
-import { __dirname } from "../../../app/dirname/dirname.js";
+import { prismaDB } from "../../../../prisma/queries.js";
+import { __dirname } from "../../../../app/dirname/dirname.js";
 import fs from 'fs'
 import path from 'path'
 
