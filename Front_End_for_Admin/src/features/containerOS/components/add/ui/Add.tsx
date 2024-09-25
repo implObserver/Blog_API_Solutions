@@ -22,7 +22,6 @@ export const Add = ({ children }) => {
 
     const keyDownHandle = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key === 'Enter' && model.type !== 'code') {
-            console.log('wtf')
             e.preventDefault();
             dispath(counterActions.increment());
             let newModel: ModelType<ModelSubtype>;

@@ -9,7 +9,6 @@ export const ToBackFromPost = ({ children }) => {
     const dispatch = useDispatch<AppDispath>();
 
     useEffect(() => {
-        console.log(snapshot)
         if (snapshot) {
             dispatch(updatePost(snapshot))
         }

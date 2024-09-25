@@ -3,7 +3,7 @@ import { useDropdownContext } from '../lib/context/Context.';
 
 export const Dropdown = ({ children }) => {
     const status = useDropdownContext();
-    console.log(status.state)
+
     return (
         <div className={styles.dropdown}>
             <div className={`

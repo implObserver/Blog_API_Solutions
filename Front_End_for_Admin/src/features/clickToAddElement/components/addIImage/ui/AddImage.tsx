@@ -7,9 +7,7 @@ import {
     selectModelsOfOpenedPost,
     useElementContext
 } from "@/entities/element";
-import { getPreviewStatus } from "@/entities/postPreview/lib/helper/getPreviewStatus";
 import { addPostImages } from "@/entities/postPreview/lib/helper/loadImageToIDB";
-import { previewStatusesSliceActions } from "@/entities/postPreview/model/slice/previewStatusStore/slice";
 import { servicesActions } from "@/entities/user";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -26,7 +24,6 @@ export const AddImage = () => {
         dispath(counterActions.increment());
         const url = Date.now();
         const imageArea = ImageArea();
-        console.log(url.toString())
         imageArea.setUrl(url.toString())
         const newModel = elementToModel(imageArea);
         const postContext: CellOfPost = {

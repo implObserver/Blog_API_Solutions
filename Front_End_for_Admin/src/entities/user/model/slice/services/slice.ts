@@ -19,7 +19,6 @@ const userServicesSlice = createSlice({
         addModel: (state: ServicesDataType, action: PayloadAction<CellOfPost>) => {
             const post_id = action.payload.post_id;
             const post = state.user.posts.find(post => post.id === post_id);
-            console.log(`payload: ${action.payload}`)
             const elements = post.elements;
             const id = action.payload.model.id;
             elements.forEach((element, index) => {
@@ -81,7 +80,6 @@ const userServicesSlice = createSlice({
             .addCase(login.pending, handlePending)
             .addCase(login.fulfilled, (state, action) => {
                 handleFulfilled(state);
-                console.log(action.payload)
                 if (!action.payload.error) {
                     state.user = action.payload.msg;
                     state.isAuth = true;
@@ -104,7 +102,6 @@ const userServicesSlice = createSlice({
             .addCase(signup.pending, handlePending)
             .addCase(signup.fulfilled, (state, action) => {
                 handleFulfilled(state);
-                console.log(action.payload)
                 if (!action.payload.error) {
                     state.user = action.payload.msg;
                     state.isAuth = true;
@@ -152,7 +149,6 @@ const userServicesSlice = createSlice({
             .addCase(addPost.fulfilled, (state, action) => {
                 handleFulfilled(state);
                 state.user = action.payload;
-                console.log(action.payload)
             })
             .addCase(addPost.rejected, handleRejected)
 
@@ -161,7 +157,6 @@ const userServicesSlice = createSlice({
             .addCase(deletePost.fulfilled, (state, action) => {
                 handleFulfilled(state);
                 state.user = action.payload;
-                console.log(action.payload)
             })
             .addCase(deletePost.rejected, handleRejected)
 
@@ -169,7 +164,6 @@ const userServicesSlice = createSlice({
             .addCase(updatePost.pending, handlePending)
             .addCase(updatePost.fulfilled, (state, action) => {
                 handleFulfilled(state);
-                console.log(action.payload)
                 if (action.payload !== false) {
                     state.user = action.payload;
                 }

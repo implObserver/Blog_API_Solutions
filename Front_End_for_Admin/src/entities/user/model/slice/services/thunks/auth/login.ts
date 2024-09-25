@@ -15,7 +15,6 @@ export const login = createAsyncThunk(
             }
             return res;
         } catch (error) {
-            console.log(error.response)
             const res = {
                 error: true,
                 msg: error.response.data.error,

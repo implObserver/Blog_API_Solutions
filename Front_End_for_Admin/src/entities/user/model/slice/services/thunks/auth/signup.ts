@@ -8,7 +8,6 @@ export const signup = createAsyncThunk(
             const email = data.email;
             const password = data.password;
             const resp = await AuthService.signup(email, password);
-            console.log(resp)
             const user = resp.data.user;
             const res = {
                 error: false,

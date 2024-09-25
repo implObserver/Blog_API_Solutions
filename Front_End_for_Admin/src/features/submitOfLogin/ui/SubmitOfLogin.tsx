@@ -12,7 +12,7 @@ export const SubmitOfLogin = () => {
         email: '',
         password: '',
     })
-    console.log(data)
+
     const formContext: UserFormContextType = {
         data,
         setData,

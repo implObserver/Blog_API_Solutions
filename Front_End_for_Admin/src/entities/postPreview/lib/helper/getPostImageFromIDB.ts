@@ -18,7 +18,6 @@ export const getImageByCode = async (post_id: number, code: string): Promise<Ima
         const imageObj = postImages.find(item => item.code === code);
         if (imageObj) {
             console.log('Blob получен для image_code:', code);
-            console.log(imageObj)
             return imageObj;
         }
     }

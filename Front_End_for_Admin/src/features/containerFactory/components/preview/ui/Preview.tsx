@@ -21,7 +21,6 @@ export const Preview = () => {
 
     const verify = async () => {
         const postImages = await getPostImages(post_id);
-        console.log(postImages)
         if (postImages === null) {
             const image: ImageType = {
                 code: model.imageUrl,
@@ -31,7 +30,6 @@ export const Preview = () => {
             addPostImages(post_id, image);
         } else {
             const image = await getImageByCode(post_id, model.imageUrl);
-            console.log(image)
             if (image.blob === null && !image.isRetry) {
                 uploadImage();
             } else {
@@ -41,9 +39,7 @@ export const Preview = () => {
     }
 
     const uploadImage = async () => {
-        console.log(model.imageUrl)
         const blob = await getPostImage(model.imageUrl);
-        console.log(blob)
         let isRetry = false;
         if (blob === null) {
             isRetry = true;
@@ -53,7 +49,6 @@ export const Preview = () => {
             blob,
             isRetry,
         }
-        console.log('wwwwwww')
         setSelectedImage(blob)
         await addPostImages(post_id, image);
     }

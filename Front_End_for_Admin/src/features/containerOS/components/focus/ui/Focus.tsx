@@ -27,14 +27,11 @@ export const Focus = ({ children }) => {
         if (e.key === 'ArrowUp' && context.containerContext.index > 0) {
             let index = context.containerContext.index - 1;
             if (index > 0) {
-                console.log(index)
                 const model = models[index];
 
                 if (model.type === 'preview' || model.type === 'view') {
-                    console.log(model)
                     index--;
                 }
-                console.log(index)
                 dispath(focusActions.setFocus(index))
             }
         }

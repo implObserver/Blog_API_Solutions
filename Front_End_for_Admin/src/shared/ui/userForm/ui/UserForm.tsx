@@ -9,7 +9,6 @@ export const UserForm = () => {
         password: context.data.password,
     }
 
-    console.log(context)
     const handle = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newData = { ...data };
         newData[e.target.id] = e.target.value

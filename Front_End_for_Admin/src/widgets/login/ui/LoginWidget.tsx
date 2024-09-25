@@ -21,7 +21,6 @@ export const LoginWidget = () => {
             </>
         )
     }
-    console.log(services.error)
 
     if (!services.isAuth) {
         return (

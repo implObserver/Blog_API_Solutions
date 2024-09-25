@@ -27,7 +27,6 @@ export const CanvasOfPosts = () => {
 
     const fill = useMemo(() => {
         return posts.map((post, index) => {
-            console.log(post.id)
             const context: PostPreviewContextType = {
                 deleteFeature: <DeletePost postId={post.id}></DeletePost>,
             }
