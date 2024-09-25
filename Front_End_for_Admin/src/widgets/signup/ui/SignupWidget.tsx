@@ -4,6 +4,7 @@ import { SubmitOfSignup } from "@/features/submitOfSignup";
 import { SpinnerLoader } from "@/shared/ui/spinnerLoader";
 import { useEffect } from "react";
 import { AppDispath } from "@/app/model/store/Store";
+import { Error } from "@/entities/notificationBanner";
 
 export const SignupWidget = () => {
     const services = useSelector(selectUserServices);
@@ -20,11 +21,16 @@ export const SignupWidget = () => {
             </>
         )
     }
+    
     if (!services.isAuth) {
         return (
             <div>
                 <SubmitOfSignup></SubmitOfSignup>
-                <span>{services.error ? services.error : ''}</span>
+                {
+                    services.error
+                        ? <Error message={services.error} />
+                        : ''
+                }
             </div>
         )
     }

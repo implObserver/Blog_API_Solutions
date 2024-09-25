@@ -3,5 +3,10 @@
 }
 
 .letter {
-    color: red;
+    color: var(--color__secondary-theme);
+}
+
+.link {
+    text-decoration: none;
+    color: black;
 }

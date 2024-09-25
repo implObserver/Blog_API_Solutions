@@ -14,7 +14,7 @@ import { useLocation } from "react-router-dom";
 
 export const AddTitle = () => {
     const context = useElementContext();
-    const index = useLocation().state;
+    const post_id = useLocation().state;
     const model = context.model;
     const models = useSelector(selectModelsOfOpenedPost).models;
 
@@ -25,7 +25,7 @@ export const AddTitle = () => {
         const textArea = Title();
         const newModel = elementToModel(textArea);
         const postContext: CellOfPost = {
-            index,
+            post_id,
             model,
             newModel,
         }
@@ -34,7 +34,7 @@ export const AddTitle = () => {
             newModel,
         }
         const updateContext: UpdateModels = {
-            index,
+            post_id,
             models,
         }
 

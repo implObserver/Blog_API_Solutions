@@ -13,7 +13,7 @@ import { useLocation } from "react-router-dom";
 
 export const AddCode = () => {
     const context = useElementContext();
-    const index = useLocation().state;
+    const post_id = useLocation().state;
     const model = context.model;
     const models = useSelector(selectModelsOfOpenedPost).models;
     const dispath = useDispatch<AppDispath>();
@@ -24,7 +24,7 @@ export const AddCode = () => {
         const newModel = elementToModel(codeArea);
 
         const postContext: CellOfPost = {
-            index,
+            post_id,
             model,
             newModel,
         }
@@ -33,7 +33,7 @@ export const AddCode = () => {
             newModel,
         }
         const updateContext: UpdateModels = {
-            index,
+            post_id,
             models,
         }
         dispath(modlelsOfOpenedPostActions.addModel(modelContext));

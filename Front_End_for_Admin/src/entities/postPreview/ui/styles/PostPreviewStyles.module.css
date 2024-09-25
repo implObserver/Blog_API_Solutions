@@ -9,7 +9,7 @@
     align-items: end;
     transition: object-position 500ms ease-in-out;
     overflow: hidden;
-    border: 2px grey solid;
+    border: 2px var(--color__main-theme_accent) solid;
     border-radius: 5px;
 }
 

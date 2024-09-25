@@ -18,7 +18,7 @@ const getScroll = (pathname) => {
 export const MainLayout: React.FC = () => {
     const { pathname } = useLocation();
     const dispatch = useDispatch<AppDispath>();
-
+    console.log('ddddddd')
     gsap.registerPlugin(ScrollToPlugin);
 
     useEffect(() => {

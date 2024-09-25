@@ -4,11 +4,12 @@ import { SubmitOfLogin } from "@/features/submitOfLogin";
 import { SpinnerLoader } from "@/shared/ui/spinnerLoader";
 import { AppDispath } from "@/app/model/store/Store";
 import { useEffect } from "react";
+import { Error } from "@/entities/notificationBanner";
 
 export const LoginWidget = () => {
     const services = useSelector(selectUserServices);
     const dispatch = useDispatch<AppDispath>();
-    
+    //localStorage.clear()
     useEffect(() => {
         dispatch(servicesActions.clearErrors());
     }, [])
@@ -21,11 +22,16 @@ export const LoginWidget = () => {
         )
     }
     console.log(services.error)
+
     if (!services.isAuth) {
         return (
             <div>
                 <SubmitOfLogin></SubmitOfLogin>
-                <span>{services.error ? services.error : ''}</span>
+                {
+                    services.error
+                        ? <Error message={services.error} />
+                        : ''
+                }
             </div>
         )
     }

@@ -1,7 +1,7 @@
 interface ImageStateContextType {
     model: ModelType<ModelSubtype>,
-    file: File,
-    setImgFile: React.Dispatch<React.SetStateAction<File>>,
+    file: Blob,
+    setImgFile?: React.Dispatch<React.SetStateAction<File>>,
 }
 
 interface ProfileFormContextType {
@@ -37,6 +37,7 @@ interface TextAreaContextType {
     maxLength: number,
     isFocus: boolean,
     ref?: React.MutableRefObject<HTMLTextAreaElement | null>,
+    id?: number,
 }
 
 interface CustomState {

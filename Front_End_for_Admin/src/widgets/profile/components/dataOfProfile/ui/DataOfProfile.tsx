@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUserServices, servicesActions } from "@/entities/user";
 import { AppDispath } from "@/app/model/store/Store";
 import { useEffect } from "react";
+import { Error } from "@/entities/notificationBanner";
 
 export const DataOfProfile = () => {
     const services = useSelector(selectUserServices);
@@ -16,7 +17,11 @@ export const DataOfProfile = () => {
     return (
         <div className={styles.data_of_profile}>
             <UpdateOfProfile></UpdateOfProfile>
-            <span>{services.error ? services.error : ''}</span>
+            {
+                services.error
+                    ? <Error message={services.error} />
+                    : ''
+            }
         </div>
     )
 }

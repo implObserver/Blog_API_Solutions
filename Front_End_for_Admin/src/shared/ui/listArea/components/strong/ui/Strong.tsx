@@ -22,7 +22,7 @@ export const Strong = () => {
                 adjustWidth();
                 context.value.setStrong(element.value);
             } else {
-                
+
             }
         }
     };

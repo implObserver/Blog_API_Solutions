@@ -5,10 +5,6 @@ import { useMemo } from 'react';
 export const UploadImage = () => {
     const context = useImageContext();
 
-    const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        context.setImgFile(e.target.files[0]);
-    }
-
     const id = useMemo(() => `file_upload_${Math.random()}`, []);
 
     return (
@@ -19,7 +15,6 @@ export const UploadImage = () => {
                 type="file"
                 accept="image/*"
                 name="myImage"
-                onChange={changeHandler}
             />
 
             <label

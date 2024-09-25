@@ -1,3 +1,12 @@
+interface PostImages {
+    post_id: number;
+    images: Array<ImageType>;
+}
+interface ImageType {
+    code: string,
+    blob: Blob,
+    isRetry: boolean,
+}
 interface Post {
     id: number,
     title: string,
@@ -19,13 +28,13 @@ interface Comment {
 }
 
 interface CellOfPost {
-    index?: number,
+    post_id?: number,
     newModel?: ModelType<TextAreaModel | PreviewModel | TitleModel>,
     model: ModelType<TextAreaModel | PreviewModel | TitleModel>,
 }
 
 interface UpdateModels {
-    index: number,
+    post_id: number,
     models: ModelType<TextAreaModel | PreviewModel | TitleModel>[],
 }
 

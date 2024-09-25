@@ -7,6 +7,9 @@ import {
     selectModelsOfOpenedPost,
     useElementContext
 } from "@/entities/element";
+import { getPreviewStatus } from "@/entities/postPreview/lib/helper/getPreviewStatus";
+import { addPostImages } from "@/entities/postPreview/lib/helper/loadImageToIDB";
+import { previewStatusesSliceActions } from "@/entities/postPreview/model/slice/previewStatusStore/slice";
 import { servicesActions } from "@/entities/user";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -14,19 +17,20 @@ import { useLocation } from "react-router-dom";
 export const AddImage = () => {
     const context = useElementContext();
     const dispath = useDispatch<AppDispath>();
-    const index = useLocation().state;
+    const post_id = useLocation().state;
     const model = context.model;
     const models = useSelector(selectModelsOfOpenedPost).models;
+
 
     const clickHandle = () => {
         dispath(counterActions.increment());
         const url = Date.now();
-        const textArea = ImageArea();
+        const imageArea = ImageArea();
         console.log(url.toString())
-        textArea.setUrl(url.toString())
-        const newModel = elementToModel(textArea);
+        imageArea.setUrl(url.toString())
+        const newModel = elementToModel(imageArea);
         const postContext: CellOfPost = {
-            index,
+            post_id,
             model,
             newModel,
         }
@@ -35,12 +39,19 @@ export const AddImage = () => {
             newModel,
         }
         const updateContext: UpdateModels = {
-            index,
+            post_id,
             models,
         }
+        const image: ImageType = {
+            code: url.toString(),
+            blob: null,
+            isRetry: false,
+        }
+
         dispath(modlelsOfOpenedPostActions.addModel(modelContext));
         dispath(servicesActions.updateModels(updateContext));
         dispath(servicesActions.addModel(postContext));
+        addPostImages(post_id, image);
         context.dropdownStatus.toggle();
     }
     return (

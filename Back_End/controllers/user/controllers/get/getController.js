@@ -69,13 +69,13 @@ const refresh_acessToken = asyncHandler(async (req, res, next) => {
     const refreshToken = tokens?.refreshToken;
 
     if (!refreshToken) {
-        return res.status(401).json({ error: 'Refresh token is required.' });
+        return res.status(401).send({ error: 'Refresh token is required.' });
     }
 
     const user = await prismaDB.findUserByRefreshToken(refreshToken);
 
     if (!user) {
-        return res.status(403).json({ error: 'Invalid refresh token.' });
+        return res.status(403).send({ error: 'Invalid refresh token.' });
     }
 
     const acessToken = getAcessToken(user.id).token;
@@ -91,7 +91,7 @@ const refresh_refreshToken = asyncHandler(async (req, res, next) => {
     const tokens = req.query;
     let refreshToken = tokens.refreshToken;
 
-    if (!refreshToken) return res.sendStatus(401);
+    if (!refreshToken) return res.status(401).send({ error: 'Ошибка авторизации' });
 
     const user = await prismaDB.findUserByRefreshToken(refreshToken);
 

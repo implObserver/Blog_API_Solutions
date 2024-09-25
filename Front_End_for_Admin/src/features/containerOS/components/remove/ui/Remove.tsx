@@ -13,18 +13,18 @@ export const Remove = ({ children }) => {
     const model = context.containerContext.model;
     const dispath = useDispatch<AppDispath>();
     const isEmpty = useEmptyContext();
-    const index = useLocation().state;
+    const post_id = useLocation().state;
     const models = useSelector(selectModelsOfOpenedPost).models;
 
     const keyUpHandle = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (isEmpty.getState() && context.containerContext.index > 2) {
             const context: CellOfPost = {
-                index,
+                post_id,
                 model,
             }
 
             const updateContext: UpdateModels = {
-                index,
+                post_id,
                 models,
             }
             dispath(modlelsOfOpenedPostActions.removeModel(model));

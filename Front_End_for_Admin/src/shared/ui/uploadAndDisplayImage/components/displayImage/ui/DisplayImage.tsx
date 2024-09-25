@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 export const DisplayImage = () => {
     const context = useImageContext();
 
-    const selectedImage = useMemo(() => context.file, [context.file]);
+    const selectedImage = context.file;
 
     return (
         <div className={styles.container}>
@@ -17,7 +17,7 @@ export const DisplayImage = () => {
                         src={URL.createObjectURL(selectedImage)}
                     />
                     <br /> <br />
-                    <button className={styles.button} onClick={() => context.setImgFile(null)}>
+                    <button className={styles.button}>
                         Remove
                     </button>
                 </div>

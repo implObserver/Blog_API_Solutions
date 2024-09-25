@@ -17,8 +17,8 @@ const userServicesSlice = createSlice({
     initialState,
     reducers: {
         addModel: (state: ServicesDataType, action: PayloadAction<CellOfPost>) => {
-            const index = action.payload.index;
-            const post = state.user.posts.find(post => post.id === index);
+            const post_id = action.payload.post_id;
+            const post = state.user.posts.find(post => post.id === post_id);
             console.log(`payload: ${action.payload}`)
             const elements = post.elements;
             const id = action.payload.model.id;
@@ -30,8 +30,8 @@ const userServicesSlice = createSlice({
 
         },
         updateModel: (state: ServicesDataType, action: PayloadAction<CellOfPost>) => {
-            const index = action.payload.index;
-            const post = state.user.posts.find(post => post.id === index);
+            const post_id = action.payload.post_id;
+            const post = state.user.posts.find(post => post.id === post_id);
             const elements = post.elements;
             const id = action.payload.model.id;
             elements.forEach((element, index) => {
@@ -41,8 +41,8 @@ const userServicesSlice = createSlice({
             })
         },
         removeModel: (state: ServicesDataType, action: PayloadAction<CellOfPost>) => {
-            const index = action.payload.index;
-            const post = state.user.posts.find(post => post.id === index);
+            const post_id = action.payload.post_id;
+            const post = state.user.posts.find(post => post.id === post_id);
 
             const elements = post.elements;
             const id = action.payload.model.id;
@@ -53,8 +53,8 @@ const userServicesSlice = createSlice({
             })
         },
         updateModels: (state: ServicesDataType, action: PayloadAction<UpdateModels>) => {
-            const index = action.payload.index;
-            const post = state.user.posts.find(post => post.id === index);
+            const post_id = action.payload.post_id;
+            const post = state.user.posts.find(post => post.id === post_id);
             post.elements = action.payload.models;
         },
         clearErrors: (state: ServicesDataType) => {

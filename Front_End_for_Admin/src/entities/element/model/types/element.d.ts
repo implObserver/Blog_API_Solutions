@@ -124,7 +124,15 @@ interface SnapShot {
     snapshot: Post,
 }
 //Elements
+interface PreviewStatus {
+    code: string,
+    status: boolean,
+    image?: string,
+}
 
+interface PreviewStatuses {
+    statuses: PreviewStatus[],
+}
 interface BaseElement {
     getId: () => number;
     getType: () => string;

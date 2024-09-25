@@ -16,21 +16,10 @@ import {
 
 export const CanvasOfPosts = () => {
     const service = useSelector(selectUserServices);
-    const models = useSelector(selectModelsOfOpenedPost).models;
     const user = service.user;
     const posts = user.posts;
     const userID = Cookies.get('user_id');
     const dispatch = useDispatch<AppDispath>();
-    const snapshot = useSelector(selectSnapshot).snapshot;
-
-    useEffect(() => {
-        try {
-            dispatch(snapshotSliceActions.updateSnapshot(models));
-            dispatch(updatePost(snapshot))
-        } catch (error) {
-
-        }
-    }, [snapshot])
 
     const clickHandle = (post: Post) => {
         dispatch(snapshotSliceActions.initialSnapshot(post));

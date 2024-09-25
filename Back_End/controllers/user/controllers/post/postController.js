@@ -56,20 +56,17 @@ const user_auth_post = [
         } else {
             await passport.authenticate("local", (err, user, info) => {
                 if (err) {
-                    //console.log(err)
                     return res.status(500).json({ error: 'Internal server error' });
                 }
                 if (!user) {
-                    console.log(info)
-                    return res.status(401).json({ error: info.error || info.message });  // поменяйте это для более конкретных ошибок
+                    return res.status(401).json({ error: info.error || info.message });
                 }
                 req.logIn(user, (loginErr) => {
                     if (loginErr) {
                         return res.status(500).json({ error: 'Login failed' });
                     }
                     console.log('Successfully authenticated:', user);
-                    // Передаем управление следующему обработчику
-                    return next();  // Теперь вызываем next()
+                    return next();
                 });
             })(req, res, next)
         }

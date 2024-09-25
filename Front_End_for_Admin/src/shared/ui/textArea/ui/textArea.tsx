@@ -16,7 +16,7 @@ export const TextArea = () => {
                 && e.key !== 'ArrowRight') {
                 context.value.setValue(element.value);
             } else {
-           
+
             }
         }
     };
