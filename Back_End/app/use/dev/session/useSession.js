@@ -1,5 +1,6 @@
 import session from 'express-session';
 import { app } from '../../../app.js';
+import 'dotenv/config';
 
 export const useSession = () => {
   app.use(

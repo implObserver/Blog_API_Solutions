@@ -2,6 +2,7 @@ import asyncHandler from 'express-async-handler';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 import { prismaDB } from '../../../../../database/prisma/queries.js';
+import 'dotenv/config';
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.yandex.ru',

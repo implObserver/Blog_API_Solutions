@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 import { addPostImages } from "@/entities/postPreview/lib/helper/loadImageToIDB";
 import { removePostImage } from "@/entities/postPreview/lib/helper/removePostImageFromIDB";
 import { addPlaceholderImageToPost } from "../lib/helper/addPlaceholderImageToPost";
-import { handleExistingPostImages } from "../lib/helper/uploadImage";
+import { handleExistingPostImages, uploadImage } from "../lib/helper/uploadImage";
 
 export const Preview = () => {
     const context = useElementContext();
@@ -17,10 +17,6 @@ export const Preview = () => {
     const [selectedImage, setSelectedImage] = useState(null);
 
     const verifyPostImages = async () => {
-        const postImages = await getPostImages(post_id);
-        if (postImages === null) {
-            await addPlaceholderImageToPost(post_id, model);
-        }
         const blob = await handleExistingPostImages(post_id, model);
         setSelectedImage(blob);
     };

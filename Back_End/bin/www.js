@@ -7,6 +7,7 @@
 import { app } from '../app/app.js';
 import { createServer } from 'http';
 import createDebugMessages from 'debug';
+import 'dotenv/config';
 
 const debug = createDebugMessages('authentification-basics:server');
 

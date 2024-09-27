@@ -4,9 +4,9 @@ export const addPostImages = async (post_id: number, image: ImageType): Promise<
     const db = await dbPromise;
 
     const existingPost = await db.get('posts', post_id) || { post_id, images: [] };
-
+    console.log(await db.get('posts', post_id))
     const existingImageIndex = existingPost.images.findIndex(item => item.code === image.code);
-
+    console.log(`${existingPost}=posts,${existingImageIndex}-index,${image.code}-code`)
     if (existingImageIndex !== -1) {
         existingPost.images[existingImageIndex].blob = image.blob;
         existingPost.images[existingImageIndex].isRetry = image.isRetry;

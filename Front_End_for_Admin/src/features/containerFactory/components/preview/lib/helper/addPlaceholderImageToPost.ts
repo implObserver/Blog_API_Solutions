@@ -7,5 +7,4 @@ export const addPlaceholderImageToPost = async (post_id: number, model: ModelTyp
         isRetry: false,
     };
     await addPostImages(post_id, image);
-    return image.blob;
 };
