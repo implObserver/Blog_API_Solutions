@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "imports": {
+    "#controllers/*": "./controllers/*"
+  },
   "scripts": {
     "installDeps": "node scriptDep",
     "start": "node ./bin/www",

@@ -1,7 +1,6 @@
 import { Router } from 'express';
-import { userController } from '../../../controllers/user/index.js';
-import { postsController } from '../../../controllers/post/index.js';
-
+import { userController } from '#controllers/user/index.js';
+import { postsController } from '#controllers/post/index.js';
 export const postRouter = Router();
 
 //postRouter.get('/user/:userid/posts', userController.user_auth_jwt_protected, postsController);

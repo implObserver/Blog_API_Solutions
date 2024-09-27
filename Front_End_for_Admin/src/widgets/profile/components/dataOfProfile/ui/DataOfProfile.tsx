@@ -9,7 +9,7 @@ import { Error } from "@/entities/notificationBanner";
 export const DataOfProfile = () => {
     const services = useSelector(selectUserServices);
     const dispatch = useDispatch<AppDispath>();
-
+    
     useEffect(() => {
         dispatch(servicesActions.clearErrors());
     }, [])
