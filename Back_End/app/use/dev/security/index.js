@@ -1,5 +1,5 @@
-import { useCORS } from "./useCORS/useCORS.js"
+import { useCORS } from './useCORS/useCORS.js';
 
 export const useSecurityMiddlewares = () => {
-    useCORS();
-}
+  useCORS();
+};

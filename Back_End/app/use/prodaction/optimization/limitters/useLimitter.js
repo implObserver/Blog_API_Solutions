@@ -1,9 +1,11 @@
-import RateLimit from "express-rate-limit";
-import { app } from "../../../../app.js";
+import RateLimit from 'express-rate-limit';
+import { app } from '../../../../app.js';
 
 const limiter = RateLimit({
-    windowMs: 1 * 60 * 1000, // 1 minute
-    max: 200,
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 200,
 });
 
-export const useLimitter = () => { app.use(limiter) };
+export const useLimitter = () => {
+  app.use(limiter);
+};

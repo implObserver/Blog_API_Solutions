@@ -1,37 +1,40 @@
-import passport from "passport";
+import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from 'bcryptjs';
-import { prismaDB } from "../../../../../../../prisma/queries.js";
+import { prismaDB } from '../../../../../../../database/prisma/queries.js';
 
 //for postgresDB
 const verifyCallbackPg = async (email, password, done) => {
-    try {
-        const user = await prismaDB.findUserByEmail(email);
-        if (!user) {
-            console.log('Incorrect email')
-            return done(null, false, { message: "Incorrect email" });
-        };
+  try {
+    const user = await prismaDB.findUserByEmail(email);
+    if (!user) {
+      console.log('Incorrect email');
+      return done(null, false, { message: 'Incorrect email' });
+    }
 
-        if(!user.isVerified) {
-            console.log('Почтовый ящик не подтвержден')
-            return done(null, false, { message: "Почтовый ящик не подтвержден" });
-        }
+    if (!user.isVerified) {
+      console.log('Почтовый ящик не подтвержден');
+      return done(null, false, { message: 'Почтовый ящик не подтвержден' });
+    }
 
-        const match = await bcrypt.compare(password, user.password);
-        if (!match) {
-            return done(null, false, { message: "Incorrect password" });
-        };
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+      return done(null, false, { message: 'Incorrect password' });
+    }
 
-        return done(null, user);
-    } catch (err) {
-        console.log('catch')
-        console.log(err)
-        return done(err);
-    };
-}
+    return done(null, user);
+  } catch (err) {
+    console.log('catch');
+    console.log(err);
+    return done(err);
+  }
+};
 
-const strategy = new LocalStrategy({ usernameField: 'email' }, verifyCallbackPg);
+const strategy = new LocalStrategy(
+  { usernameField: 'email' },
+  verifyCallbackPg
+);
 
 export const useLocalStrategy = () => {
-    passport.use(strategy);
-}
+  passport.use(strategy);
+};

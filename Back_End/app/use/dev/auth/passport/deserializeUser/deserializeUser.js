@@ -1,14 +1,14 @@
-import passport from "passport";
-import { prismaDB } from "../../../../../../prisma/queries.js";
+import passport from 'passport';
+import { prismaDB } from '../../../../../../database/prisma/queries.js';
 
 export const setDeserializeUser = () => {
-    passport.deserializeUser(async (id, done) => {
-        try {
-            //const user = await User.findById(id); //for mongoDB
-            const user = await prismaDB.findUser(id);
-            done(null, user);
-        } catch (err) {
-            done(err);
-        };
-    });
-}
+  passport.deserializeUser(async (id, done) => {
+    try {
+      //const user = await User.findById(id); //for mongoDB
+      const user = await prismaDB.findUser(id);
+      done(null, user);
+    } catch (err) {
+      done(err);
+    }
+  });
+};
