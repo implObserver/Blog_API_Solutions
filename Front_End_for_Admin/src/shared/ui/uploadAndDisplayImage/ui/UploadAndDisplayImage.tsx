@@ -8,7 +8,7 @@ export const UploadAndDisplayImage = () => {
     const context = useImageContext();
 
     const file = useMemo(() => context.file, [context.file]);
-    
+
     if (file) {
         return (
             <div className={styles.container}>
@@ -17,7 +17,7 @@ export const UploadAndDisplayImage = () => {
         );
     } else {
         return (
-            <div className={styles.container}>
+            <div className={styles.container} >
                 <UploadImage />
             </div>
         );

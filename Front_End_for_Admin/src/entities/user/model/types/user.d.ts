@@ -4,6 +4,7 @@ interface ServicesDataType {
     isPending?: boolean,
     avatar: string,
     error?: string,
+    isUpdate?: boolean;
 }
 
 interface PostUpdate {

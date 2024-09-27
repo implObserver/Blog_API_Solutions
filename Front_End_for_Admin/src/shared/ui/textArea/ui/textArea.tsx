@@ -29,6 +29,7 @@ export const TextArea = () => {
     return (
         <div className={styles.container} key={Math.random()}>
             <TextareaAutosize
+                id={context.value.getId().toString()}
                 autoFocus={context.isFocus}
                 onKeyUp={auto_grow}
                 placeholder={context.placeholder}

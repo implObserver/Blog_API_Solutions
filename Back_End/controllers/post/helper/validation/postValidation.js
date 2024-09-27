@@ -20,9 +20,9 @@ export const validateElements = (elements) => {
 }
 
 const validateElementType = (element) => {
-    const validTypes = ['main_title', 'list_header', 'list_element', 'preview', 'view', 'text', 'code'];
+    const validTypes = ['main_title', 'list_header', 'title', 'list_element', 'preview', 'view', 'text', 'code'];
     if (!validTypes.includes(element.type)) {
-        throw new Error(`type каждого элемента elements должен быть одним из: ${validTypes.join(', ')}`);
+        throw new Error(`type каждого элемента elements должен быть одним из: ${validTypes.join(', ')} а у вас ${element.type}`);
     }
 
     if (element.type === 'main_title' && element.fontSize == null) {

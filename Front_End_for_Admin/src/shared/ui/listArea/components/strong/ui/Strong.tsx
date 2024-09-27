@@ -42,6 +42,7 @@ export const Strong = () => {
     return (
         <div className={styles.container}>
             <input
+                id={`strong_${context.value.getId()}`}
                 ref={inputRef}
                 autoFocus={context.isFocus}
                 onKeyUp={strong_grow}

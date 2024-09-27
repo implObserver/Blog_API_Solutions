@@ -161,14 +161,20 @@ const userServicesSlice = createSlice({
             .addCase(deletePost.rejected, handleRejected)
 
         builder
-            .addCase(updatePost.pending, handlePending)
+            .addCase(updatePost.pending, (state) => {
+                state.isPending = true;
+                state.isUpdate = true;
+            })
             .addCase(updatePost.fulfilled, (state, action) => {
                 handleFulfilled(state);
                 if (action.payload !== false) {
                     state.user = action.payload;
                 }
             })
-            .addCase(updatePost.rejected, handleRejected)
+            .addCase(updatePost.rejected, (state) => {
+                state.isPending = false;
+                state.isUpdate = false;
+            })
     }
 })
 

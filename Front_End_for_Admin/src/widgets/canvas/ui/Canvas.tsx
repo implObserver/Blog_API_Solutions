@@ -1,7 +1,7 @@
 import { Container } from "../components/container";
 import { ContainerContext } from "@/features/containerOS";
 import { useLocation } from "react-router-dom";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispath } from "@/app/model/store/Store";
 import { modelsToContainers } from "../lib/helper/containerAssembly";
@@ -22,19 +22,19 @@ export const Canvas = React.memo(() => {
         const posts = user.posts;
         const post = posts.find(post => post.id === post_id);
         let elements = posts.length === 0 ? [] : post.elements;
-        const containerContexts = modelsToContainers(elements);
+        const containerContexts = useMemo(() => modelsToContainers(elements), [elements]);
 
         const updateSnapshot = () => {
             const models = getVirtualModels();
             dispatch(snapshotSliceActions.updateSnapshot(models));
         };
-    
+
         const finalizeSnapshot = () => {
             updateSnapshot();
             const snapshot = getSnapshot();
             dispatch(updatePost(snapshot));
         };
-    
+
 
         useEffect(() => {
             dispatch(modlelsOfOpenedPostActions.uploadPosts(elements));
@@ -68,7 +68,7 @@ export const Canvas = React.memo(() => {
                     containerContext,
                 };
                 return (
-                    <ContainerContext.Provider value={container} key={index}>
+                    <ContainerContext.Provider value={container} key={`container_${containerContext.model.id}`}>
                         <Container />
                     </ContainerContext.Provider>
                 );

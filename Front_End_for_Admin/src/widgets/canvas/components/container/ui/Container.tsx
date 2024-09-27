@@ -74,7 +74,6 @@ export const Container = React.memo(() => {
                     </DropdownContext.Provider>
                 </ExternalReset>
             </ExternalResetContext.Provider>
-            {Date.now()}
         </div>
     );
 });

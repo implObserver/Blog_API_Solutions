@@ -2,16 +2,13 @@ import { ImageContext, UploadAndDisplayImage } from "@/shared/ui/uploadAndDispla
 import { useEffect, useState } from "react";
 import styles from './styles/Preview.module.css'
 import { useElementContext } from "@/entities/element";
-
-import {
-    addPostImage,
-    deletePostImage,
-    getPostImage
-} from "@/entities/user";
-import { getImageByCode, getPostImages } from "@/entities/postPreview/lib/helper/getPostImageFromIDB";
+import { addPostImage, deletePostImage } from "@/entities/user";
+import { getPostImages } from "@/entities/postPreview/lib/helper/getPostImageFromIDB";
 import { useLocation } from "react-router-dom";
 import { addPostImages } from "@/entities/postPreview/lib/helper/loadImageToIDB";
 import { removePostImage } from "@/entities/postPreview/lib/helper/removePostImageFromIDB";
+import { addPlaceholderImageToPost } from "../lib/helper/addPlaceholderImageToPost";
+import { handleExistingPostImages } from "../lib/helper/uploadImage";
 
 export const Preview = () => {
     const context = useElementContext();
@@ -19,43 +16,18 @@ export const Preview = () => {
     const post_id = useLocation().state;
     const [selectedImage, setSelectedImage] = useState(null);
 
-    const verify = async () => {
+    const verifyPostImages = async () => {
         const postImages = await getPostImages(post_id);
         if (postImages === null) {
-            const image: ImageType = {
-                code: model.imageUrl,
-                blob: null,
-                isRetry: false,
-            }
-            addPostImages(post_id, image);
-        } else {
-            const image = await getImageByCode(post_id, model.imageUrl);
-            if (image.blob === null && !image.isRetry) {
-                uploadImage();
-            } else {
-                setSelectedImage(image.blob)
-            }
+            await addPlaceholderImageToPost(post_id, model);
         }
-    }
-
-    const uploadImage = async () => {
-        const blob = await getPostImage(model.imageUrl);
-        let isRetry = false;
-        if (blob === null) {
-            isRetry = true;
-        }
-        const image: ImageType = {
-            code: model.imageUrl,
-            blob,
-            isRetry,
-        }
-        setSelectedImage(blob)
-        await addPostImages(post_id, image);
-    }
+        const blob = await handleExistingPostImages(post_id, model);
+        setSelectedImage(blob);
+    };
 
     useEffect(() => {
-        verify();
-    }, [])
+        verifyPostImages();
+    }, []);
 
     const previewContext: ImageStateContextType = {
         model,

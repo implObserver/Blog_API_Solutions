@@ -4,7 +4,7 @@ import 'prismjs/themes/prism.css';
 import 'prismjs/components/prism-jsx.min.js';
 import styles from './styles/Input.module.css'
 import { useCodeAreaContext } from "../lib/context/Context";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export const CodeArea = () => {
     const context = useCodeAreaContext();
@@ -26,7 +26,9 @@ export const CodeArea = () => {
     };
 
     return (
-        <div className={styles.container}>
+        <div
+            id={`${context.value.getId()}`}
+            className={styles.container}>
             <Editor
                 className={styles.area_code}
                 autoFocus={context.isFocus}

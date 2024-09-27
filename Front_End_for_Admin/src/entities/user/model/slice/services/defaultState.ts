@@ -4,4 +4,5 @@ export const initialState: ServicesDataType = {
     user: null,
     avatar: null,
     error: null,
+    isUpdate: false,
 }

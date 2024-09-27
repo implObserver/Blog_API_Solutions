@@ -16,7 +16,7 @@ export const Body = () => {
                 && e.key !== 'ArrowRight') {
                 context.value.setValue(element.value);
             } else {
-                
+
             }
         }
     };
@@ -29,6 +29,7 @@ export const Body = () => {
     return (
         <div className={styles.container}>
             <TextareaAutosize
+                id={`body_${context.value.getId()}`}
                 autoFocus={context.isFocus}
                 onKeyUp={auto_grow}
                 placeholder={context.placeholder}

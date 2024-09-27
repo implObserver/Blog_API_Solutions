@@ -1,9 +1,15 @@
+import { store } from "@/app/model/store/Store";
 import { AuthService } from "@/entities/user/api/api.auth";
+import { UpdateService } from "@/entities/user/api/api.put";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const logout = createAsyncThunk(
     'services/auth/logout',
-    async (thunkAPI) => {
-        const result = await AuthService.logout();
+    async (thunkApi, { getState }) => {
+        const snaphot = store.getState().snapshot.snapshot;
+        await UpdateService.updatePost(snaphot)
+        AuthService.logout();
+        localStorage.clear();
+        indexedDB.deleteDatabase('blog_api_creater_idb');
     }
 )
