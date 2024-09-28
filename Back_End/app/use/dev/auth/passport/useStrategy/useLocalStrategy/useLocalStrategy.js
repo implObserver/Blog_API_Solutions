@@ -9,17 +9,26 @@ const verifyCallbackPg = async (email, password, done) => {
     const user = await prismaDB.findUserByEmail(email);
     if (!user) {
       console.log('Incorrect email');
-      return done(null, false, { message: 'Incorrect email' });
+      return done(null, false, {
+        message: 'Incorrect email',
+        status: 401,
+      });
     }
 
     if (!user.isVerified) {
       console.log('Почтовый ящик не подтвержден');
-      return done(null, false, { message: 'Почтовый ящик не подтвержден' });
+      return done(null, false, {
+        message: 'Почтовый ящик не подтвержден',
+        status: 403,
+      });
     }
 
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
-      return done(null, false, { message: 'Incorrect password' });
+      return done(null, false, {
+        message: 'Incorrect password',
+        status: 401,
+      });
     }
 
     return done(null, user);

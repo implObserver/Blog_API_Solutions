@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUserServices, servicesActions } from "@/entities/user";
 import { AppDispath } from "@/app/model/store/Store";
 import { useEffect } from "react";
-import { Error } from "@/entities/notificationBanner";
+import { Error } from "@/entities/error";
+import { NotificationDestributor } from "@/features/notificationDestributor/ui/NotificationDestributor";
 
 export const DataOfProfile = () => {
-    const services = useSelector(selectUserServices);
     const dispatch = useDispatch<AppDispath>();
-    
+
     useEffect(() => {
         dispatch(servicesActions.clearErrors());
     }, [])
@@ -17,11 +17,7 @@ export const DataOfProfile = () => {
     return (
         <div className={styles.data_of_profile}>
             <UpdateOfProfile></UpdateOfProfile>
-            {
-                services.error
-                    ? <Error message={services.error} />
-                    : ''
-            }
+            <NotificationDestributor />
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { loadImage } from "../lib/helper/loadImage";
 import styles from './styles/PostPreviewStyles.module.css'
 import { usePostPreviewContext } from "../lib/context/Context";
+import { getImageByCode } from "../lib/helper/getPostImageFromIDB";
 
 export const PostPreview = ({ post }) => {
     const [preview, setPreview] = useState('');
@@ -10,7 +10,7 @@ export const PostPreview = ({ post }) => {
 
     useEffect(() => {
         const loadPreview = async () => {
-            const blob = await loadImage(folderName);
+            const blob = (await getImageByCode(post.id, folderName)).blob;
             try {
                 setPreview(URL.createObjectURL(blob));
             } catch {

@@ -1,11 +1,12 @@
 import axios from "axios";
+const apiUrl = import.meta.env.VITE_SERVER_URL;
 
 export const instance = axios.create({
     // к запросу будет приуепляться cookies
     withCredentials: true,
-    baseURL: "http://localhost:3000/",
+    baseURL: apiUrl,
     headers: {
-        'Access-Control-Allow-Origin': 'http://localhost:3000/',
+        'Access-Control-Allow-Origin': apiUrl,
     }
 });
 

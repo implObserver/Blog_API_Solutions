@@ -4,7 +4,7 @@ import { SubmitOfSignup } from "@/features/submitOfSignup";
 import { SpinnerLoader } from "@/shared/ui/spinnerLoader";
 import { useEffect } from "react";
 import { AppDispath } from "@/app/model/store/Store";
-import { Error } from "@/entities/notificationBanner";
+import { NotificationDestributor } from "@/features/notificationDestributor/ui/NotificationDestributor";
 
 export const SignupWidget = () => {
     const services = useSelector(selectUserServices);
@@ -13,7 +13,7 @@ export const SignupWidget = () => {
     useEffect(() => {
         dispatch(servicesActions.clearErrors());
     }, [])
-    
+
     if (services.isPending) {
         return (
             <>
@@ -21,16 +21,12 @@ export const SignupWidget = () => {
             </>
         )
     }
-    
+
     if (!services.isAuth) {
         return (
             <div>
                 <SubmitOfSignup></SubmitOfSignup>
-                {
-                    services.error
-                        ? <Error message={services.error} />
-                        : ''
-                }
+                <NotificationDestributor />
             </div>
         )
     }

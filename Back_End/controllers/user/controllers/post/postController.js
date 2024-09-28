@@ -25,6 +25,12 @@ const user_create_post = [
     if (!errors.isEmpty()) {
       return res.status(400).send({ error: errors.errors[0].msg });
     } else {
+      const checkUser = prismaDB.findUserByEmail(userPg.email);
+      if (checkUser) {
+        return res
+          .status(403)
+          .send({ error: 'такой пользователь уже существует' });
+      }
       const id = await prismaDB.setNewUser(userPg);
       const refreshToken = getRefreshToken(id).token;
       await prismaDB.setToken(id, refreshToken);
@@ -54,7 +60,9 @@ const user_auth_post = [
           return res.status(500).json({ error: 'Internal server error' });
         }
         if (!user) {
-          return res.status(401).json({ error: info.error || info.message });
+          return res
+            .status(info.status)
+            .json({ error: info.error || info.message });
         }
         req.logIn(user, (loginErr) => {
           if (loginErr) {

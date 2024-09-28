@@ -4,7 +4,7 @@ import { SubmitOfLogin } from "@/features/submitOfLogin";
 import { SpinnerLoader } from "@/shared/ui/spinnerLoader";
 import { AppDispath } from "@/app/model/store/Store";
 import { useEffect } from "react";
-import { Error } from "@/entities/notificationBanner";
+import { NotificationDestributor } from "@/features/notificationDestributor/ui/NotificationDestributor";
 
 export const LoginWidget = () => {
     const services = useSelector(selectUserServices);
@@ -26,11 +26,7 @@ export const LoginWidget = () => {
         return (
             <div>
                 <SubmitOfLogin></SubmitOfLogin>
-                {
-                    services.error
-                        ? <Error message={services.error} />
-                        : ''
-                }
+                <NotificationDestributor />
             </div>
         )
     }

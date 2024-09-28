@@ -81,11 +81,11 @@ const userServicesSlice = createSlice({
             .addCase(login.fulfilled, (state, action) => {
                 handleFulfilled(state);
                 if (!action.payload.error) {
-                    state.user = action.payload.msg;
+                    state.user = action.payload.data.message;
                     state.isAuth = true;
                     state.error = null;
                 } else {
-                    state.error = action.payload.msg;
+                    state.error = action.payload.data;
                 }
             })
             .addCase(login.rejected, handleRejected)
@@ -103,11 +103,11 @@ const userServicesSlice = createSlice({
             .addCase(signup.fulfilled, (state, action) => {
                 handleFulfilled(state);
                 if (!action.payload.error) {
-                    state.user = action.payload.msg;
+                    state.user = action.payload.data.message;
                     state.isAuth = true;
                     state.error = null;
                 } else {
-                    state.error = action.payload.msg;
+                    state.error = action.payload.data;
                 }
             })
             .addCase(signup.rejected, handleRejected)

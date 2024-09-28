@@ -3,7 +3,7 @@ interface ServicesDataType {
     isAuth: boolean,
     isPending?: boolean,
     avatar: string,
-    error?: string,
+    error?: Error,
     isUpdate?: boolean;
 }
 

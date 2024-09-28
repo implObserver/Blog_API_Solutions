@@ -33,5 +33,5 @@ userRouter.get('/user/failure', userController.failureProtected);
 userRouter.get(
   '/confirm-email/',
   userController.confirm_email,
-  userController.redirect_main
+  userController.redirect_succesfull_email_verify
 );

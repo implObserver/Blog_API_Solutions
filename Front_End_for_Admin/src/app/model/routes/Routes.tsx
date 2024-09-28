@@ -5,6 +5,7 @@ import { MainPage } from "@/pages/main";
 import { ProfilePage } from "@/pages/profile";
 
 import MainLayout from "@/app/ui/layouts/MainLayout";
+import { SuccVerifyPage } from "@/pages/succVerify/ui/SuccVerifyPage";
 
 const routes = [
     {
@@ -14,6 +15,10 @@ const routes = [
             {
                 path: "",
                 element: <MainPage />,
+            },
+            {
+                path: "/succesfullEmailVerify",
+                element: <SuccVerifyPage />,
             },
             {
                 path: "/post",
