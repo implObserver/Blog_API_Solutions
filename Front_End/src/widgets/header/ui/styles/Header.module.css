@@ -1,0 +1,11 @@
+.header {
+    display: flex;
+    column-gap: 10px;
+    height: min-content;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px;
+    margin-bottom: 20px;
+    border: 1px var(--color__main-theme_accent) solid;
+    background-color: var(--color__main-theme);
+}

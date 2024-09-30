@@ -15,6 +15,13 @@ userRouter.post(
   userController.set_cookie,
   userController.user_get
 );
+userRouter.get(
+  '/user/fastlogin',
+  userController.user_auth_jwt_protected,
+  userController.authProtected,
+  userController.set_cookie,
+  userController.user_get
+);
 userRouter.post('/user/logout', userController.user_logout_post);
 userRouter.get(
   '/user/refresh-acess-token',

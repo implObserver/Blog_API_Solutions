@@ -6,8 +6,7 @@ const router = createBrowserRouter(routes);
 export const WithRouter: React.FC = () => {
     return (
         <>
-            <RouterProvider router={router}>
-            </RouterProvider>
+            <RouterProvider router={router} />
         </>
     );
 }

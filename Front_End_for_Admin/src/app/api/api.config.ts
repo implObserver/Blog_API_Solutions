@@ -1,4 +1,9 @@
 import axios from "axios";
+import { store } from "../model/store/Store";
+import { logout, servicesActions } from "@/entities/user";
+import { persistStore } from "redux-persist";
+import { counterActions } from "@/entities/element";
+
 const apiUrl = import.meta.env.VITE_SERVER_URL;
 
 export const instance = axios.create({
@@ -29,6 +34,7 @@ instance.interceptors.response.use(
                     console.error('Попытка обновить refresh token');
                     await instance.get("/api/user/refresh-refresh-token");
                 } else if (currentRetryCount === 3) {
+                    store.dispatch(servicesActions.reset())
                     console.error('ошибка авторизации');
                 }
             }
@@ -39,12 +45,3 @@ instance.interceptors.response.use(
         return Promise.reject(error);
     }
 );
-
-const fetchData = async () => {
-    try {
-        const response = await instance.get('/protected-resource');
-        console.log('Data:', response.data);
-    } catch (error) {
-        console.error('Request failed:', error.message);
-    }
-};

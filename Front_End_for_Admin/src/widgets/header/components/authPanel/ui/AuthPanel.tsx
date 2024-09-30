@@ -1,5 +1,5 @@
 import { selectUserServices, UserPreview } from "@/entities/user"
-import { Logout } from "@/features/logout";
+import { Logout } from "../../../../../features/logout";
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 import styles from './styles/AuthPanel.module.css'

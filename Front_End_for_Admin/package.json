@@ -1,5 +1,5 @@
 {
-  "name": "front-end",
+  "name": "front-end_for_admin",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@eslint/config-array": "^0.18.0",
     "@reduxjs/toolkit": "^2.2.6",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.7.7",

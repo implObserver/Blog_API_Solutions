@@ -1,0 +1,12 @@
+.logo {
+    font-family: Roboto;
+}
+
+.letter {
+    color: var(--color__secondary-theme);
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+}

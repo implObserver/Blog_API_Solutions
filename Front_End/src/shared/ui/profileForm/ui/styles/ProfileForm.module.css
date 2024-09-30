@@ -1,0 +1,48 @@
+.form_user {
+    display: grid;
+}
+
+.form_group {
+    display: grid;
+    margin-top: 5px;
+    row-gap: 5px;
+}
+
+.input {
+    outline: 0px rgba(0, 123, 255, 0.6) solid;
+    appearance: none;
+    transition:
+        outline 0.06s,
+        box-shadow .15s ease-in-out;
+    height: 30px;
+    border: rgb(224, 224, 224) 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.input:focus {
+    outline: 2px rgba(0, 123, 255, 0.5) solid;
+}
+
+.button {
+    width: max-content;
+    appearance: none;
+    background-color: var(--color__main-theme);
+    border: 1px var(--color__main-theme_accent) solid;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 8px;
+    cursor: pointer;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.save {
+    background-color: rgb(164, 221, 164);
+}
+
+.container_buttons {
+    display: flex;
+    column-gap: 5px;
+}

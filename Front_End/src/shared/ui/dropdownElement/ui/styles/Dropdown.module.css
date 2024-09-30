@@ -1,0 +1,45 @@
+.dropdown {
+    display: grid;
+}
+
+.content {
+    display: none;
+}
+
+.open {
+    display: flex;
+    position: absolute;
+    width: min-content;
+    margin-left: 1vw;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    animation-duration: 150ms;
+    animation-name: open;
+    border: 1px blue solid;
+}
+
+.close {
+    display: none;
+}
+
+.margin {
+    margin-top: 10px;
+}
+
+@keyframes open {
+    0% {
+        opacity: 0;
+        transform: translateY(-10vh);
+    }
+
+    40% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0vh);
+    }
+}

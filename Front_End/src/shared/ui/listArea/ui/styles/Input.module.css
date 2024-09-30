@@ -1,0 +1,6 @@
+.container {
+    width: 70vw;
+    display: grid;
+    grid-template-columns: min-content auto;
+    margin: 2px;
+}

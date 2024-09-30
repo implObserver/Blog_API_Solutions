@@ -1,0 +1,20 @@
+:root {
+    --tag__hover-background-color: black;
+    --tag__hover-color: white;
+    --tag__transition-speed: 0.1s;
+}
+
+.tag {
+    display: grid;
+    border: 1px black solid;
+    padding-left: 5px;
+    padding-right: 5px;
+    cursor: pointer;
+    transition: color var(--tag__transition-speed) ease-in-out, 
+    background-color var(--tag__transition-speed) ease-in-out;
+}
+
+.tag:hover {
+    background-color: var(--tag__hover-background-color);
+    color: var(--tag__hover-color);
+}

@@ -10,8 +10,8 @@ export const PostPreview = ({ post }) => {
 
     useEffect(() => {
         const loadPreview = async () => {
-            const blob = (await getImageByCode(post.id, folderName)).blob;
             try {
+                const blob = (await getImageByCode(post.id, folderName)).blob;
                 setPreview(URL.createObjectURL(blob));
             } catch {
                 setPreview(null);

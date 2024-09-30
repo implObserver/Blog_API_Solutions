@@ -7,9 +7,11 @@ export const logout = createAsyncThunk(
     'services/auth/logout',
     async (thunkApi, { getState }) => {
         const snaphot = store.getState().snapshot.snapshot;
-        await UpdateService.updatePost(snaphot)
-        AuthService.logout();
+        if (snaphot) {
+            await UpdateService.updatePost(snaphot)
+        }
         localStorage.clear();
         indexedDB.deleteDatabase('blog_api_creater_idb');
+        AuthService.logout();
     }
 )

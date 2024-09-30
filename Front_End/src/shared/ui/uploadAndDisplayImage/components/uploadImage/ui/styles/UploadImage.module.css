@@ -1,0 +1,15 @@
+.container {
+    display: grid;
+}
+
+.input {
+    display: none;
+}
+
+.custom_file_upload {
+    border: 2px rgb(201, 201, 201) dashed;
+    padding: 6px;
+    text-align: center;
+    align-content: center;
+    min-height: 79.2px;
+}
