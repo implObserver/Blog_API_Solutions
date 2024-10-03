@@ -19,29 +19,39 @@ const posts_of_user_get = asyncHandler(async (req, res, next) => {
 });
 
 const posts_list_api = asyncHandler(async (req, res) => {
-  const allPostPg = await prismaDB.getAllPosts();
+  const allPost = await prismaDB.getAllPosts();
+  console.log(allPost[0]);
   res.json({
     title: 'Post List',
-    post_list_pg: allPostPg,
+    posts_list: allPost,
   });
 });
 
 const image_of_post_get = asyncHandler(async (req, res) => {
   const folderName = req.params.imageid;
+  const defaultFolderPath = `${__dirname}/public/images/default/post/defaultPost.svg`;
   const folderPath = `${__dirname}/public/images/${req.user.id}/${folderName}`;
-
+  let filePath;
+  let extname;
   fs.readdir(folderPath, (err, files) => {
+    let isEmpty;
+    let isError;
+    let isEmptyError;
+
     if (err) {
-      console.log(err);
-      return res.json({ message: 'Папка не найдена' });
+      isError = true;
+      isEmpty = err.message.includes('no such file or directory');
+      isEmptyError = isEmpty && isError;
+      if (isEmptyError || files.length === 0) {
+        filePath = defaultFolderPath;
+        extname = '.svg';
+      }
+    } else {
+      filePath = path.join(folderPath, files[0]);
+      extname = path.extname(files[0]).toLowerCase();
     }
-
-    if (files.length === 0) {
-      return res.json({ message: 'Папка пуста' });
-    }
-    const filePath = path.join(folderPath, files[0]);
-    const extname = path.extname(files[0]).toLowerCase();
-
+    console.log(filePath);
+    console.log(extname);
     let contentType = 'application/octet-stream';
 
     switch (extname) {

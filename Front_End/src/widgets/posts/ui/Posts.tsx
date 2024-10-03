@@ -1,0 +1,50 @@
+import { useEffect, useState } from "react"
+import { getPosts } from "../lib/helper/getPosts"
+import { PostPreviewContext } from "@/entities/postPreview/lib/context/Context";
+import { PostPreview } from "@/entities/postPreview";
+import styles from './styles/Posts.module.css'
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispath, RootState } from "@/app/model/store/Store";
+import { postsActions } from "@/entities/user/model/slice/posts/slice";
+import { getAllPosts } from "@/entities/user/model/slice/posts/thunks/get/getAllPosts";
+import { selectPosts } from "@/entities/user/model/slice/posts/selectors";
+
+
+export const Posts = () => {
+    const posts = useSelector(selectPosts).posts;
+    const dispatch = useDispatch<AppDispath>();
+
+    const loadPosts = async () => {
+        await dispatch(getAllPosts());
+    };
+
+    useEffect(() => {
+        loadPosts();
+    }, []);
+    console.log(posts)
+    const fill = () => {
+        return posts.map((post, index) => {
+            const postPreviewContext: PostPreviewContextType = {
+                post,
+            };
+            return (
+                <Link
+                    className={styles.link}
+                    to={`/post/${post.id}`}
+                    state={post.id}
+                >
+                    <PostPreviewContext.Provider value={postPreviewContext} key={`container_${post.id}`}>
+                        <PostPreview />
+                    </PostPreviewContext.Provider>
+                </Link>
+            );
+        });
+    };
+
+    return (
+        <div className={styles.container}>
+            {fill()}
+        </div>
+    )
+}

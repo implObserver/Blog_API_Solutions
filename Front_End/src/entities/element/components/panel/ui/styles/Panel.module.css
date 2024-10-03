@@ -1,0 +1,18 @@
+:root {
+    --panel_buttons_hover_color: rgb(238, 237, 237);
+}
+
+.panel {
+    display: flex;
+    opacity: var(--panel_opacity);
+    transition: opacity 0.2s ease-in-out;
+}
+
+.panel:hover {
+    --panel_opacity: 1;
+}
+
+.hidden {
+    opacity: 0 !important;
+    visibility: hidden;
+}

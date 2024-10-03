@@ -1,0 +1,16 @@
+.container {
+    display: grid;
+    width: 100%;
+    border: 2px var(--color__main-theme_accent) solid;
+    border-bottom: none;
+    border-radius: 5px 5px 0px 0px;
+    overflow: hidden;
+}
+
+.image {
+    display: grid;
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
+    border-bottom: none;
+}

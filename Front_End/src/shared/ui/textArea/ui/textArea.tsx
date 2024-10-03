@@ -4,40 +4,18 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 export const TextArea = () => {
     const context = useTextAreaContext();
-    const value = context.value.getValue();
-
-    const auto_grow = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-        const element = e.target as HTMLTextAreaElement;
-        if (e.key === 'ArrowLeft'
-            || e.key === 'ArrowRight') {
-            e.stopPropagation();
-        } else {
-            if (e.key !== 'ArrowUp'
-                && e.key !== 'ArrowRight') {
-                context.value.setValue(element.value);
-            } else {
-
-            }
-        }
-    };
-
-    const focusHandle = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-        const element = e.target as HTMLTextAreaElement;
-        element.setSelectionRange(element.value.length, element.value.length);
-    };
+    const value = context.value.value;
 
     return (
         <div className={styles.container} key={Math.random()}>
             <TextareaAutosize
-                id={context.value.getId().toString()}
-                autoFocus={context.isFocus}
-                onKeyUp={auto_grow}
+                id={`${context.value.id}`}
                 placeholder={context.placeholder}
                 defaultValue={value}
                 className={styles.area_text}
                 wrap='hard'
                 maxLength={context.maxLength}
-                onFocus={focusHandle}>
+            >
             </TextareaAutosize>
         </div>
     )

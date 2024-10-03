@@ -1,5 +1,6 @@
 .logo {
-    font-family: Roboto;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    color-scheme: light dark;
 }
 
 .letter {
@@ -9,4 +10,8 @@
 .link {
     text-decoration: none;
     color: black;
+}
+
+.h1 {
+    font-weight: 400;
 }

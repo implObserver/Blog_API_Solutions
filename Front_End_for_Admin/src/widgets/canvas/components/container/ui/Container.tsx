@@ -22,7 +22,6 @@ export const Container = React.memo(() => {
     const dropdownStatus = useCustomState();
 
     const { element, model } = context.containerContext;
-
     const elementContext = {
         featuresContext: {
             panel: {

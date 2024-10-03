@@ -3,6 +3,9 @@ import Cookies from "js-cookie";
 const userID = Cookies.get('user_id');
 
 export const ReadService = {
+    getPosts() {
+        return instance.get(`/api/posts/`);
+    },
     readProfile() {
         return instance.get(`/api/user/:${userID}/profile/`);
     },

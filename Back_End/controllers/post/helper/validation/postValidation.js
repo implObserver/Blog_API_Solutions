@@ -1,10 +1,48 @@
 import sanitizeHtml from 'sanitize-html';
 
-export const sanitizeInput = (value) => {
-  return sanitizeHtml(value, {
-    allowedTags: [],
-    allowedAttributes: {},
-  });
+const escapeJsxTags = (input) => {
+  return input
+    .replace(/</g, '&lt;') // Экстрируем символ <
+    .replace(/>/g, '&gt;') // Экстрируем символ >
+    .replace(/&/g, '&amp;'); // Экстрируем символ &
+};
+
+// Функция для безопасной обработки ввода
+export const sanitizeInput = (input) => {
+  if (typeof input !== 'string') {
+    throw new Error('Input must be a string');
+  }
+
+  // Экранируем JSX-теги
+  const escapedInput = escapeJsxTags(input);
+
+  // Настройки sanitize-html
+  const options = {
+    allowedTags: [
+      'b',
+      'i',
+      'em',
+      'strong',
+      'a',
+      'p',
+      'ul',
+      'li',
+      'ol',
+      'blockquote',
+      'code',
+      'pre',
+      'span',
+    ],
+    allowedAttributes: {
+      a: ['href', 'target', 'rel'], // Разрешенные атрибуты для ссылок
+      // Здесь можете добавить другие разрешенные атрибуты
+    },
+  };
+
+  // Применение sanitize-html к обычному HTML
+  const sanitizedHtml = sanitizeHtml(escapedInput, options);
+
+  return sanitizedHtml;
 };
 
 export const validateElements = (elements) => {

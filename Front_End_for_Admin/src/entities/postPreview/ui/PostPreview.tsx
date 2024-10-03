@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from './styles/PostPreviewStyles.module.css'
 import { usePostPreviewContext } from "../lib/context/Context";
 import { getImageByCode } from "../lib/helper/getPostImageFromIDB";
+import { loadImage } from "../lib/helper/loadImage";
 
 export const PostPreview = ({ post }) => {
     const [preview, setPreview] = useState('');
@@ -12,11 +13,22 @@ export const PostPreview = ({ post }) => {
         const loadPreview = async () => {
             try {
                 const blob = (await getImageByCode(post.id, folderName)).blob;
-                setPreview(URL.createObjectURL(blob));
+                console.log(blob)
+                if (blob === null || blob === undefined) {
+                    await loadPreviewOnServer();
+                } else {
+                    setPreview(URL.createObjectURL(blob));
+                }
             } catch {
                 setPreview(null);
             }
         }
+
+        const loadPreviewOnServer = async () => {
+            const blob = await loadImage(folderName);
+            setPreview(URL.createObjectURL(blob));
+        }
+
         loadPreview();
     }, [])
 

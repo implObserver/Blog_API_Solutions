@@ -4,35 +4,36 @@ import 'prismjs/themes/prism.css';
 import 'prismjs/components/prism-jsx.min.js';
 import styles from './styles/Input.module.css'
 import { useCodeAreaContext } from "../lib/context/Context";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 export const CodeArea = () => {
     const context = useCodeAreaContext();
-    const value = context.value.getValue();
-    const [update, setUpdate] = useState(false);
+    const value = context.value.value;
 
     const handleChange = (newValue: string) => {
-        setUpdate(!update);
-        context.value.setValue(newValue);
+
     };
 
-    const highlight = (code: string) => {
-        return Prism.highlight(code, Prism.languages.jsx, 'jsx'); // Замените на нужный язык
+    const decodeJSX = (input) => {
+        console.log(`decode ${input}`)
+        return input
+            .replace(/&amp;/g, '&') // Декодируем символ &
+            .replace(/&lt;/g, '<') // Декодируем символ <
+            .replace(/&gt;/g, '>') // Декодируем символ >
     };
 
-    const focusHandle = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-        const element = e.target as HTMLTextAreaElement;
-        element.setSelectionRange(element.value.length, element.value.length);
-    };
+    const highlight = useCallback((code: string) => {
+        return Prism.highlight(decodeJSX(code), Prism.languages.jsx, 'jsx');
+    }, []);
+
 
     return (
         <div
-            id={`${context.value.getId()}`}
+            id={`${context.value.id}`}
             className={styles.container}>
             <Editor
                 className={styles.area_code}
-                autoFocus={context.isFocus}
-                value={value}
+                value={decodeJSX(value)}
                 onValueChange={handleChange}
                 highlight={highlight}
                 padding={10}

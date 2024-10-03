@@ -1,0 +1,26 @@
+.h1 {
+    display: grid;
+    font-size: 34px;
+}
+
+.h2 {
+    font-size: 32px;
+}
+
+.h3 {
+    font-size: 26px;
+}
+
+.h1,
+.h2,
+.h3 {
+    width: 100%;
+}
+
+.main_title>div>textarea {
+    text-align: center;
+}
+
+.title {
+    padding: 20px;
+}

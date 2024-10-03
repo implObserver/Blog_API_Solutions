@@ -1,0 +1,7 @@
+.container {
+    display: grid;
+    width: inherit;
+    min-width: 300px;
+    justify-content: center;
+    padding: 15px;
+}

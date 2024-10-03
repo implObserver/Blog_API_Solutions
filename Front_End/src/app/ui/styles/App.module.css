@@ -12,6 +12,7 @@
   --color__main-theme: #f7f8fa;
   --color__main-theme_accent: #dedfe0;
   --color__secondary-theme: #007bff;
+  --font_family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 .app {

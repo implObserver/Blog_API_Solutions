@@ -1,4 +1,5 @@
-import { servicesReducer } from '@/entities/user';
+import { postsReducer, servicesReducer } from '@/entities/user';
+
 import { scrollRestorationReducer } from '@/features/scrollRestoration';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
@@ -16,6 +17,7 @@ import storage from 'redux-persist/lib/storage';
 const rootReducer = combineReducers({
   userServices: servicesReducer,
   scrollRestoration: scrollRestorationReducer,
+  posts: postsReducer,
 })
 
 const persistConfig = {

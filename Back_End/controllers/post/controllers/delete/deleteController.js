@@ -23,7 +23,7 @@ const image_of_post_delete = asyncHandler(async (req, res) => {
 
 const post_delete = asyncHandler(async (req, res, next) => {
   const postId = req.params.postid;
-  prismaDB.deletePost(postId);
+  await prismaDB.deletePost(req.user.id, postId);
   const user = await prismaDB.findUser(req.user.id);
   res.locals.user = user;
   next();

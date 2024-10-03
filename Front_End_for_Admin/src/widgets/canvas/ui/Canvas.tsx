@@ -10,18 +10,19 @@ import { selectUserServices, servicesActions, updatePost } from "@/entities/user
 import { modlelsOfOpenedPostActions } from "@/entities/element";
 import { snapshotSliceActions } from "@/entities/postPreview";
 import { getSnapshot } from "../lib/helper/getSnapshot";
+import { SpinnerLoader } from "@/shared/ui/spinnerLoader";
 
 export const Canvas = React.memo(() => {
     const location = useLocation();
     const post_id = location.state;
-
+    const service = useSelector(selectUserServices);
     if (post_id || post_id === 0) {
         const dispatch = useDispatch<AppDispath>();
-        const service = useSelector(selectUserServices);
         const user = service.user;
         const posts = user.posts;
         const post = posts.find(post => post.id === post_id);
         let elements = posts.length === 0 ? [] : post.elements;
+        console.log(`adadada ${elements[elements.length - 1].value}`)
         const containerContexts = useMemo(() => modelsToContainers(elements), [elements]);
 
         const updateSnapshot = () => {
@@ -32,6 +33,8 @@ export const Canvas = React.memo(() => {
         const finalizeSnapshot = () => {
             updateSnapshot();
             const snapshot = getSnapshot();
+            console.log(snapshot)
+
             dispatch(updatePost(snapshot));
         };
 

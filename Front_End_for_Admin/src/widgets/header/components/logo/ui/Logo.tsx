@@ -5,7 +5,7 @@ export const Logo = () => {
     return (
         <div className={styles.logo}>
             <Link className={styles.link} to={`/`}>
-                <h1>p<span className={styles.letter}>o</span>st_add_</h1>
+                <h1 className={styles.h1}>p<span className={styles.letter}>o</span>st_add_</h1>
             </Link>
         </div>
     )

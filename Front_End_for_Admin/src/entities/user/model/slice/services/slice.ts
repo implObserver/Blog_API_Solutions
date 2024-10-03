@@ -177,7 +177,13 @@ const userServicesSlice = createSlice({
             .addCase(deletePost.pending, handlePending)
             .addCase(deletePost.fulfilled, (state, action) => {
                 handleFulfilled(state);
-                state.user = action.payload;
+                if (!action.payload.error) {
+                    state.user = action.payload.data.message;
+                    state.isAuth = true;
+                    state.error = null;
+                } else {
+                    state.error = action.payload.data;
+                }
             })
             .addCase(deletePost.rejected, handleRejected)
 

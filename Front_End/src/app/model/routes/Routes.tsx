@@ -1,8 +1,7 @@
-
-
 import MainLayout from "@/app/ui/layouts/MainLayout";
 import { LoginPage } from "@/pages/login";
 import { MainPage } from "@/pages/main/ui/MainPage";
+import { PostPage } from "@/pages/post";
 import { SignupPage } from "@/pages/signup";
 
 
@@ -22,6 +21,10 @@ const routes = [
             {
                 path: "/login",
                 element: <LoginPage />,
+            },
+            {
+                path: "/post/:postid",
+                element: <PostPage />,
             },
         ],
     },

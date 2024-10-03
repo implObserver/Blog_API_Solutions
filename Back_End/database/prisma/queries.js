@@ -16,7 +16,7 @@ const getAllUsers = async () => {
 };
 
 const getAllPosts = async () => {
-  const { posts } = await prisma.post.findMany();
+  const posts = await prisma.post.findMany();
   return posts;
 };
 
@@ -194,11 +194,12 @@ const updatePost = async (user, post) => {
   }
 };
 
-const deletePost = async (postId) => {
+const deletePost = async (userid, postId) => {
   const numericPostId = parseInt(postId, 10);
   await prisma.post.delete({
     where: {
       id: numericPostId,
+      userId: userid,
     },
   });
 };

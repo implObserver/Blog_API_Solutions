@@ -1,0 +1,17 @@
+.container {
+    display: grid;
+    width: inherit;
+    min-width: inherit;
+    min-height: 100px;
+    background-color: var(--color__main-theme);
+    border: 2px var(--color__main-theme_accent) solid;
+    border-radius: 0px 0px 5px 5px;
+    padding: 15px;
+    font-size: 24px;
+    font-family: var(--font_family);
+}
+
+.date {
+    font-size: 18px;
+    font-weight: 300;
+}

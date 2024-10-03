@@ -1,5 +1,4 @@
 import { DisplayImage } from "../components/displayImage"
-import { UploadImage } from "../components/uploadImage"
 import styles from './styles/UploadAndDisplayImage.module.css'
 import { useImageContext } from "../lib/context/Context"
 import { useMemo } from "react"
@@ -18,7 +17,7 @@ export const UploadAndDisplayImage = () => {
     } else {
         return (
             <div className={styles.container} >
-                <UploadImage />
+
             </div>
         );
     }

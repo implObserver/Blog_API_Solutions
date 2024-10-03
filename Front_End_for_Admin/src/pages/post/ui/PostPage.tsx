@@ -7,6 +7,7 @@ import { SpinnerLoader } from '@/shared/ui/spinnerLoader';
 
 export const PostPage = () => {
     const services = useSelector(selectUserServices);
+    console.log('rererrerender')
     
     if (services.isAuth) {
         return (

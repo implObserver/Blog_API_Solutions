@@ -33,11 +33,8 @@ interface DropdownContextType {
 interface TextAreaContextType {
     placeholder: string,
     strongPlaceholder?: string,
-    value: ElementType<ElementSubtype>,
-    maxLength: number,
-    isFocus: boolean,
-    ref?: React.MutableRefObject<HTMLTextAreaElement | null>,
-    id?: number,
+    value: ModelType<ModelSubtype>,
+    maxLength?: number,
 }
 
 interface CustomState {
