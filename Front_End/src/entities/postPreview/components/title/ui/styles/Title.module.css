@@ -2,7 +2,7 @@
     display: grid;
     width: inherit;
     min-width: inherit;
-    min-height: 100px;
+    height: 200px;
     background-color: var(--color__main-theme);
     border: 2px var(--color__main-theme_accent) solid;
     border-radius: 0px 0px 5px 5px;

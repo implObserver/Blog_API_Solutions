@@ -1,5 +1,25 @@
 import sanitizeHtml from 'sanitize-html';
 
+export const sanitizeInput = (value) => {
+  return sanitizeHtml(value, {
+    allowedTags: [],
+    allowedAttributes: {},
+  });
+};
+
+const getEscapedInput = (input) => {
+  const decode = decodeJSX(input);
+  const escapeTags = escapeJsxTags(decode);
+  return escapeTags;
+};
+
+const decodeJSX = (input) => {
+  return input
+    .replace(/&amp;/g, '&') // Декодируем символ &
+    .replace(/&lt;/g, '<') // Декодируем символ <
+    .replace(/&gt;/g, '>'); // Декодируем символ >
+};
+
 const escapeJsxTags = (input) => {
   return input
     .replace(/</g, '&lt;') // Экстрируем символ <
@@ -8,13 +28,15 @@ const escapeJsxTags = (input) => {
 };
 
 // Функция для безопасной обработки ввода
-export const sanitizeInput = (input) => {
+export const sanitizeCodeInput = (input) => {
   if (typeof input !== 'string') {
     throw new Error('Input must be a string');
   }
 
   // Экранируем JSX-теги
-  const escapedInput = escapeJsxTags(input);
+  console.log(`на входе ${input}`);
+  const escapedInput = getEscapedInput(input);
+  console.log(`на выходе ${escapedInput}`);
 
   // Настройки sanitize-html
   const options = {
@@ -35,7 +57,6 @@ export const sanitizeInput = (input) => {
     ],
     allowedAttributes: {
       a: ['href', 'target', 'rel'], // Разрешенные атрибуты для ссылок
-      // Здесь можете добавить другие разрешенные атрибуты
     },
   };
 
@@ -91,8 +112,12 @@ const validateElementContent = (element) => {
     throw new Error('value должно быть строкой или отсутствовать');
   }
 
-  if (element.value) {
-    element.value = sanitizeInput(element.value);
+  if (element.type.includes('code')) {
+    element.value = sanitizeCodeInput(element.value);
+  } else {
+    if (element.value) {
+      element.value = sanitizeInput(element.value);
+    }
   }
 
   if (element.strong) {

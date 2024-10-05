@@ -3,6 +3,7 @@ import { getImageByCode } from "@/entities/postPreview/lib/helper/getPostImageFr
 import { loadImage } from "@/entities/postPreview/lib/helper/loadImage";
 import { useEffect, useState } from "react";
 import styles from './styles/Preview.module.css'
+import { addPostImages } from "@/entities/postPreview/lib/helper/loadImageToIDB";
 
 export const Preview = () => {
     const post = usePostPreviewContext().post;
@@ -28,7 +29,11 @@ export const Preview = () => {
 
         const loadPreviewOnServer = async () => {
             const blob = await loadImage(folderName);
-            console.log(blob)
+            const image: ImageType = {
+                code: folderName,
+                blob,
+            }
+            addPostImages(post.id, image);
             setPreview(URL.createObjectURL(blob));
         }
 

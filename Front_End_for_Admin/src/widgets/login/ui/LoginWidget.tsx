@@ -32,6 +32,6 @@ export const LoginWidget = () => {
     }
 
     if (services.isAuth) {
-        window.location.href = "http://localhost:5000/";
+        window.location.href = "http://localhost:5001/";
     }
 }

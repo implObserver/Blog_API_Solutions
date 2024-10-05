@@ -1,8 +1,10 @@
 import { selectUserServices, UserPreview } from "@/entities/user"
 import styles from './styles/AvatarOfProfile.module.css'
-import { UploadFile } from "@/features/uploadFile";
+import { UploadContext, UploadFile } from "@/features/uploadFile";
 import { useSelector } from "react-redux";
 import { SpinnerLoader } from "@/shared/ui/spinnerLoader";
+import { useState } from "react";
+import { useCustomState } from "@/shared/lib";
 
 export const AvatarOfProfile = () => {
     const pending = useSelector(selectUserServices).isPending;

@@ -9,7 +9,6 @@ import { useCallback, useRef, useState } from "react";
 export const CodeArea = () => {
     const context = useCodeAreaContext();
     const [update, setUpdate] = useState(false);
-    const value = context.value.getValue();
 
     const decodeJSX = (input) => {
         console.log(`decode ${input}`)
@@ -19,13 +18,15 @@ export const CodeArea = () => {
             .replace(/&gt;/g, '>') // Декодируем символ >
     };
 
+    const value = context.value.getValue();
+
     const handleChange = (newValue: string) => {
+        context.value.setValue(newValue);
         setUpdate(!update);
-        context.value.setValue(decodeJSX(newValue));
     };
 
     const highlight = useCallback((code: string) => {
-        return Prism.highlight(decodeJSX(code), Prism.languages.jsx, 'jsx');
+        return Prism.highlight(code, Prism.languages.jsx, 'jsx');
     }, []);
 
     const focusHandle = (e: React.FocusEvent<HTMLTextAreaElement>) => {

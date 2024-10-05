@@ -5,8 +5,15 @@ import { useElementContext } from "@/entities/element";
 export const Title = () => {
     const context = useElementContext();
     const type = context.model.type;
+    const fontSize = context.model.fontSize;
+    const h = fontSize === 1
+        ? styles.h1
+        : fontSize === 2
+            ? styles.h2
+            : styles.h3;
+
     const className = type === 'main_title'
-        ? styles.main_title
+        ? `${styles.main_title} ${context.model.fontSize}`
         : styles.title;
 
     const getTitleTextArea = (placeholder: string) => {
@@ -25,7 +32,7 @@ export const Title = () => {
     }
 
     return (
-        <div className={styles.h1}>
+        <div className={h}>
             {getTitleTextArea('Empty title')}
         </div>
     )

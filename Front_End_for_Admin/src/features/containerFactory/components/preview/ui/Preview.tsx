@@ -3,17 +3,16 @@ import { useEffect, useState } from "react";
 import styles from './styles/Preview.module.css'
 import { useElementContext } from "@/entities/element";
 import { addPostImage, deletePostImage } from "@/entities/user";
-import { getPostImages } from "@/entities/postPreview/lib/helper/getPostImageFromIDB";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { addPostImages } from "@/entities/postPreview/lib/helper/loadImageToIDB";
 import { removePostImage } from "@/entities/postPreview/lib/helper/removePostImageFromIDB";
-import { addPlaceholderImageToPost } from "../lib/helper/addPlaceholderImageToPost";
-import { handleExistingPostImages, uploadImage } from "../lib/helper/uploadImage";
+import { handleExistingPostImages } from "../lib/helper/uploadImage";
 
 export const Preview = () => {
     const context = useElementContext();
     const model = context.model;
-    const post_id = useLocation().state;
+    const params = useParams();
+    const post_id = parseInt(params.postid);
     const [selectedImage, setSelectedImage] = useState(null);
 
     const verifyPostImages = async () => {

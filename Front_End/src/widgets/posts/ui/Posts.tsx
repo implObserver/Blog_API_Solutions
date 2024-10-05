@@ -30,11 +30,12 @@ export const Posts = () => {
             };
             return (
                 <Link
+                    key={`container_${post.id}`}
                     className={styles.link}
                     to={`/post/${post.id}`}
                     state={post.id}
                 >
-                    <PostPreviewContext.Provider value={postPreviewContext} key={`container_${post.id}`}>
+                    <PostPreviewContext.Provider value={postPreviewContext}>
                         <PostPreview />
                     </PostPreviewContext.Provider>
                 </Link>

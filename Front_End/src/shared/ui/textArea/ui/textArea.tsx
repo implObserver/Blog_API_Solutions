@@ -8,15 +8,11 @@ export const TextArea = () => {
 
     return (
         <div className={styles.container} key={Math.random()}>
-            <TextareaAutosize
+            <div
                 id={`${context.value.id}`}
-                placeholder={context.placeholder}
-                defaultValue={value}
-                className={styles.area_text}
-                wrap='hard'
-                maxLength={context.maxLength}
-            >
-            </TextareaAutosize>
+                className={styles.area_text}>
+                {value}
+            </div>
         </div>
     )
 }

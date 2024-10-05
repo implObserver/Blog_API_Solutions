@@ -8,12 +8,13 @@ import { removePostImage } from "@/entities/postPreview/lib/helper/removePostIma
 import { deletePostImage, servicesActions } from "@/entities/user";
 import { MinusButton } from "@/shared/ui/minusButton"
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export const ClickToRemoveElement = () => {
     const dispath = useDispatch<AppDispath>();
     const elementContext = useElementContext();
-    const post_id = useLocation().state;
+    const params = useParams();
+    const post_id = parseInt(params.postid);
     const models = useSelector(selectModelsOfOpenedPost).models;
 
     const clickHandle = () => {

@@ -58,6 +58,9 @@ const image_of_post_get = asyncHandler(async (req, res) => {
       case '.avif':
         contentType = 'image/avif';
         break;
+      case '.webp':
+        contentType = 'image/webp';
+        break;
       case '.jpeg':
       case '.jpg':
         contentType = 'image/jpeg';

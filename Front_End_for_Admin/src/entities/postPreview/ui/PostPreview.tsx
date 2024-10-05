@@ -3,6 +3,7 @@ import styles from './styles/PostPreviewStyles.module.css'
 import { usePostPreviewContext } from "../lib/context/Context";
 import { getImageByCode } from "../lib/helper/getPostImageFromIDB";
 import { loadImage } from "../lib/helper/loadImage";
+import { addPostImages } from "../lib/helper/loadImageToIDB";
 
 export const PostPreview = ({ post }) => {
     const [preview, setPreview] = useState('');
@@ -12,20 +13,27 @@ export const PostPreview = ({ post }) => {
     useEffect(() => {
         const loadPreview = async () => {
             try {
-                const blob = (await getImageByCode(post.id, folderName)).blob;
-                console.log(blob)
-                if (blob === null || blob === undefined) {
-                    await loadPreviewOnServer();
+                const image = (await getImageByCode(post.id, folderName));
+                console.log(image)
+                if (!image || !image.blob) {
+                    loadPreviewOnServer();
                 } else {
-                    setPreview(URL.createObjectURL(blob));
+                    console.log(`blooob ${image.blob}`)
+                    setPreview(URL.createObjectURL(image.blob));
                 }
-            } catch {
+            } catch (error) {
+                console.log(error)
                 setPreview(null);
             }
         }
 
         const loadPreviewOnServer = async () => {
             const blob = await loadImage(folderName);
+            const image: ImageType = {
+                code: folderName,
+                blob,
+            }
+            addPostImages(post.id, image);
             setPreview(URL.createObjectURL(blob));
         }
 

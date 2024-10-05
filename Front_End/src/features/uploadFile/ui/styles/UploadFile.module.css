@@ -1,0 +1,16 @@
+.input {
+    display: none;
+}
+
+.custom_file_upload {
+    display: inherit;
+    position: inherit;
+
+    width: inherit;
+    height: inherit;
+    bottom: inherit;
+    left: inherit;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+}

@@ -1,0 +1,24 @@
+.form_profile_hide {
+    display: grid;
+}
+
+.cancel {
+    position: relative;
+    bottom: 48px;
+    left: 64px;
+}
+
+.button {
+    width: max-content;
+    appearance: none;
+    background-color: var(--color__main-theme);
+    border: 1px var(--color__main-theme_accent) solid;
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 8px;
+    cursor: pointer;
+    padding-left: 8px;
+    padding-right: 8px;
+}

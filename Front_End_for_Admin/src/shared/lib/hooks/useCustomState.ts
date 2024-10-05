@@ -8,7 +8,7 @@ export const useCustomState = (state1 = false, state2 = true) => {
         setState(newState);
     };
 
-    const setState = (state: boolean) => {
+    const setState = (state: any) => {
         setNewState(state);
     }
 
@@ -17,6 +17,6 @@ export const useCustomState = (state1 = false, state2 = true) => {
     };
 
     const result: CustomState = { toggle, getState, setState };
-    
+
     return result;
 };

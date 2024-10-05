@@ -1,35 +1,35 @@
 import { Avatar, AvatarContext } from "@/shared/ui/avatar"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 import styles from './styles/Preview.module.css'
-import { useEffect } from "react";
-import { AppDispath } from "@/app/model/store/Store";
-import { getAvatar } from "@/entities/user/model/slice/services/thunks/get/getAvatar";
-import { base64ToFile } from "@/shared/lib";
+import { useEffect, useState } from "react";
 import { selectUserServices } from "@/entities/user/model/slice/services/selectors";
+import { getAvatar } from "@/entities/user/lib/helper/getAvatar";
 
 export const Preview = () => {
-    const user = useSelector(selectUserServices).user;
-    const base64 = useSelector(selectUserServices).avatar;
-    const file = base64 ? base64ToFile(base64, 'avatar') : null;
+    const services = useSelector(selectUserServices);
+    const user = services.user;
+    const isUpdate = services.isUpdate;
+    const [avatar, setAvatar] = useState(null);
 
-    const dispatch = useDispatch<AppDispath>();
-    const avatarURL = file ? URL.createObjectURL(file) : null;
+    const loadAvatar = async () => {
+        const avatar = await getAvatar();
+        setAvatar(URL.createObjectURL(avatar));
+    }
 
     useEffect(() => {
-        if (!file) {
-            dispatch(getAvatar());
-        }
-    }, []);
+        console.log('fc')
+        loadAvatar();
+    }, [isUpdate]);
 
     const avatarContext = {
-        image: avatarURL,
+        image: avatar,
     };
 
     return (
         <div className={styles.container}>
             <AvatarContext.Provider value={avatarContext}>
-                <Link className={styles.link} to={`/profile/${user.id}`}>
+                <Link className={styles.link} to={`http://localhost:5000/profile/${user.id}`}>
                     <Avatar></Avatar>
                 </Link>
             </AvatarContext.Provider>

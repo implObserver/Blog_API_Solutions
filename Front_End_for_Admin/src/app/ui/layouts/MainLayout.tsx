@@ -8,8 +8,8 @@ import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { Header } from '@/widgets/header';
 import styles from '../styles/App.module.css'
-//localStorage.clear()
-const getScroll = (pathname) => {
+
+const getScroll = (pathname: string) => {
     const scrolls = store.getState().scrollRestoration.scrolls;
     const scroll = scrolls.find(scroll => scroll.pathname === pathname);
     return scroll;

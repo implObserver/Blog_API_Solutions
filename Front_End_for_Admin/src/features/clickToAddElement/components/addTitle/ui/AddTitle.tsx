@@ -10,11 +10,12 @@ import {
 
 import { servicesActions } from "@/entities/user";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export const AddTitle = () => {
     const context = useElementContext();
-    const post_id = useLocation().state;
+    const params = useParams();
+    const post_id = parseInt(params.postid);
     const model = context.model;
     const models = useSelector(selectModelsOfOpenedPost).models;
 

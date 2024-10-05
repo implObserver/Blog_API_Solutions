@@ -7,7 +7,7 @@ import { Access } from "@/entities/access";
 
 export const NotificationDestributor = () => {
     const services = useSelector(selectUserServices);
-
+    console.log(`${services.error} its error`)
     if (!services.error) {
         return (
             <>

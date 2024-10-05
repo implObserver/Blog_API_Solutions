@@ -42,8 +42,8 @@ interface TextAreaContextType {
 
 interface CustomState {
     toggle: () => void;
-    getState: () => boolean;
-    setState: (state: boolean) => void;
+    getState: () => any;
+    setState: (state: any) => void;
 }
 
 interface PlugContextType {

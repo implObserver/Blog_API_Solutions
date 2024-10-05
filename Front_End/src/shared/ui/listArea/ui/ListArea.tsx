@@ -7,7 +7,7 @@ import { Body } from '../components/body';
 
 export const ListArea = () => {
     return (
-        <li key={Math.random()}>
+        <li className={styles.li} key={Math.random()}>
             <div className={styles.container}>
                 <Strong></Strong>
                 <Body></Body>

@@ -11,11 +11,12 @@ import {
 import { servicesActions } from "@/entities/user";
 import { useContainerContext } from "@/features/containerOS/lib";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export const Add = ({ children }) => {
     const context = useContainerContext();
-    const post_id = useLocation().state;
+    const params = useParams();
+    const post_id = parseInt(params.postid);
     const model = context.containerContext.model;
     const models = useSelector(selectModelsOfOpenedPost).models;
     const dispath = useDispatch<AppDispath>();

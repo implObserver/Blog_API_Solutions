@@ -16,7 +16,7 @@ export const ListElement = () => {
 
     return (
         <div className={styles.list_element}>
-            <ul>
+            <ul className={styles.ul}>
                 <ListAreaContext.Provider value={textAreaContext}>
                     <ListArea></ListArea>
                 </ListAreaContext.Provider>

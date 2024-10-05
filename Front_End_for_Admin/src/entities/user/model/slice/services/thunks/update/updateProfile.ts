@@ -9,14 +9,21 @@ export const updateProfile = createAsyncThunk(
             const user = resp.data.user;
             const res = {
                 error: false,
-                msg: user,
+                data: {
+                    name: 200,
+                    message: user,
+                },
             }
             return res;
         } catch (error) {
             console.log(error)
+            const data = {
+                name: error.response.status,
+                message: error.response.data.error,
+            }
             const res = {
                 error: true,
-                msg: error.response.data.error,
+                data,
             }
             return res;
         }

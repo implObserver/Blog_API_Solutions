@@ -8,15 +8,11 @@ export const Body = () => {
 
     return (
         <div className={styles.container}>
-            <TextareaAutosize
+            <div
                 id={`body_${context.value.id}`}
-                placeholder={context.placeholder}
-                defaultValue={value}
-                className={styles.area_list}
-                wrap='hard'
-                maxLength={context.maxLength}
-            >
-            </TextareaAutosize>
+                className={styles.area_list}>
+                {value}
+            </div>
         </div>
     )
 }

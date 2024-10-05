@@ -5,8 +5,6 @@ import { checkAuth } from "./thunks/auth/checkAuth";
 import { logout } from "./thunks/auth/logout";
 import { signup } from "./thunks/auth/signup";
 import { updateProfile } from "./thunks/update/updateProfile";
-import { updateAvatar } from "./thunks/update/updateAvatar";
-import { getAvatar } from "./thunks/get/getAvatar";
 import { addPost } from "./thunks/update/addPost";
 import { updatePost } from "./thunks/update/updatePost";
 
@@ -59,6 +57,9 @@ const userServicesSlice = createSlice({
         },
         clearErrors: (state: ServicesDataType) => {
             state.error = null;
+        },
+        update: (state: ServicesDataType) => {
+            state.isUpdate = !state.isUpdate;
         },
         reset: (state: ServicesDataType) => {
             state.isAuth = false;
@@ -150,20 +151,6 @@ const userServicesSlice = createSlice({
                 }
             })
             .addCase(updateProfile.rejected, handleRejected)
-
-        builder
-            .addCase(updateAvatar.pending, handlePending)
-            .addCase(updateAvatar.fulfilled, handleFulfilled)
-            .addCase(updateAvatar.rejected, handleRejected)
-
-        builder
-            .addCase(getAvatar.pending, handlePending)
-            .addCase(getAvatar.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                state.avatar = action.payload;
-
-            })
-            .addCase(getAvatar.rejected, handleRejected)
 
         builder
             .addCase(addPost.pending, handlePending)

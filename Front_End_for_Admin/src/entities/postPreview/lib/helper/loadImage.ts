@@ -7,7 +7,7 @@ export const loadImage = async (imageUrl: string) => {
         const blob = resp.data;
         if (contentType.startsWith('image/')) {
             const file = new File([blob], 'avatar', { type: contentType });
-            return blob;
+            return file;
         } else {
             return null;
         }

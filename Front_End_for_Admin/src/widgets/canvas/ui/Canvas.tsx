@@ -1,6 +1,6 @@
 import { Container } from "../components/container";
 import { ContainerContext } from "@/features/containerOS";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispath } from "@/app/model/store/Store";
@@ -10,23 +10,28 @@ import { selectUserServices, servicesActions, updatePost } from "@/entities/user
 import { modlelsOfOpenedPostActions } from "@/entities/element";
 import { snapshotSliceActions } from "@/entities/postPreview";
 import { getSnapshot } from "../lib/helper/getSnapshot";
-import { SpinnerLoader } from "@/shared/ui/spinnerLoader";
 
 export const Canvas = React.memo(() => {
-    const location = useLocation();
-    const post_id = location.state;
+    const params = useParams();
+    const post_id = parseInt(params.postid);
     const service = useSelector(selectUserServices);
+    const user = service.user;
+    const posts = user.posts;
+    const post = posts.find(post => post.id === post_id);
+    if(!post) {
+        return (
+            <div>Нет доступа или поста не существует</div>
+        )
+    }
     if (post_id || post_id === 0) {
         const dispatch = useDispatch<AppDispath>();
-        const user = service.user;
-        const posts = user.posts;
-        const post = posts.find(post => post.id === post_id);
         let elements = posts.length === 0 ? [] : post.elements;
         console.log(`adadada ${elements[elements.length - 1].value}`)
         const containerContexts = useMemo(() => modelsToContainers(elements), [elements]);
 
         const updateSnapshot = () => {
             const models = getVirtualModels();
+
             dispatch(snapshotSliceActions.updateSnapshot(models));
         };
 

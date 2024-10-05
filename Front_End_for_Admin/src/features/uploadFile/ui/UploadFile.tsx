@@ -1,7 +1,12 @@
 import { useDispatch } from "react-redux";
 import styles from './styles/UploadFile.module.css'
 import { AppDispath } from "@/app/model/store/Store";
-import { getAvatar, updateAvatar } from "@/entities/user";
+import { updateAvatar } from "@/entities/user/lib/helper/updateAvatar";
+import { getAvatar } from "@/entities/user/lib/helper/getAvatar";
+import { useState } from "react";
+import { useUploadContext } from "../lib/context/Context.";
+import { servicesActions } from "@/entities/user";
+
 
 
 
@@ -12,10 +17,9 @@ export const UploadFile = ({ children }) => {
         const { files } = e.target;
         if (files.length) {
             const avatar = files[0];
-            await dispatch(updateAvatar(avatar));
-            dispatch(getAvatar());
+            await updateAvatar(avatar);
+            dispatch(servicesActions.update());
         }
-
     }
 
     return (

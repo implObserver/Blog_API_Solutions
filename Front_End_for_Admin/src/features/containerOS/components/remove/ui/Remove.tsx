@@ -6,14 +6,15 @@ import {
 import { servicesActions } from "@/entities/user";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export const Remove = ({ children }) => {
     const context = useContainerContext();
     const model = context.containerContext.model;
     const dispath = useDispatch<AppDispath>();
     const isEmpty = useEmptyContext();
-    const post_id = useLocation().state;
+    const params = useParams();
+    const post_id = parseInt(params.postid);
     const models = useSelector(selectModelsOfOpenedPost).models;
 
     const keyUpHandle = (e: React.KeyboardEvent<HTMLDivElement>) => {

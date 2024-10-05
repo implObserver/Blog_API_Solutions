@@ -5,18 +5,24 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 
 export const FastAuth = () => {
-    const isAuth = useSelector(selectUserServices).isAuth;
+    const services = useSelector(selectUserServices);
+    const isAuth = services.isAuth;
+    const isPending = services.isPending;
+
     const [attempt, setAttempt] = useState(false);
-    console.log(isAuth)
     const dispatch = useDispatch<AppDispath>();
     if (!isAuth && !attempt) {
         console.log('aa')
         dispatch(fastLogin());
         setAttempt(true);
-    }
-    return (
-        <div>
+        return (
+            <div>
 
-        </div>
-    )
+            </div>
+        )
+    } else if (!isAuth && attempt) {
+        if (!services.isPending) {
+            window.location.href = "http://localhost:5001/";
+        }
+    }
 }

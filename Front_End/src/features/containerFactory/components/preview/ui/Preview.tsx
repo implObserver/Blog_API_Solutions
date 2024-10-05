@@ -2,13 +2,14 @@ import { ImageContext, UploadAndDisplayImage } from "@/shared/ui/uploadAndDispla
 import { useEffect, useState } from "react";
 import styles from './styles/Preview.module.css'
 import { useElementContext } from "@/entities/element";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { handleExistingPostImages } from "../lib/helper/uploadImage";
 
 export const Preview = () => {
     const context = useElementContext();
     const model = context.model;
-    const post_id = useLocation().state;
+    const params = useParams();
+    const post_id = parseInt(params.postid);
     const [selectedImage, setSelectedImage] = useState(null);
 
     const verifyPostImages = async () => {

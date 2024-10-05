@@ -3,11 +3,11 @@ import styles from './styles/ProfileForm.module.css'
 
 export const ProfileForm = () => {
     const context = useProfileFormContext();
-
+    console.log(context)
     const data = {
-        nickname: context.data.nickname,
-        gender: context.data.gender,
-        age: context.data.age,
+        nickname: context.data.nickname ? context.data.nickname : '',
+        gender: context.data.gender ? context.data.gender : 'other',
+        age: context.data.age ? context.data.age : 0,
     }
 
     const handle = (e: React.ChangeEvent<HTMLInputElement>) => {

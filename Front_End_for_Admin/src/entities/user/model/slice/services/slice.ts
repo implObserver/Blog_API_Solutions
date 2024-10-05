@@ -6,7 +6,6 @@ import { logout } from "./thunks/auth/logout";
 import { signup } from "./thunks/auth/signup";
 import { updateProfile } from "./thunks/update/updateProfile";
 import { updateAvatar } from "./thunks/update/updateAvatar";
-import { getAvatar } from "./thunks/get/getAvatar";
 import { addPost } from "./thunks/update/addPost";
 import { updatePost } from "./thunks/update/updatePost";
 
@@ -63,9 +62,11 @@ const userServicesSlice = createSlice({
         reset: (state: ServicesDataType) => {
             state.isAuth = false;
             state.user = null;
-            state.avatar = null;
             state.isPending = false;
         },
+        update: (state: ServicesDataType) => {
+            state.isUpdate = !state.isUpdate;
+        }
     },
     extraReducers: (builder) => {
         const handlePending = (state: ServicesDataType) => {
@@ -80,7 +81,6 @@ const userServicesSlice = createSlice({
         const handleFulfilledLogout = (state: ServicesDataType) => {
             state.isAuth = false;
             state.user = null;
-            state.avatar = null;
             state.isPending = false;
         }
         builder
@@ -143,10 +143,11 @@ const userServicesSlice = createSlice({
             .addCase(updateProfile.fulfilled, (state, action) => {
                 handleFulfilled(state);
                 if (!action.payload.error) {
-                    state.user = action.payload.msg;
+                    state.user = action.payload.data.message;
+                    state.isAuth = true;
                     state.error = null;
                 } else {
-                    state.error = action.payload.msg;
+                    state.error = action.payload.data;
                 }
             })
             .addCase(updateProfile.rejected, handleRejected)
@@ -155,15 +156,6 @@ const userServicesSlice = createSlice({
             .addCase(updateAvatar.pending, handlePending)
             .addCase(updateAvatar.fulfilled, handleFulfilled)
             .addCase(updateAvatar.rejected, handleRejected)
-
-        builder
-            .addCase(getAvatar.pending, handlePending)
-            .addCase(getAvatar.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                state.avatar = action.payload;
-
-            })
-            .addCase(getAvatar.rejected, handleRejected)
 
         builder
             .addCase(addPost.pending, handlePending)

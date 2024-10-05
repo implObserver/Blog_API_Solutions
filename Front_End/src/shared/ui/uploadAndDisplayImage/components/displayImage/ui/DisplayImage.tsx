@@ -16,9 +16,6 @@ export const DisplayImage = () => {
                         src={URL.createObjectURL(selectedImage)}
                     />
                     <br /> <br />
-                    <button className={styles.button}>
-                        Remove
-                    </button>
                 </div>
             )}
         </div>

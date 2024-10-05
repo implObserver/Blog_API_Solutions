@@ -3,21 +3,10 @@
 }
 
 .strong_list {
-    display: grid;
-    border-radius: 3px;
-    outline: none;
+    width: max-content;
     font-family: Tahoma;
     font-size: inherit;
     padding-left: 4px;
     padding-right: 4px;
-    min-width: 5vw !important;
-    transition: width 0.2s;
     font-weight: 800;
-    /* Для плавной анимации изменения ширины */
-}
-
-.strong_list::placeholder {
-    background-color: rgb(222, 248, 222);
-    padding-left: 4px;
-    padding-right: 4px;
 }
