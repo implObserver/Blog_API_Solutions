@@ -6,9 +6,10 @@
 
 .tag {
     display: grid;
-    border: 1px black solid;
+    border: 2px var(--color__main-theme_accent) solid;
     padding-left: 5px;
     padding-right: 5px;
+    border-radius: 5px;
     cursor: pointer;
     transition: color var(--tag__transition-speed) ease-in-out, 
     background-color var(--tag__transition-speed) ease-in-out;

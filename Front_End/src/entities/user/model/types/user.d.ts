@@ -65,7 +65,7 @@ interface Post {
     title: string,
     postingDate: Date,
     isPublished: boolean,
-    tag: String,
+    tag: string,
     elements: Array<ModelType<TextAreaModel | PreviewModel | TitleModel>>,
     comments: Comment[]
 }

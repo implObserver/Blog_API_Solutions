@@ -4,6 +4,7 @@ import { loadImage } from "@/entities/postPreview/lib/helper/loadImage";
 import { useEffect, useState } from "react";
 import styles from './styles/Preview.module.css'
 import { addPostImages } from "@/entities/postPreview/lib/helper/loadImageToIDB";
+import { Link } from "react-router-dom";
 
 export const Preview = () => {
     const post = usePostPreviewContext().post;
@@ -21,7 +22,7 @@ export const Preview = () => {
                     console.log(`blooob ${image.blob}`)
                     setPreview(URL.createObjectURL(image.blob));
                 }
-            } catch(error) {
+            } catch (error) {
                 console.log(error)
                 setPreview(null);
             }
@@ -42,19 +43,24 @@ export const Preview = () => {
     console.log(preview)
     if (preview) {
         return (
-            <div className={styles.container}>
-                <img
-                    className={styles.image}
-                    alt="preview"
-                    src={preview}
-                />
-            </div>
+            <Link
+                key={`container_${post.id}`}
+                className={styles.link}
+                to={`/post/${post.id}`}
+                state={post.id}
+            >
+                <div className={styles.container}>
+                    <img
+                        className={styles.image}
+                        alt="preview"
+                        src={preview}
+                    />
+                </div>
+            </Link>
         )
     } else {
         return (
-            <div className={styles.container}>
-                
-            </div>
+            <div className={styles.container} />
         )
     }
 }

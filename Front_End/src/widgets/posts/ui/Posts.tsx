@@ -29,16 +29,9 @@ export const Posts = () => {
                 post,
             };
             return (
-                <Link
-                    key={`container_${post.id}`}
-                    className={styles.link}
-                    to={`/post/${post.id}`}
-                    state={post.id}
-                >
-                    <PostPreviewContext.Provider value={postPreviewContext}>
-                        <PostPreview />
-                    </PostPreviewContext.Provider>
-                </Link>
+                <PostPreviewContext.Provider value={postPreviewContext} key={post.id}>
+                    <PostPreview />
+                </PostPreviewContext.Provider>
             );
         });
     };

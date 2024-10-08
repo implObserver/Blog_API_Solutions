@@ -3,18 +3,20 @@ import styles from './styles/Post.module.css'
 import { Canvas } from '@/widgets/canvas'
 import { useSelector } from 'react-redux';
 import { SpinnerLoader } from '@/shared/ui/spinnerLoader';
+import { CategoryDate } from '@/widgets/title';
 
 export const PostPage = () => {
     const services = useSelector(selectUserServices);
-    
+
     if (services.isAuth) {
         return (
             <div className={styles.page__main}>
+                <CategoryDate></CategoryDate>
                 <Canvas></Canvas>
             </div>
         )
     } else {
-        if(!services.isPending){
+        if (!services.isPending) {
             window.location.href = "http://localhost:5000/";
         } else {
 
