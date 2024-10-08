@@ -5,12 +5,12 @@ import { checkAuth } from "./thunks/auth/checkAuth";
 import { logout } from "./thunks/auth/logout";
 import { signup } from "./thunks/auth/signup";
 import { updateProfile } from "./thunks/update/updateProfile";
-import { updateAvatar } from "./thunks/update/updateAvatar";
 import { addPost } from "./thunks/update/addPost";
 import { updatePost } from "./thunks/update/updatePost";
 
 import { deletePost } from "./thunks/delete/deletePost";
 import { fastLogin } from "./thunks/auth/fastLogin";
+import { updateTag } from "./thunks/update/updateTag";
 
 const userServicesSlice = createSlice({
     name: 'services',
@@ -153,15 +153,15 @@ const userServicesSlice = createSlice({
             .addCase(updateProfile.rejected, handleRejected)
 
         builder
-            .addCase(updateAvatar.pending, handlePending)
-            .addCase(updateAvatar.fulfilled, handleFulfilled)
-            .addCase(updateAvatar.rejected, handleRejected)
-
-        builder
             .addCase(addPost.pending, handlePending)
             .addCase(addPost.fulfilled, (state, action) => {
                 handleFulfilled(state);
-                state.user = action.payload;
+                if (!action.payload.error) {
+                    state.user = action.payload.data.message;
+                    state.error = null;
+                } else {
+                    state.error = action.payload.data;
+                }
             })
             .addCase(addPost.rejected, handleRejected)
 
@@ -186,14 +186,30 @@ const userServicesSlice = createSlice({
             })
             .addCase(updatePost.fulfilled, (state, action) => {
                 handleFulfilled(state);
-                if (action.payload !== false) {
-                    state.user = action.payload;
+                handleFulfilled(state);
+                if (!action.payload.error) {
+                    state.user = action.payload.data.message;
+                    state.error = null;
+                } else {
+                    state.error = action.payload.data;
                 }
             })
             .addCase(updatePost.rejected, (state) => {
                 state.isPending = false;
                 state.isUpdate = false;
             })
+        builder
+            .addCase(updateTag.pending, handlePending)
+            .addCase(updateTag.fulfilled, (state, action) => {
+                handleFulfilled(state);
+                if (!action.payload.error) {
+                    state.user = action.payload.data.message;
+                    state.error = null;
+                } else {
+                    state.error = action.payload.data;
+                }
+            })
+            .addCase(updateTag.rejected, handleRejected)
     }
 })
 

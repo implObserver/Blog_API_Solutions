@@ -2,13 +2,13 @@ import { store } from "@/app/model/store/Store";
 import { UpdateService } from "@/entities/user/api/api.put";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const updatePost = createAsyncThunk(
-    'services/update/post/',
-    async (post: Post, thunkAPI) => {
+export const updateTag = createAsyncThunk(
+    'services/update/tag/',
+    async (tagData: TagDataType, thunkAPI) => {
         try {
             const isAuth = store.getState().userServices.isAuth;
             if (isAuth) {
-                const resp = await UpdateService.updatePost(post);
+                const resp = await UpdateService.updateTag(tagData.post_id, tagData.tag);
                 const user = resp.data.user;
                 const res = {
                     error: false,

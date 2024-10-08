@@ -7,9 +7,25 @@ export const addPost = createAsyncThunk(
         try {
             const resp = await PostService.addPost(dataPost);
             const user = resp.data.user;
-            return user;
+            const res = {
+                error: false,
+                data: {
+                    name: 200,
+                    message: user,
+                },
+            }
+            return res;
         } catch (error) {
-            return false;
+            console.log(error)
+            const data = {
+                name: error.response.status,
+                message: error.response.data.error,
+            }
+            const res = {
+                error: true,
+                data,
+            }
+            return res;
         }
     }
 )

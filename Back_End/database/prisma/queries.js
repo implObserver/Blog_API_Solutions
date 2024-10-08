@@ -10,6 +10,18 @@ const dropUsers = async () => {
   //await prisma.$queryRaw('DROP schema users CASCADE')
 };
 
+const updateTag = async (user_id, post_id, tag) => {
+  await prisma.post.update({
+    where: {
+      id: post_id,
+      userId: user_id,
+    },
+    data: {
+      tag: tag,
+    },
+  });
+};
+
 const getAllUsers = async () => {
   const users = await prisma.user.findMany();
   return users;
@@ -287,4 +299,5 @@ export const prismaDB = {
   setVerifyCode,
   findUserByEmail,
   updateProfile,
+  updateTag,
 };

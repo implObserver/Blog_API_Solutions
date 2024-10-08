@@ -1,3 +1,8 @@
+interface TagDataType {
+    post_id: number,
+    tag: string,
+}
+
 interface ServicesDataType {
     user: User,
     isAuth: boolean,

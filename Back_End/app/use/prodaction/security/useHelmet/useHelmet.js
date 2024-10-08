@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import helmet from 'helmet';
 import { app } from '../../../../app.js';
 
@@ -5,7 +6,7 @@ export const useHelmet = () => {
   app.use(
     helmet.contentSecurityPolicy({
       directives: {
-        'script-src': ['self', 'code.jquery.com', 'cdn.jsdelivr.net'],
+        'script-src': ["'self'", 'code.jquery.com', 'cdn.jsdelivr.net'],
       },
     })
   );

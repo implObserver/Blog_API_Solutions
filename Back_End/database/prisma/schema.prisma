@@ -33,7 +33,7 @@ model Post {
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   isPublished Boolean  @default(false)
   postingDate DateTime @default(now())
-  tag         String?
+  tag         String   @default("Other")
   elements    Json[]
 
   comments Comment[]

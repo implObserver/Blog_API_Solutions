@@ -23,5 +23,8 @@ export const UpdateService = {
         const encoder = new TextEncoder();
         const byteSize = encoder.encode(JSON.stringify(post)).length;
         return instance.put(`/api/user/:${id}/posts/update`, post)
+    },
+    updateTag(post_id: number, tag: string) {
+        return instance.put(`/api/user/:${id}/posts/:${post_id}/update_tag`, { post_id, tag })
     }
 }
