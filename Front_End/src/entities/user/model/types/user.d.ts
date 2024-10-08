@@ -94,6 +94,7 @@ interface UpdateModels {
 
 interface PostPreviewContextType {
     post: Post;
+    tag?: React.ReactElement,
 }
 
 //

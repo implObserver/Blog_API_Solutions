@@ -4,11 +4,11 @@ import styles from './styles/Tag.module.css'
 
 export const TagOfPost = () => {
     const context = usePostPreviewContext();
-
+    const children = context.tag;
     return (
         <div className={styles.tag}>
             <TagContext.Provider value={context.post.tag}>
-                <Tag></Tag>
+                {children}
             </TagContext.Provider>
         </div>
     )

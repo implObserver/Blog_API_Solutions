@@ -1,0 +1,3 @@
+interface Tag {
+    tag: string,
+}

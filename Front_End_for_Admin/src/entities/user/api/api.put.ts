@@ -19,10 +19,8 @@ export const UpdateService = {
     updateProfile(profile: ProfileFormType) {
         return instance.put(`/api/user/:${id}/profile/update/`, profile)
     },
-    updatePost(post: Post) {
-        const encoder = new TextEncoder();
-        const byteSize = encoder.encode(JSON.stringify(post)).length;
-        return instance.put(`/api/user/:${id}/posts/update`, post)
+    updatePost(snapshot: SnapShot) {
+        return instance.put(`/api/user/:${id}/posts/update`, snapshot)
     },
     updateTag(post_id: number, tag: string) {
         return instance.put(`/api/user/:${id}/posts/:${post_id}/update_tag`, { post_id, tag })

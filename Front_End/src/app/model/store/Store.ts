@@ -1,5 +1,5 @@
+import { tagReducer } from '@/entities/tag';
 import { postsReducer, servicesReducer } from '@/entities/user';
-
 import { scrollRestorationReducer } from '@/features/scrollRestoration';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
@@ -18,6 +18,7 @@ const rootReducer = combineReducers({
   userServices: servicesReducer,
   scrollRestoration: scrollRestorationReducer,
   posts: postsReducer,
+  tag: tagReducer,
 })
 
 const persistConfig = {

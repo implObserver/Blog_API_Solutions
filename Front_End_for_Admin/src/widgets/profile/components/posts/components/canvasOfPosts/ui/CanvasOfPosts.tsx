@@ -16,16 +16,14 @@ import {
 
 export const CanvasOfPosts = () => {
     const service = useSelector(selectUserServices);
-    const snapshot = useSelector(selectSnapshot).snapshot;
+    const snapshot = useSelector(selectSnapshot).elements;
     const user = service.user;
     const posts = user.posts;
     const userID = Cookies.get('user_id');
     const dispatch = useDispatch<AppDispath>();
 
     const clickHandle = (post: Post) => {
-        if (snapshot === null || snapshot.id !== post.id) {
-            dispatch(snapshotSliceActions.initialSnapshot(post));
-        }
+        dispatch(snapshotSliceActions.initialSnapshot(post));
     }
 
     const fill = useMemo(() => {

@@ -6,7 +6,7 @@ import { logout } from "./thunks/auth/logout";
 import { signup } from "./thunks/auth/signup";
 import { updateProfile } from "./thunks/update/updateProfile";
 import { addPost } from "./thunks/update/addPost";
-import { updatePost } from "./thunks/update/updatePost";
+import { updateModelsOfPost } from "./thunks/update/updateModelsOfPost";
 
 import { deletePost } from "./thunks/delete/deletePost";
 import { fastLogin } from "./thunks/auth/fastLogin";
@@ -180,11 +180,11 @@ const userServicesSlice = createSlice({
             .addCase(deletePost.rejected, handleRejected)
 
         builder
-            .addCase(updatePost.pending, (state) => {
+            .addCase(updateModelsOfPost.pending, (state) => {
                 state.isPending = true;
                 state.isUpdate = true;
             })
-            .addCase(updatePost.fulfilled, (state, action) => {
+            .addCase(updateModelsOfPost.fulfilled, (state, action) => {
                 handleFulfilled(state);
                 handleFulfilled(state);
                 if (!action.payload.error) {
@@ -194,7 +194,7 @@ const userServicesSlice = createSlice({
                     state.error = action.payload.data;
                 }
             })
-            .addCase(updatePost.rejected, (state) => {
+            .addCase(updateModelsOfPost.rejected, (state) => {
                 state.isPending = false;
                 state.isUpdate = false;
             })

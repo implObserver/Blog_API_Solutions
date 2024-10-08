@@ -121,7 +121,8 @@ interface Ref {
 }
 
 interface SnapShot {
-    snapshot: Post,
+    post_id: number,
+    elements: Array<ModelType<TextAreaModel | PreviewModel | TitleModel>>,
 }
 //Elements
 interface PreviewStatus {

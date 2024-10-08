@@ -18,7 +18,9 @@ export const Canvas = React.memo(() => {
     const user = service.user;
     const posts = user.posts;
     const post = posts.find(post => post.id === post_id);
-    if(!post) {
+    console.log(post)
+    console.log(getSnapshot())
+    if (!post) {
         return (
             <div>Нет доступа или поста не существует</div>
         )
@@ -31,15 +33,12 @@ export const Canvas = React.memo(() => {
 
         const updateSnapshot = () => {
             const models = getVirtualModels();
-
             dispatch(snapshotSliceActions.updateSnapshot(models));
         };
 
         const finalizeSnapshot = () => {
             updateSnapshot();
             const snapshot = getSnapshot();
-            console.log(snapshot)
-
             dispatch(updatePost(snapshot));
         };
 

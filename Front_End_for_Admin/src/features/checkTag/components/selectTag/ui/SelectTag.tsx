@@ -5,6 +5,7 @@ import { selectUserServices, servicesActions } from "@/entities/user";
 import { Tag, TagContext } from "@/shared/ui/tag";
 import { AppDispath } from "@/app/model/store/Store";
 import { updateTag } from "@/entities/user/model/slice/services/thunks/update/updateTag";
+import { snapshotSliceActions } from "@/entities/postPreview";
 
 export const SelectTag = () => {
     const params = useParams();
@@ -29,6 +30,7 @@ export const SelectTag = () => {
             post_id,
             tag,
         }
+        //dispatch(snapshotSliceActions.updateTagOfSnapshot(post.tag));
         dispatch(updateTag(args));
     }
 

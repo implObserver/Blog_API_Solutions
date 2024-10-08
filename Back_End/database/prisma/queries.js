@@ -176,14 +176,10 @@ const updateModels = async (data) => {
   }
 };
 
-const updatePost = async (user, post) => {
+const updateModelsOfPost = async (user, snapshot) => {
   try {
     const postObj = {
-      title: post.title,
-      isPublished: post.isPublished,
-      postingDate: post.postingDate,
-      tag: post.tag,
-      elements: post.elements,
+      elements: snapshot.models,
     };
     const updatedPost = await prisma.user.update({
       where: {
@@ -193,7 +189,7 @@ const updatePost = async (user, post) => {
         posts: {
           update: [
             {
-              where: { id: post.id }, // Укажите ID поста для обновления
+              where: { id: snapshot.post_id }, // Укажите ID поста для обновления
               data: postObj,
             },
           ],
@@ -290,7 +286,7 @@ export const prismaDB = {
   updateAvatar,
   addPost,
   dropUsers,
-  updatePost,
+  updatePost: updateModelsOfPost,
   updateModels,
   removeAll,
   deletePost,

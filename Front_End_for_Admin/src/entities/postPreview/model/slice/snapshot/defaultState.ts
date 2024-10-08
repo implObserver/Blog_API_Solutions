@@ -1,3 +1,4 @@
 export const initialState: SnapShot = {
-    snapshot: null,
+    post_id: null,
+    elements: [],
 }

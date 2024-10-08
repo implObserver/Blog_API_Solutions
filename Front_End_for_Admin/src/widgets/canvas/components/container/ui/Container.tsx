@@ -4,7 +4,7 @@ import { Element, ElementContext } from "@/entities/element";
 import styles from './styles/Container.module.css'
 import { ContainerOS, useContainerContext } from "@/features/containerOS";
 import { DropdownContext } from "@/shared/ui/dropdownElement";
-import { ExternalReset, ExternalResetContext } from "@/features/externalReset";
+import { ExternalReset, ExternalResetContext } from "@/shared/ui/externalReset";
 import React, { useMemo } from "react";
 import { useCustomState } from "@/shared/lib";
 import { ElementListContext } from "@/entities/elementList";
@@ -40,11 +40,6 @@ export const Container = React.memo(() => {
         index: context.containerContext.index,
     };
 
-    const externalResetContext = {
-        state: dropdownStatus,
-        index: `${context.containerContext.index} container`,
-    };
-
     const dropdownElementContext = {
         state: dropdownStatus.getState(),
         margin: false,
@@ -60,8 +55,6 @@ export const Container = React.memo(() => {
 
     return (
         <div className={styles.container}>
-            <ExternalResetContext.Provider value={externalResetContext}>
-                <ExternalReset>
                     <DropdownContext.Provider value={dropdownElementContext}>
                         <ElementListContext.Provider value={elementListContext}>
                             <ElementContext.Provider value={elementContext}>
@@ -71,8 +64,6 @@ export const Container = React.memo(() => {
                             </ElementContext.Provider>
                         </ElementListContext.Provider>
                     </DropdownContext.Provider>
-                </ExternalReset>
-            </ExternalResetContext.Provider>
         </div>
     );
 });

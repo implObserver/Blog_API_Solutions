@@ -1,0 +1,6 @@
+.tags {
+    display: flex;
+    gap: 15px;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    color-scheme: light dark;
+}
