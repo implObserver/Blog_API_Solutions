@@ -5,7 +5,7 @@ import { selectUserServices, servicesActions } from "@/entities/user";
 import { Tag, TagContext } from "@/shared/ui/tag";
 import { AppDispath } from "@/app/model/store/Store";
 import { updateTag } from "@/entities/user/model/slice/services/thunks/update/updateTag";
-import { snapshotSliceActions } from "@/entities/postPreview";
+import styles from './styles/SelectTag.module.css'
 
 export const SelectTag = () => {
     const params = useParams();
@@ -30,14 +30,17 @@ export const SelectTag = () => {
             post_id,
             tag,
         }
-        //dispatch(snapshotSliceActions.updateTagOfSnapshot(post.tag));
         dispatch(updateTag(args));
     }
 
     const fill = () => {
         return tags.map((tag) => {
             return (
-                <div onClick={() => onClick(tag)} key={tag}>
+                <div
+                    className={styles.tag}
+                    onClick={() => onClick(tag)}
+                    key={tag}
+                >
                     <TagContext.Provider value={tag}>
                         <Tag></Tag>
                     </TagContext.Provider>

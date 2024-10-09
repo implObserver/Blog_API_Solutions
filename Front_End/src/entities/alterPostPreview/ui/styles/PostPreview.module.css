@@ -1,0 +1,6 @@
+.container {
+    display: grid;
+    grid-template-areas: 'once';
+    justify-items: center;
+    max-height: inherit;
+}

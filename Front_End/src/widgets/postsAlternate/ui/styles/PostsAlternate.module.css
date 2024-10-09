@@ -1,0 +1,35 @@
+.posts_alternate {
+    display: grid;
+    grid-template-areas:
+        'first second'
+        'first third';
+    gap: max(1vh, 1vw);
+    justify-content: center;
+    padding: 15px;
+}
+
+.posts_alternate>div:nth-child(1) {
+    display: grid;
+    width: 100%;
+    max-width: 700px;
+    height: 100%;
+    grid-area: first;
+}
+
+.posts_alternate>div:nth-child(2) {
+    display: grid;
+    max-width: 400px;
+    max-height: 400px;
+    width: 35vw;
+    height: 35vw;
+    grid-area: second;
+}
+
+.posts_alternate>div:nth-child(3) {
+    display: grid;
+    width: 35vw;
+    max-width: 400px;
+    max-height: 400px;
+    height: 35vw;
+    grid-area: third;
+}

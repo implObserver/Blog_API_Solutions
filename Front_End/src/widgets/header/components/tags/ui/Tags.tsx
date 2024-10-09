@@ -7,20 +7,23 @@ import { PostFilterContext } from "@/features/postsFilter/lib/context/Context";
 import { selectUserServices } from "@/entities/user";
 
 export const Tags = () => {
+    const selectedTag = useSelector(selectTag).tag;
     const tags = getTags();
     const fill = () => {
         return tags.map(tag => {
+            const style = tag === selectedTag ? styles.tag : '';
             const postFilterContext: PostFilterType = {
                 tag,
                 children: <span>{tag}</span>
             }
             return (
-                <PostFilterContext.Provider
-                    value={postFilterContext}
-                    key={tag}
-                >
-                    <PostsFilter></PostsFilter>
-                </PostFilterContext.Provider>
+                <div className={style} key={tag}>
+                    <PostFilterContext.Provider
+                        value={postFilterContext}
+                    >
+                        <PostsFilter></PostsFilter>
+                    </PostFilterContext.Provider>
+                </div>
             )
         })
     }

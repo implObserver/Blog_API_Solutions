@@ -1,0 +1,23 @@
+.container {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    border: 2px var(--color__main-theme_accent) solid;
+    border-radius: 5px 5px 0px 0px;
+    overflow: hidden;
+    background-color: var(--color__main-theme);
+}
+
+.image {
+    display: grid;
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
+}
+
+.link {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-area: once;
+}

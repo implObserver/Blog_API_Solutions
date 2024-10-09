@@ -4,3 +4,29 @@
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     color-scheme: light dark;
 }
+
+.tag {
+    display: inline-block;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.tag::after {
+    display: block;
+    content: '';
+    transform: scaleX(0.5);
+    border-bottom: 3px var(--color__secondary-theme) solid;
+    transition: transform 250ms ease-in-out, transform-origin 250ms ease-in-out;
+}
+
+.tag:hover::after {
+    transform: scaleX(1);
+}
+
+.tag.fromRight::after {
+    transform-origin: 100% 50%;
+}
+
+.tag.fromLeft::after {
+    transform-origin: 0% 50%;
+}

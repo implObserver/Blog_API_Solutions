@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react"
-import { PostPreviewContext } from "@/entities/postPreview/lib/context/Context";
 import { PostPreview } from "@/entities/postPreview";
-import styles from './styles/Posts.module.css'
+import styles from './styles/PostsAlternate.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispath, RootState } from "@/app/model/store/Store";
 import { getAllPosts } from "@/entities/user/model/slice/posts/thunks/get/getAllPosts";
@@ -10,11 +8,13 @@ import { selectTag } from "@/entities/tag";
 import { PostFilterContext } from "@/features/postsFilter/lib/context/Context";
 import { PostsFilter } from "@/features/postsFilter/ui/PostsFilter";
 import { Tag } from "@/shared/ui/tag";
-import { count } from "console";
-import { Recent } from "../components/recent/ui/Recent";
+import { useEffect } from "react";
+import { PostPreviewContext } from "@/entities/postPreview/lib/context/Context";
+import { AlterPostPreview } from "@/entities/alterPostPreview";
+import { AlterPostPreviewContext } from "@/entities/alterPostPreview/lib/context/Context";
 
 
-export const Posts = () => {
+export const PostsAlternate = () => {
     const tag = useSelector(selectTag).tag;
     const posts = useSelector(selectPosts).posts;
     const dispatch = useDispatch<AppDispath>();
@@ -30,9 +30,9 @@ export const Posts = () => {
     const fill = () => {
         let counter = 0;
         return posts.map((post, index) => {
-            if (tag === post.tag || tag === 'All') {
-                ++counter;
-                if (counter > 3) {
+            if (counter < 3) {
+                if (tag === post.tag || tag === 'All') {
+                    counter++;
                     const postFilterContext: PostFilterType = {
                         tag: post.tag,
                         children: <Tag></Tag>,
@@ -46,9 +46,9 @@ export const Posts = () => {
                         </>
                     };
                     return (
-                        <PostPreviewContext.Provider value={postPreviewContext} key={post.id}>
-                            <PostPreview />
-                        </PostPreviewContext.Provider>
+                        <AlterPostPreviewContext.Provider value={postPreviewContext} key={post.id}>
+                            <AlterPostPreview></AlterPostPreview>
+                        </AlterPostPreviewContext.Provider>
                     );
                 }
             }
@@ -56,13 +56,8 @@ export const Posts = () => {
     };
 
     return (
-        <div>
-            <div>
-                <Recent></Recent>
-            </div>
-            <div className={styles.container}>
-                {fill()}
-            </div>
+        <div className={styles.posts_alternate}>
+            {fill()}
         </div>
     )
 }
