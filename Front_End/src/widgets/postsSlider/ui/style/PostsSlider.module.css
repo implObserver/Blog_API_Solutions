@@ -1,0 +1,15 @@
+.slider {
+    display: flex;
+    width: 90vw;
+}
+
+.container {
+    display: grid;
+    width: 90vw;
+}
+
+.title {
+    font-weight: 400;
+    font-size: 26px;
+    padding: 15px;
+}

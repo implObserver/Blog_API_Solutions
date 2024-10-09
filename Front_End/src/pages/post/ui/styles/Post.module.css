@@ -4,6 +4,7 @@
     height: min-content;
     padding: 5px;
     align-content:start;
+    justify-content: center;
     row-gap: 4px;
     padding-bottom: 40px;
 }

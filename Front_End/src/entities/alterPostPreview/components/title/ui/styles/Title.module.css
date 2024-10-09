@@ -9,11 +9,8 @@
     grid-area: once;
     align-self: flex-end;
     color: white;
-    text-shadow: 
-        -1px -1px 0px black,   /* Ссылка на верхний левый угол */
-        1px -1px 0px black,    /* Правый верхний угол */
-        -1px 1px 0px black,    /* Левый нижний угол */
-        1px 1px 0px black;      /* Правый нижний угол */
+    border-radius: 0px 0px 5px 5px;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .info {

@@ -11,7 +11,7 @@ import { PostFilterContext } from "@/features/postsFilter/lib/context/Context";
 import { PostsFilter } from "@/features/postsFilter/ui/PostsFilter";
 import { Tag } from "@/shared/ui/tag";
 import { count } from "console";
-import { Recent } from "../components/recent/ui/Recent";
+import { Recent } from "../../../shared/ui/recent/ui/Recent";
 
 
 export const Posts = () => {

@@ -26,7 +26,7 @@ export const Canvas = React.memo(() => {
                     index,
                 };
                 return (
-                    <ContainerContext.Provider value={container} key={`container_${model.id}`}>
+                    <ContainerContext.Provider value={container} key={`container_${model.id}+${post_id}`}>
                         <Container />
                     </ContainerContext.Provider>
                 );

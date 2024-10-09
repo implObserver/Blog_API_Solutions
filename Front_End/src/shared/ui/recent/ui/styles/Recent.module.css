@@ -14,6 +14,6 @@
 .recent_line {
     display: flex;
     align-self: center;
-    border-top: 1px solid #afafaf;
+    border-top: 2px var(--color__main-theme_accent) solid;
     width: 100%;
 }
