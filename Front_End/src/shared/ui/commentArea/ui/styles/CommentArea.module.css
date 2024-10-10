@@ -1,0 +1,16 @@
+.container {
+    display: grid;
+    justify-content: center;
+    width: min-content;
+}
+
+.area_comment {
+    display: grid;
+    border-radius: 5px;
+    border: 1px black solid;
+    width: 80vw;
+    min-width: 300px;
+    height: 150px;
+    resize: none;
+    padding: 20px;
+}

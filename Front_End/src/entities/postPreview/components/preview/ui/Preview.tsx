@@ -15,15 +15,12 @@ export const Preview = () => {
         const loadPreview = async () => {
             try {
                 const image = (await getImageByCode(post.id, folderName));
-                console.log(image)
                 if (!image || !image.blob) {
                     loadPreviewOnServer();
                 } else {
-                    console.log(`blooob ${image.blob}`)
                     setPreview(URL.createObjectURL(image.blob));
                 }
             } catch (error) {
-                console.log(error)
                 setPreview(null);
             }
         }
@@ -40,7 +37,7 @@ export const Preview = () => {
 
         loadPreview();
     }, [])
-    console.log(preview)
+
     if (preview) {
         return (
             <Link

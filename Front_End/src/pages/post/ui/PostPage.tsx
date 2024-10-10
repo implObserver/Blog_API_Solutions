@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux';
 import { SpinnerLoader } from '@/shared/ui/spinnerLoader';
 import { CategoryDate } from '@/widgets/title';
 import { PostsSlider } from '@/widgets/postsSlider';
-import { Recent } from '@/shared/ui/recent/ui/Recent';
+import { Line } from '@/shared/ui/line/ui/Line';
+import { Comments } from '@/widgets/comments/ui/Comments';
 
 export const PostPage = () => {
     const services = useSelector(selectUserServices);
@@ -15,13 +16,14 @@ export const PostPage = () => {
             <div className={styles.page__main}>
                 <CategoryDate></CategoryDate>
                 <Canvas></Canvas>
-                <Recent></Recent>
+                <Line text={'Recent Posts'}></Line>
                 <PostsSlider></PostsSlider>
+                <Comments></Comments>
             </div>
         )
     } else {
         if (!services.isPending) {
-            window.location.href = "http://localhost:5000/";
+            window.location.href = "http://localhost:5001/";
         } else {
 
         }

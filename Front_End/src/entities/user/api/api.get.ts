@@ -3,6 +3,9 @@ import Cookies from "js-cookie";
 const userID = Cookies.get('user_id');
 
 export const ReadService = {
+    getPaginationPosts(data: PaginationData) {
+        return instance.get(`/api/posts?page=${data.page}`);
+    },
     getPosts() {
         return instance.get(`/api/posts/`);
     },

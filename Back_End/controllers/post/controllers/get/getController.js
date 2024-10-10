@@ -20,11 +20,31 @@ const posts_of_user_get = asyncHandler(async (req, res, next) => {
 
 const posts_list_api = asyncHandler(async (req, res) => {
   const allPost = await prismaDB.getAllPosts();
-  console.log(allPost[0]);
   res.json({
     title: 'Post List',
     posts_list: allPost,
   });
+});
+
+const pagination_posts_list_get = asyncHandler(async (req, res) => {
+  const page = parseInt(req.query.page) || 1; // Текущая страница
+  const limit = parseInt(req.query.limit) || 10; // Количество постов на странице
+  const offset = (page - 1) * limit; // Смещение для базы данных
+
+  try {
+    const posts = await prismaDB.getPaginationPosts(offset, limit);
+
+    const totalPosts = await prismaDB.countPost(); // Общее количество постов
+
+    res.json({
+      posts,
+      totalPosts,
+      totalPages: Math.ceil(totalPosts / limit),
+    });
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    res.status(500).json({ error: 'Ошибка при получении постов' });
+  }
 });
 
 const image_of_post_get = asyncHandler(async (req, res) => {
@@ -84,4 +104,5 @@ export const getController = {
   posts_list_api,
   posts_of_user_get,
   image_of_post_get,
+  pagination_posts_list_get,
 };

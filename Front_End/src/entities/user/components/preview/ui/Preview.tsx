@@ -18,7 +18,6 @@ export const Preview = () => {
     }
 
     useEffect(() => {
-        console.log('fc')
         loadAvatar();
     }, [isUpdate]);
 

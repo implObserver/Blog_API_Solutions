@@ -1,11 +1,12 @@
-import { DeleteService } from "@/entities/user/api/api.delete";
+import { PostService } from "@/entities/user/api/api.post";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { useParams } from "react-router-dom";
 
-export const deletePost = createAsyncThunk(
-    'services/delete/post/',
-    async (postId: number, thunkAPI) => {
+export const addComment = createAsyncThunk(
+    'services/add/comment/',
+    async (data: PostComment, thunkAPI) => {
         try {
-            const resp = await DeleteService.deletePost(postId);
+            const resp = await PostService.addComment(data);
             const user = resp.data.user;
             const res = {
                 error: false,
@@ -16,6 +17,7 @@ export const deletePost = createAsyncThunk(
             }
             return res;
         } catch (error) {
+            console.log(error)
             const data = {
                 name: error.response.status,
                 message: error.response.data.error,

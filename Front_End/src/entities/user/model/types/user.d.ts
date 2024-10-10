@@ -7,6 +7,10 @@ interface ServicesDataType {
     isUpdate?: boolean;
 }
 
+interface PaginationData {
+    page: number,
+}
+
 interface PostUpdate {
     id: number,
     models?: ModelType<TextAreaModel | PreviewModel | TitleModel>[],
@@ -67,18 +71,22 @@ interface Post {
     isPublished: boolean,
     tag: string,
     elements: Array<ModelType<TextAreaModel | PreviewModel | TitleModel>>,
-    comments: Comment[]
+    comments: PostComment[]
 }
 
 interface Posts {
     error?: Error,
     isPending?: Boolean,
     posts: Post[],
+    currentPage: number,
+    totalPages: number,
 }
 
-interface Comment {
-    postingDate: Date,
-    text: String,
+interface PostComment {
+    id?: number,
+    postingDate?: Date,
+    text: string,
+    post_id?: string,
 }
 
 interface CellOfPost {

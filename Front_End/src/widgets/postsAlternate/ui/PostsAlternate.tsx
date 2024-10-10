@@ -18,15 +18,7 @@ export const PostsAlternate = () => {
     const tag = useSelector(selectTag).tag;
     const posts = useSelector(selectPosts).posts;
     const dispatch = useDispatch<AppDispath>();
-
-    const loadPosts = async () => {
-        await dispatch(getAllPosts());
-    };
-
-    useEffect(() => {
-        loadPosts();
-    }, []);
-
+    
     const fill = () => {
         let counter = 0;
         return posts.map((post, index) => {

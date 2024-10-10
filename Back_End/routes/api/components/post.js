@@ -9,7 +9,7 @@ export const postRouter = Router();
 postRouter.get(
   '/posts',
   userController.user_auth_jwt_protected,
-  postsController.posts_list_api
+  postsController.pagination_posts_list_get
 );
 
 postRouter.post(

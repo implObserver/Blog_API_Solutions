@@ -10,7 +10,8 @@ const failureProtected = (req, res) => {
 };
 
 const authProtected = (req, res, next) => {
-  console.log(req);
+  console.log(req.user);
+  console.log(req.user.comments);
   if (req.isAuthenticated()) {
     res.locals.user = req.user;
     res.locals.refreshToken = req.user.refreshToken;
@@ -39,6 +40,7 @@ const user_get = asyncHandler(async (req, res) => {
       email: user.email,
       profile: user.profile,
       posts: user.posts,
+      comment: user.comments,
     },
   });
 });

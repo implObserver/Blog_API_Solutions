@@ -1,3 +1,5 @@
-import { getController } from './get/getController.js';
+import { postController } from './controllers/post/postController.js';
 
-export const commentController = Object.assign(getController, {});
+export const commentsController = {
+  ...postController,
+};

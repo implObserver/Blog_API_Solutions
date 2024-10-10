@@ -1,0 +1,11 @@
+.container {
+    display: grid;
+
+}
+
+.creater {
+    display: grid;
+    width: min-content;
+    gap: 15px;
+    justify-self: center;
+}

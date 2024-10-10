@@ -2,6 +2,20 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+const getPaginationPosts = async (offset, limit) => {
+  return prisma.post.findMany({
+    skip: offset,
+    take: limit,
+    include: {
+      comments: true,
+    },
+  });
+};
+
+const countPost = () => {
+  return prisma.post.count();
+};
+
 const dropUsers = async () => {
   await prisma.user.findMany({});
   await prisma.comment.findMany({});
@@ -28,7 +42,11 @@ const getAllUsers = async () => {
 };
 
 const getAllPosts = async () => {
-  const posts = await prisma.post.findMany();
+  const posts = await prisma.post.findMany({
+    include: {
+      comments: true,
+    },
+  });
   return posts;
 };
 
@@ -81,6 +99,7 @@ const findUser = async (id) => {
     include: {
       profile: true,
       posts: true,
+      comments: true,
     },
   });
   return user;
@@ -236,6 +255,7 @@ const findUserByEmail = async (email) => {
     include: {
       profile: true,
       posts: true,
+      comments: true,
     },
   });
   return user;
@@ -275,6 +295,43 @@ const updateProfile = async (user, profile) => {
   }
 };
 
+const addComment = async (userId, comment) => {
+  // Извлекаем текст и пост ID из объекта комментария
+  const text = comment.text;
+  const postId = parseInt(comment.post_id); // Убедитесь, что post_id является числом
+
+  // Проверка на наличие обязательных данных
+  if (!text || isNaN(postId)) {
+    console.error('Ошибка: текст комментария и ID поста обязательны.');
+    return;
+  }
+
+  try {
+    // Создание нового комментария в базе данных
+    const res = await prisma.comment.create({
+      data: {
+        text: text, // Текст комментария
+        user: {
+          connect: {
+            id: userId, // Подключение к пользователю
+          },
+        },
+        post: {
+          connect: {
+            id: postId, // Подключение к посту
+          },
+        },
+      },
+    });
+
+    console.log('Комментарий добавлен:', res); // Вывод результата в консоль
+    return res; // Вернем добавленный комментарий
+  } catch (error) {
+    console.error('Ошибка при добавлении комментария:', error); // Обработка ошибок
+    throw error; // Опционально: пробрасываем ошибку дальше
+  }
+};
+
 export const prismaDB = {
   getAllUsers,
   getAllPosts,
@@ -296,4 +353,7 @@ export const prismaDB = {
   findUserByEmail,
   updateProfile,
   updateTag,
+  addComment,
+  getPaginationPosts,
+  countPost,
 };

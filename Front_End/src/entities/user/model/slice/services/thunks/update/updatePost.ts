@@ -10,11 +10,26 @@ export const updatePost = createAsyncThunk(
             if (isAuth) {
                 const resp = await UpdateService.updatePost(post);
                 const user = resp.data.user;
-                return user;
+                const res = {
+                    error: false,
+                    data: {
+                        name: 200,
+                        message: user,
+                    },
+                }
+                return res;
             }
             return false;
         } catch (error) {
-            return false;
+            const data = {
+                name: error.response.status,
+                message: error.response.data.error,
+            }
+            const res = {
+                error: true,
+                data,
+            }
+            return res;
         }
     }
 )

@@ -10,6 +10,7 @@ import { updatePost } from "./thunks/update/updatePost";
 
 import { deletePost } from "./thunks/delete/deletePost";
 import { fastLogin } from "./thunks/auth/fastLogin";
+import { addComment } from "./thunks/update/addComment";
 
 const userServicesSlice = createSlice({
     name: 'services',
@@ -144,10 +145,10 @@ const userServicesSlice = createSlice({
             .addCase(updateProfile.fulfilled, (state, action) => {
                 handleFulfilled(state);
                 if (!action.payload.error) {
-                    state.user = action.payload.msg;
+                    state.user = action.payload.data.message;
                     state.error = null;
                 } else {
-                    state.error = action.payload.msg;
+                    state.error = action.payload.data;
                 }
             })
             .addCase(updateProfile.rejected, handleRejected)
@@ -156,7 +157,12 @@ const userServicesSlice = createSlice({
             .addCase(addPost.pending, handlePending)
             .addCase(addPost.fulfilled, (state, action) => {
                 handleFulfilled(state);
-                state.user = action.payload;
+                if (!action.payload.error) {
+                    state.user = action.payload.data.message;
+                    state.error = null;
+                } else {
+                    state.error = action.payload.data;
+                }
             })
             .addCase(addPost.rejected, handleRejected)
 
@@ -164,7 +170,12 @@ const userServicesSlice = createSlice({
             .addCase(deletePost.pending, handlePending)
             .addCase(deletePost.fulfilled, (state, action) => {
                 handleFulfilled(state);
-                state.user = action.payload;
+                if (!action.payload.error) {
+                    state.user = action.payload.data.message;
+                    state.error = null;
+                } else {
+                    state.error = action.payload.data;
+                }
             })
             .addCase(deletePost.rejected, handleRejected)
 
@@ -176,13 +187,31 @@ const userServicesSlice = createSlice({
             .addCase(updatePost.fulfilled, (state, action) => {
                 handleFulfilled(state);
                 if (action.payload !== false) {
-                    state.user = action.payload;
+                    if (!action.payload.error) {
+                        state.user = action.payload.data.message;
+                        state.error = null;
+                    } else {
+                        state.error = action.payload.data;
+                    }
                 }
             })
             .addCase(updatePost.rejected, (state) => {
                 state.isPending = false;
                 state.isUpdate = false;
             })
+
+        builder
+            .addCase(addComment.pending, handlePending)
+            .addCase(addComment.fulfilled, (state, action) => {
+                handleFulfilled(state);
+                if (!action.payload.error) {
+                    state.user = action.payload.data.message;
+                    state.error = null;
+                } else {
+                    state.error = action.payload.data;
+                }
+            })
+            .addCase(addComment.rejected, handleRejected)
     }
 })
 
