@@ -2,27 +2,28 @@ import { useDispatch } from 'react-redux'
 import styles from './styles/AddComment.module.css'
 import { AppDispath } from '@/app/model/store/Store';
 import { servicesActions } from '@/entities/user';
-import { addComment } from '@/entities/user/model/slice/services/thunks/update/addComment';
+import { addComment } from '@/entities/commentsShowcase/model/slice/comments/thunks/post/addComment';
 import { useParams } from 'react-router-dom';
-import { getAllPosts } from '@/entities/user/model/slice/posts/thunks/get/getAllPosts';
+import { getAllPosts } from '@/entities/postState/model/slice/posts/thunks/get/getAllPosts';
+import { CommentArea } from '@/shared/ui/commentArea/ui/CommentArea';
+import { SubmitComment } from '../components/submit/ui/SubmitComment';
+import { useState } from 'react';
+import { CommentAreaContext } from '@/shared/ui/commentArea/lib/context/Context';
+import { useCustomState } from '@/shared/lib';
 
 export const AddComment = () => {
-    const dispatch = useDispatch<AppDispath>();
-    const post_id = useParams().postid;
+    const comment = useCustomState('');
 
-    const handleClick = async () => {
-        const comment: PostComment = {
-            text: 'My First Comment',
-            post_id,
-        }
-        console.log(comment)
-        await dispatch(addComment(comment));
-        await dispatch(getAllPosts());
+    const commentContext: CommentAreaContextType = {
+        comment,
     }
 
     return (
-        <div className={styles.submit} onClick={handleClick}>
-            Submit
+        <div className={styles.container}>
+            <CommentAreaContext.Provider value={commentContext}>
+                <CommentArea></CommentArea>
+                <SubmitComment></SubmitComment>
+            </CommentAreaContext.Provider>
         </div>
     )
 }

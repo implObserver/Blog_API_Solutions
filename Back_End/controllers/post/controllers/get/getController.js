@@ -18,6 +18,14 @@ const posts_of_user_get = asyncHandler(async (req, res, next) => {
   });
 });
 
+const posts_to_id_get = asyncHandler(async (req, res, next) => {
+  const id = parseInt(req.params.postid);
+  const post = await prismaDB.findPostToId(id);
+  res.json({
+    post,
+  });
+});
+
 const posts_list_api = asyncHandler(async (req, res) => {
   const allPost = await prismaDB.getAllPosts();
   res.json({
@@ -28,7 +36,7 @@ const posts_list_api = asyncHandler(async (req, res) => {
 
 const pagination_posts_list_get = asyncHandler(async (req, res) => {
   const page = parseInt(req.query.page) || 1; // Текущая страница
-  const limit = parseInt(req.query.limit) || 10; // Количество постов на странице
+  const limit = 10; // Количество постов на странице
   const offset = (page - 1) * limit; // Смещение для базы данных
 
   try {
@@ -105,4 +113,5 @@ export const getController = {
   posts_of_user_get,
   image_of_post_get,
   pagination_posts_list_get,
+  posts_to_id_get,
 };

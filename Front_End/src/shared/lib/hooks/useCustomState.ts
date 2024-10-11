@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const useCustomState = (state1 = false, state2 = true) => {
+export const useCustomState = <T = boolean>(state1: T = false as T, state2: T = true as T) => {
     const [state, setNewState] = useState(state1);
 
     const toggle = () => {
@@ -8,7 +8,7 @@ export const useCustomState = (state1 = false, state2 = true) => {
         setState(newState);
     };
 
-    const setState = (state: boolean) => {
+    const setState = (state: T) => {
         setNewState(state);
     }
 
@@ -16,7 +16,7 @@ export const useCustomState = (state1 = false, state2 = true) => {
         return state;
     };
 
-    const result: CustomState = { toggle, getState, setState };
-    
+    const result: CustomState<T> = { toggle, getState, setState };
+
     return result;
 };

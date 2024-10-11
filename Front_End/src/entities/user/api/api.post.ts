@@ -17,7 +17,4 @@ export const PostService = {
         file.append('file', data.file);
         return instance.post(`/api/user/:${id}/posts/image/${nameFolder}/update`, file, config)
     },
-    addComment(data: PostComment) {
-        return instance.post(`/api/user/:${id}/post/:${data.post_id}/comment/add`, data);
-    }
 }

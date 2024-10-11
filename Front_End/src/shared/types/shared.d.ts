@@ -37,10 +37,18 @@ interface TextAreaContextType {
     maxLength?: number,
 }
 
-interface CustomState {
+interface CommentAreaContextType {
+    comment: CustomState<string>,
+}
+
+interface CommentContextType {
+    comment: PostComment,
+}
+
+interface CustomState<T> {
     toggle: () => void;
-    getState: () => boolean;
-    setState: (state: boolean) => void;
+    getState: () => T;
+    setState: (state: T) => void;
 }
 
 interface PlugContextType {

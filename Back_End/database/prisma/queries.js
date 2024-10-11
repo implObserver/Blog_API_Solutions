@@ -7,15 +7,60 @@ const getPaginationPosts = async (offset, limit) => {
     skip: offset,
     take: limit,
     include: {
-      comments: true,
+      comments: {
+        include: {
+          user: {
+            select: {
+              // Используем select, чтобы ограничить возвращаемые поля
+              profile: {
+                // Включаем только профиль
+                select: {
+                  name: true, // Выбираем только поле name из модели Profile
+                },
+              },
+            },
+          },
+        },
+      },
     },
   });
 };
 
-const countPost = () => {
-  return prisma.post.count();
+const getPaginationComments = async (offset, limit, postid) => {
+  return prisma.comment.findMany({
+    skip: offset,
+    take: limit,
+    where: { postId: postid },
+    orderBy: {
+      postingDate: 'desc', // Сортируем по полю createdAt в порядке убывания
+    },
+    include: {
+      user: {
+        select: {
+          // Используем select, чтобы ограничить возвращаемые поля
+          profile: {
+            // Включаем только профиль
+            select: {
+              name: true, // Выбираем только поле name из модели Profile
+            },
+          },
+        },
+      },
+    },
+  });
 };
 
+const countPost = async () => {
+  return await prisma.post.count();
+};
+
+const countComments = async (postId) => {
+  return await prisma.comment.count({
+    where: {
+      postId: postId,
+    },
+  });
+};
 const dropUsers = async () => {
   await prisma.user.findMany({});
   await prisma.comment.findMany({});
@@ -136,6 +181,32 @@ const findPosts = async (id) => {
     where: { userId: id },
   });
   return posts;
+};
+
+const findPostToId = async (postid) => {
+  console.log(postid);
+  const post = await prisma.post.findUnique({
+    where: { id: postid },
+    include: {
+      comments: {
+        include: {
+          user: {
+            select: {
+              // Используем select, чтобы ограничить возвращаемые поля
+              profile: {
+                // Включаем только профиль
+                select: {
+                  name: true, // Выбираем только поле name из модели Profile
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+  console.log(post);
+  return post;
 };
 
 const addPost = async (user, title) => {
@@ -356,4 +427,7 @@ export const prismaDB = {
   addComment,
   getPaginationPosts,
   countPost,
+  findPostToId,
+  getPaginationComments,
+  countComments,
 };

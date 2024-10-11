@@ -10,7 +10,7 @@ import { updatePost } from "./thunks/update/updatePost";
 
 import { deletePost } from "./thunks/delete/deletePost";
 import { fastLogin } from "./thunks/auth/fastLogin";
-import { addComment } from "./thunks/update/addComment";
+import { addComment } from "../../../../commentsShowcase/model/slice/comments/thunks/post/addComment";
 
 const userServicesSlice = createSlice({
     name: 'services',
@@ -199,19 +199,6 @@ const userServicesSlice = createSlice({
                 state.isPending = false;
                 state.isUpdate = false;
             })
-
-        builder
-            .addCase(addComment.pending, handlePending)
-            .addCase(addComment.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (!action.payload.error) {
-                    state.user = action.payload.data.message;
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
-            .addCase(addComment.rejected, handleRejected)
     }
 })
 

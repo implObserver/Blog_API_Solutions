@@ -1,7 +1,7 @@
 import { AppDispath, store } from '@/app/model/store/Store';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
@@ -9,7 +9,7 @@ import styles from '../styles/App.module.css'
 import { scrollRestorationActions } from '@/features/scrollRestoration';
 import { Header } from '@/widgets/header';
 
-const getScroll = (pathname) => {
+const getScroll = (pathname: string) => {
     const scrolls = store.getState().scrollRestoration.scrolls;
     const scroll = scrolls.find(scroll => scroll.pathname === pathname);
     return scroll;
@@ -19,6 +19,10 @@ export const MainLayout: React.FC = () => {
     const { pathname } = useLocation();
     const dispatch = useDispatch<AppDispath>();
     gsap.registerPlugin(ScrollToPlugin);
+    const navigate = useNavigate();
+    const queryParams = new URLSearchParams(location.search);
+    const paramValue = queryParams.get('slider');
+    console.log(paramValue)
 
     useEffect(() => {
         const updateInterval = setInterval(() => {
@@ -37,7 +41,13 @@ export const MainLayout: React.FC = () => {
         const scroll = getScroll(pathname);
         if (scroll) {
             setTimeout(() => {
-                gsap.to(window, { duration: 0, scrollTo: { y: scroll.scrollY, autoKill: false } });
+                if (queryParams) {
+                    queryParams.set('slider', 'false');
+                    navigate(`${location.pathname}?${queryParams.toString()}`);
+                    gsap.to(window, { duration: 0, scrollTo: { y: 0, autoKill: false } });
+                } else {
+                    gsap.to(window, { duration: 0, scrollTo: { y: scroll.scrollY, autoKill: false } });
+                }
             }, 100);
         }
     }, [pathname]);

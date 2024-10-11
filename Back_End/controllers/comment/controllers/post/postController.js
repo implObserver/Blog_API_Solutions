@@ -22,13 +22,15 @@ const comment_of_user_post = [
     }
     const userid = req.user.id;
     const comment = req.body;
-    console.log(
-      `ВНИМАНИЕ: пост ${comment.post_id}, юзер ${userid} коммент ${comment}`
-    );
+    const postid = parseInt(comment.post_id);
+    console.log(`ВНИМАНИЕ: пост ${postid}, юзер ${userid} коммент ${comment}`);
     await prismaDB.addComment(userid, comment);
-    const user = await prismaDB.findUser(req.user.id);
-    res.locals.user = user;
-    next();
+
+    const totalComments = await prismaDB.countComments(postid);
+
+    res.json({
+      totalComments,
+    });
   }),
 ];
 

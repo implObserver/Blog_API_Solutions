@@ -7,10 +7,10 @@ import { CategoryDate } from '@/widgets/title';
 import { PostsSlider } from '@/widgets/postsSlider';
 import { Line } from '@/shared/ui/line/ui/Line';
 import { Comments } from '@/widgets/comments/ui/Comments';
+import { selectPosts } from '@/entities/postState/model/slice/posts/selectors';
 
 export const PostPage = () => {
     const services = useSelector(selectUserServices);
-
     if (services.isAuth) {
         return (
             <div className={styles.page__main}>

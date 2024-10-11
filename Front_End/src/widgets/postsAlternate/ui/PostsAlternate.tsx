@@ -2,8 +2,8 @@ import { PostPreview } from "@/entities/postPreview";
 import styles from './styles/PostsAlternate.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispath, RootState } from "@/app/model/store/Store";
-import { getAllPosts } from "@/entities/user/model/slice/posts/thunks/get/getAllPosts";
-import { selectPosts } from "@/entities/user/model/slice/posts/selectors";
+import { getAllPosts } from "@/entities/postState/model/slice/posts/thunks/get/getAllPosts";
+import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
 import { selectTag } from "@/entities/tag";
 import { PostFilterContext } from "@/features/postsFilter/lib/context/Context";
 import { PostsFilter } from "@/features/postsFilter/ui/PostsFilter";
@@ -18,7 +18,7 @@ export const PostsAlternate = () => {
     const tag = useSelector(selectTag).tag;
     const posts = useSelector(selectPosts).posts;
     const dispatch = useDispatch<AppDispath>();
-    
+
     const fill = () => {
         let counter = 0;
         return posts.map((post, index) => {

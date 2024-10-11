@@ -4,7 +4,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { selectUserServices } from "@/entities/user";
 import { ContainerContext } from "../lib/context/Context";
-import { selectPosts } from "@/entities/user/model/slice/posts/selectors";
+import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
 
 export const Canvas = React.memo(() => {
     const params = useParams();

@@ -7,6 +7,11 @@ export const commentsRouter = Router();
 commentsRouter.post(
   '/user/:userid/post/:postid/comment/add',
   userController.user_auth_jwt_protected,
-  commentsController.comment_of_user_post,
-  userController.user_get
+  commentsController.comment_of_user_post
+);
+
+commentsRouter.get(
+  '/comments',
+  userController.user_auth_jwt_protected,
+  commentsController.pagination_comments_get
 );

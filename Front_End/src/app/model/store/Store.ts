@@ -1,3 +1,4 @@
+import { commentsReducer } from '@/entities/commentsShowcase/model/slice/comments/slice';
 import { tagReducer } from '@/entities/tag';
 import { postsReducer, servicesReducer } from '@/entities/user';
 import { scrollRestorationReducer } from '@/features/scrollRestoration';
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   scrollRestoration: scrollRestorationReducer,
   posts: postsReducer,
   tag: tagReducer,
+  comments: commentsReducer,
 })
 
 const persistConfig = {

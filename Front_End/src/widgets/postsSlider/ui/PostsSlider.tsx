@@ -1,4 +1,4 @@
-import { selectPosts } from "@/entities/user/model/slice/posts/selectors";
+import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Item } from "../components/item/ui/Item";

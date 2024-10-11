@@ -9,6 +9,7 @@ interface ServicesDataType {
 
 interface PaginationData {
     page: number,
+    postid?: number,
 }
 
 interface PostUpdate {
@@ -24,17 +25,17 @@ interface UpdateData {
 }
 
 interface User {
-    id: number,
-    email: string,
-    profile: Profile,
-    posts: Post[],
+    id?: number,
+    email?: string,
+    profile?: Profile,
+    posts?: Post[],
 }
 
 interface Profile {
-    name: string,
-    gender: string,
-    age: number,
-    avatar: File,
+    name?: string,
+    gender?: string,
+    age?: number,
+    avatar?: File,
 }
 
 interface AuthType {
@@ -82,11 +83,22 @@ interface Posts {
     totalPages: number,
 }
 
+interface Comments {
+    update?: boolean,
+    error: Error,
+    comments: PostComment[],
+    isPending?: boolean,
+    totalPages: number,
+    currentPage: number,
+    totalComments: number,
+}
+
 interface PostComment {
     id?: number,
     postingDate?: Date,
     text: string,
     post_id?: string,
+    user?: User,
 }
 
 interface CellOfPost {

@@ -1,13 +1,4 @@
-.submit {
-    display: flex;
-    border: 1px black solid;
-    width: min-content;
-    padding: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.submit:hover {
-    background-color: var(--tag__hover-background-color);
-    color: var(--tag__hover-color);
+.container {
+    display: grid;
+    gap: 10px;
 }

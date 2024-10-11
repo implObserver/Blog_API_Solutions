@@ -43,7 +43,7 @@ export const Preview = () => {
             <Link
                 key={`container_${post.id}`}
                 className={styles.link}
-                to={`/post/${post.id}`}
+                to={`/post/${post.id}?slider=true`}
                 state={post.id}
             >
                 <div className={styles.container}>

@@ -12,6 +12,12 @@ postRouter.get(
   postsController.pagination_posts_list_get
 );
 
+postRouter.get(
+  '/posts/:postid',
+  userController.user_auth_jwt_protected,
+  postsController.posts_to_id_get
+);
+
 postRouter.post(
   '/user/:userid/posts/add',
   userController.user_auth_jwt_protected,

@@ -1,23 +1,20 @@
-import { PostService } from "@/entities/user/api/api.post";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { useParams } from "react-router-dom";
 
-export const addComment = createAsyncThunk(
-    'services/add/comment/',
-    async (data: PostComment, thunkAPI) => {
+export const getAllPosts = createAsyncThunk(
+    'services/get/allPosts',
+    async (thunkAPI) => {
         try {
-            const resp = await PostService.addComment(data);
-            const user = resp.data.user;
+            const resp = await ReadService.getPosts();
+            const posts = resp.data.posts_list;
             const res = {
                 error: false,
                 data: {
                     name: 200,
-                    message: user,
+                    message: posts,
                 },
             }
             return res;
         } catch (error) {
-            console.log(error)
             const data = {
                 name: error.response.status,
                 message: error.response.data.error,
