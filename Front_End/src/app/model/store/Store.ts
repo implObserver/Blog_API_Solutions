@@ -1,4 +1,4 @@
-import { commentsReducer } from '@/entities/commentsShowcase/model/slice/comments/slice';
+import { commentsReducer } from '@/entities/comment/model/slice/comments/slice';
 import { tagReducer } from '@/entities/tag';
 import { postsReducer, servicesReducer } from '@/entities/user';
 import { scrollRestorationReducer } from '@/features/scrollRestoration';

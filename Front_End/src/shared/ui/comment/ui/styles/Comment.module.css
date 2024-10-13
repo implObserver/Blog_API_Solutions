@@ -16,7 +16,9 @@
 
 .comment_body {
     display: flex;
-    padding: 5px;
+
+    width: max-content;
+    max-width: 75vw;
 }
 
 .container_nickname {
@@ -25,4 +27,9 @@
 
 .container_time_ago {
     opacity: 0.5;
+}
+
+.update {
+    opacity: 0.8;
+    font-size: 12px;
 }

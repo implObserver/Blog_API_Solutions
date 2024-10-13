@@ -15,3 +15,15 @@ commentsRouter.get(
   userController.user_auth_jwt_protected,
   commentsController.pagination_comments_get
 );
+
+commentsRouter.delete(
+  '/user/:userid/post/:postid/comment/:commentid/delete',
+  userController.user_auth_jwt_protected,
+  commentsController.comment_of_user_delete
+);
+
+commentsRouter.put(
+  '/user/:userid/post/:postid/comment/:commentid/update',
+  userController.user_auth_jwt_protected,
+  commentsController.comment_of_user_put
+);

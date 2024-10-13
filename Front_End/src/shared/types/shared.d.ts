@@ -43,6 +43,10 @@ interface CommentAreaContextType {
 
 interface CommentContextType {
     comment: PostComment,
+    features: React.ReactElement[],
+    deepFeatures: React.ReactElement[],
+    update: CustomState<boolean>,
+    text: CustomState<string>,
 }
 
 interface CustomState<T> {

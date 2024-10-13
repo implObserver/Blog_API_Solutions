@@ -84,13 +84,14 @@ interface Posts {
 }
 
 interface Comments {
-    update?: boolean,
     error: Error,
     comments: PostComment[],
     isPending?: boolean,
     totalPages: number,
     currentPage: number,
     totalComments: number,
+    isUpdate?: boolean,
+    updatingDate?: Date,
 }
 
 interface PostComment {
@@ -99,6 +100,8 @@ interface PostComment {
     text: string,
     post_id?: string,
     user?: User,
+    isUpdate?: boolean,
+    updatingDate?: Date,
 }
 
 interface CellOfPost {

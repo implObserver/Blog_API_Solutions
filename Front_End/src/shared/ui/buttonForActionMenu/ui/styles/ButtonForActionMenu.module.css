@@ -1,0 +1,19 @@
+.button_custom {
+    display: grid;
+    height: min-content;
+    justify-content: center;
+    height: 20px;
+    align-content: center;
+    gap: 2px;
+    width: 20px;
+    cursor: pointer;
+}
+
+.dot {
+    display: grid;
+    width: 3px;
+    height: 3px;
+    border-radius: 100%;
+    align-content: center;
+    background-color: black;
+}

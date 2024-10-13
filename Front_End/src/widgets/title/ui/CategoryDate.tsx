@@ -20,20 +20,13 @@ export const CategoryDate = () => {
         children: <Tag></Tag>,
     }
 
-    const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        const element = e.target as HTMLElement;
-        if (element.className.includes('tag')) {
-            window.location.href = "http://localhost:5001/";
-        }
-    }
-
     if (!post) {
         return (
             <div>Нет доступа или поста не существует</div>
         )
     }
     return (
-        <div onClick={handleClick} className={styles.title}>
+        <div className={styles.title}>
             <TitleHeader>
                 <TagContext.Provider value={post.tag}>
                     <PostFilterContext.Provider value={postFilterContext}>

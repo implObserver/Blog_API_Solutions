@@ -40,13 +40,15 @@ model Post {
 }
 
 model Comment {
-  id          Int      @id @default(autoincrement())
-  userId      Int
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  postId      Int
-  post        Post     @relation(fields: [postId], references: [id], onDelete: Cascade) // Исправлено: теперь ссылается на 'id' Post
-  postingDate DateTime @default(now())
-  text        String?
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId       Int
+  post         Post     @relation(fields: [postId], references: [id], onDelete: Cascade) // Исправлено: теперь ссылается на 'id' Post
+  postingDate  DateTime @default(now())
+  text         String?
+  isUpdate     Boolean  @default(false)
+  updatingDate DateTime @default(now())
 }
 
 model Profile {

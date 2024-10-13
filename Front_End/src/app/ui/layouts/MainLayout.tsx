@@ -22,7 +22,6 @@ export const MainLayout: React.FC = () => {
     const navigate = useNavigate();
     const queryParams = new URLSearchParams(location.search);
     const paramValue = queryParams.get('slider');
-    console.log(paramValue)
 
     useEffect(() => {
         const updateInterval = setInterval(() => {

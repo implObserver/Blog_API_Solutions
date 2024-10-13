@@ -366,6 +366,22 @@ const updateProfile = async (user, profile) => {
   }
 };
 
+const removeComment = async (userId, comment) => {
+  const postId = comment.postid;
+  const commeintId = comment.commentid;
+  console.log(postId);
+  console.log(commeintId);
+  const res = await prisma.comment.delete({
+    where: {
+      userId: userId,
+      postId: postId,
+      id: commeintId,
+    },
+  });
+
+  console.log('Комментарий удален:', res);
+};
+
 const addComment = async (userId, comment) => {
   // Извлекаем текст и пост ID из объекта комментария
   const text = comment.text;
@@ -403,6 +419,53 @@ const addComment = async (userId, comment) => {
   }
 };
 
+const updateComment = async (userId, comment) => {
+  // Извлекаем текст и пост ID из объекта комментария
+  const text = comment.text;
+  const postId = parseInt(comment.post_id); // Убедитесь, что post_id является числом
+  const commeintId = parseInt(comment.id);
+  // Проверка на наличие обязательных данных
+  if (!text || isNaN(postId)) {
+    console.error('Ошибка: текст комментария и ID поста обязательны.');
+    return;
+  }
+
+  try {
+    // Создание нового комментария в базе данных
+    const res = await prisma.comment.update({
+      where: {
+        userId: userId,
+        postId: postId,
+        id: commeintId,
+      },
+      data: {
+        text: text, // Текст комментария
+        isUpdate: true,
+        updatingDate: new Date(),
+      },
+      include: {
+        user: {
+          select: {
+            // Используем select, чтобы ограничить возвращаемые поля
+            profile: {
+              // Включаем только профиль
+              select: {
+                name: true, // Выбираем только поле name из модели Profile
+              },
+            },
+          },
+        },
+      },
+    });
+
+    console.log('Комментарий обновлен:', res); // Вывод результата в консоль
+    return res; // Вернем добавленный комментарий
+  } catch (error) {
+    console.error('Ошибка при обновлении комментария:', error); // Обработка ошибок
+    throw error; // Опционально: пробрасываем ошибку дальше
+  }
+};
+
 export const prismaDB = {
   getAllUsers,
   getAllPosts,
@@ -430,4 +493,6 @@ export const prismaDB = {
   findPostToId,
   getPaginationComments,
   countComments,
+  removeComment,
+  updateComment,
 };

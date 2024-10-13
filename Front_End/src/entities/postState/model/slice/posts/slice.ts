@@ -54,13 +54,8 @@ const postsSlice = createSlice({
                 handleFulfilled(state);
                 console.log(action.payload)
                 if (!action.payload.error) {
-                    console.log(`payload:${action.payload}`)
                     const index = state.posts.findIndex(post => post.id === action.payload.data.message.post.id);
-                    console.log(`index:${index}`)
-                    console.log(`posts before:${state.posts}`)
                     state.posts.splice(index, 1, action.payload.data.message.post);
-                    console.log(`posts after:${state.posts}`)
-
                 } else {
                     state.error = action.payload.data;
                 }

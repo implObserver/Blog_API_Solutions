@@ -10,7 +10,7 @@ import { updatePost } from "./thunks/update/updatePost";
 
 import { deletePost } from "./thunks/delete/deletePost";
 import { fastLogin } from "./thunks/auth/fastLogin";
-import { addComment } from "../../../../commentsShowcase/model/slice/comments/thunks/post/addComment";
+import { addComment } from "../../../../comment/model/slice/comments/thunks/post/addComment";
 
 const userServicesSlice = createSlice({
     name: 'services',

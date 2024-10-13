@@ -12,7 +12,4 @@ export const ReadService = {
     getPosts() {
         return instance.get(`/api/posts/`);
     },
-    getPaginationComments(data: PaginationData) {
-        return instance.get(`/api/comments?postid=${data.postid}&page=${data.page}`);
-    },
 }
