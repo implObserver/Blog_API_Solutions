@@ -1,0 +1,52 @@
+.container {
+    display: grid;
+    background-color: var(--color__main-theme);
+    grid-template-columns: 2fr repeat(2, 1fr);
+    height: 100%;
+}
+
+.title {
+    display: flex;
+    padding: 15px;
+    font-size: 36px;
+    gap: 6px;
+}
+
+.title>.link {
+    font-size: 36px !important;
+}
+
+.title>.link:hover {
+    text-decoration:none;
+    transform: translateY(-3px);
+    font-size: 36px !important;
+}
+
+.letter {
+    color: var(--color__secondary-theme)
+}
+
+.pages,
+.categories,
+.contacts {
+    display: grid;
+    padding: 15px;
+    font-size: 18px;
+    gap: 30px;
+}
+
+.link {
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+    font-weight: 300;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.links {
+    display: grid;
+    gap: 15px;
+}

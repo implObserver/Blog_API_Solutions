@@ -8,6 +8,7 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import styles from '../styles/App.module.css'
 import { scrollRestorationActions } from '@/features/scrollRestoration';
 import { Header } from '@/widgets/header';
+import { Footer } from '@/widgets/footer/ui/Footer';
 
 const getScroll = (pathname: string) => {
     const scrolls = store.getState().scrollRestoration.scrolls;
@@ -55,6 +56,9 @@ export const MainLayout: React.FC = () => {
             <div>
                 <Outlet />
             </div>
+            <footer>
+                <Footer></Footer>
+            </footer>
         </div>
     );
 };
