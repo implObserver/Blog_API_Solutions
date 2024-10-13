@@ -15,7 +15,6 @@ export const CheckTag = () => {
     const service = useSelector(selectUserServices);
     const user = service.user;
     const posts = user.posts;
-    console.log(posts)
     const post = posts.find(post => post.id === post_id);
     if (!post) {
         return (

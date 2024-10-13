@@ -45,13 +45,7 @@ async function delayedExec(command) {
   // мы можем использовать await для Promise
   // который возвращается из delay
   await delay();
-  console.log('command: ' + command);
-  exec(command, function (error, stdout, stderr) {
-    console.log('stdout: ' + stdout);
-    if (error !== null) {
-      console.log('exec error: ' + error);
-    }
-  });
+  exec(command, function (error, stdout, stderr) {});
 }
 
 const start = async () => {

@@ -1,69 +1,63 @@
-import { useEffect, useState } from "react"
-import { PostPreviewContext } from "@/entities/postPreview/lib/context/Context";
+import { AppDispath } from "@/app/model/store/Store";
 import { PostPreview } from "@/entities/postPreview";
-import styles from './styles/Posts.module.css'
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispath, RootState } from "@/app/model/store/Store";
-import { getAllPosts } from "@/entities/postState/model/slice/posts/thunks/get/getAllPosts";
-import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
+import { PostPreviewContext } from "@/entities/postPreview/lib/context/Context";
 import { selectTag } from "@/entities/tag";
+import { postsActions } from "@/entities/user";
+import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
+import { getAllPosts } from "@/entities/postState/model/slice/posts/thunks/get/getAllPosts";
 import { PostFilterContext } from "@/features/postsFilter/lib/context/Context";
 import { PostsFilter } from "@/features/postsFilter/ui/PostsFilter";
+import { Line } from "@/shared/ui/line";
 import { Tag } from "@/shared/ui/tag";
-import { count } from "console";
-import { Line } from "../../../shared/ui/line/ui/Line";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import styles from './styles/Posts.module.css';
+import { getPaginationPosts } from "@/entities/postState/model/slice/posts/thunks/get/getPaginationPost";
+import { ClassicShowcase } from "../components/classic";
+import { AlterShowcase } from "../components/alternate/ui/AlterShowcase";
 
-
-export const Posts = () => {
-    const tag = useSelector(selectTag).tag;
-    const posts = useSelector(selectPosts).posts;
-    console.log(posts)
+export const Pposts = () => {
     const dispatch = useDispatch<AppDispath>();
+    const postsService = useSelector(selectPosts);
+    const currentPage = postsService.currentPage;
+    const totalPages = postsService.totalPages;
 
     const loadPosts = async () => {
-        dispatch(getAllPosts());
+        const data: PaginationData = {
+            page: currentPage,
+        }
+        dispatch(getPaginationPosts(data));
     };
 
     useEffect(() => {
         loadPosts();
-    }, []);
+    }, [currentPage]);
 
-    const fill = () => {
-        let counter = 0;
-        return posts.map((post, index) => {
-            if (tag === post.tag || tag === 'All') {
-                ++counter;
-                if (counter > 3) {
-                    const postFilterContext: PostFilterType = {
-                        tag: post.tag,
-                        children: <Tag></Tag>,
-                    }
-                    const postPreviewContext: PostPreviewContextType = {
-                        post,
-                        tag: <>
-                            <PostFilterContext.Provider value={postFilterContext}>
-                                <PostsFilter></PostsFilter>
-                            </PostFilterContext.Provider>
-                        </>
-                    };
-                    return (
-                        <PostPreviewContext.Provider value={postPreviewContext} key={post.id}>
-                            <PostPreview />
-                        </PostPreviewContext.Provider>
-                    );
-                }
-            }
-        });
+    const loadMorePostsUp = () => {
+        if (currentPage < totalPages) {
+            dispatch(postsActions.setCurrentPage(currentPage + 1)); // Увеличиваем номер текущей страницы
+        }
+    };
+
+    const loadMorePostsBack = () => {
+        if (currentPage > 1) {
+            dispatch(postsActions.setCurrentPage(currentPage - 1)); // Увеличиваем номер текущей страницы
+        }
     };
 
     return (
-        <div>
-            <div>
-                <Line text={'Recent Posts'}></Line>
-            </div>
-            <div className={styles.container}>
-                {fill()}
+        <div className={styles.container}>
+            <AlterShowcase></AlterShowcase>
+            <ClassicShowcase></ClassicShowcase>
+            <div className={styles.pagination}>
+                <button className={styles.pagination_btn} onClick={loadMorePostsBack} disabled={currentPage === 1}>
+                    назад
+                </button>
+                <span>{currentPage} из {totalPages}</span>
+                <button className={styles.pagination_btn} onClick={loadMorePostsUp} disabled={currentPage === totalPages}>
+                    вперед
+                </button>
             </div>
         </div >
     )
-}
+};

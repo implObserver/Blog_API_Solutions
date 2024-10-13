@@ -34,13 +34,10 @@ const verifyCallbackPg = async (payload, done) => {
   try {
     const user = await prismaDB.findUser(payload.sub);
     if (!user) {
-      console.log('uncorrect username');
       return done(null, false);
     }
-    console.log('Welcome');
     return done(null, user);
   } catch (err) {
-    console.log('catch');
     return done(err);
   }
 };

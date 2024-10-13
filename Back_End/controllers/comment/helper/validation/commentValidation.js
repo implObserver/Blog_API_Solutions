@@ -8,7 +8,6 @@ const sanitizeInput = (value) => {
 };
 
 export const validateComment = (comment) => {
-  console.log(comment);
   if (comment) {
     comment = sanitizeInput(comment);
   }

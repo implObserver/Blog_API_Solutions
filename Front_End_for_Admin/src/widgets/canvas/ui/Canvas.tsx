@@ -17,9 +17,8 @@ export const Canvas = React.memo(() => {
     const service = useSelector(selectUserServices);
     const user = service.user;
     const posts = user.posts;
+    console.log(user.posts[1])
     const post = posts.find(post => post.id === post_id);
-    console.log(post)
-    console.log(getSnapshot())
     if (!post) {
         return (
             <div>Нет доступа или поста не существует</div>
@@ -28,7 +27,7 @@ export const Canvas = React.memo(() => {
     if (post_id || post_id === 0) {
         const dispatch = useDispatch<AppDispath>();
         let elements = posts.length === 0 ? [] : post.elements;
-        console.log(`adadada ${elements[elements.length - 1].value}`)
+        console.log(elements)
         const containerContexts = useMemo(() => modelsToContainers(elements), [elements]);
 
         const updateSnapshot = () => {
@@ -46,7 +45,7 @@ export const Canvas = React.memo(() => {
         useEffect(() => {
             dispatch(modlelsOfOpenedPostActions.uploadPosts(elements));
         }, [])
-
+      
         useEffect(() => {
             const handle = () => {
                 const updateContext: UpdateModels = {
@@ -62,13 +61,12 @@ export const Canvas = React.memo(() => {
         }, [])
 
         useEffect(() => {
-            const updateInterval = setInterval(updateSnapshot, 5000);
+            const updateInterval = setInterval(updateSnapshot, 50000);
             return () => {
                 clearInterval(updateInterval);
                 finalizeSnapshot();
             };
         }, []);
-
         const fill = () => {
             return containerContexts.map((containerContext, index) => {
                 const container = {

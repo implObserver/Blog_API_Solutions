@@ -43,7 +43,7 @@ const pagination_posts_list_get = asyncHandler(async (req, res) => {
     const posts = await prismaDB.getPaginationPosts(offset, limit);
 
     const totalPosts = await prismaDB.countPost(); // Общее количество постов
-
+    console.log(posts);
     res.json({
       posts,
       totalPosts,
@@ -78,8 +78,7 @@ const image_of_post_get = asyncHandler(async (req, res) => {
       filePath = path.join(folderPath, files[0]);
       extname = path.extname(files[0]).toLowerCase();
     }
-    console.log(filePath);
-    console.log(extname);
+
     let contentType = 'application/octet-stream';
 
     switch (extname) {

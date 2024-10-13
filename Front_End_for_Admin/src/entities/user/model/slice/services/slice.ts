@@ -187,8 +187,10 @@ const userServicesSlice = createSlice({
             .addCase(updateModelsOfPost.fulfilled, (state, action) => {
                 handleFulfilled(state);
                 handleFulfilled(state);
+                console.log(action.payload)
                 if (!action.payload.error) {
                     state.user = action.payload.data.message;
+                    console.log(`userrrr ${action.payload.data}`)
                     state.error = null;
                 } else {
                     state.error = action.payload.data;

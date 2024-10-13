@@ -6,15 +6,14 @@ import { useSelector } from 'react-redux'
 import { selectUserServices } from '@/entities/user'
 import { PostFilterContext } from '@/features/postsFilter/lib/context/Context'
 import { PostsFilter } from '@/features/postsFilter/ui/PostsFilter'
+import { selectPosts } from '@/entities/postState/model/slice/posts/selectors'
 
 export const CategoryDate = () => {
     const params = useParams();
     const post_id = parseInt(params.postid);
-    const service = useSelector(selectUserServices);
-    const user = service.user;
-    const posts = user.posts;
+    const posts = useSelector(selectPosts).posts;
     const post = posts.find(post => post.id === post_id);
-
+ 
     const postFilterContext: PostFilterType = {
         tag: post.tag,
         children: <Tag></Tag>,

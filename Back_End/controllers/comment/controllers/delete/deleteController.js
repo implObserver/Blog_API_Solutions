@@ -16,8 +16,6 @@ const comment_of_user_delete = [
     console.log(
       `ВНИМАНИЕ: пост ${comment.postid}, юзер ${userid} коммент ${comment.commentid}`
     );
-
-    console.log(comment);
     await prismaDB.removeComment(userid, comment);
     const totalComments = await prismaDB.countComments(comment.postid);
     res.json({

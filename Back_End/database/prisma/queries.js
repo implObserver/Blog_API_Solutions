@@ -176,7 +176,6 @@ const findProfile = async (id) => {
 };
 
 const findPosts = async (id) => {
-  console.log(id);
   const posts = await prisma.post.findMany({
     where: { userId: id },
   });
@@ -184,7 +183,6 @@ const findPosts = async (id) => {
 };
 
 const findPostToId = async (postid) => {
-  console.log(postid);
   const post = await prisma.post.findUnique({
     where: { id: postid },
     include: {
@@ -205,7 +203,7 @@ const findPostToId = async (postid) => {
       },
     },
   });
-  console.log(post);
+
   return post;
 };
 
@@ -249,7 +247,6 @@ const addPost = async (user, title) => {
 const updateModels = async (data) => {
   const id = data.id;
   const models = data.models;
-  console.log('noooo');
   try {
     await prisma.post.update({
       where: {
@@ -269,7 +266,7 @@ const updateModels = async (data) => {
 const updateModelsOfPost = async (user, snapshot) => {
   try {
     const postObj = {
-      elements: snapshot.models,
+      elements: snapshot.elements,
     };
     const updatedPost = await prisma.user.update({
       where: {
@@ -286,7 +283,7 @@ const updateModelsOfPost = async (user, snapshot) => {
         },
       },
     });
-    console.log(updatedPost);
+    return updatedPost;
   } catch (error) {
     console.log(error);
   }
@@ -307,16 +304,9 @@ const removeAll = async () => {
 };
 
 const findUserByRefreshToken = async (token) => {
-  console.log('wtf');
-  console.log(token);
   const user = await prisma.user.findFirst({
     where: { refreshToken: token },
   });
-  console.log(
-    await prisma.user.findFirst({
-      where: { refreshToken: token },
-    })
-  );
   return user;
 };
 

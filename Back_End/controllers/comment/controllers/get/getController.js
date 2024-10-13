@@ -16,7 +16,6 @@ const pagination_comments_get = asyncHandler(async (req, res) => {
       limit,
       postid
     );
-    console.log(comments);
     const totalComments = await prismaDB.countComments(postid);
 
     res.json({

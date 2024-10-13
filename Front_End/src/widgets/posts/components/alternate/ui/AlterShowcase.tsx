@@ -1,23 +1,17 @@
-import { PostPreview } from "@/entities/postPreview";
-import styles from './styles/PostsAlternate.module.css'
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispath, RootState } from "@/app/model/store/Store";
-import { getAllPosts } from "@/entities/postState/model/slice/posts/thunks/get/getAllPosts";
+import styles from './styles/AlterShowcase.module.css'
+import { useSelector } from "react-redux";
 import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
 import { selectTag } from "@/entities/tag";
 import { PostFilterContext } from "@/features/postsFilter/lib/context/Context";
 import { PostsFilter } from "@/features/postsFilter/ui/PostsFilter";
 import { Tag } from "@/shared/ui/tag";
-import { useEffect } from "react";
-import { PostPreviewContext } from "@/entities/postPreview/lib/context/Context";
 import { AlterPostPreview } from "@/entities/alterPostPreview";
 import { AlterPostPreviewContext } from "@/entities/alterPostPreview/lib/context/Context";
 
 
-export const PostsAlternate = () => {
+export const AlterShowcase = () => {
     const tag = useSelector(selectTag).tag;
     const posts = useSelector(selectPosts).posts;
-    const dispatch = useDispatch<AppDispath>();
 
     const fill = () => {
         let counter = 0;

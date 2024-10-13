@@ -8,9 +8,9 @@ import { Link } from "react-router-dom";
 import { useAlterPostPreviewContext } from "@/entities/alterPostPreview/lib/context/Context";
 
 export const Preview = () => {
+    const [preview, setPreview] = useState('');
     const post = useAlterPostPreviewContext().post;
     const folderName = post.elements[1].imageUrl;
-    const [preview, setPreview] = useState('');
 
     useEffect(() => {
         const loadPreview = async () => {

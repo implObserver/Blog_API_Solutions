@@ -13,7 +13,6 @@ const user_post_add_post = [
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      console.log(errors.errors[0].msg);
       return res.status(400).send({ error: errors.errors[0].msg });
     }
 

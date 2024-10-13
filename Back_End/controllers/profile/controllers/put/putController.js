@@ -36,7 +36,6 @@ const user_profile_update_put = [
 
 const user_avatar_update_put = [
   asyncHandler(async (req, res, next) => {
-    console.log(req.user);
     const user = req.user;
     res.locals.user = user;
     next();

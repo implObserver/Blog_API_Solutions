@@ -11,41 +11,13 @@ import { Line } from "@/shared/ui/line";
 import { Tag } from "@/shared/ui/tag";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styles from './styles/Posts.module.css';
+import styles from './styles/ClassicShowcase.module.css'
 import { getPaginationPosts } from "@/entities/postState/model/slice/posts/thunks/get/getPaginationPost";
 
-export const Pposts = () => {
-    const dispatch = useDispatch<AppDispath>();
+export const ClassicShowcase = () => {
     const tag = useSelector(selectTag).tag;
     const postsService = useSelector(selectPosts);
     const posts = postsService.posts;
-    console.log(postsService)
-    const currentPage = postsService.currentPage;
-    const totalPages = postsService.totalPages;
-    const loadPosts = async () => {
-        const data: PaginationData = {
-            page: currentPage,
-        }
-        dispatch(getPaginationPosts(data));
-    };
-
-    useEffect(() => {
-        loadPosts();
-    }, [currentPage]);
-
-    const loadMorePostsUp = () => {
-        console.log(postsService.currentPage, totalPages)
-        if (currentPage < totalPages) {
-            dispatch(postsActions.setCurrentPage(currentPage + 1)); // Увеличиваем номер текущей страницы
-        }
-    };
-
-    const loadMorePostsBack = () => {
-        console.log(postsService.currentPage, totalPages)
-        if (currentPage > 1) {
-            dispatch(postsActions.setCurrentPage(currentPage - 1)); // Увеличиваем номер текущей страницы
-        }
-    };
 
     const fill = () => {
         let counter = 0;
@@ -75,7 +47,7 @@ export const Pposts = () => {
             }
         });
     };
-    console.log(currentPage)
+
     return (
         <div>
             <div>
@@ -83,15 +55,6 @@ export const Pposts = () => {
             </div>
             <div className={styles.container}>
                 {fill()}
-            </div>
-            <div className={styles.pagination}>
-                <button className={styles.pagination_btn} onClick={loadMorePostsBack} disabled={currentPage === 1}>
-                    назад
-                </button>
-                <span>{currentPage} из {totalPages}</span>
-                <button className={styles.pagination_btn} onClick={loadMorePostsUp} disabled={currentPage === totalPages}>
-                    вперед
-                </button>
             </div>
         </div >
     )

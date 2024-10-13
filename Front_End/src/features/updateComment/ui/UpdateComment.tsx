@@ -11,8 +11,7 @@ export const UpdateComment = () => {
     const dispatch = useDispatch<AppDispath>();
     const post_id = useParams().postid;
     const context = useCommentContext();
-    console.log(context.text.getState())
-    console.log(context.comment.text)
+    
     const handleClick = async () => {
         const comment: PostComment = {
             text: context.text.getState(),

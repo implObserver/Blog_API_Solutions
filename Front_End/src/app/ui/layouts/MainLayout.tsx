@@ -38,16 +38,12 @@ export const MainLayout: React.FC = () => {
 
     useEffect(() => {
         const scroll = getScroll(pathname);
-        if (scroll) {
-            setTimeout(() => {
-                if (queryParams) {
-                    queryParams.set('slider', 'false');
-                    navigate(`${location.pathname}?${queryParams.toString()}`);
-                    gsap.to(window, { duration: 0, scrollTo: { y: 0, autoKill: false } });
-                } else {
-                    gsap.to(window, { duration: 0, scrollTo: { y: scroll.scrollY, autoKill: false } });
-                }
-            }, 100);
+        if (queryParams) {
+            queryParams.set('slider', 'false');
+            navigate(`${location.pathname}?${queryParams.toString()}`);
+            gsap.to(window, { duration: 0, scrollTo: { y: 0, autoKill: false } });
+        } else {
+            gsap.to(window, { duration: 0, scrollTo: { y: scroll.scrollY, autoKill: false } });
         }
     }, [pathname]);
 

@@ -68,7 +68,7 @@ const user_auth_post = [
           if (loginErr) {
             return res.status(500).json({ error: 'Login failed' });
           }
-          console.log('Successfully authenticated:', user);
+          console.log('Successfully authenticated:');
           return next();
         });
       })(req, res, next);

@@ -10,8 +10,6 @@ const failureProtected = (req, res) => {
 };
 
 const authProtected = (req, res, next) => {
-  console.log(req.user);
-  console.log(req.user.comments);
   if (req.isAuthenticated()) {
     res.locals.user = req.user;
     res.locals.refreshToken = req.user.refreshToken;
@@ -32,8 +30,8 @@ const user_logout_get = (req, res, next) => {
 };
 
 const user_get = asyncHandler(async (req, res) => {
-  console.log('user get');
   const user = res.locals.user;
+  console.log(user.posts[1]);
   res.json({
     user: {
       id: user.id,

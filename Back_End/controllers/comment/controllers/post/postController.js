@@ -14,7 +14,6 @@ const comment_of_user_post = [
     .custom(validateComment),
 
   asyncHandler(async (req, res, next) => {
-    console.log(req.body);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       console.log(errors.errors[0].msg);
