@@ -38,6 +38,12 @@ interface UpdateModels {
     models: ModelType<TextAreaModel | PreviewModel | TitleModel>[],
 }
 
+interface UpdatePublishStatus {
+    post_id: number,
+    status: boolean,
+}
+
 interface PostPreviewContextType {
     deleteFeature: React.ReactElement,
+    features?: React.ReactElement[],
 }

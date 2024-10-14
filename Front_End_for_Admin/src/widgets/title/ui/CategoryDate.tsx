@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { ElementList } from '@/entities/elementList'
 import { Tags } from '../components/tags/ui/Tags'
 import { ExternalReset } from '@/shared/ui/externalReset'
+import { PublishBox } from '../components/publishBox/ui/PublishBox'
 
 export const CategoryDate = () => {
     return (
@@ -13,6 +14,7 @@ export const CategoryDate = () => {
             <TitleHeader>
                 <Tags></Tags>
             </TitleHeader>
+            <PublishBox></PublishBox>
         </div >
     )
 }

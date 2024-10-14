@@ -22,7 +22,6 @@ export const MainLayout: React.FC = () => {
     gsap.registerPlugin(ScrollToPlugin);
     const navigate = useNavigate();
     const queryParams = new URLSearchParams(location.search);
-    const paramValue = queryParams.get('slider');
 
     useEffect(() => {
         const updateInterval = setInterval(() => {
@@ -31,7 +30,7 @@ export const MainLayout: React.FC = () => {
                 scrollY: window.scrollY,
             };
             dispatch(scrollRestorationActions.setScroll(scroll));
-        }, 500);
+        }, 1);
         return () => {
             clearInterval(updateInterval);
         };
@@ -39,8 +38,8 @@ export const MainLayout: React.FC = () => {
 
     useEffect(() => {
         const scroll = getScroll(pathname);
-        if (queryParams) {
-            queryParams.set('slider', 'false');
+        if (queryParams.get('slider')) {
+            queryParams.delete('slider');
             navigate(`${location.pathname}?${queryParams.toString()}`);
             gsap.to(window, { duration: 0, scrollTo: { y: 0, autoKill: false } });
         } else {

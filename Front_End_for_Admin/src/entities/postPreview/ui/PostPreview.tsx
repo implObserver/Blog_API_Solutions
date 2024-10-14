@@ -4,12 +4,16 @@ import { usePostPreviewContext } from "../lib/context/Context";
 import { getImageByCode } from "../lib/helper/getPostImageFromIDB";
 import { loadImage } from "../lib/helper/loadImage";
 import { addPostImages } from "../lib/helper/loadImageToIDB";
+import { Menu } from "../components/menu/ui/Menu";
+import { getFormattedDate } from "@/shared/lib/helpers/getFormattedDate";
+import { Link, useParams } from "react-router-dom";
 
 export const PostPreview = ({ post }) => {
     const [preview, setPreview] = useState('');
     const folderName = post.elements[1].imageUrl;
-    const context = usePostPreviewContext();
-
+    const date = new Date(post.postingDate);
+    const postingDate = getFormattedDate(date);
+    const user_id = useParams().id;
     useEffect(() => {
         const loadPreview = async () => {
             try {
@@ -40,9 +44,13 @@ export const PostPreview = ({ post }) => {
         loadPreview();
     }, [])
 
-    if (preview) {
-        return (
-            <div className={styles.container}>
+    return (
+        <div className={styles.container}>
+            <Link
+                className={styles.link}
+                to={`/user/${user_id}/post/${post.id}`}
+                state={post.id}
+            >
                 <img
                     className={styles.image}
                     alt="preview"
@@ -50,20 +58,15 @@ export const PostPreview = ({ post }) => {
                 />
                 <span className={styles.post_name}>
                     {post.title}
+                    <div className={styles.intro}>
+                        <span>{post.elements[0].value}</span>
+                        <span>{postingDate}</span>
+                    </div>
                 </span>
-                <div className={styles.delete}>
-                    {context.deleteFeature}
-                </div>
+            </Link>
+            <div className={styles.delete}>
+                <Menu foldername={folderName}></Menu>
             </div>
-        )
-    } else {
-        return (
-            <div className={styles.container}>
-                <div className={styles.default_name}>{post.title}</div>
-                <div className={styles.delete}>
-                    {context.deleteFeature}
-                </div>
-            </div>
-        )
-    }
+        </div>
+    )
 }

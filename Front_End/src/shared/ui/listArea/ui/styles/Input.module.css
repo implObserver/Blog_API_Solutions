@@ -1,17 +1,10 @@
 .container {
     width: 70vw;
+    max-width: 1300px;
     display: grid;
     grid-template-columns: min-content auto;
-
 }
 
 .li {
-    display: flex;
-}
-
-.li:before {
-    content:"·";
-    font-size:48px;
-    vertical-align:middle;
-    line-height:18px;
+    padding-top: 10px;
 }

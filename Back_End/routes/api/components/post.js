@@ -64,3 +64,10 @@ postRouter.delete(
   postsController.post_delete,
   userController.user_get
 );
+
+postRouter.put(
+  '/user/:userid/posts/:postid/update_publish_status',
+  userController.user_auth_jwt_protected,
+  postsController.post_update_publish_status_put,
+  userController.user_get
+);

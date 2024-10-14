@@ -16,10 +16,8 @@ import {
 
 export const CanvasOfPosts = () => {
     const service = useSelector(selectUserServices);
-    const snapshot = useSelector(selectSnapshot).elements;
     const user = service.user;
     const posts = user.posts;
-    const userID = Cookies.get('user_id');
     const dispatch = useDispatch<AppDispath>();
 
     const clickHandle = (post: Post) => {
@@ -29,20 +27,17 @@ export const CanvasOfPosts = () => {
     const fill = useMemo(() => {
         return posts.map((post, index) => {
             const context: PostPreviewContextType = {
+                features: [
+                    <DeletePost postId={post.id}></DeletePost>,
+                    <div>Редактировать</div>
+                ],
                 deleteFeature: <DeletePost postId={post.id}></DeletePost>,
             }
             return (
-                <div className={styles.wrapper} key={post.id}>
-                    <Link
-                        className={styles.link}
-                        onClick={() => clickHandle(post)}
-                        to={`/user/${userID}/post/${post.id}`}
-                        state={post.id}
-                    >
-                        <PostPreviewContext.Provider value={context}>
-                            <PostPreview post={post}></PostPreview>
-                        </PostPreviewContext.Provider>
-                    </Link>
+                <div onClick={() => clickHandle(post)} className={styles.wrapper} key={post.id}>
+                    <PostPreviewContext.Provider value={context}>
+                        <PostPreview post={post}></PostPreview>
+                    </PostPreviewContext.Provider>
                 </div>
             )
         });

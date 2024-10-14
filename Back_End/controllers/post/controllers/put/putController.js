@@ -51,7 +51,30 @@ const post_update_tag_put = [
   }),
 ];
 
+const post_update_publish_status_put = [
+  body('post_id').isInt().withMessage('post_id должен быть целым числом'),
+  body('status')
+    .isIn(['true', 'false'])
+    .withMessage('Status must be specified.'),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      console.log(errors.errors[0].msg);
+      return res.status(400).send({ error: errors.errors[0].msg });
+    }
+    const status = req.body.status;
+    const post_id = req.body.post_id;
+    const user_id = req.user.id;
+    await prismaDB.updatePublishStatus(user_id, post_id, status);
+    const user = await prismaDB.findUser(user_id);
+    res.locals.user = user;
+    next();
+  }),
+];
+
 export const putController = {
   user_post_update_put,
   post_update_tag_put,
+  post_update_publish_status_put,
 };

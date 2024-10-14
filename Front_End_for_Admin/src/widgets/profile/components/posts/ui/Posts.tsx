@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 import styles from './styles/Posts.module.css'
 import { CanvasOfPosts } from "../components/canvasOfPosts"
 import { CreatePost } from "@/features/createPost"
+import { NotificationDestributor } from "@/features/notificationDestributor/ui/NotificationDestributor"
 
 export const Posts = () => {
     const user = useSelector(selectUserServices).user;
@@ -23,6 +24,7 @@ export const Posts = () => {
             }
 
             <CreatePost></CreatePost>
+            <NotificationDestributor />
         </div>
     )
 }

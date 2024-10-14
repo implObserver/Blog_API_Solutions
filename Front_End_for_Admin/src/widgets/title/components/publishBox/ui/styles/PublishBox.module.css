@@ -1,0 +1,10 @@
+.box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status {
+    font-size: 12px;
+    opacity: 0.5;
+}

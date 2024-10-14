@@ -10,7 +10,6 @@
     display: grid;
     position: absolute;
     width: min-content;
-    margin-right: auto;
     text-align: center;
     animation-duration: 150ms;
     animation-name: open;

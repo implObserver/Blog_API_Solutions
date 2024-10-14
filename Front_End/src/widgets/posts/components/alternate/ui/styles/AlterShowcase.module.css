@@ -5,7 +5,7 @@
         'first third';
     gap: max(1vh, 1vw);
     justify-content: center;
-    padding: 15px;
+    padding: max(1vh, 1vw);
 }
 
 .posts_alternate>div:nth-child(1) {
@@ -20,16 +20,16 @@
     display: grid;
     max-width: 400px;
     max-height: 400px;
-    width: 35vw;
-    height: 35vw;
+    width: 32vw;
+    height: 32vw;
     grid-area: second;
 }
 
 .posts_alternate>div:nth-child(3) {
     display: grid;
-    width: 35vw;
+    width: 32vw;
     max-width: 400px;
     max-height: 400px;
-    height: 35vw;
+    height: 32vw;
     grid-area: third;
 }

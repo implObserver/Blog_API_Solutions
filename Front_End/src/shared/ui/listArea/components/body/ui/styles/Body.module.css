@@ -1,7 +1,6 @@
 .area_list {
     display: flex;
     width: 100%;
-    font-family: Tahoma;
     font-size: inherit;
     padding-left: 4px;
 }

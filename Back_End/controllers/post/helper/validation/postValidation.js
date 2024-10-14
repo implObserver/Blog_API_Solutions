@@ -95,8 +95,16 @@ const validateElementType = (element) => {
     );
   }
 
-  if (element.type === 'main_title' && element.fontSize === null) {
-    throw new Error('fontSize должен быть указан для типа main_title');
+  if (element.type === 'main_title') {
+    if (element.fontSize === null) {
+      throw new Error('fontSize должен быть указан для типа main_title');
+    }
+    if (element.value.length > 100) {
+      throw new Error('Название слишком длинное');
+    }
+    if (element.value.length < 16) {
+      throw new Error('Название слишком короткое');
+    }
   }
 };
 

@@ -2,7 +2,7 @@
     display: grid;
     width: 90%;
     max-width: 1000px;
-    gap: 5px;
+    gap: 20px;
 }
 
 .link {

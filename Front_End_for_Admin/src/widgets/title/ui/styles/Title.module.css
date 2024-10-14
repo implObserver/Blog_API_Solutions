@@ -1,6 +1,7 @@
 .title {
-    display: grid;
-    row-gap: 1vh;
+    display: flex;
+    gap: 1vh;
+    justify-content: space-between;
     padding-left: 42px;
     padding-right: 42px;
 }

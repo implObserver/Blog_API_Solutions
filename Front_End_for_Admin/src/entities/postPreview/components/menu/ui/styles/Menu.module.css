@@ -1,0 +1,13 @@
+.menu {
+    display: grid;
+}
+
+.container {
+    display: grid;
+    background-color: var(--color__main-theme);
+    border: 1px var(--color__main-theme_accent) solid;
+    border-radius: 5px;
+    padding: 10px;
+    gap: 5px;
+    justify-items: left;
+}

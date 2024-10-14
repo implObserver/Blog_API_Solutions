@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./defaultState";
 import { login } from "./thunks/auth/login";
 import { checkAuth } from "./thunks/auth/checkAuth";
@@ -11,6 +11,7 @@ import { updateModelsOfPost } from "./thunks/update/updateModelsOfPost";
 import { deletePost } from "./thunks/delete/deletePost";
 import { fastLogin } from "./thunks/auth/fastLogin";
 import { updateTag } from "./thunks/update/updateTag";
+import { updatePublishStatus } from "./thunks/update/updatePublishStatus";
 
 const userServicesSlice = createSlice({
     name: 'services',
@@ -55,6 +56,12 @@ const userServicesSlice = createSlice({
             const post_id = action.payload.post_id;
             const post = state.user.posts.find(post => post.id === post_id);
             post.elements = action.payload.models;
+        },
+        updatePublishStatus: (state: ServicesDataType, action: PayloadAction<UpdatePublishStatus>) => {
+            const post_id = action.payload.post_id;
+            const post = state.user.posts.find(post => post.id === post_id);
+            post.isPublished = action.payload.status;
+            console.log(current(state.user.posts))
         },
         clearErrors: (state: ServicesDataType) => {
             state.error = null;
@@ -212,6 +219,19 @@ const userServicesSlice = createSlice({
                 }
             })
             .addCase(updateTag.rejected, handleRejected)
+
+        builder
+            .addCase(updatePublishStatus.pending, handlePending)
+            .addCase(updatePublishStatus.fulfilled, (state, action) => {
+                handleFulfilled(state);
+                if (!action.payload.error) {
+                    state.user = action.payload.data.message;
+                    state.error = null;
+                } else {
+                    state.error = action.payload.data;
+                }
+            })
+            .addCase(updatePublishStatus.rejected, handleRejected)
     }
 })
 

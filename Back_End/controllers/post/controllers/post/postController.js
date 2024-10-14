@@ -8,6 +8,8 @@ const user_post_add_post = [
     .isString()
     .notEmpty()
     .withMessage('title не может быть пустым')
+    .isLength({ min: 1, max: 30 })
+    .withMessage('Название слишком длинное или короткое')
     .custom((value) => sanitizeInput(value)),
 
   asyncHandler(async (req, res, next) => {

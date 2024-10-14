@@ -1,7 +1,7 @@
 .container {
     display: grid;
     background-color: var(--color__main-theme);
-    grid-template-columns: 2fr repeat(2, 1fr);
+    grid-template-columns: 2fr repeat(2, min(20vw, 1000px));
     height: 100%;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .title>.link:hover {
-    text-decoration:none;
+    text-decoration: none;
     transform: translateY(-3px);
     font-size: 36px !important;
 }

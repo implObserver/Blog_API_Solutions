@@ -6,6 +6,9 @@ const getPaginationPosts = async (offset, limit) => {
   return prisma.post.findMany({
     skip: offset,
     take: limit,
+    where: {
+      isPublished: true,
+    },
     include: {
       comments: {
         include: {
@@ -77,6 +80,18 @@ const updateTag = async (user_id, post_id, tag) => {
     },
     data: {
       tag: tag,
+    },
+  });
+};
+
+const updatePublishStatus = async (user_id, post_id, status) => {
+  await prisma.post.update({
+    where: {
+      id: post_id,
+      userId: user_id,
+    },
+    data: {
+      isPublished: status,
     },
   });
 };
@@ -485,4 +500,5 @@ export const prismaDB = {
   countComments,
   removeComment,
   updateComment,
+  updatePublishStatus,
 };

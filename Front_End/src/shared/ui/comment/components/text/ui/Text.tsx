@@ -5,7 +5,6 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 export const Text = () => {
     const context = useCommentContext();
-    const [value, setValue] = useState(context.comment.text);
     const comment = context.comment;
 
     const cnahgeHandle = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {

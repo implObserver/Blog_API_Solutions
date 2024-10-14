@@ -1,45 +1,62 @@
 .container {
     display: grid;
-    grid-template-areas:
-        'a';
     width: 100%;
-    height: 10vh;
-    min-height: 50px;
-    max-height: 100px;
+    height: 250px;
+}
+
+.link {
+    display: grid;
+    grid-template-areas:
+        'once';
+    width: inherit;
+    height: inherit;
     align-items: end;
-    transition: object-position 500ms ease-in-out;
-    overflow: hidden;
+    transition: object-position 250ms ease-in-out;
     border: 2px var(--color__main-theme_accent) solid;
     border-radius: 5px;
+    overflow: hidden;
+    text-decoration: none;
 }
 
 .image {
     display: grid;
-    grid-area: a;
+    grid-area: once;
     width: inherit;
     height: inherit;
     min-height: inherit;
     max-height: inherit;
     object-fit: cover;
     object-position: top;
-    transition: object-position 500ms ease-in-out;
+    transition: object-position 250ms ease-in-out;
+}
+
+.intro {
+    display: grid;
+    grid-template-rows: repeat(2, min-content);
+    gap: 10px;
+    text-align: left;
+    padding: 5px;
 }
 
 .post_name {
     display: grid;
-    padding-left: 5px;
-    height: inherit;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    height: 20%;
     min-height: inherit;
     max-height: inherit;
-    opacity: 0;
     pointer-events: none;
-    grid-area: a;
-    background-color: rgba(0, 0, 0, 0.5);
-    font-size: 4vh;
+    grid-area: once;
+    font-size: 36px;
     color: white;
     bottom: 2vh;
-    align-items: end;
-    transition: opacity 500ms ease-in-out, visibility 500ms;
+    align-items: start;
+    text-align: right;
+    transition:
+        opacity 250ms ease-in-out,
+        visibility 250ms,
+        height 250ms ease-in-out,
+        background-color 250ms ease-in-out;
 }
 
 .default_name {
@@ -51,30 +68,13 @@
 
 .delete {
     display: grid;
-    justify-self: end;
+    position: absolute;
+    grid-area: once;
+    justify-self: start;
     align-self: flex-start;
-    width: 12px;
-    height: 12px;
-    font-size: 0;
-    background-color: grey;
-    grid-area: a;
-    z-index: 2;
-    border-radius: 0px 0px 0px 20%;
-    transition: width 250ms ease-in-out, height 250ms ease-in-out, border-radius 700ms ease-in-out, background-color 250ms ease-in-out;
+    margin: 10px;
+    cursor: pointer;
 }
-
-
-@media screen and (max-height: 500px) {
-    .post_name {
-        font-size: 36px;
-    }
-
-    .default_name {
-        font-size: 36px;
-    }
-}
-
-
 
 .image:hover {
     object-position: center;
@@ -82,11 +82,7 @@
 
 .image:hover+.post_name {
     opacity: 1;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     object-position: center;
-}
-
-.delete:hover {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
 }
