@@ -2,6 +2,18 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+const getPaginationPostsOfUser = async (id, offset, limit) => {
+  const posts = await prisma.post.findMany({
+    skip: offset,
+    take: limit,
+    orderBy: {
+      postingDate: 'desc', // Сортируем по полю createdAt в порядке убывания
+    },
+    where: { userId: id },
+  });
+  return posts;
+};
+
 const getPaginationPosts = async (offset, limit) => {
   return prisma.post.findMany({
     skip: offset,
@@ -55,6 +67,14 @@ const getPaginationComments = async (offset, limit, postid) => {
 
 const countPost = async () => {
   return await prisma.post.count();
+};
+
+const countUserPost = async (id) => {
+  return await prisma.post.count({
+    where: {
+      userId: id,
+    },
+  });
 };
 
 const countComments = async (postId) => {
@@ -188,13 +208,6 @@ const findProfile = async (id) => {
     where: { userId: id },
   });
   return profile;
-};
-
-const findPosts = async (id) => {
-  const posts = await prisma.post.findMany({
-    where: { userId: id },
-  });
-  return posts;
 };
 
 const findPostToId = async (postid) => {
@@ -478,7 +491,7 @@ export const prismaDB = {
   findUser,
   setToken,
   findProfile,
-  findPosts,
+  getPaginationPostsOfUser,
   updateAvatar,
   addPost,
   dropUsers,
@@ -501,4 +514,5 @@ export const prismaDB = {
   removeComment,
   updateComment,
   updatePublishStatus,
+  countUserPost,
 };

@@ -18,8 +18,12 @@ interface Post {
 }
 
 interface Posts {
+    error?: Error,
     isPending?: Boolean,
     posts: Post[],
+    currentPage?: number,
+    totalPages?: number,
+    totalPosts?: number,
 }
 
 interface Comment {
@@ -28,7 +32,7 @@ interface Comment {
 }
 
 interface CellOfPost {
-    post_id?: number,
+    postid?: number,
     newModel?: ModelType<TextAreaModel | PreviewModel | TitleModel>,
     model: ModelType<TextAreaModel | PreviewModel | TitleModel>,
 }

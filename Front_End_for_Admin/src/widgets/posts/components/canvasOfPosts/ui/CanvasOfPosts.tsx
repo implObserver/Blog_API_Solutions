@@ -45,7 +45,7 @@ export const CanvasOfPosts = () => {
 
     return (
         <div className={styles.container}>
-            {fill}
+            
         </div>
     )
 }

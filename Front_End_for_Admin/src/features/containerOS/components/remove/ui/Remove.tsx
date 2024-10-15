@@ -3,6 +3,7 @@ import {
     modlelsOfOpenedPostActions,
     selectModelsOfOpenedPost
 } from "@/entities/element";
+import { postsActions } from "@/entities/postState/model/slice/posts/slice";
 import { servicesActions } from "@/entities/user";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,23 +15,18 @@ export const Remove = ({ children }) => {
     const dispath = useDispatch<AppDispath>();
     const isEmpty = useEmptyContext();
     const params = useParams();
-    const post_id = parseInt(params.postid);
+    const postid = parseInt(params.postid);
     const models = useSelector(selectModelsOfOpenedPost).models;
 
     const keyUpHandle = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (isEmpty.getState() && context.containerContext.index > 2) {
             const context: CellOfPost = {
-                post_id,
+                postid,
                 model,
             }
-
-            const updateContext: UpdateModels = {
-                post_id,
-                models,
-            }
-            dispath(modlelsOfOpenedPostActions.removeModel(model));
-            dispath(servicesActions.updateModels(updateContext));
-            dispath(servicesActions.removeModel(context));
+            //dispath(modlelsOfOpenedPostActions.removeModel(model));
+            //dispath(postsActions.updateModels(updateContext));
+            dispath(postsActions.removeModel(context));
             isEmpty.setState(false);
         }
     }

@@ -1,4 +1,16 @@
 .page_profile {
-    display: grid;
-    row-gap: 10px;
+    gap:20px
+}
+
+@media screen and (min-width: 800px) {
+    .page_profile {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .page_profile {
+        justify-content: center;
+    }
 }

@@ -8,6 +8,7 @@ import {
     useElementContext
 } from "@/entities/element";
 import { addPostImages } from "@/entities/postPreview/lib/helper/loadImageToIDB";
+import { postsActions } from "@/entities/postState/model/slice/posts/slice";
 import { servicesActions } from "@/entities/user";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -16,7 +17,7 @@ export const AddImage = () => {
     const context = useElementContext();
     const dispath = useDispatch<AppDispath>();
     const params = useParams();
-    const post_id = parseInt(params.postid);
+    const postid = parseInt(params.postid);
     const model = context.model;
     const models = useSelector(selectModelsOfOpenedPost).models;
 
@@ -28,17 +29,9 @@ export const AddImage = () => {
         imageArea.setUrl(url.toString())
         const newModel = elementToModel(imageArea);
         const postContext: CellOfPost = {
-            post_id,
+            postid,
             model,
             newModel,
-        }
-        const modelContext: UpdateElement = {
-            model,
-            newModel,
-        }
-        const updateContext: UpdateModels = {
-            post_id,
-            models,
         }
         const image: ImageType = {
             code: url.toString(),
@@ -46,10 +39,10 @@ export const AddImage = () => {
             isRetry: false,
         }
 
-        dispath(modlelsOfOpenedPostActions.addModel(modelContext));
-        dispath(servicesActions.updateModels(updateContext));
-        dispath(servicesActions.addModel(postContext));
-        addPostImages(post_id, image);
+        //dispath(modlelsOfOpenedPostActions.addModel(modelContext));
+        //dispath(servicesActions.updateModels(updateContext));
+        dispath(postsActions.addModel(postContext));
+        addPostImages(postid, image);
         context.dropdownStatus.toggle();
     }
     return (

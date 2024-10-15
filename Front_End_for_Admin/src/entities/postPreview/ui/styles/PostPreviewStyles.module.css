@@ -9,7 +9,7 @@
     grid-template-areas:
         'once';
     width: inherit;
-    height: inherit;
+    height: 250px;
     align-items: end;
     transition: object-position 250ms ease-in-out;
     border: 2px var(--color__main-theme_accent) solid;
@@ -23,6 +23,7 @@
     grid-area: once;
     width: inherit;
     height: inherit;
+    align-self: flex-start;
     min-height: inherit;
     max-height: inherit;
     object-fit: cover;
@@ -40,21 +41,21 @@
 
 .post_name {
     display: grid;
+    position: relative;
+    top:-50px;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 5px;
-    height: 20%;
-    min-height: inherit;
-    max-height: inherit;
+    height: 250px;
     pointer-events: none;
-    grid-area: once;
     font-size: 36px;
     color: white;
     bottom: 2vh;
-    align-items: start;
+    align-items: top;
     text-align: right;
     transition:
         opacity 250ms ease-in-out,
-        visibility 250ms,
+        visibility 250ms ease-in-out,
+        top 250ms ease-in-out,
         height 250ms ease-in-out,
         background-color 250ms ease-in-out;
 }
@@ -64,6 +65,7 @@
     padding-left: 5px;
     font-size: min(4vh, 64px);
     color: black;
+    grid-area: once;
 }
 
 .delete {
@@ -82,7 +84,8 @@
 
 .image:hover+.post_name {
     opacity: 1;
-    height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     object-position: center;
+    top:-250px;
 }
+

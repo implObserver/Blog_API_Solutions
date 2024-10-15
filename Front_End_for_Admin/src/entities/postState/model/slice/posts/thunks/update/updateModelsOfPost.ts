@@ -1,5 +1,5 @@
 import { store } from "@/app/model/store/Store";
-import { UpdateService } from "@/entities/user/api/api.put";
+import { UpdateService } from "@/entities/postState/api/api.update";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const updateModelsOfPost = createAsyncThunk(

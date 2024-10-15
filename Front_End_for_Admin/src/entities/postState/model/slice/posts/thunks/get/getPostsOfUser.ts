@@ -1,17 +1,17 @@
-import { DeleteService } from "@/entities/user/api/api.delete";
+import { ReadService } from "@/entities/postState/api/api.get";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const deletePost = createAsyncThunk(
-    'services/delete/post/',
-    async (postId: number, thunkAPI) => {
+export const getPostsOfUser = createAsyncThunk(
+    'services/get/usersPosts',
+    async (data: PaginationData, thunkAPI) => {
         try {
-            const resp = await DeleteService.deletePost(postId);
-            const user = resp.data.user;
+            const resp = await ReadService.getPostsOfuser(data);
+            const posts = resp.data
             const res = {
                 error: false,
                 data: {
                     name: 200,
-                    message: user,
+                    message: posts,
                 },
             }
             return res;

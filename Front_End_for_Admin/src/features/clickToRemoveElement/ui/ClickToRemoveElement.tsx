@@ -5,6 +5,7 @@ import {
     useElementContext
 } from "@/entities/element";
 import { removePostImage } from "@/entities/postPreview/lib/helper/removePostImageFromIDB";
+import { postsActions } from "@/entities/postState/model/slice/posts/slice";
 import { deletePostImage, servicesActions } from "@/entities/user";
 import { MinusButton } from "@/shared/ui/minusButton"
 import { useDispatch, useSelector } from "react-redux";
@@ -14,28 +15,21 @@ export const ClickToRemoveElement = () => {
     const dispath = useDispatch<AppDispath>();
     const elementContext = useElementContext();
     const params = useParams();
-    const post_id = parseInt(params.postid);
+    const postid = parseInt(params.postid);
     const models = useSelector(selectModelsOfOpenedPost).models;
 
     const clickHandle = () => {
 
         const context: CellOfPost = {
-            post_id,
+            postid,
             model: elementContext.model,
         }
 
-        const updateContext: UpdateModels = {
-            post_id,
-            models,
-        }
-
-        dispath(modlelsOfOpenedPostActions.removeModel(elementContext.model));
-        dispath(servicesActions.updateModels(updateContext));
-        dispath(servicesActions.removeModel(context));
+        dispath(postsActions.removeModel(context));
         const imageUrl = elementContext.model.imageUrl;
         if (imageUrl) {
             deletePostImage(imageUrl);
-            removePostImage(post_id, imageUrl);
+            removePostImage(postid, imageUrl);
         }
     }
 

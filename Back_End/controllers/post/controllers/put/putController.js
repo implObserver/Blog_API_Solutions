@@ -22,10 +22,9 @@ const user_post_update_put = [
       return res.status(400).send({ error: errors.errors[0].msg });
     }
     const snapshot = req.body;
+    console.log(snapshot);
     await prismaDB.updatePost(req.user, snapshot);
-    const user = await prismaDB.findUser(req.user.id);
-    res.locals.user = user;
-    next();
+    res.json('done');
   }),
 ];
 

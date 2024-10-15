@@ -2,6 +2,7 @@ import { focusReducer, selectFocus, } from '@/entities/element';
 import { counterReducer } from '@/entities/element/model/slice/counter/slice';
 import { modlelsOfOpenedPostReducer } from '@/entities/element/model/slice/elementsOfPost/slice';
 import { snapshotSliceReducer } from '@/entities/postPreview/model/slice/snapshot/slice';
+import { postsReducer } from '@/entities/postState/model/slice/posts/slice';
 import { servicesReducer, selectUserServices } from '@/entities/user';
 import { scrollRestorationReducer } from '@/features/scrollRestoration/model/slice/slice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   modelsOfOpenedPost: modlelsOfOpenedPostReducer,
   snapshot: snapshotSliceReducer,
   scrollRestoration: scrollRestorationReducer,
+  userPosts: postsReducer,
 })
 
 const persistConfig = {

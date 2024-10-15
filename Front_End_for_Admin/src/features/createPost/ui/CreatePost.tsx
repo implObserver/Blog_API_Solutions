@@ -1,13 +1,12 @@
 import { AppDispath } from "@/app/model/store/Store";
 import { HidePostForm } from "@/entities/hidePostForm";
-import { addPost, selectUserServices } from "@/entities/user";
+import { addPost } from "@/entities/postState/model/slice/posts/thunks/post/addPost";
 import { PostFormContext } from "@/shared/ui/postForm";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export const CreatePost = () => {
     const dispath = useDispatch<AppDispath>();
-    const user = useSelector(selectUserServices).user;
 
     const [data, setData] = useState({
         title: '',

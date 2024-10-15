@@ -25,6 +25,7 @@ interface ElementFeatures {
 interface UpdateElement {
     newModel: ModelType<ModelSubtype>,
     model: ModelType<ModelSubtype>,
+    postid: number,
 }
 
 interface FeaturesPanel {

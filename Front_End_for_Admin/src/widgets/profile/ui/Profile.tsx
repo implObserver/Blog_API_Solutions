@@ -10,11 +10,6 @@ export const Profile = () => {
                 <AvatarOfProfile></AvatarOfProfile>
                 <DataOfProfile></DataOfProfile>
             </div>
-            <div >
-                <div className={styles.wrapper_posts_info}>
-                    <Posts></Posts>
-                </div>
-            </div>
         </div>
     )
 }

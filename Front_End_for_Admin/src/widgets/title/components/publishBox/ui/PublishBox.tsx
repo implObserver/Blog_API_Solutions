@@ -5,14 +5,21 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUserServices } from "@/entities/user";
 import { CheckBoxContext } from "@/shared/ui/checkBox/lib/context/Context";
+import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
 
 export const PublishBox = () => {
     const params = useParams();
     const post_id = parseInt(params.postid);
-    const service = useSelector(selectUserServices);
-    const user = service.user;
-    const posts = user.posts;
+    const postsService = useSelector(selectPosts);
+    const posts = postsService.posts;
+
     const post = posts.find(post => post.id === post_id);
+    if (!post) {
+        return (
+            <div>Нет доступа или пост не существует</div>
+        )
+    }
+
     const isPublished = post.isPublished;
     console.log(post)
     return (

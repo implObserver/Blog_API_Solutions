@@ -6,9 +6,7 @@ import { logout } from "./thunks/auth/logout";
 import { signup } from "./thunks/auth/signup";
 import { updateProfile } from "./thunks/update/updateProfile";
 import { addPost } from "./thunks/update/addPost";
-import { updateModelsOfPost } from "./thunks/update/updateModelsOfPost";
-
-import { deletePost } from "./thunks/delete/deletePost";
+import { updateModelsOfPost } from "../../../../postState/model/slice/posts/thunks/update/updateModelsOfPost";
 import { fastLogin } from "./thunks/auth/fastLogin";
 import { updateTag } from "./thunks/update/updateTag";
 import { updatePublishStatus } from "./thunks/update/updatePublishStatus";
@@ -17,46 +15,6 @@ const userServicesSlice = createSlice({
     name: 'services',
     initialState,
     reducers: {
-        addModel: (state: ServicesDataType, action: PayloadAction<CellOfPost>) => {
-            const post_id = action.payload.post_id;
-            const post = state.user.posts.find(post => post.id === post_id);
-            const elements = post.elements;
-            const id = action.payload.model.id;
-            elements.forEach((element, index) => {
-                if (element.id === id && index > 1) {
-                    elements.splice(index + 1, 0, action.payload.newModel);
-                }
-            })
-
-        },
-        updateModel: (state: ServicesDataType, action: PayloadAction<CellOfPost>) => {
-            const post_id = action.payload.post_id;
-            const post = state.user.posts.find(post => post.id === post_id);
-            const elements = post.elements;
-            const id = action.payload.model.id;
-            elements.forEach((element, index) => {
-                if (element.id === id) {
-                    elements.splice(index, 1, action.payload.newModel);
-                }
-            })
-        },
-        removeModel: (state: ServicesDataType, action: PayloadAction<CellOfPost>) => {
-            const post_id = action.payload.post_id;
-            const post = state.user.posts.find(post => post.id === post_id);
-
-            const elements = post.elements;
-            const id = action.payload.model.id;
-            elements.forEach((element, index) => {
-                if (element.id === id && index > 2) {
-                    elements.splice(index, 1);
-                }
-            })
-        },
-        updateModels: (state: ServicesDataType, action: PayloadAction<UpdateModels>) => {
-            const post_id = action.payload.post_id;
-            const post = state.user.posts.find(post => post.id === post_id);
-            post.elements = action.payload.models;
-        },
         updatePublishStatus: (state: ServicesDataType, action: PayloadAction<UpdatePublishStatus>) => {
             const post_id = action.payload.post_id;
             const post = state.user.posts.find(post => post.id === post_id);
@@ -158,55 +116,6 @@ const userServicesSlice = createSlice({
                 }
             })
             .addCase(updateProfile.rejected, handleRejected)
-
-        builder
-            .addCase(addPost.pending, handlePending)
-            .addCase(addPost.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (!action.payload.error) {
-                    state.user = action.payload.data.message;
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
-            .addCase(addPost.rejected, handleRejected)
-
-        builder
-            .addCase(deletePost.pending, handlePending)
-            .addCase(deletePost.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (!action.payload.error) {
-                    state.user = action.payload.data.message;
-                    state.isAuth = true;
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
-            .addCase(deletePost.rejected, handleRejected)
-
-        builder
-            .addCase(updateModelsOfPost.pending, (state) => {
-                state.isPending = true;
-                state.isUpdate = true;
-            })
-            .addCase(updateModelsOfPost.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                handleFulfilled(state);
-                console.log(action.payload)
-                if (!action.payload.error) {
-                    state.user = action.payload.data.message;
-                    console.log(`userrrr ${action.payload.data}`)
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
-            .addCase(updateModelsOfPost.rejected, (state) => {
-                state.isPending = false;
-                state.isUpdate = false;
-            })
         builder
             .addCase(updateTag.pending, handlePending)
             .addCase(updateTag.fulfilled, (state, action) => {

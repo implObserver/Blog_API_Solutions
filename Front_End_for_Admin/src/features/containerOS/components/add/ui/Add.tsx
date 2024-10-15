@@ -7,6 +7,7 @@ import {
     selectModelsOfOpenedPost,
     TextArea
 } from "@/entities/element";
+import { postsActions } from "@/entities/postState/model/slice/posts/slice";
 
 import { servicesActions } from "@/entities/user";
 import { useContainerContext } from "@/features/containerOS/lib";
@@ -16,7 +17,7 @@ import { useParams } from "react-router-dom";
 export const Add = ({ children }) => {
     const context = useContainerContext();
     const params = useParams();
-    const post_id = parseInt(params.postid);
+    const postid = parseInt(params.postid);
     const model = context.containerContext.model;
     const models = useSelector(selectModelsOfOpenedPost).models;
     const dispath = useDispatch<AppDispath>();
@@ -36,21 +37,13 @@ export const Add = ({ children }) => {
             }
 
             const context: CellOfPost = {
-                post_id,
+                postid,
                 model,
                 newModel,
             }
-            const modelContext: UpdateElement = {
-                model,
-                newModel,
-            }
-            const updateContext: UpdateModels = {
-                post_id,
-                models,
-            }
-            dispath(modlelsOfOpenedPostActions.addModel(modelContext));
-            dispath(servicesActions.updateModels(updateContext));
-            dispath(servicesActions.addModel(context));
+            //dispath(modlelsOfOpenedPostActions.addModel(modelContext));
+            //dispath(postsActions.updateModels(updateContext));
+            dispath(postsActions.addModel(context));
         }
     }
 

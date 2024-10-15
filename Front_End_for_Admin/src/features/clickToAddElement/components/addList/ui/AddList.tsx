@@ -7,6 +7,7 @@ import {
     selectModelsOfOpenedPost,
     useElementContext
 } from "@/entities/element";
+import { postsActions } from "@/entities/postState/model/slice/posts/slice";
 import { servicesActions } from "@/entities/user";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -14,7 +15,7 @@ import { useParams } from "react-router-dom";
 export const AddListHeader = () => {
     const context = useElementContext();
     const params = useParams();
-    const post_id = parseInt(params.postid);
+    const postid = parseInt(params.postid);
     const model = context.model;
     const models = useSelector(selectModelsOfOpenedPost).models;
     const dispath = useDispatch<AppDispath>();
@@ -25,22 +26,13 @@ export const AddListHeader = () => {
         const newModel = elementToModel(listHeader);
 
         const postContext: CellOfPost = {
-            post_id,
+            postid,
             model,
             newModel,
         }
-        const modelContext: UpdateElement = {
-            model,
-            newModel,
-        }
-        const updateContext: UpdateModels = {
-            post_id,
-            models,
-        }
-        dispath(modlelsOfOpenedPostActions.addModel(modelContext));
-        dispath(servicesActions.updateModels(updateContext));
-        dispath(servicesActions.addModel(postContext));
-
+        //dispath(modlelsOfOpenedPostActions.addModel(modelContext));
+        //dispath(servicesActions.updateModels(updateContext));
+        dispath(postsActions.addModel(postContext));
         context.dropdownStatus.toggle();
     }
     return (

@@ -10,63 +10,41 @@ import { selectUserServices, servicesActions, updatePost } from "@/entities/user
 import { modlelsOfOpenedPostActions } from "@/entities/element";
 import { snapshotSliceActions } from "@/entities/postPreview";
 import { getSnapshot } from "../lib/helper/getSnapshot";
+import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
+import { postsActions } from "@/entities/postState/model/slice/posts/slice";
 
 export const Canvas = React.memo(() => {
     const params = useParams();
     const post_id = parseInt(params.postid);
-    const service = useSelector(selectUserServices);
-    const user = service.user;
-    const posts = user.posts;
-    console.log(user.posts[1])
+    const postsService = useSelector(selectPosts);
+    const posts = postsService.posts;
     const post = posts.find(post => post.id === post_id);
+    console.log(post)
     if (!post) {
         return (
-            <div>Нет доступа или поста не существует</div>
+            <div>Нет доступа или пост не существует</div>
         )
     }
     if (post_id || post_id === 0) {
         const dispatch = useDispatch<AppDispath>();
-        let elements = posts.length === 0 ? [] : post.elements;
-        console.log(elements)
+        const elements = posts.length === 0 ? [] : post.elements;
         const containerContexts = useMemo(() => modelsToContainers(elements), [elements]);
 
-        const updateSnapshot = () => {
-            const models = getVirtualModels();
-            dispatch(snapshotSliceActions.updateSnapshot(models));
-        };
-
-        const finalizeSnapshot = () => {
-            updateSnapshot();
-            const snapshot = getSnapshot();
+        const finalizeSnapshot = async () => {
+            const elements = getVirtualModels(post_id);
+            const snapshot: SnapShot = {
+                post_id,
+                elements,
+            }
             dispatch(updatePost(snapshot));
         };
 
-
         useEffect(() => {
-            dispatch(modlelsOfOpenedPostActions.uploadPosts(elements));
-        }, [])
-      
-        useEffect(() => {
-            const handle = () => {
-                const updateContext: UpdateModels = {
-                    post_id,
-                    models: getVirtualModels(),
-                }
-                dispatch(servicesActions.updateModels(updateContext));
-            };
-            window.addEventListener('beforeunload', handle);
             return () => {
-                window.removeEventListener('beforeunload', handle);
-            };
-        }, [])
-
-        useEffect(() => {
-            const updateInterval = setInterval(updateSnapshot, 50000);
-            return () => {
-                clearInterval(updateInterval);
                 finalizeSnapshot();
             };
         }, []);
+
         const fill = () => {
             return containerContexts.map((containerContext, index) => {
                 const container = {

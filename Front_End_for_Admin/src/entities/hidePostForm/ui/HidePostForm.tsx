@@ -19,7 +19,7 @@ export const HidePostForm = () => {
     if (isHide) {
         return (
             <div onClick={handleClick} className={styles.form_profile_hide}>
-                <button className={styles.button}>Add</button>
+                <button className={styles.add_btn}>Add</button>
             </div>
         )
     } else {

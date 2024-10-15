@@ -3,15 +3,20 @@ import {
     focusActions,
     selectModelsOfOpenedPost
 } from "@/entities/element";
+import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
+import { selectUserServices } from "@/entities/user";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 export const Focus = ({ children }) => {
     const context = useContainerContext();
     const dispath = useDispatch<AppDispath>();
     const isEmpty = useEmptyContext();
-    const models = useSelector(selectModelsOfOpenedPost).models;
-
+    const postid = parseInt(useParams().postid);
+    const posts = useSelector(selectPosts).posts;
+    const post = posts.find(post => post.id === postid);
+    const models = post.elements;
     const keyUpHandle = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key === 'ArrowUp' || e.key == 'ArrowDown') {
             e.stopPropagation();

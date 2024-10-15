@@ -18,12 +18,14 @@ const user_post_add_post = [
       return res.status(400).send({ error: errors.errors[0].msg });
     }
 
-    let user = req.user;
+    const user = req.user;
     const title = req.body.title;
     await prismaDB.addPost(user, title);
-    user = await prismaDB.findUser(req.user.id);
-    res.locals.user = user;
-    next();
+    const totalPosts = await prismaDB.countUserPost(user.id);
+
+    res.json({
+      totalPosts,
+    });
   }),
 ];
 

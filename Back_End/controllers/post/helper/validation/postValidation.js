@@ -102,9 +102,6 @@ const validateElementType = (element) => {
     if (element.value.length > 100) {
       throw new Error('Название слишком длинное');
     }
-    if (element.value.length < 16) {
-      throw new Error('Название слишком короткое');
-    }
   }
 };
 

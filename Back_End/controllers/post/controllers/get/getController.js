@@ -4,18 +4,26 @@ import fs from 'fs';
 import path from 'path';
 import { prismaDB } from '../../../../database/prisma/queries.js';
 
-const posts_of_user_get = asyncHandler(async (req, res, next) => {
-  const posts = await prismaDB.findPosts(req.user.id);
-  if (posts === null) {
-    const err = new Error('Posts not found');
-    err.status = 404;
-    return next(err);
+const pagination_posts_of_user_get = asyncHandler(async (req, res, next) => {
+  const page = parseInt(req.query.page) || 1; // Текущая страница
+  const limit = 5; // Количество постов на странице
+  const offset = (page - 1) * limit; // Смещение для базы данных
+  try {
+    const posts = await prismaDB.getPaginationPostsOfUser(
+      req.user.id,
+      offset,
+      limit
+    );
+    const totalPosts = await prismaDB.countUserPost(req.user.id); // Общее количество постов
+    res.json({
+      posts,
+      totalPosts,
+      totalPages: Math.ceil(totalPosts / limit),
+    });
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    res.status(500).json({ error: 'Ошибка при получении постов' });
   }
-
-  res.json({
-    title: 'Posts Detail',
-    posts,
-  });
 });
 
 const posts_to_id_get = asyncHandler(async (req, res, next) => {
@@ -43,7 +51,6 @@ const pagination_posts_list_get = asyncHandler(async (req, res) => {
     const posts = await prismaDB.getPaginationPosts(offset, limit);
 
     const totalPosts = await prismaDB.countPost(); // Общее количество постов
-    console.log(posts);
     res.json({
       posts,
       totalPosts,
@@ -109,7 +116,7 @@ const image_of_post_get = asyncHandler(async (req, res) => {
 
 export const getController = {
   posts_list_api,
-  posts_of_user_get,
+  pagination_posts_of_user_get,
   image_of_post_get,
   pagination_posts_list_get,
   posts_to_id_get,

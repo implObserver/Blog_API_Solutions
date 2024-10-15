@@ -13,6 +13,12 @@ postRouter.get(
 );
 
 postRouter.get(
+  '/user/:userid/posts/',
+  userController.user_auth_jwt_protected,
+  postsController.pagination_posts_of_user_get
+);
+
+postRouter.get(
   '/posts/:postid',
   userController.user_auth_jwt_protected,
   postsController.posts_to_id_get
@@ -35,8 +41,7 @@ postRouter.put(
 postRouter.put(
   '/user/:userid/posts/update',
   userController.user_auth_jwt_protected,
-  postsController.user_post_update_put,
-  userController.user_get
+  postsController.user_post_update_put
 );
 
 postRouter.get(
