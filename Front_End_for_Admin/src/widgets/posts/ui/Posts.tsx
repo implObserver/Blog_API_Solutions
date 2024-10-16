@@ -1,7 +1,5 @@
-import { selectUserServices } from "@/entities/user"
 import { useSelector } from "react-redux"
 import styles from './styles/Posts.module.css'
-import { CanvasOfPosts } from "../components/canvasOfPosts"
 import { CreatePost } from "@/features/createPost"
 import { NotificationDestributor } from "@/features/notificationDestributor/ui/NotificationDestributor"
 import { PaginationShowcaseOfUserPosts } from "../components/canvasOfPosts/ui/PaginationShowcaseOfUserPosts"

@@ -6,15 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispath } from "@/app/model/store/Store";
 import { modelsToContainers } from "../lib/helper/containerAssembly";
 import { getVirtualModels } from "../../../entities/element/lib/helper/getVirtualModels";
-import { updatePost } from "@/entities/user";
 import { snapshotSliceActions } from "@/entities/postPreview";
 import { getSnapshot } from "../lib/helper/getSnapshot";
-import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
+import { selectOpenedPost } from "@/entities/postState/model/slice/openedPost/selectors";
+import { updatePost } from "@/entities/postState";
 
 export const Canvas = React.memo(() => {
     const { postid } = useParams();
     const postId = parseInt(postid);
-    const post = useSelector(selectPosts).openedPost;
+    const post = useSelector(selectOpenedPost).openedPost;
     const dispatch = useDispatch<AppDispath>();
     console.log(post)
     if (!post || postId !== post.id) {
@@ -24,15 +24,12 @@ export const Canvas = React.memo(() => {
     const elements = post.elements;
     const containerContexts = useMemo(() => modelsToContainers(elements), [elements]);
 
-    const updateSnapshot = () => {
-        const models = getVirtualModels();
-        dispatch(snapshotSliceActions.updateSnapshot(models));
-    };
-
     useEffect(() => {
         return () => {
-            updateSnapshot();
-            const snapshot = getSnapshot();
+            const snapshot: SnapShot = {
+                post_id: parseInt(postid),
+                elements: getVirtualModels(),
+            };
             dispatch(updatePost(snapshot));
         };
     }, []);

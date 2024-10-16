@@ -7,7 +7,7 @@ import {
     TextArea
 } from "@/entities/element";
 import { getVirtualModels } from "@/entities/element/lib/helper/getVirtualModels";
-import { postsActions } from "@/entities/postState/model/slice/posts/slice";
+import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
 import { useContainerContext } from "@/features/containerOS/lib";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -34,8 +34,8 @@ export const Add = ({ children }) => {
         const addModelContext: CellOfPost = { postid: postId, model, newModel };
 
         dispatch(modlelsOfOpenedPostActions.addModel(updateElementContext));
-        dispatch(postsActions.updateModels(updateModelsContext));
-        dispatch(postsActions.addModel(addModelContext));
+        dispatch(openedPostActions.updateModels(updateModelsContext));
+        dispatch(openedPostActions.addModel(addModelContext));
     };
 
     return <div onKeyDown={handleKeyDown}>{children}</div>;

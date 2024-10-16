@@ -55,7 +55,7 @@ export const PaginationCommentsShowcase = () => {
 
     const fill = () => {
         return comments.map(comment => {
-            return <Comment comment={comment}></Comment>
+            return <Comment key={comment.id} comment={comment}></Comment>
         })
     };
     console.log(currentPage)

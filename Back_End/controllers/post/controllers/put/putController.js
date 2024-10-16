@@ -1,7 +1,10 @@
 import asyncHandler from 'express-async-handler';
 import { prismaDB } from '../../../../database/prisma/queries.js';
 import { body, validationResult } from 'express-validator';
-import { validateElements } from '../../helper/validation/postValidation.js';
+import {
+  sanitizeInput,
+  validateElements,
+} from '../../helper/validation/postValidation.js';
 
 const user_post_update_put = [
   body('elements')
@@ -22,14 +25,17 @@ const user_post_update_put = [
       return res.status(400).send({ error: errors.errors[0].msg });
     }
     const snapshot = req.body;
-    console.log(snapshot);
     await prismaDB.updatePost(req.user, snapshot);
     res.json('done');
   }),
 ];
 
 const post_update_tag_put = [
-  body('post_id').isInt().withMessage('post_id должен быть целым числом'),
+  body('post_id')
+    .exists()
+    .withMessage('post_id должен существовать')
+    .isNumeric()
+    .withMessage('post_id должен быть числом'),
   body('tag')
     .isIn(['Other', 'Travel', 'Sport', 'Tech', 'Books'])
     .withMessage('Tag must be specified.'),
@@ -43,10 +49,44 @@ const post_update_tag_put = [
     const tag = req.body.tag;
     const post_id = req.body.post_id;
     const user_id = req.user.id;
-    await prismaDB.updateTag(user_id, post_id, tag);
-    const user = await prismaDB.findUser(user_id);
-    res.locals.user = user;
-    next();
+    const updatedPost = await prismaDB.updateTag(user_id, post_id, tag);
+
+    res.json({
+      updatedPost,
+    });
+  }),
+];
+
+const post_update_author_put = [
+  body('post_id')
+    .exists()
+    .withMessage('post_id должен существовать')
+    .isNumeric()
+    .withMessage('post_id должен быть числом'),
+  body('author')
+    .isString()
+    .notEmpty()
+    .withMessage('author не может быть пустым')
+    .isLength({ min: 1, max: 20 })
+    .withMessage('Имя слишком длинное')
+    .custom((value) => sanitizeInput(value)),
+
+  asyncHandler(async (req, res, next) => {
+    console.log(req.body);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      console.log(errors.errors[0].msg);
+      return res.status(400).send({ error: errors.errors[0].msg });
+    }
+    console.log(req.body);
+    const author = req.body.author;
+    const post_id = req.body.post_id;
+    const user_id = req.user.id;
+    const updatedPost = await prismaDB.updateAuthor(user_id, post_id, author);
+
+    res.json({
+      updatedPost,
+    });
   }),
 ];
 
@@ -65,10 +105,14 @@ const post_update_publish_status_put = [
     const status = req.body.status;
     const post_id = req.body.post_id;
     const user_id = req.user.id;
-    await prismaDB.updatePublishStatus(user_id, post_id, status);
-    const user = await prismaDB.findUser(user_id);
-    res.locals.user = user;
-    next();
+    const updatedPost = await prismaDB.updatePublishStatus(
+      user_id,
+      post_id,
+      status
+    );
+    res.json({
+      updatedPost,
+    });
   }),
 ];
 
@@ -76,4 +120,5 @@ export const putController = {
   user_post_update_put,
   post_update_tag_put,
   post_update_publish_status_put,
+  post_update_author_put,
 };

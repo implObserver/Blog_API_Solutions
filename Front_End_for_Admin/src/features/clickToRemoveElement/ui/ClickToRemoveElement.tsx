@@ -5,7 +5,7 @@ import {
 } from "@/entities/element";
 import { getVirtualModels } from "@/entities/element/lib/helper/getVirtualModels";
 import { removePostImage } from "@/entities/postPreview/lib/helper/removePostImageFromIDB";
-import { postsActions } from "@/entities/postState/model/slice/posts/slice";
+import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
 import { deletePostImage } from "@/entities/user";
 import { MinusButton } from "@/shared/ui/minusButton"
 import { useDispatch } from "react-redux";
@@ -21,8 +21,8 @@ export const ClickToRemoveElement = () => {
         const context: CellOfPost = { postid, model };
 
         dispatch(modlelsOfOpenedPostActions.removeModel(model));
-        dispatch(postsActions.updateModels({ postid, models }));
-        dispatch(postsActions.removeModel(context));
+        dispatch(openedPostActions.updateModels({ postid, models }));
+        dispatch(openedPostActions.removeModel(context));
 
         const imageUrl = model.imageUrl;
         if (imageUrl) {

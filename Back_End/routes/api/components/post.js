@@ -34,8 +34,13 @@ postRouter.post(
 postRouter.put(
   '/user/:userid/posts/:post_id/update_tag',
   userController.user_auth_jwt_protected,
-  postsController.post_update_tag_put,
-  userController.user_get
+  postsController.post_update_tag_put
+);
+
+postRouter.put(
+  '/user/:userid/posts/:post_id/update_author',
+  userController.user_auth_jwt_protected,
+  postsController.post_update_author_put
 );
 
 postRouter.put(
@@ -73,6 +78,5 @@ postRouter.delete(
 postRouter.put(
   '/user/:userid/posts/:postid/update_publish_status',
   userController.user_auth_jwt_protected,
-  postsController.post_update_publish_status_put,
-  userController.user_get
+  postsController.post_update_publish_status_put
 );

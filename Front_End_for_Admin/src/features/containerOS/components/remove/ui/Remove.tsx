@@ -3,7 +3,7 @@ import {
     modlelsOfOpenedPostActions,
 } from "@/entities/element";
 import { getVirtualModels } from "@/entities/element/lib/helper/getVirtualModels";
-import { postsActions } from "@/entities/postState/model/slice/posts/slice";
+import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -23,8 +23,8 @@ export const Remove = ({ children }) => {
         const cellContext: CellOfPost = { postid: postId, model };
 
         dispatch(modlelsOfOpenedPostActions.removeModel(model));
-        dispatch(postsActions.updateModels(updateContext));
-        dispatch(postsActions.removeModel(cellContext));
+        dispatch(openedPostActions.updateModels(updateContext));
+        dispatch(openedPostActions.removeModel(cellContext));
 
         isEmpty.setState(false);
     };

@@ -67,6 +67,7 @@ interface ElementValueType {
 
 interface Models {
     models: Array<ModelType<ModelSubtype>>
+    author: string,
 }
 
 interface BaseModel {

@@ -8,10 +8,8 @@ import { SpinnerLoader } from '@/shared/ui/spinnerLoader';
 export const PostPage = () => {
     return (
         <div className={styles.page__main}>
-            
+            <CategoryDate></CategoryDate>
             <Canvas></Canvas>
         </div>
     )
 }
-
-//<CategoryDate></CategoryDate>

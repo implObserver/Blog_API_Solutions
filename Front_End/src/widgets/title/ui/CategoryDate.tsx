@@ -7,6 +7,7 @@ import { selectUserServices } from '@/entities/user'
 import { PostFilterContext } from '@/features/postsFilter/lib/context/Context'
 import { PostsFilter } from '@/features/postsFilter/ui/PostsFilter'
 import { selectPosts } from '@/entities/postState/model/slice/posts/selectors'
+import { Author } from '../component/author/ui/Author'
 
 export const CategoryDate = () => {
     const params = useParams();
@@ -26,6 +27,7 @@ export const CategoryDate = () => {
     }
     return (
         <div className={styles.title}>
+            <Author></Author>
             <TitleHeader>
                 <TagContext.Provider value={post.tag}>
                     <PostFilterContext.Provider value={postFilterContext}>

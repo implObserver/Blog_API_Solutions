@@ -27,16 +27,16 @@ model User {
 }
 
 model Post {
-  id          Int      @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   title       String
   userId      Int
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  isPublished Boolean  @default(false)
-  postingDate DateTime @default(now())
-  tag         String   @default("Other")
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  isPublished Boolean   @default(false)
+  postingDate DateTime  @default(now())
+  tag         String    @default("Other")
   elements    Json[]
-
-  comments Comment[]
+  author      String    @default("")
+  comments    Comment[]
 }
 
 model Comment {

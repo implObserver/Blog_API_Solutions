@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.creator {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.creator>span {
+    display: flex;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.author {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.author>span {
+    display: flex;
+    font-weight: 500;
+    font-size: 20px;
+}

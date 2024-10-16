@@ -5,3 +5,8 @@
     padding-left: 42px;
     padding-right: 42px;
 }
+
+.container {
+    display: grid;
+    gap: 10px;
+}

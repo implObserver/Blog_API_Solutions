@@ -1,1 +1,1 @@
-export { CanvasOfPosts } from './ui/CanvasOfPosts'
+export { PaginationShowcaseOfUserPosts } from './ui/PaginationShowcaseOfUserPosts'

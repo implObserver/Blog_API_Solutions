@@ -1,14 +1,6 @@
 import { AppDispath } from "@/app/model/store/Store";
-import { PostPreview } from "@/entities/postPreview";
-import { PostPreviewContext } from "@/entities/postPreview/lib/context/Context";
-import { selectTag } from "@/entities/tag";
 import { postsActions } from "@/entities/user";
 import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
-import { getAllPosts } from "@/entities/postState/model/slice/posts/thunks/get/getAllPosts";
-import { PostFilterContext } from "@/features/postsFilter/lib/context/Context";
-import { PostsFilter } from "@/features/postsFilter/ui/PostsFilter";
-import { Line } from "@/shared/ui/line";
-import { Tag } from "@/shared/ui/tag";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from './styles/Posts.module.css';

@@ -6,7 +6,6 @@ export { login } from './model/slice/services/thunks/auth/login'
 export { logout } from './model/slice/services/thunks/auth/logout'
 export { signup } from './model/slice/services/thunks/auth/signup'
 export { addPost } from './model/slice/services/thunks/update/addPost'
-export { updateModelsOfPost as updatePost } from '../postState/model/slice/posts/thunks/update/updateModelsOfPost'
 export { updateProfile } from './model/slice/services/thunks/update/updateProfile'
 
 export { Preview as UserPreview } from './components/preview/index'

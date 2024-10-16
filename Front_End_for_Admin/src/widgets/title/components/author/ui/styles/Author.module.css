@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.creator {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.creator>span {
+    display: flex;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.author {
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    display: grid;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    background: #ffffff !important;
+    outline: none;
+    resize: none;
+    padding-left: 4px;
+    font-family: var(--font_family);
+    word-break: break-all;
+    overflow: hidden;
+    font-weight: 500;
+    font-size: 20px;
+}

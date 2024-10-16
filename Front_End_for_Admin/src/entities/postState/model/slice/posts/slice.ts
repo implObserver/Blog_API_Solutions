@@ -1,52 +1,13 @@
-import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./defaultState";
 import { getPostsOfUser } from "./thunks/get/getPostsOfUser";
 import { addPost } from "./thunks/post/addPost";
 import { deletePost } from "./thunks/delete/deletePost";
-import { updateModelsOfPost } from "./thunks/update/updateModelsOfPost";
 
 const postsSlice = createSlice({
     name: 'posts',
     initialState,
     reducers: {
-        addModel: (state: Posts, action: PayloadAction<CellOfPost>) => {
-            const post = state.openedPost;
-            const elements = post.elements;
-            const id = action.payload.model.id;
-            elements.forEach((element, index) => {
-                if (element.id === id && index > 1) {
-                    elements.splice(index + 1, 0, action.payload.newModel);
-                }
-            })
-
-        },
-        updateModel: (state: Posts, action: PayloadAction<CellOfPost>) => {
-            const post = state.openedPost;
-            const elements = post.elements;
-            const id = action.payload.model.id;
-            elements.forEach((element, index) => {
-                if (element.id === id) {
-                    elements.splice(index, 1, action.payload.newModel);
-                }
-            })
-        },
-        updateModels: (state: Posts, action: PayloadAction<UpdateModels>) => {
-            const post = state.openedPost;
-            post.elements = action.payload.models;
-        },
-        removeModel: (state: Posts, action: PayloadAction<CellOfPost>) => {
-            const post = state.openedPost;
-            const elements = post.elements;
-            const id = action.payload.model.id;
-            elements.forEach((element, index) => {
-                if (element.id === id && index > 2) {
-                    elements.splice(index, 1);
-                }
-            })
-        },
-        setOpenedPost: (state: Posts, action: PayloadAction<Post>) => {
-            state.openedPost = action.payload;
-        },
         setCurrentPage: (state: Posts, action: PayloadAction<number>) => {
             state.currentPage = action.payload;
         },
@@ -105,17 +66,6 @@ const postsSlice = createSlice({
                 }
             })
             .addCase(deletePost.rejected, handleRejected)
-
-        builder
-            .addCase(updateModelsOfPost.pending, (state) => {
-                state.updatePending = true;
-            })
-            .addCase(updateModelsOfPost.fulfilled, (state, action) => {
-                state.updatePending = false;
-            })
-            .addCase(updateModelsOfPost.rejected, (state) => {
-                state.updatePending = false;
-            })
     }
 })
 

@@ -14,7 +14,8 @@ interface Post {
     isPublished: boolean,
     tag: string,
     elements: Array<ModelType<TextAreaModel | PreviewModel | TitleModel>>,
-    comments: Comment[]
+    comments: Comment[],
+    author?: string,
 }
 
 interface Posts {
@@ -25,7 +26,14 @@ interface Posts {
     currentPage?: number,
     totalPages?: number,
     totalPosts?: number,
+}
+
+interface OpenedPost {
+    error?: Error,
+    isPending?: Boolean,
+    updatePending: Boolean,
     openedPost: Post,
+    author: string,
 }
 
 interface Comment {
@@ -47,6 +55,11 @@ interface UpdateModels {
 interface UpdatePublishStatus {
     post_id: number,
     status: boolean,
+}
+
+interface UpdateAuthor {
+    post_id: number,
+    author: string,
 }
 
 interface PostPreviewContextType {

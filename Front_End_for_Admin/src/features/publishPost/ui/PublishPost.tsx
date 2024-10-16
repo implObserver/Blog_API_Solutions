@@ -1,7 +1,7 @@
 import { AppDispath } from "@/app/model/store/Store"
-import { selectUserServices, servicesActions } from "@/entities/user";
-import { updatePublishStatus } from "@/entities/user/model/slice/services/thunks/update/updatePublishStatus";
-import { useDispatch, useSelector } from "react-redux"
+import { updatePublishStatus } from "@/entities/postState/model/slice/openedPost/thunks/update/updatePublishStatus";
+
+import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom";
 
 export const PublishPost = ({ children }) => {

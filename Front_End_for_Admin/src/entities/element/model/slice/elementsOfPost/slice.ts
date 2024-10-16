@@ -37,7 +37,10 @@ export const modlelsOfOpenedPostSlice = createSlice({
         },
         uploadPosts: (state: Models, action: PayloadAction<ModelType<TextAreaModel | PreviewModel | TitleModel>[]>) => {
             state.models = action.payload;
-        }
+        },
+        updateAuthor: (state: Models, action: PayloadAction<string>) => {
+            state.author = action.payload;
+        },
     },
 })
 

@@ -93,7 +93,7 @@ const dropUsers = async () => {
 };
 
 const updateTag = async (user_id, post_id, tag) => {
-  await prisma.post.update({
+  const updatedPost = await prisma.post.update({
     where: {
       id: post_id,
       userId: user_id,
@@ -102,10 +102,26 @@ const updateTag = async (user_id, post_id, tag) => {
       tag: tag,
     },
   });
+
+  return updatedPost;
+};
+
+const updateAuthor = async (user_id, post_id, author) => {
+  const updatedPost = await prisma.post.update({
+    where: {
+      id: post_id,
+      userId: user_id,
+    },
+    data: {
+      author: author,
+    },
+  });
+
+  return updatedPost;
 };
 
 const updatePublishStatus = async (user_id, post_id, status) => {
-  await prisma.post.update({
+  const updatedPost = await prisma.post.update({
     where: {
       id: post_id,
       userId: user_id,
@@ -114,6 +130,8 @@ const updatePublishStatus = async (user_id, post_id, status) => {
       isPublished: status,
     },
   });
+
+  return updatedPost;
 };
 
 const getAllUsers = async () => {
@@ -377,8 +395,6 @@ const updateProfile = async (user, profile) => {
       },
       data: dataToUpdate,
     });
-
-    console.log(updatedPost);
   } catch (error) {
     console.log(error);
   }
@@ -387,8 +403,6 @@ const updateProfile = async (user, profile) => {
 const removeComment = async (userId, comment) => {
   const postId = comment.postid;
   const commeintId = comment.commentid;
-  console.log(postId);
-  console.log(commeintId);
   const res = await prisma.comment.delete({
     where: {
       userId: userId,
@@ -515,4 +529,5 @@ export const prismaDB = {
   updateComment,
   updatePublishStatus,
   countUserPost,
+  updateAuthor,
 };

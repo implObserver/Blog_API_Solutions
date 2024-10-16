@@ -7,7 +7,7 @@ import {
     useElementContext
 } from "@/entities/element";
 import { getVirtualModels } from "@/entities/element/lib/helper/getVirtualModels";
-import { postsActions } from "@/entities/postState/model/slice/posts/slice";
+import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -27,8 +27,8 @@ export const AddText = () => {
         const updateContext: UpdateModels = { postid, models };
 
         dispatch(modlelsOfOpenedPostActions.addModel(modelContext));
-        dispatch(postsActions.updateModels(updateContext));
-        dispatch(postsActions.addModel(postContext));
+        dispatch(openedPostActions.updateModels(updateContext));
+        dispatch(openedPostActions.addModel(postContext));
 
         dropdownStatus.toggle();
     };

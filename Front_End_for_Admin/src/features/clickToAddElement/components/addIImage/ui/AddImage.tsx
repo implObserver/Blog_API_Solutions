@@ -8,7 +8,7 @@ import {
 } from "@/entities/element";
 import { getVirtualModels } from "@/entities/element/lib/helper/getVirtualModels";
 import { addPostImages } from "@/entities/postPreview/lib/helper/loadImageToIDB";
-import { postsActions } from "@/entities/postState/model/slice/posts/slice";
+import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -36,8 +36,8 @@ export const AddImage = () => {
         };
 
         dispatch(modlelsOfOpenedPostActions.addModel(modelContext));
-        dispatch(postsActions.updateModels(updateContext));
-        dispatch(postsActions.addModel(postContext));
+        dispatch(openedPostActions.updateModels(updateContext));
+        dispatch(openedPostActions.addModel(postContext));
         addPostImages(postid, image);
         dropdownStatus.toggle();
     };

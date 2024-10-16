@@ -73,6 +73,7 @@ interface Post {
     tag: string,
     elements: Array<ModelType<TextAreaModel | PreviewModel | TitleModel>>,
     comments: PostComment[]
+    author: string,
 }
 
 interface Posts {

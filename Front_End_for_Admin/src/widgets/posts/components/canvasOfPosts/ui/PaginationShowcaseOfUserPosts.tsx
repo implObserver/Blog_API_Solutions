@@ -8,9 +8,12 @@ import styles from './styles/CanvasOfPosts.module.css'
 import { DeletePost } from "@/features/deletePost";
 import { PostPreview, PostPreviewContext, snapshotSliceActions } from "@/entities/postPreview";
 import { modlelsOfOpenedPostActions } from "@/entities/element";
+import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
+import { selectUserServices } from "@/entities/user";
 
 export const PaginationShowcaseOfUserPosts = () => {
     const dispatch = useDispatch<AppDispath>();
+    const user = useSelector(selectUserServices).user;
     const postsService = useSelector(selectPosts);
     const posts = postsService.posts;
     const currentPage = postsService.currentPage;
@@ -46,8 +49,9 @@ export const PaginationShowcaseOfUserPosts = () => {
     const clickHandle = (e: React.MouseEvent<HTMLDivElement>, post: Post) => {
         const element = e.target as HTMLLinkElement;
         if (element.tagName === 'IMG') {
-            dispatch(postsActions.setOpenedPost(post));
+            dispatch(openedPostActions.setOpenedPost(post));
             dispatch(modlelsOfOpenedPostActions.uploadPosts(post.elements));
+            dispatch(modlelsOfOpenedPostActions.updateAuthor(user.profile.name));
         }
     }
 

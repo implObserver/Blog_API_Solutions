@@ -3,22 +3,12 @@ import styles from './styles/PublishBox.module.css'
 import { PublishPost } from "@/features/publishPost/ui/PublishPost"
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectUserServices } from "@/entities/user";
 import { CheckBoxContext } from "@/shared/ui/checkBox/lib/context/Context";
-import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
+import { selectOpenedPost } from "@/entities/postState/model/slice/openedPost/selectors";
 
 export const PublishBox = () => {
     const params = useParams();
-    const post_id = parseInt(params.postid);
-    const postsService = useSelector(selectPosts);
-    const posts = postsService.posts;
-
-    const post = posts.find(post => post.id === post_id);
-    if (!post) {
-        return (
-            <div>Нет доступа или пост не существует</div>
-        )
-    }
+    const post = useSelector(selectOpenedPost).openedPost;
 
     const isPublished = post.isPublished;
     return (

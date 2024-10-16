@@ -1,26 +1,16 @@
-import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./defaultState";
 import { login } from "./thunks/auth/login";
 import { checkAuth } from "./thunks/auth/checkAuth";
 import { logout } from "./thunks/auth/logout";
 import { signup } from "./thunks/auth/signup";
 import { updateProfile } from "./thunks/update/updateProfile";
-import { addPost } from "./thunks/update/addPost";
-import { updateModelsOfPost } from "../../../../postState/model/slice/posts/thunks/update/updateModelsOfPost";
 import { fastLogin } from "./thunks/auth/fastLogin";
-import { updateTag } from "./thunks/update/updateTag";
-import { updatePublishStatus } from "./thunks/update/updatePublishStatus";
 
 const userServicesSlice = createSlice({
     name: 'services',
     initialState,
     reducers: {
-        updatePublishStatus: (state: ServicesDataType, action: PayloadAction<UpdatePublishStatus>) => {
-            const post_id = action.payload.post_id;
-            const post = state.user.posts.find(post => post.id === post_id);
-            post.isPublished = action.payload.status;
-            console.log(current(state.user.posts))
-        },
         clearErrors: (state: ServicesDataType) => {
             state.error = null;
         },
@@ -116,31 +106,6 @@ const userServicesSlice = createSlice({
                 }
             })
             .addCase(updateProfile.rejected, handleRejected)
-        builder
-            .addCase(updateTag.pending, handlePending)
-            .addCase(updateTag.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (!action.payload.error) {
-                    state.user = action.payload.data.message;
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
-            .addCase(updateTag.rejected, handleRejected)
-
-        builder
-            .addCase(updatePublishStatus.pending, handlePending)
-            .addCase(updatePublishStatus.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (!action.payload.error) {
-                    state.user = action.payload.data.message;
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
-            .addCase(updatePublishStatus.rejected, handleRejected)
     }
 })
 

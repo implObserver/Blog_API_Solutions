@@ -7,20 +7,12 @@ import { useParams } from "react-router-dom";
 import { SelectTag } from "../components/selectTag/ui/SelectTag";
 import { useCustomState } from "@/shared/lib";
 import { ExternalReset, ExternalResetContext } from "@/shared/ui/externalReset";
+import { selectOpenedPost } from "@/entities/postState/model/slice/openedPost/selectors";
 
 export const CheckTag = () => {
     const click = useCustomState(false);
-    const params = useParams();
-    const post_id = parseInt(params.postid);
-    const service = useSelector(selectUserServices);
-    const user = service.user;
-    const posts = user.posts;
-    const post = posts.find(post => post.id === post_id);
-    if (!post) {
-        return (
-            <div>Нет доступа или поста не существует</div>
-        )
-    }
+    const post = useSelector(selectOpenedPost).openedPost;
+
     const dropdownContext: DropdownContextType = {
         margin: false,
         state: click.getState(),

@@ -1,19 +1,18 @@
 import { TitleHeader } from '@/entities/titleHeader'
 import styles from './styles/Title.module.css'
-import { CheckTag } from '@/features/checkTag'
-import { Dropdown, DropdownContext } from '@/shared/ui/dropdownElement'
-import { useState } from 'react'
-import { ElementList } from '@/entities/elementList'
 import { Tags } from '../components/tags/ui/Tags'
-import { ExternalReset } from '@/shared/ui/externalReset'
 import { PublishBox } from '../components/publishBox/ui/PublishBox'
+import { Author } from '../components/author/ui/Author'
 
 export const CategoryDate = () => {
     return (
         <div className={styles.title}>
-            <TitleHeader>
-                <Tags></Tags>
-            </TitleHeader>
+            <div className={styles.container}>
+                <Author></Author>
+                <TitleHeader>
+                    <Tags></Tags>
+                </TitleHeader>
+            </div>
             <PublishBox></PublishBox>
         </div >
     )
