@@ -8,17 +8,20 @@ import {
 import { TextArea, TextAreaContext } from "@/shared/ui/textArea"
 import { useDispatch, useSelector } from "react-redux";
 import styles from './styles/ListHeader.module.css'
+import { useParams } from "react-router-dom";
 
 export const ListHeader = () => {
     const context = useElementContext();
     const focus = useSelector(selectFocus).index;
     const dispatch = useDispatch<AppDispath>();
+    const postid = parseInt(useParams().postid);
 
     const textAreaContext: TextAreaContextType = {
         placeholder: 'Add list name',
         value: context.elementContext,
         maxLength: -1,
         isFocus: focus === context.index,
+        updater: context.updater,
     }
 
     const handleChange = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -27,6 +30,7 @@ export const ListHeader = () => {
             const updateContext: UpdateElement = {
                 model: context.model,
                 newModel,
+                postid,
             }
             dispatch(modlelsOfOpenedPostActions.updateModel(updateContext));
         }

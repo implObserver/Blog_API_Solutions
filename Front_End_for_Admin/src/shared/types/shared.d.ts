@@ -35,9 +35,12 @@ interface TextAreaContextType {
     strongPlaceholder?: string,
     value: ElementType<ElementSubtype>,
     maxLength: number,
-    isFocus: boolean,
+    isFocus?: boolean,
     ref?: React.MutableRefObject<HTMLTextAreaElement | null>,
     id?: number,
+    updater?: CustomState,
+    states?: localInputsStates,
+    index?: number,
 }
 
 interface CustomState {

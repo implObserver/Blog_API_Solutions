@@ -10,7 +10,7 @@ import { selectPosts } from "@/entities/postState/model/slice/posts/selectors"
 export const Posts = () => {
     const postsService = useSelector(selectPosts);
     const posts = postsService.posts;
-
+    
     return (
         <div className={styles.container}>
             <div className={styles.header}>

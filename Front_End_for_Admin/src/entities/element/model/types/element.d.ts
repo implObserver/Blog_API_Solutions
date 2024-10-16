@@ -9,12 +9,19 @@ interface Focus {
 }
 
 interface CanvasElement {
-    featuresContext: ElementFeatures,
+    featuresContext?: ElementFeatures,
     elementContext: ElementType<ElementSubtype>,
     model: ModelType<ModelSubtype>,
     isFocus?: boolean,
-    dropdownStatus: CustomState,
+    dropdownStatus?: CustomState,
     index: number,
+    updater?: CustomState,
+    state?: localInputsStates,
+}
+
+interface localInputsStates {
+    sets: React.Dispatch<React.SetStateAction<{}>>,
+    values: {},
 }
 
 interface ElementFeatures {

@@ -8,36 +8,23 @@ import { Title } from "../components/title";
 import { useElementContext } from "@/entities/element";
 
 export const Factory = () => {
-    const context = useElementContext();
-    const type = context.elementContext.getType();
-    if (type === "text") {
-        return (
-            <Text></Text>
-        )
-    }
+    const { elementContext } = useElementContext();
+    const type = elementContext.getType();
+
+    const componentMap = {
+        text: <Text />,
+        title: <Title />,
+        list_header: <ListHeader />,
+        list_element: <ListElement />,
+        code: <Code />,
+    };
+
     if (type.includes('title')) {
-        return (
-            <Title></Title>
-        )
+        return <Title />;
     }
-    if (type.includes("view")) {
-        return (
-            <Preview></Preview>
-        )
+    if (type.includes('view')) {
+        return <Preview />;
     }
-    if (type === "list_header") {
-        return (
-            <ListHeader></ListHeader>
-        )
-    }
-    if (type === "list_element") {
-        return (
-            <ListElement></ListElement>
-        )
-    }
-    if (type === "code") {
-        return (
-            <Code></Code>
-        )
-    }
-}
+
+    return componentMap[type] || null;
+};

@@ -21,7 +21,6 @@ export const PublishBox = () => {
     }
 
     const isPublished = post.isPublished;
-    console.log(post)
     return (
         <div>
             <div className={styles.box}>

@@ -8,11 +8,13 @@ import {
 import { ListArea, ListAreaContext } from "@/shared/ui/listArea";
 import { useDispatch, useSelector } from "react-redux";
 import styles from './styles/ListElement.module.css'
+import { useParams } from "react-router-dom";
 
 export const ListElement = () => {
     const context = useElementContext();
     const focus = useSelector(selectFocus).index;
     const dispatch = useDispatch<AppDispath>();
+    const postid = parseInt(useParams().postid);
 
     const textAreaContext: TextAreaContextType = {
         placeholder: 'Add text',
@@ -28,6 +30,7 @@ export const ListElement = () => {
             const updateContext: UpdateElement = {
                 model: context.model,
                 newModel,
+                postid,
             }
             dispatch(modlelsOfOpenedPostActions.updateModel(updateContext));
         }

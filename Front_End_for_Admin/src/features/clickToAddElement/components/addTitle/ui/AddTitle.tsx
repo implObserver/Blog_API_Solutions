@@ -3,45 +3,39 @@ import {
     counterActions,
     elementToModel,
     modlelsOfOpenedPostActions,
-    selectModelsOfOpenedPost,
     Title,
     useElementContext
 } from "@/entities/element";
+import { getVirtualModels } from "@/entities/element/lib/helper/getVirtualModels";
 import { postsActions } from "@/entities/postState/model/slice/posts/slice";
-
-import { servicesActions } from "@/entities/user";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 export const AddTitle = () => {
-    const context = useElementContext();
-    const params = useParams();
-    const postid = parseInt(params.postid);
-    const model = context.model;
-    const models = useSelector(selectModelsOfOpenedPost).models;
+    const { model, dropdownStatus } = useElementContext();
+    const postid = parseInt(useParams().postid, 10);
+    const models = getVirtualModels();
+    const dispatch = useDispatch<AppDispath>();
 
-    const dispath = useDispatch<AppDispath>();
+    const handleClick = () => {
+        dispatch(counterActions.increment());
 
-    const clickHandle = () => {
-        dispath(counterActions.increment());
-        const textArea = Title();
-        const newModel = elementToModel(textArea);
-        const postContext: CellOfPost = {
-            postid,
-            model,
-            newModel,
-        }
+        const newModel = elementToModel(Title());
 
-        //dispath(modlelsOfOpenedPostActions.addModel(modelContext));
-        //dispath(servicesActions.updateModels(updateContext));
-        dispath(postsActions.addModel(postContext));
+        const postContext: CellOfPost = { postid, model, newModel };
+        const modelContext: UpdateElement = { postid, model, newModel };
+        const updateContext: UpdateModels = { postid, models };
 
-        context.dropdownStatus.toggle();
-    }
+        dispatch(modlelsOfOpenedPostActions.addModel(modelContext));
+        dispatch(postsActions.updateModels(updateContext));
+        dispatch(postsActions.addModel(postContext));
+
+        dropdownStatus.toggle();
+    };
 
     return (
-        <div onMouseDown={clickHandle}>
+        <div onMouseDown={handleClick}>
             Title
         </div>
-    )
-}
+    );
+};

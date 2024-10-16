@@ -6,7 +6,6 @@ import { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import styles from './styles/CanvasOfPosts.module.css';
 import { DeletePost } from "@/features/deletePost";
-import { selectModelsOfOpenedPost } from "@/entities/element";
 import {
     PostPreview,
     PostPreviewContext,

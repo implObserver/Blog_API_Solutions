@@ -3,7 +3,7 @@ interface Containers {
 }
 
 interface Container {
-    canvasUpdate?: CustomState
+    states?: localInputsStates,
     containerContext: ContainerContext
 }
 

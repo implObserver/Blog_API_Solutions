@@ -13,23 +13,12 @@ export const Strong = () => {
 
     const strong_grow = (e: React.KeyboardEvent<HTMLInputElement>) => {
         const element = e.target as HTMLTextAreaElement;
-        if (e.key === 'ArrowLeft'
-            || e.key === 'ArrowRight') {
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
             e.stopPropagation();
-        } else {
-            if (e.key !== 'ArrowUp'
-                && e.key !== 'ArrowRight') {
-                adjustWidth();
-                context.value.setStrong(element.value);
-            } else {
-
-            }
+        } else if (e.key !== 'ArrowUp') {
+            adjustWidth();
+            context.value.setStrong(element.value);
         }
-    };
-
-    const focusHandle = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-        const element = e.target as HTMLTextAreaElement;
-        element.setSelectionRange(element.value.length, element.value.length);
     };
 
     const adjustWidth = () => {

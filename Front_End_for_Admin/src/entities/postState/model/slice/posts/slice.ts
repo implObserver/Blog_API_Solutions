@@ -10,9 +10,7 @@ const postsSlice = createSlice({
     initialState,
     reducers: {
         addModel: (state: Posts, action: PayloadAction<CellOfPost>) => {
-            console.log(state)
-            const post_id = action.payload.postid;
-            const post = state.posts.find(post => post.id === post_id);
+            const post = state.openedPost;
             const elements = post.elements;
             const id = action.payload.model.id;
             elements.forEach((element, index) => {
@@ -23,10 +21,7 @@ const postsSlice = createSlice({
 
         },
         updateModel: (state: Posts, action: PayloadAction<CellOfPost>) => {
-            const post_id = action.payload.postid;
-            const post = state.posts.find(post => post.id === post_id);
-            console.log(post_id)
-            console.log(current(state))
+            const post = state.openedPost;
             const elements = post.elements;
             const id = action.payload.model.id;
             elements.forEach((element, index) => {
@@ -36,15 +31,11 @@ const postsSlice = createSlice({
             })
         },
         updateModels: (state: Posts, action: PayloadAction<UpdateModels>) => {
-            const post_id = action.payload.post_id;
-            const post = state.posts.find(post => post.id === post_id);
-            console.log(state)
+            const post = state.openedPost;
             post.elements = action.payload.models;
         },
         removeModel: (state: Posts, action: PayloadAction<CellOfPost>) => {
-            const post_id = action.payload.postid;
-            const post = state.posts.find(post => post.id === post_id);
-
+            const post = state.openedPost;
             const elements = post.elements;
             const id = action.payload.model.id;
             elements.forEach((element, index) => {
@@ -52,6 +43,9 @@ const postsSlice = createSlice({
                     elements.splice(index, 1);
                 }
             })
+        },
+        setOpenedPost: (state: Posts, action: PayloadAction<Post>) => {
+            state.openedPost = action.payload;
         },
         setCurrentPage: (state: Posts, action: PayloadAction<number>) => {
             state.currentPage = action.payload;
@@ -78,7 +72,6 @@ const postsSlice = createSlice({
             .addCase(getPostsOfUser.pending, handlePending)
             .addCase(getPostsOfUser.fulfilled, (state, action) => {
                 handleFulfilled(state);
-                console.log(action.payload)
                 if (!action.payload.error) {
                     state.posts = action.payload.data.message.posts;
                     state.totalPages = action.payload.data.message.totalPages;
@@ -93,7 +86,6 @@ const postsSlice = createSlice({
             .addCase(addPost.pending, handlePending)
             .addCase(addPost.fulfilled, (state, action) => {
                 handleFulfilled(state);
-                console.log(action.payload)
                 if (!action.payload.error) {
                     state.totalPosts = action.payload.data.message.totalPosts
                 } else {
@@ -115,12 +107,15 @@ const postsSlice = createSlice({
             .addCase(deletePost.rejected, handleRejected)
 
         builder
-            .addCase(updateModelsOfPost.pending, handlePending)
-            .addCase(updateModelsOfPost.fulfilled, (state, action) => {
-                console.log(`${action.payload} adadadadadadada`)
-                handleFulfilled(state);
+            .addCase(updateModelsOfPost.pending, (state) => {
+                state.updatePending = true;
             })
-            .addCase(updateModelsOfPost.rejected, handleRejected)
+            .addCase(updateModelsOfPost.fulfilled, (state, action) => {
+                state.updatePending = false;
+            })
+            .addCase(updateModelsOfPost.rejected, (state) => {
+                state.updatePending = false;
+            })
     }
 })
 

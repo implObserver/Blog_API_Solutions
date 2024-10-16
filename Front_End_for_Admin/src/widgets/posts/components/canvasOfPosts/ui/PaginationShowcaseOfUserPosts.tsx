@@ -2,11 +2,12 @@ import { AppDispath } from "@/app/model/store/Store";
 import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
 import { postsActions } from "@/entities/postState/model/slice/posts/slice";
 import { getPostsOfUser } from "@/entities/postState/model/slice/posts/thunks/get/getPostsOfUser";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from './styles/CanvasOfPosts.module.css'
 import { DeletePost } from "@/features/deletePost";
 import { PostPreview, PostPreviewContext, snapshotSliceActions } from "@/entities/postPreview";
+import { modlelsOfOpenedPostActions } from "@/entities/element";
 
 export const PaginationShowcaseOfUserPosts = () => {
     const dispatch = useDispatch<AppDispath>();
@@ -17,21 +18,17 @@ export const PaginationShowcaseOfUserPosts = () => {
     const totalPages = postsService.totalPages;
 
     const loadPosts = async () => {
-        setTimeout(() => {
-            const data: PaginationData = {
-                page: currentPage,
-            }
-            dispatch(getPostsOfUser(data));
-        }, 100);
+        const data: PaginationData = {
+            page: currentPage,
+        }
+        dispatch(getPostsOfUser(data));
     };
 
     useEffect(() => {
-        loadPosts();
+        setTimeout(() => {
+            loadPosts();
+        }, 100);
     }, [currentPage, totalPages, totalPosts]);
-
-    const clickHandle = (post: Post) => {
-        dispatch(snapshotSliceActions.initialSnapshot(post));
-    }
 
     const loadMorePostsUp = () => {
         if (currentPage < totalPages) {
@@ -46,6 +43,14 @@ export const PaginationShowcaseOfUserPosts = () => {
         }
     };
 
+    const clickHandle = (e: React.MouseEvent<HTMLDivElement>, post: Post) => {
+        const element = e.target as HTMLLinkElement;
+        if (element.tagName === 'IMG') {
+            dispatch(postsActions.setOpenedPost(post));
+            dispatch(modlelsOfOpenedPostActions.uploadPosts(post.elements));
+        }
+    }
+
     const fill = () => {
         console.log(posts)
         return posts.map((post, index) => {
@@ -57,7 +62,7 @@ export const PaginationShowcaseOfUserPosts = () => {
                 deleteFeature: <DeletePost postId={post.id}></DeletePost>,
             }
             return (
-                <div onClick={() => clickHandle(post)} className={styles.wrapper} key={post.id}>
+                <div onClick={(e) => clickHandle(e, post)} className={styles.wrapper} key={post.id}>
                     <PostPreviewContext.Provider value={context}>
                         <PostPreview post={post}></PostPreview>
                     </PostPreviewContext.Provider>

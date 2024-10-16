@@ -20,10 +20,12 @@ interface Post {
 interface Posts {
     error?: Error,
     isPending?: Boolean,
+    updatePending: Boolean,
     posts: Post[],
     currentPage?: number,
     totalPages?: number,
     totalPosts?: number,
+    openedPost: Post,
 }
 
 interface Comment {
@@ -38,7 +40,7 @@ interface CellOfPost {
 }
 
 interface UpdateModels {
-    post_id: number,
+    postid: number,
     models: ModelType<TextAreaModel | PreviewModel | TitleModel>[],
 }
 

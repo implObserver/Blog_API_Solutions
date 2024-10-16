@@ -1,9 +1,9 @@
 import { TextArea, TextAreaContext } from "@/shared/ui/textArea";
 import styles from './styles/Title.module.css';
-import { elementToModel, selectFocus, useElementContext } from "@/entities/element";
+import { elementToModel, modlelsOfOpenedPostActions, selectFocus, useElementContext } from "@/entities/element";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispath } from "@/app/model/store/Store";
-import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
+import { useParams } from "react-router-dom";
 
 export const Title = () => {
     const context = useElementContext();
@@ -14,6 +14,7 @@ export const Title = () => {
     const h = context.elementContext.getFontSize();
     const focus = useSelector(selectFocus).index;
     const dispatch = useDispatch<AppDispath>();
+    const postid = parseInt(useParams().postid);
 
     const handleChange = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') {
@@ -21,6 +22,7 @@ export const Title = () => {
             const updateContext: UpdateElement = {
                 model: context.model,
                 newModel,
+                postid,
             }
             dispatch(modlelsOfOpenedPostActions.updateModel(updateContext));
         }
@@ -32,6 +34,7 @@ export const Title = () => {
             value: context.elementContext,
             maxLength: 100,
             isFocus: focus === context.index,
+            updater: context.updater,
         }
         return (
             <div className={className} onKeyUp={handleChange}>

@@ -10,32 +10,29 @@ import { useElementContext } from "@/entities/element";
 
 export const ContainerOS = ({ children }) => {
     const isEmpty = useCustomState(false);
-    const context = useElementContext();
+    const { dropdownStatus, index } = useElementContext();
 
     const externalResetContext = {
-        state: context.dropdownStatus,
-        index: `${context.index} container`,
+        state: dropdownStatus,
+        index: `${index} container`,
     };
 
     return (
-        <>
-            <EmptyContext.Provider value={isEmpty}>
-                <ExternalResetContext.Provider value={externalResetContext}>
-                    <ExternalReset>
-                        <Dropdown>
-                            <ElementList></ElementList>
-                        </Dropdown>
-                    </ExternalReset>
-                </ExternalResetContext.Provider>
-                <Focus>
-                    <Add>
-                        <Remove>
-                            {children}
-                        </Remove>
-                    </Add>
-                </Focus>
-            </EmptyContext.Provider>
-        </>
-
-    )
-}
+        <EmptyContext.Provider value={isEmpty}>
+            <ExternalResetContext.Provider value={externalResetContext}>
+                <ExternalReset>
+                    <Dropdown>
+                        <ElementList />
+                    </Dropdown>
+                </ExternalReset>
+            </ExternalResetContext.Provider>
+            <Focus>
+                <Add>
+                    <Remove>
+                        {children}
+                    </Remove>
+                </Add>
+            </Focus>
+        </EmptyContext.Provider>
+    );
+};

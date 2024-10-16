@@ -4,7 +4,6 @@ import { Element, ElementContext } from "@/entities/element";
 import styles from './styles/Container.module.css'
 import { ContainerOS, useContainerContext } from "@/features/containerOS";
 import { DropdownContext } from "@/shared/ui/dropdownElement";
-import { ExternalReset, ExternalResetContext } from "@/shared/ui/externalReset";
 import React, { useMemo } from "react";
 import { useCustomState } from "@/shared/lib";
 import { ElementListContext } from "@/entities/elementList";
@@ -20,24 +19,25 @@ import {
 export const Container = React.memo(() => {
     const context = useContainerContext();
     const dropdownStatus = useCustomState();
+    const { element, model, index } = context.containerContext;
 
-    const { element, model } = context.containerContext;
-    const elementContext = {
+    const elementContext: CanvasElement = {
         featuresContext: {
             panel: {
                 features: [
-                    <ClickToAddElement key="add" />,
-                    <ClickToRemoveElement key="remove" />,
+                    <ClickToAddElement key={`${model.id}_add`} />,
+                    <ClickToRemoveElement key={`${model.id}_remove`} />,
                 ],
             },
             container: {
-                features: <Factory key="factory" />,
+                features: <Factory key={`${model.id}_factory`} />,
             },
         },
         elementContext: element,
         model,
         dropdownStatus,
-        index: context.containerContext.index,
+        index,
+        state: context.states,
     };
 
     const dropdownElementContext = {
@@ -45,7 +45,7 @@ export const Container = React.memo(() => {
         margin: false,
     };
 
-    const elementListContext: ElementListContextType = useMemo(() => ({
+    const elementListContext = useMemo(() => ({
         text: <AddText key="text" />,
         title: <AddTitle key="title" />,
         image: <AddImage key="image" />,
@@ -55,15 +55,15 @@ export const Container = React.memo(() => {
 
     return (
         <div className={styles.container}>
-                    <DropdownContext.Provider value={dropdownElementContext}>
-                        <ElementListContext.Provider value={elementListContext}>
-                            <ElementContext.Provider value={elementContext}>
-                                <ContainerOS>
-                                    <Element />
-                                </ContainerOS>
-                            </ElementContext.Provider>
-                        </ElementListContext.Provider>
-                    </DropdownContext.Provider>
+            <DropdownContext.Provider value={dropdownElementContext}>
+                <ElementListContext.Provider value={elementListContext}>
+                    <ElementContext.Provider value={elementContext}>
+                        <ContainerOS>
+                            <Element />
+                        </ContainerOS>
+                    </ElementContext.Provider>
+                </ElementListContext.Provider>
+            </DropdownContext.Provider>
         </div>
     );
 });
