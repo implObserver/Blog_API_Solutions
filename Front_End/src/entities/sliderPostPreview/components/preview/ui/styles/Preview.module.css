@@ -1,0 +1,24 @@
+.container {
+    display: grid;
+    width: max(30vw, 200px);
+    height: max(20vw, 100px);
+    border: 2px var(--color__main-theme_accent) solid;
+    border-bottom: none;
+    border-radius: 5px 5px 0px 0px;
+    overflow: hidden;
+    background-color: var(--color__main-theme);
+}
+
+.image {
+    display: grid;
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
+    border-bottom: none;
+}
+
+.link {
+    display: grid;
+    width: max(30vw, 200px);
+    height: max(20vw, 100px);
+}

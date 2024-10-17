@@ -1,7 +1,5 @@
 import { AppDispath } from "@/app/model/store/Store";
-import { deleteComment } from "@/entities/comment/model/slice/comments/thunks/delete/deleteComment";
 import { useCommentContext } from "@/shared/ui/comment/lib/context/Context";
-import { useCommentAreaContext } from "@/shared/ui/commentArea/lib/context/Context";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import styles from './styles/UpdateComment.module.css'

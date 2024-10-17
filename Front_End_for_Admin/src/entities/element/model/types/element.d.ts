@@ -1,63 +1,51 @@
-//interface ElementContextType {
-//index: number,
-// panel: PanelContextType,
-// container: ContainerContextType,
-//}
-
-interface Focus {
+interface FocusContext {
     index: Number,
 }
 
 interface CanvasElement {
-    featuresContext?: ElementFeatures,
-    elementContext: ElementType<ElementSubtype>,
-    model: ModelType<ModelSubtype>,
-    isFocus?: boolean,
-    dropdownStatus?: CustomState,
+    features?: ElementFeatures,
+    element: ElementData<ElementVariant>,
+    model: Model<ModelVariant>,
+    isFocused?: boolean,
+    dropdownState?: CustomState,
     index: number,
     updater?: CustomState,
-    state?: localInputsStates,
-}
-
-interface localInputsStates {
-    sets: React.Dispatch<React.SetStateAction<{}>>,
-    values: {},
 }
 
 interface ElementFeatures {
-    panel: FeaturesPanel,
-    container: FeaturesContainer,
+    panel: FeaturePanel,
+    container: FeatureContainer,
 }
 
 interface UpdateElement {
-    newModel: ModelType<ModelSubtype>,
-    model: ModelType<ModelSubtype>,
+    newModel: Model<ModelVariant>,
+    currentModel: Model<ModelVariant>,
     postid: number,
 }
 
-interface FeaturesPanel {
+interface FeaturePanel {
     features: React.ReactElement[],
 }
 
-interface FeaturesContainer {
+interface FeatureContainer {
     features: React.ReactElement,
 }
 
-interface ModelPanelContextType {
-    visible: Boolean,
+interface ModelPanelState {
+    isVisible: Boolean,
 }
 
-interface ModelContainerContextType {
+interface ModelContainerState {
     type: string,
-    nNum: string,
-    value: ElementValueType,
+    identifier: string,
+    value: ElementValue,
 }
 
-interface ValueContainerContextType {
-    value: ElementValueType,
+interface ValueContainerState {
+    value: ElementValue,
 }
 
-interface ElementValueType {
+interface ElementValue {
     setValue: (val: string) => void;
     getValue: () => string;
 }
@@ -65,8 +53,8 @@ interface ElementValueType {
 
 //Models
 
-interface Models {
-    models: Array<ModelType<ModelSubtype>>
+interface ModelsData {
+    models: Array<Model<ModelVariant>>
     author: string,
 }
 
@@ -75,31 +63,31 @@ interface BaseModel {
     type: string,
 }
 
-type ModelSubtype = TitleModel
-    | TextAreaModel
+type ModelVariant = TitleModel
+    | TextModel
     | PreviewModel
     | ListHeaderModel
-    | ListElementModel;
+    | ListItemModel;
 
-interface ModelType<T> {
+interface Model<T> {
     id: number,
     type: string,
     value?: string,
     imageUrl?: string,
     fontSize?: number,
-    strong?: string,
+    strongText?: string,
 }
 
 interface ListHeaderModel extends BaseModel {
     value: string,
 }
 
-interface ListElementModel extends BaseModel {
-    strong: string,
+interface ListItemModel extends BaseModel {
+    strongText: string,
     value: string,
 }
 
-interface TextAreaModel extends BaseModel {
+interface TextModel extends BaseModel {
     value: string,
 }
 
@@ -112,91 +100,82 @@ interface TitleModel extends BaseModel {
     fontSize: number,
 }
 
-interface CodeAreaModel extends BaseModel {
+interface CodeModel extends BaseModel {
     value: string,
 }
 
-interface Counter {
+interface CounterState {
     count: number,
 }
 
-interface Refs {
-    refs: Ref[],
-}
-
-interface Ref {
-    id: number,
-    ref: React.MutableRefObject<HTMLTextAreaElement | null>,
-}
-
-interface SnapShot {
-    post_id: number,
-    elements: Array<ModelType<TextAreaModel | PreviewModel | TitleModel>>,
+interface Snapshot {
+    postid: number,
+    elements: Array<Model<TextModel | PreviewModel | TitleModel>>,
 }
 //Elements
-interface PreviewStatus {
+interface PreviewState {
     code: string,
     status: boolean,
     image?: string,
 }
 
-interface PreviewStatuses {
-    statuses: PreviewStatus[],
+interface PreviewStates {
+    statuses: PreviewState[],
 }
 interface BaseElement {
     getId: () => number;
     getType: () => string;
-    getVisible: () => boolean;
+    isVisible: () => boolean;
 }
 
-type ElementSubtype = Title
-    | TextArea
-    | Preview
-    | ListHeader
-    | ListElement;
+type ElementVariant = TitleElement
+    | TextElement
+    | PreviewElement
+    | ListHeaderElement
+    | ListItemElement;
 
-interface ElementType<T> {
+interface ElementData<T> {
     getId: () => number;
     getType: () => string;
     getVisible: () => boolean;
     getValue?: () => string;
     getFontSize?: () => number;
-    getUrl?: () => string;
+    getImageUrl?: () => string;
     setValue?: (val: string) => void;
-    setUrl?: (val: string) => void;
-    getStrong?: () => string;
-    setStrong?: (val: string) => void;
+    setImageUrl?: (val: string) => void;
+    getStrongText?: () => string;
+    setStrongText?: (val: string) => void;
 }
 
-interface TextArea extends BaseElement {
+interface TextElement extends BaseElement {
     getValue: () => string;
     setValue: (val: string) => void;
 }
 
-interface Title extends BaseElement {
+interface TitleElement extends BaseElement {
     getValue: () => string,
     getFontSize: () => number,
     setValue: (val: string) => void,
 }
 
-interface Preview extends BaseElement {
+interface PreviewElement extends BaseElement {
     getUrl: () => string;
     setUrl: (val: string) => void;
 }
 
-interface ListHeader extends BaseElement {
+interface ListHeaderElement extends BaseElement {
     getValue: () => string;
     setValue: (val: string) => void;
 }
 
-interface ListElement extends BaseElement {
+interface ListItemElement extends BaseElement {
     getValue: () => string;
     setValue: (val: string) => void;
-    getStrong: () => string;
-    setStrong: (val: string) => void;
+    getStrongText: () => string;
+    setStrongText: (val: string) => void;
 }
 
-interface Code extends BaseElement {
+interface CodeElement extends BaseElement {
     getValue: () => string;
     setValue: (val: string) => void;
 }

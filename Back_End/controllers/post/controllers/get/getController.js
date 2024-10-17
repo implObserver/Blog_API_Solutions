@@ -14,7 +14,7 @@ const pagination_posts_of_user_get = asyncHandler(async (req, res, next) => {
       offset,
       limit
     );
-    const totalPosts = await prismaDB.countUserPost(req.user.id); // Общее количество постов
+    const totalPosts = await prismaDB.countUserPost(req.user.id);
     res.json({
       posts,
       totalPosts,
@@ -43,14 +43,14 @@ const posts_list_api = asyncHandler(async (req, res) => {
 });
 
 const pagination_posts_list_get = asyncHandler(async (req, res) => {
-  const page = parseInt(req.query.page) || 1; // Текущая страница
-  const limit = 10; // Количество постов на странице
-  const offset = (page - 1) * limit; // Смещение для базы данных
+  const page = parseInt(req.query.page) || 1;
+  const limit = 10;
+  const offset = (page - 1) * limit;
 
   try {
     const posts = await prismaDB.getPaginationPosts(offset, limit);
 
-    const totalPosts = await prismaDB.countPost(); // Общее количество постов
+    const totalPosts = await prismaDB.countPost();
     res.json({
       posts,
       totalPosts,

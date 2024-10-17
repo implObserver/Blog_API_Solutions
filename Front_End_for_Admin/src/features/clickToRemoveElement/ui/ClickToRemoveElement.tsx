@@ -13,7 +13,7 @@ import { useParams } from "react-router-dom";
 
 export const ClickToRemoveElement = () => {
     const dispatch = useDispatch<AppDispath>();
-    const { model, dropdownStatus } = useElementContext();
+    const { model, dropdownState: dropdownStatus } = useElementContext();
     const postid = parseInt(useParams().postid, 10);
     const models = getVirtualModels();
 

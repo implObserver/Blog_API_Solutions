@@ -120,6 +120,21 @@ const updateAuthor = async (user_id, post_id, author) => {
   return updatedPost;
 };
 
+const updateTitle = async (user_id, post_id, title) => {
+  console.log(user_id, post_id, title);
+  const updatedPost = await prisma.post.update({
+    where: {
+      id: post_id,
+      userId: user_id,
+    },
+    data: {
+      title: title,
+    },
+  });
+
+  return updatedPost;
+};
+
 const updatePublishStatus = async (user_id, post_id, status) => {
   const updatedPost = await prisma.post.update({
     where: {
@@ -322,7 +337,7 @@ const updateModelsOfPost = async (user, snapshot) => {
         posts: {
           update: [
             {
-              where: { id: snapshot.post_id }, // Укажите ID поста для обновления
+              where: { id: snapshot.postid }, // Укажите ID поста для обновления
               data: postObj,
             },
           ],
@@ -530,4 +545,5 @@ export const prismaDB = {
   updatePublishStatus,
   countUserPost,
   updateAuthor,
+  updateTitle,
 };

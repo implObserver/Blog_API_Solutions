@@ -5,11 +5,11 @@ export const snapshotSlice = createSlice({
     name: 'post/models',
     initialState,
     reducers: {
-        initialSnapshot: (state: SnapShot, action: PayloadAction<Post>) => {
-            state.post_id = action.payload.id;
+        initialSnapshot: (state: Snapshot, action: PayloadAction<Post>) => {
+            state.postid = action.payload.id;
             state.elements = action.payload.elements;
         },
-        updateSnapshot: (state: SnapShot, action: PayloadAction<ModelType<TextAreaModel | PreviewModel | TitleModel>[]>) => {
+        updateSnapshot: (state: Snapshot, action: PayloadAction<Model<TextModel | PreviewModel | TitleModel>[]>) => {
             state.elements = action.payload;
         },
     },

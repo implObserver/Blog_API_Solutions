@@ -19,16 +19,16 @@ export const ListElement = () => {
     const textAreaContext: TextAreaContextType = {
         placeholder: 'Add text',
         strongPlaceholder: 'Strong',
-        value: context.elementContext,
+        value: context.element,
         maxLength: -1,
         isFocus: focus === context.index,
     }
 
     const handleChange = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') {
-            const newModel = elementToModel(context.elementContext)
+            const newModel = elementToModel(context.element)
             const updateContext: UpdateElement = {
-                model: context.model,
+                currentModel: context.model,
                 newModel,
                 postid,
             }

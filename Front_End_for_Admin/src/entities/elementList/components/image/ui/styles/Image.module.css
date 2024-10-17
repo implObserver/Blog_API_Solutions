@@ -1,19 +1,21 @@
 .inner {
     display: grid;
-    width: 100%; /* Занимает всю ширину родителя */
+    width: 100%;
     padding: 10px;
     background-color: var(--color__main-theme);
-    border: 1px solid var(--color__border); /* Более светлая граница */
-    border-radius: 5px; /* Закругленные углы для элементов */
-    transition: background-color 0.3s, transform 0.2s; /* Плавные переходы для эффектов */
+    border: 1px solid var(--color__border);
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .inner:hover {
-    background-color: var(--color__hover-bg); /* Изменение фона на наведение */
-    transform: translateY(-2px); /* Легкое поднятие при наведении */
+    background-color: var(--color__hover-bg);
+    transform: translateY(-2px);
 }
 
-.inner p, .inner h2, .inner ul {
-    color: var(--color__text); /* Цвет текста для элементов */
-    margin: 0; /* Убираем отступы вокруг текста */
+.inner p,
+.inner h2,
+.inner ul {
+    color: var(--color__text);
+    margin: 0;
 }

@@ -8,7 +8,7 @@ import { Title } from "../components/title";
 import { useElementContext } from "@/entities/element";
 
 export const Factory = () => {
-    const { elementContext } = useElementContext();
+    const { element: elementContext } = useElementContext();
     const type = elementContext.getType();
 
     const componentMap = {

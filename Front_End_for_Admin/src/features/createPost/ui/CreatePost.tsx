@@ -1,9 +1,9 @@
 import { AppDispath } from "@/app/model/store/Store";
-import { HidePostForm } from "@/entities/hidePostForm";
+import { TogglePostForm } from "@/entities/togglePostForm";
 import { addPost } from "@/entities/postState/model/slice/posts/thunks/post/addPost";
 import { PostFormContext } from "@/shared/ui/postForm";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export const CreatePost = () => {
     const dispath = useDispatch<AppDispath>();
@@ -25,7 +25,7 @@ export const CreatePost = () => {
     return (
         <div onSubmit={submitHandle}>
             <PostFormContext.Provider value={formContext}>
-                <HidePostForm></HidePostForm>
+                <TogglePostForm></TogglePostForm>
             </PostFormContext.Provider>
         </div>
     )

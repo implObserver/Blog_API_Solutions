@@ -5,7 +5,7 @@ export const LoginForm = () => {
     return (
         <div>
             <span className={styles.name}>Log In</span>
-            <UserForm></UserForm>
+            <UserForm />
         </div>
     )
 }

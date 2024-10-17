@@ -13,7 +13,7 @@ interface ServicesDataType {
 
 interface PostUpdate {
     id: number,
-    models?: ModelType<TextAreaModel | PreviewModel | TitleModel>[],
+    models?: Model<TextModel | PreviewModel | TitleModel>[],
 }
 
 interface UpdateData {

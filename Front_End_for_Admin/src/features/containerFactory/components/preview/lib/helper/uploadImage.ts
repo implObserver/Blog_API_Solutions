@@ -2,7 +2,7 @@ import { getImageByCode } from "@/entities/postPreview/lib/helper/getPostImageFr
 import { addPostImages } from "@/entities/postPreview/lib/helper/loadImageToIDB";
 import { getPostImage } from "@/entities/user";
 
-export const handleExistingPostImages = async (post_id: number, model: ModelType<ModelSubtype>) => {
+export const handleExistingPostImages = async (post_id: number, model: Model<ModelVariant>) => {
     const image = await getImageByCode(post_id, model.imageUrl);
     if (image === null) {
         return await uploadImage(post_id, model);
@@ -15,7 +15,7 @@ export const handleExistingPostImages = async (post_id: number, model: ModelType
     }
 };
 
-export const uploadImage = async (post_id: number, model: ModelType<ModelSubtype>) => {
+export const uploadImage = async (post_id: number, model: Model<ModelVariant>) => {
     const blob = await getPostImage(model.imageUrl);
     console.log('www')
     const isRetry = blob === null;

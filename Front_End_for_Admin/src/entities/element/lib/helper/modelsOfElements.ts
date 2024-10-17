@@ -1,6 +1,6 @@
 import { store } from "@/app/model/store/Store";
 
-const Element = (id?: number) => {
+const CreateElement = (id?: number) => {
     const defaultId = id === undefined ? store.getState().counter.count : id;
     const getId = () => {
         return defaultId;
@@ -8,7 +8,7 @@ const Element = (id?: number) => {
     return { getId }
 }
 
-const Value = () => {
+const createValueManager = () => {
     let value = '';
 
     const setValue = (val: string) => {
@@ -22,7 +22,7 @@ const Value = () => {
     return { setValue, getValue };
 }
 
-const ImageUrl = () => {
+const createImageUrlManager = () => {
     let url = '';
 
     const setUrl = (val: string) => {
@@ -36,34 +36,34 @@ const ImageUrl = () => {
     return { setUrl, getUrl };
 }
 
-const Image = (id?: number) => {
-    const element = Element(id);
-    const image = ImageUrl();
+const createImageElement = (id?: number) => {
+    const element = CreateElement(id);
+    const image = createImageUrlManager();
 
     return Object.assign(image, element)
 }
 
-const Text = (id?: number) => {
-    const element = Element(id);
-    const value = Value();
+const createTextElement = (id?: number) => {
+    const element = CreateElement(id);
+    const value = createValueManager();
     return Object.assign(value, element)
 }
 
-const ListText = (id?: number) => {
-    const element = Element(id);
-    const strong = Value();
-    const value = Value();
-    const getStrong = () => {
+const createListTextElement = (id?: number) => {
+    const element = CreateElement(id);
+    const strong = createValueManager();
+    const value = createValueManager();
+    const getStrongText = () => {
         return strong.getValue();
     }
-    const setStrong = (value: string) => {
+    const setStrongText = (value: string) => {
         return strong.setValue(value);
     }
-    return Object.assign(value, element, { getStrong, setStrong });
+    return Object.assign(value, element, { getStrongText, setStrongText });
 }
 
-export const ImageArea = (id?: number) => {
-    const prototype = Image(id);
+export const createImageArea = (id?: number) => {
+    const prototype = createImageElement(id);
     const visible = true;
     const getType = () => {
         return 'view';
@@ -74,8 +74,8 @@ export const ImageArea = (id?: number) => {
     return Object.assign(prototype, { getType, getVisible })
 }
 
-export const Preview = (id?: number) => {
-    const prototype = Image(id);
+export const createPreview = (id?: number) => {
+    const prototype = createImageElement(id);
     const visible = false;
     const getType = () => {
         return 'preview';
@@ -86,8 +86,8 @@ export const Preview = (id?: number) => {
     return Object.assign(prototype, { getType, getVisible })
 }
 
-export const CodeArea = (id?: number) => {
-    const prototype = Text(id);
+export const createCodeArea = (id?: number) => {
+    const prototype = createTextElement(id);
     const visible = true;
     const getType = () => {
         return 'code';
@@ -98,8 +98,8 @@ export const CodeArea = (id?: number) => {
     return Object.assign(prototype, { getType, getVisible })
 }
 
-export const TextArea = (id?: number) => {
-    const prototype = Text(id);
+export const createTextArea = (id?: number) => {
+    const prototype = createTextElement(id);
     const visible = true;
     const getType = () => {
         return 'text';
@@ -110,8 +110,8 @@ export const TextArea = (id?: number) => {
     return Object.assign(prototype, { getType, getVisible })
 }
 
-export const ListHeader = (id?: number) => {
-    const prototype = Text(id);
+export const createListHeader = (id?: number) => {
+    const prototype = createTextElement(id);
     const visible = true;
     const getType = () => {
         return 'list_header';
@@ -122,8 +122,8 @@ export const ListHeader = (id?: number) => {
     return Object.assign(prototype, { getType, getVisible })
 }
 
-export const ListElement = (id?: number) => {
-    const prototype = ListText(id);
+export const createListElement = (id?: number) => {
+    const prototype = createListTextElement(id);
     const visible = true;
     const getType = () => {
         return 'list_element';
@@ -134,8 +134,8 @@ export const ListElement = (id?: number) => {
     return Object.assign(prototype, { getType, getVisible })
 }
 
-export const MainTitle = (id?: number) => {
-    const prototype = Text(id);
+export const createMainTitle = (id?: number) => {
+    const prototype = createTextElement(id);
     const visible = false;
     const fontSize = 1;
     const getType = () => {
@@ -150,8 +150,8 @@ export const MainTitle = (id?: number) => {
     return Object.assign(prototype, { getType, getVisible, getFontSize })
 }
 
-export const Title = (id?: number) => {
-    const prototype = Text(id);
+export const createTitle = (id?: number) => {
+    const prototype = createTextElement(id);
     const visible = true;
     const fontSize = 3;
     const getType = () => {

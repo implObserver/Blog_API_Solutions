@@ -1,107 +1,107 @@
 import {
-    Preview,
-    TextArea,
-    MainTitle,
-    Title,
-    ImageArea,
-    ListHeader,
-    ListElement,
-    CodeArea
+    createPreview,
+    createTextArea,
+    createMainTitle,
+    createTitle,
+    createImageArea,
+    createListHeader,
+    createListElement,
+    createCodeArea
 } from "./modelsOfElements";
 
-export const modelsToElements = (models: Array<ModelType<ModelSubtype>>) => {
+export const convertModelsToElements = (models: Array<Model<ModelVariant>>) => {
 
-    const elements: Array<ElementType<ElementSubtype>> = [];
+    const elements: Array<ElementData<ElementVariant>> = [];
 
-    models.forEach((model: ModelType<ModelSubtype>) => {
-        const element = modelToElement(model);
+    models.forEach((model: Model<ModelVariant>) => {
+        const element = convertModelToElement(model);
         elements.push(element);
     });
 
     return elements;
 }
 
-export const modelToElement = (model: ModelType<ModelSubtype>) => {
-    let element: ElementType<ElementSubtype>;
+export const convertModelToElement = (model: Model<ModelVariant>) => {
+    let element: ElementData<ElementVariant>;
 
     switch (model.type) {
         case 'main_title':
-            element = getMainTitle(model);
+            element = createMainTitleElement(model);
             break;
         case 'title':
-            element = getTitle(model);
+            element = createTitleElement(model);
             break;
         case 'preview':
-            element = getPreview(model);
+            element = createPreviewElement(model);
             break;
         case 'view':
-            element = getView(model);
+            element = createViewElement(model);
             break;
         case 'text':
-            element = getTextArea(model);
+            element = createTextAreaElement(model);
             break;
         case 'list_header':
-            element = getListHeader(model);
+            element = createListHeaderElement(model);
             break;
         case 'list_element':
-            element = getListElement(model);
+            element = createListElementItem(model);
             break;
         case 'code':
-            element = getCodeArea(model);
+            element = createCodeAreaElement(model);
             break;
         default:
-            element = getTextArea(model);
+            element = createTextAreaElement(model);
             break;
     }
 
     return element;
 };
 
-const getMainTitle = (model: ModelType<ModelSubtype>) => {
-    const title = MainTitle(model.id);
+const createMainTitleElement = (model: Model<ModelVariant>) => {
+    const title = createMainTitle(model.id);
     title.setValue(model.value);
     return title;
 }
 
-const getTitle = (model: ModelType<ModelSubtype>) => {
-    const title = Title(model.id);
+const createTitleElement = (model: Model<ModelVariant>) => {
+    const title = createTitle(model.id);
     title.setValue(model.value);
     return title;
 }
 
-const getPreview = (model: ModelType<ModelSubtype>) => {
-    const preview = Preview(model.id);
+const createPreviewElement = (model: Model<ModelVariant>) => {
+    const preview = createPreview(model.id);
     preview.setUrl(model.imageUrl);
     return preview;
 }
 
-const getView = (model: ModelType<ModelSubtype>) => {
-    const preview = ImageArea(model.id);
+const createViewElement = (model: Model<ModelVariant>) => {
+    const preview = createImageArea(model.id);
     preview.setUrl(model.imageUrl);
     return preview;
 }
 
-const getTextArea = (model: ModelType<ModelSubtype>) => {
-    const textArea = TextArea(model.id);
+const createTextAreaElement = (model: Model<ModelVariant>) => {
+    const textArea = createTextArea(model.id);
     textArea.setValue(model.value);
     return textArea;
 }
 
-const getListHeader = (model: ModelType<ModelSubtype>) => {
-    const listHeader = ListHeader(model.id);
+const createListHeaderElement = (model: Model<ModelVariant>) => {
+    const listHeader = createListHeader(model.id);
     listHeader.setValue(model.value);
     return listHeader;
 }
 
-const getListElement = (model: ModelType<ModelSubtype>) => {
-    const listElement = ListElement(model.id);
+const createListElementItem = (model: Model<ModelVariant>) => {
+    const listElement = createListElement(model.id);
     listElement.setValue(model.value);
-    listElement.setStrong(model.strong);
+    listElement.setStrongText(model.strongText);
     return listElement;
 }
 
-const getCodeArea = (model: ModelType<ModelSubtype>) => {
-    const codeArea = CodeArea(model.id);
+const createCodeAreaElement = (model: Model<ModelVariant>) => {
+    const codeArea = createCodeArea(model.id);
     codeArea.setValue(model.value);
     return codeArea;
 }

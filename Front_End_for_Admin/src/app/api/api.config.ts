@@ -1,13 +1,10 @@
 import axios from "axios";
 import { store } from "../model/store/Store";
-import { logout, servicesActions } from "@/entities/user";
-import { persistStore } from "redux-persist";
-import { counterActions } from "@/entities/element";
+import { servicesActions } from "@/entities/user";
 
 const apiUrl = import.meta.env.VITE_SERVER_URL;
 
 export const instance = axios.create({
-    // к запросу будет приуепляться cookies
     withCredentials: true,
     baseURL: apiUrl,
     headers: {
@@ -28,10 +25,10 @@ instance.interceptors.response.use(
                 currentRetryCount++;
 
                 if (currentRetryCount === 1) {
-                    console.error('Попытка обновить acess token');
+                    console.warn('Попытка обновить acess token');
                     await instance.get("/api/user/refresh-acess-token");
                 } else if (currentRetryCount === 2) {
-                    console.error('Попытка обновить refresh token');
+                    console.warn('Попытка обновить refresh token');
                     await instance.get("/api/user/refresh-refresh-token");
                 } else if (currentRetryCount === 3) {
                     store.dispatch(servicesActions.reset())

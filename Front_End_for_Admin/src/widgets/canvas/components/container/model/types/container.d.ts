@@ -3,12 +3,11 @@ interface Containers {
 }
 
 interface Container {
-    states?: localInputsStates,
     containerContext: ContainerContext
 }
 
 interface ContainerContext {
     index: number,
-    element: ElementType<Title | TextArea | Preview>,
-    model: ModelType<TextAreaModel | PreviewModel | TitleModel>,
+    element: ElementData<TitleElement | TextElement | PreviewElement>,
+    model: Model<TextModel | PreviewModel | TitleModel>,
 }

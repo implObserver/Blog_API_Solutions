@@ -5,7 +5,7 @@ const focusSlice = createSlice({
     name: 'focus',
     initialState,
     reducers: {
-        setFocus: (state: Focus, action: PayloadAction<Number>) => {
+        setFocus: (state: FocusContext, action: PayloadAction<Number>) => {
             state.index = action.payload;
         },
     }

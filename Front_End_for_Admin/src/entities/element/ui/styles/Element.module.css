@@ -1,5 +1,6 @@
 :root {
     --panel_opacity: 0;
+    --active_element_background: rgba(238, 5, 5, 0.3);
 }
 
 .element {
@@ -20,7 +21,7 @@
 }
 
 .wrapper_panel:hover+.wrapper {
-    background-color: rgba(238, 5, 5, 0.3);
+    background-color: var(--active_element_background);
 }
 
 .hidden {

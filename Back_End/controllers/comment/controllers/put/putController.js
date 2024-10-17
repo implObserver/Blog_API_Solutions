@@ -1,7 +1,5 @@
 import asyncHandler from 'express-async-handler';
 import { body, validationResult } from 'express-validator';
-import fs from 'fs';
-import path from 'path';
 import { prismaDB } from '../../../../database/prisma/queries.js';
 import { validateComment } from '../../helper/validation/commentValidation.js';
 

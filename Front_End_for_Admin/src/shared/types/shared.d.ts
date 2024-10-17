@@ -1,5 +1,5 @@
 interface ImageStateContextType {
-    model: ModelType<ModelSubtype>,
+    model: Model<ModelVariant>,
     file: Blob,
     setImgFile?: React.Dispatch<React.SetStateAction<File>>,
 }
@@ -33,13 +33,12 @@ interface DropdownContextType {
 interface TextAreaContextType {
     placeholder: string,
     strongPlaceholder?: string,
-    value: ElementType<ElementSubtype>,
+    value: ElementData<ElementVariant>,
     maxLength: number,
     isFocus?: boolean,
     ref?: React.MutableRefObject<HTMLTextAreaElement | null>,
     id?: number,
     updater?: CustomState,
-    states?: localInputsStates,
     index?: number,
 }
 

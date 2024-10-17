@@ -1,38 +1,38 @@
-export const elementsToModels = (elements: Array<ElementType<ElementSubtype>>) => {
-    const models: Array<ModelType<ModelSubtype>> = [];
+export const convertElementsToModels = (elements: Array<ElementData<ElementVariant>>) => {
+    const models: Array<Model<ModelVariant>> = [];
     elements.forEach(element => {
-        const model = elementToModel(element);
+        const model = convertElementToModel(element);
         models.push(model);
     })
 
     return models;
 }
 
-export const elementToModel = (element: ElementType<ElementSubtype>) => {
-    let model: ModelType<ModelSubtype>;
+export const convertElementToModel = (element: ElementData<ElementVariant>) => {
+    let model: Model<ModelVariant>;
     const elementType = element.getType();
 
     switch (true) {
         case elementType.includes('view'):
-            model = getPreviewModel(element);
+            model = createPreviewModel(element);
             break;
         case elementType.includes('title'):
-            model = getTitleModel(element);
+            model = createTitleModel(element);
             break;
         case elementType === 'text':
-            model = getTextAreaModel(element);
+            model = createTextAreaModel(element);
             break;
         case elementType === 'list_header':
-            model = getListHeaderModel(element);
+            model = createListHeaderModel(element);
             break;
         case elementType === 'list_element':
-            model = getListElementModel(element);
+            model = createListElementModel(element);
             break;
         case elementType === 'code':
-            model = getCodeAreaModel(element);
+            model = createCodeAreaModel(element);
             break;
         default:
-            model = getTextAreaModel(element); // По умолчанию
+            model = createTextAreaModel(element); // По умолчанию
             break;
     }
 
@@ -41,16 +41,16 @@ export const elementToModel = (element: ElementType<ElementSubtype>) => {
 };
 
 
-const getPreviewModel = (element: ElementType<ElementSubtype>) => {
+const createPreviewModel = (element: ElementData<ElementVariant>) => {
     const model: PreviewModel = {
         id: element.getId(),
         type: element.getType(),
-        imageUrl: element.getUrl(),
+        imageUrl: element.getImageUrl(),
     }
     return model;
 }
 
-const getTitleModel = (element: ElementType<ElementSubtype>) => {
+const createTitleModel = (element: ElementData<ElementVariant>) => {
     const model: TitleModel = {
         id: element.getId(),
         type: element.getType(),
@@ -60,8 +60,8 @@ const getTitleModel = (element: ElementType<ElementSubtype>) => {
     return model;
 }
 
-const getTextAreaModel = (element: ElementType<ElementSubtype>) => {
-    const model: TextAreaModel = {
+const createTextAreaModel = (element: ElementData<ElementVariant>) => {
+    const model: TextModel = {
         id: element.getId(),
         type: element.getType(),
         value: element.getValue(),
@@ -69,8 +69,8 @@ const getTextAreaModel = (element: ElementType<ElementSubtype>) => {
     return model;
 }
 
-const getCodeAreaModel = (element: ElementType<ElementSubtype>) => {
-    const model: CodeAreaModel = {
+const createCodeAreaModel = (element: ElementData<ElementVariant>) => {
+    const model: CodeModel = {
         id: element.getId(),
         type: element.getType(),
         value: element.getValue(),
@@ -78,7 +78,7 @@ const getCodeAreaModel = (element: ElementType<ElementSubtype>) => {
     return model;
 }
 
-const getListHeaderModel = (element: ElementType<ElementSubtype>) => {
+const createListHeaderModel = (element: ElementData<ElementVariant>) => {
     const model: ListHeaderModel = {
         id: element.getId(),
         type: element.getType(),
@@ -87,12 +87,12 @@ const getListHeaderModel = (element: ElementType<ElementSubtype>) => {
     return model;
 }
 
-const getListElementModel = (element: ElementType<ElementSubtype>) => {
-    const model: ListElementModel = {
+const createListElementModel = (element: ElementData<ElementVariant>) => {
+    const model: ListItemModel = {
         id: element.getId(),
         type: element.getType(),
         value: element.getValue(),
-        strong: element.getStrong(),
+        strongText: element.getStrongText(),
     }
     return model;
 }

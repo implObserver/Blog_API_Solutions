@@ -11,16 +11,16 @@ export const Title = () => {
     const className = type === 'main_title'
         ? styles.main_title
         : styles.title;
-    const h = context.elementContext.getFontSize();
+    const h = context.element.getFontSize();
     const focus = useSelector(selectFocus).index;
     const dispatch = useDispatch<AppDispath>();
     const postid = parseInt(useParams().postid);
 
     const handleChange = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') {
-            const newModel = elementToModel(context.elementContext)
+            const newModel = elementToModel(context.element)
             const updateContext: UpdateElement = {
-                model: context.model,
+                currentModel: context.model,
                 newModel,
                 postid,
             }
@@ -31,7 +31,7 @@ export const Title = () => {
     const getTitleTextArea = (placeholder: string) => {
         const titleContext: TextAreaContextType = {
             placeholder,
-            value: context.elementContext,
+            value: context.element,
             maxLength: 100,
             isFocus: focus === context.index,
             updater: context.updater,

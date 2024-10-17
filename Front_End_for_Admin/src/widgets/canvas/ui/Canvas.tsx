@@ -6,8 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispath } from "@/app/model/store/Store";
 import { modelsToContainers } from "../lib/helper/containerAssembly";
 import { getVirtualModels } from "../../../entities/element/lib/helper/getVirtualModels";
-import { snapshotSliceActions } from "@/entities/postPreview";
-import { getSnapshot } from "../lib/helper/getSnapshot";
 import { selectOpenedPost } from "@/entities/postState/model/slice/openedPost/selectors";
 import { updatePost } from "@/entities/postState";
 
@@ -17,6 +15,7 @@ export const Canvas = React.memo(() => {
     const post = useSelector(selectOpenedPost).openedPost;
     const dispatch = useDispatch<AppDispath>();
     console.log(post)
+
     if (!post || postId !== post.id) {
         return <div>Нет доступа или пост не существует</div>;
     }
@@ -26,8 +25,8 @@ export const Canvas = React.memo(() => {
 
     useEffect(() => {
         return () => {
-            const snapshot: SnapShot = {
-                post_id: parseInt(postid),
+            const snapshot: Snapshot = {
+                postid: parseInt(postid),
                 elements: getVirtualModels(),
             };
             dispatch(updatePost(snapshot));

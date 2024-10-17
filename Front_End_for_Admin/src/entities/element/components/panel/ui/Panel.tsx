@@ -4,7 +4,7 @@ import React, { useCallback } from "react";
 
 export const Panel = React.memo(() => {
     const context = useElementContext();
-    const features = context.featuresContext.panel.features;
+    const features = context.features.panel.features;
 
     const fill = useCallback(() => {
         return features.map((feature: React.ReactElement, index) => (
@@ -15,7 +15,7 @@ export const Panel = React.memo(() => {
     }, [features]);
 
     return (
-        <div className={`${styles.panel} ${context.elementContext.getVisible() ? '' : styles.hidden}`}>
+        <div className={`${styles.panel} ${context.element.getVisible() ? '' : styles.hidden}`}>
             {fill()}
         </div>
     );

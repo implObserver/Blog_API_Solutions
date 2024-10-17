@@ -19,7 +19,7 @@ export const Author = () => {
     useEffect(() => {
         return () => {
             const authorData: UpdateAuthor = {
-                post_id: post.id,
+                postid: post.id,
                 author: getVirtualAuthor(),
             }
             console.log(post.author)

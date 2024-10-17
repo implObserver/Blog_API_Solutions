@@ -1,4 +1,4 @@
-export const initialState: Models = {
+export const initialState: ModelsData = {
     models: [],
     author: '',
 }

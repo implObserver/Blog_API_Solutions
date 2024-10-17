@@ -1,0 +1,1 @@
+export { SliderPostPreview } from './ui/PostPreview'

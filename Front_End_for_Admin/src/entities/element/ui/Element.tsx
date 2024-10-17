@@ -8,7 +8,7 @@ export const Element = React.memo(() => {
     const context = useElementContext();
     return (
         <div className={styles.element}>
-            <div className={`${styles.wrapper_panel} ${context.elementContext.getVisible() ? '' : styles.hidden}`}>
+            <div className={`${styles.wrapper_panel} ${context.element.getVisible() ? '' : styles.hidden}`}>
                 <Panel />
             </div>
             <div className={styles.wrapper}>

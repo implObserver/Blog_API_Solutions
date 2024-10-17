@@ -18,7 +18,7 @@ export const ListHeader = () => {
 
     const textAreaContext: TextAreaContextType = {
         placeholder: 'Add list name',
-        value: context.elementContext,
+        value: context.element,
         maxLength: -1,
         isFocus: focus === context.index,
         updater: context.updater,
@@ -26,9 +26,9 @@ export const ListHeader = () => {
 
     const handleChange = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') {
-            const newModel = elementToModel(context.elementContext)
+            const newModel = elementToModel(context.element)
             const updateContext: UpdateElement = {
-                model: context.model,
+                currentModel: context.model,
                 newModel,
                 postid,
             }

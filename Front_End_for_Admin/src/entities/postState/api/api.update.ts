@@ -4,7 +4,7 @@ const id = Cookies.get('user_id');
 
 
 export const UpdateService = {
-    updatePost(snapshot: SnapShot) {
+    updatePost(snapshot: Snapshot) {
         return instance.put(`/api/user/${id}/posts/update`, snapshot)
     },
     updatePublishStatusOfPost(data: UpdatePublishStatus) {
@@ -15,6 +15,9 @@ export const UpdateService = {
         return instance.put(`/api/user/${id}/posts/${post_id}/update_tag`, { post_id, tag })
     },
     updateAuthor(data: UpdateAuthor) {
-        return instance.put(`/api/user/${id}/posts/${data.post_id}/update_author`, data)
+        return instance.put(`/api/user/${id}/posts/${data.postid}/update_author`, data)
+    },
+    updateTitle(data: UpdateTitle) {
+        return instance.put(`/api/user/${id}/posts/${data.postid}/update_title`, data)
     },
 }

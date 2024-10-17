@@ -1,33 +1,38 @@
 import React, { ErrorInfo } from 'react';
 
-// Определяем тип для пропсов
 interface Props {
-  children: React.ReactNode;
+  children: React.ReactNode; // Дочерние компоненты, которые будут обернуты в ErrorBoundary
 }
 
-// Создаем класс ErrorBoundary
-class ErrorBoundary extends React.Component<Props, { hasError: boolean }> {
+interface State {
+  hasError: boolean; // Состояние для отслеживания наличия ошибки
+}
+
+class ErrorBoundary extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = { hasError: false };
+    this.state = { hasError: false }; // Инициализация состояния
   }
 
+  // Метод вызывается при возникновении ошибки в дочерних компонентах
   static getDerivedStateFromError(error: Error) {
-    // Обновляем состояние, чтобы следующий рендер показал запасной интерфейс
+    // Обновляет состояние, чтобы показать запасной UI при ошибке
     return { hasError: true };
   }
 
+  // Метод для логирования ошибки или отправки её на сервер
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // Вы можете записать ошибку в лог или отправить ее на сервер
     console.error('Error caught by ErrorBoundary:', error, errorInfo);
+    // Можно добавить логику для отправки информации об ошибке на сервер
   }
 
   render() {
     if (this.state.hasError) {
-      // Выводим запасной интерфейс при возникновении ошибки
-      return <h1>Что-то пошло не так.</h1>;
+      // Отображение запасного UI при ошибке
+      return <h1>Что-то пошло не так. Попробуйте перезагрузить страницу.</h1>;
     }
 
+    // Если ошибки нет, рендерим дочерние компоненты
     return this.props.children; 
   }
 }

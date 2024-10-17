@@ -10,7 +10,7 @@ import { useElementContext } from "@/entities/element";
 
 export const ContainerOS = ({ children }) => {
     const isEmpty = useCustomState(false);
-    const { dropdownStatus, index } = useElementContext();
+    const { dropdownState: dropdownStatus, index } = useElementContext();
 
     const externalResetContext = {
         state: dropdownStatus,

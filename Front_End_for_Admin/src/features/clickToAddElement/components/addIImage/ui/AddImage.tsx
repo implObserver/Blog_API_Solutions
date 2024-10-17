@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 export const AddImage = () => {
-    const { model, dropdownStatus } = useElementContext();
+    const { model, dropdownState: dropdownStatus } = useElementContext();
     const dispatch = useDispatch<AppDispath>();
     const postid = parseInt(useParams().postid, 10);
     const models = getVirtualModels();
@@ -26,7 +26,7 @@ export const AddImage = () => {
         const newModel = elementToModel(imageArea);
 
         const postContext: CellOfPost = { postid, model, newModel };
-        const modelContext: UpdateElement = { postid, model, newModel };
+        const modelContext: UpdateElement = { postid, currentModel: model, newModel };
         const updateContext: UpdateModels = { postid, models };
 
         const image: ImageType = {

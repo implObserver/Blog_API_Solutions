@@ -1,8 +1,8 @@
-import { elementsToModels } from "./ElementsToModels";
-import { Preview, TextArea, MainTitle } from "./modelsOfElements";
+import { convertElementsToModels } from "./ElementsToModels";
+import { createPreview, createTextArea, createMainTitle } from "./modelsOfElements";
 
-const title = MainTitle();
-const preview = Preview();
-const textArea = TextArea();
+const title = createMainTitle();
+const preview = createPreview();
+const textArea = createTextArea();
 
-export const defaultModels = elementsToModels([title, preview, textArea]);
+export const defaultModels = convertElementsToModels([title, preview, textArea]);

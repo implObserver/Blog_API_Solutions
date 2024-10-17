@@ -5,15 +5,15 @@ export { modlelsOfOpenedPostActions, modlelsOfOpenedPostReducer } from './model/
 export { counterActions, counterReducer } from './model/slice/counter/slice'
 export { selectFocus } from './model/slice/focus/selectors'
 export { selectModelsOfOpenedPost } from './model/slice/elementsOfPost/selectors'
-export { elementToModel, elementsToModels } from './lib/helper/ElementsToModels'
-export { modelToElement, modelsToElements } from './lib/helper/ModelsToElements'
+export { convertElementToModel as elementToModel, convertElementsToModels as elementsToModels } from './lib/helper/ElementsToModels'
+export { convertModelToElement as modelToElement, convertModelsToElements as modelsToElements } from './lib/helper/ModelsToElements'
 export {
-    TextArea,
-    Title,
-    MainTitle,
-    ImageArea,
-    Preview,
-    ListElement,
-    ListHeader,
-    CodeArea
+    createTextArea as TextArea,
+    createTitle as Title,
+    createMainTitle as MainTitle,
+    createImageArea as ImageArea,
+    createPreview as Preview,
+    createListElement as ListElement,
+    createListHeader as ListHeader,
+    createCodeArea as CodeArea
 } from './lib/helper/modelsOfElements'

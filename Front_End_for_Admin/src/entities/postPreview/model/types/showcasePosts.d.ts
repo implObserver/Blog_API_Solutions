@@ -13,7 +13,7 @@ interface Post {
     postingDate: Date,
     isPublished: boolean,
     tag: string,
-    elements: Array<ModelType<TextAreaModel | PreviewModel | TitleModel>>,
+    elements: Array<Model<TextModel | PreviewModel | TitleModel>>,
     comments: Comment[],
     author?: string,
 }
@@ -43,13 +43,13 @@ interface Comment {
 
 interface CellOfPost {
     postid?: number,
-    newModel?: ModelType<TextAreaModel | PreviewModel | TitleModel>,
-    model: ModelType<TextAreaModel | PreviewModel | TitleModel>,
+    newModel?: Model<TextModel | PreviewModel | TitleModel>,
+    model: Model<TextModel | PreviewModel | TitleModel>,
 }
 
 interface UpdateModels {
     postid: number,
-    models: ModelType<TextAreaModel | PreviewModel | TitleModel>[],
+    models: Model<TextModel | PreviewModel | TitleModel>[],
 }
 
 interface UpdatePublishStatus {
@@ -58,11 +58,18 @@ interface UpdatePublishStatus {
 }
 
 interface UpdateAuthor {
-    post_id: number,
+    postid: number,
     author: string,
+}
+
+interface UpdateTitle {
+    postid: number,
+    title: string,
 }
 
 interface PostPreviewContextType {
     deleteFeature: React.ReactElement,
     features?: React.ReactElement[],
+    toggle: CustomState,
+    text: CustomState,
 }

@@ -19,7 +19,7 @@ export const UpdateService = {
     updateProfile(profile: ProfileFormType) {
         return instance.put(`/api/user/${id}/profile/update/`, profile)
     },
-    updatePost(snapshot: SnapShot) {
+    updatePost(snapshot: Snapshot) {
         return instance.put(`/api/user/${id}/posts/update`, snapshot)
     },
     updateTag(post_id: number, tag: string) {

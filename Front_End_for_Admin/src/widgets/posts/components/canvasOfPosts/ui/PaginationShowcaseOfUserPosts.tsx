@@ -10,6 +10,7 @@ import { PostPreview, PostPreviewContext, snapshotSliceActions } from "@/entitie
 import { modlelsOfOpenedPostActions } from "@/entities/element";
 import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
 import { selectUserServices } from "@/entities/user";
+import { Post } from "../components/post/ui/Post";
 
 export const PaginationShowcaseOfUserPosts = () => {
     const dispatch = useDispatch<AppDispath>();
@@ -40,7 +41,6 @@ export const PaginationShowcaseOfUserPosts = () => {
     };
 
     const loadMorePostsBack = () => {
-        console.log(postsService.currentPage, totalPages)
         if (currentPage > 1) {
             dispatch(postsActions.setCurrentPage(currentPage - 1)); // Увеличиваем номер текущей страницы
         }
@@ -51,30 +51,22 @@ export const PaginationShowcaseOfUserPosts = () => {
         if (element.tagName === 'IMG') {
             dispatch(openedPostActions.setOpenedPost(post));
             dispatch(modlelsOfOpenedPostActions.uploadPosts(post.elements));
-            dispatch(modlelsOfOpenedPostActions.updateAuthor(user.profile.name));
+            if (post.author === '') {
+                dispatch(modlelsOfOpenedPostActions.updateAuthor(user.profile.name));
+            }
         }
     }
 
     const fill = () => {
-        console.log(posts)
         return posts.map((post, index) => {
-            const context: PostPreviewContextType = {
-                features: [
-                    <DeletePost postId={post.id}></DeletePost>,
-                    <div>Редактировать</div>
-                ],
-                deleteFeature: <DeletePost postId={post.id}></DeletePost>,
-            }
             return (
                 <div onClick={(e) => clickHandle(e, post)} className={styles.wrapper} key={post.id}>
-                    <PostPreviewContext.Provider value={context}>
-                        <PostPreview post={post}></PostPreview>
-                    </PostPreviewContext.Provider>
+                    <Post post={post}></Post>
                 </div>
             )
         });
     };
-    console.log(currentPage)
+    
     return (
         <div className={styles.container}>
             <div className={styles.container}>

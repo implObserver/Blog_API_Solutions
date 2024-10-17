@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styles from './styles/PostPreviewStyles.module.css'
-import { usePostPreviewContext } from "../lib/context/Context";
 import { getImageByCode } from "../lib/helper/getPostImageFromIDB";
 import { loadImage } from "../lib/helper/loadImage";
 import { addPostImages } from "../lib/helper/loadImageToIDB";
@@ -14,19 +13,17 @@ export const PostPreview = ({ post }) => {
     const date = new Date(post.postingDate);
     const postingDate = getFormattedDate(date);
     const user_id = useParams().id;
+    
     useEffect(() => {
         const loadPreview = async () => {
             try {
                 const image = (await getImageByCode(post.id, folderName));
-                console.log(image)
                 if (!image || !image.blob) {
                     loadPreviewOnServer();
                 } else {
-                    console.log(`blooob ${image.blob}`)
                     setPreview(URL.createObjectURL(image.blob));
                 }
             } catch (error) {
-                console.log(error)
                 setPreview(null);
             }
         }

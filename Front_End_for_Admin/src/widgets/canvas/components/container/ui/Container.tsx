@@ -22,7 +22,7 @@ export const Container = React.memo(() => {
     const { element, model, index } = context.containerContext;
 
     const elementContext: CanvasElement = {
-        featuresContext: {
+        features: {
             panel: {
                 features: [
                     <ClickToAddElement key={`${model.id}_add`} />,
@@ -33,11 +33,10 @@ export const Container = React.memo(() => {
                 features: <Factory key={`${model.id}_factory`} />,
             },
         },
-        elementContext: element,
+        element: element,
         model,
-        dropdownStatus,
+        dropdownState: dropdownStatus,
         index,
-        state: context.states,
     };
 
     const dropdownElementContext = {

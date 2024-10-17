@@ -3,12 +3,17 @@
     gap: 15px;
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     color-scheme: light dark;
+    cursor: pointer;
 }
 
 .tag {
     display: inline-block;
     margin: 0;
     text-transform: uppercase;
+}
+
+.not_active_tag:hover {
+    transform: translateY(-3px);
 }
 
 .tag::after {
@@ -29,4 +34,11 @@
 
 .tag.fromLeft::after {
     transform-origin: 0% 50%;
+}
+
+@media screen and (max-width:700px) {
+    .tags {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }

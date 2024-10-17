@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 export const AddCode = () => {
-    const { model, dropdownStatus } = useElementContext();
+    const { model, dropdownState: dropdownStatus } = useElementContext();
     const dispatch = useDispatch<AppDispath>();
     const postid = parseInt(useParams().postid, 10);
     const models = getVirtualModels();
@@ -24,7 +24,7 @@ export const AddCode = () => {
         const newModel = elementToModel(codeArea);
 
         const postContext: CellOfPost = { postid, model, newModel };
-        const modelContext: UpdateElement = { postid, model, newModel };
+        const modelContext: UpdateElement = { postid, currentModel: model, newModel };
         const updateContext: UpdateModels = { postid, models };
 
         dispatch(modlelsOfOpenedPostActions.addModel(modelContext));

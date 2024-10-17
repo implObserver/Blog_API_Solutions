@@ -19,46 +19,49 @@ const getScroll = (pathname: string) => {
 }
 
 export const MainLayout: React.FC = () => {
-    const { pathname } = useLocation();
+    const { pathname } = useLocation(); // Получение текущего пути
     const dispatch = useDispatch<AppDispath>();
-    gsap.registerPlugin(ScrollToPlugin);
-    const isAuth = useSelector(selectUserServices).isAuth;
+    gsap.registerPlugin(ScrollToPlugin); // Регистрация плагина для прокрутки
+    const isAuth = useSelector(selectUserServices).isAuth; // Проверка авторизации пользователя
+
+    // Сохранение текущей позиции прокрутки в Redux store с интервалом 500 мс
     useEffect(() => {
         const updateInterval = setInterval(() => {
             const scroll: Scroll = {
                 pathname,
                 scrollY: window.scrollY,
             };
-            dispatch(scrollRestorationActions.setScroll(scroll));
+            dispatch(scrollRestorationActions.setScroll(scroll)); // Сохранение состояния прокрутки
         }, 500);
         return () => {
-            clearInterval(updateInterval);
+            clearInterval(updateInterval); // Очистка интервала при размонтировании компонента
         };
-    }, [pathname])
+    }, [pathname]);
 
+    // Восстановление положения прокрутки при изменении пути
     useEffect(() => {
         const scroll = getScroll(pathname);
         if (scroll) {
             setTimeout(() => {
-                gsap.to(window, { duration: 0, scrollTo: { y: scroll.scrollY, autoKill: false } });
-            }, 100);
+                gsap.to(window, { 
+                    duration: 0, 
+                    scrollTo: { y: scroll.scrollY, autoKill: false } 
+                });
+            }, 100); // Задержка для корректной работы прокрутки
         }
     }, [pathname]);
 
     return (
         <div className={styles.main_layout}>
             <header>
-                <Header></Header>
+                <Header />
             </header>
             <div>
-                {isAuth
-                    ? ''
-                    : <FastAuth></FastAuth>
-                }
-                <Outlet />
+                {isAuth ? null : <FastAuth />} 
+                <Outlet /> {/* Компонент для рендеринга вложенных маршрутов */}
             </div>
             <footer>
-                <Footer></Footer>
+                <Footer />
             </footer>
         </div>
     );

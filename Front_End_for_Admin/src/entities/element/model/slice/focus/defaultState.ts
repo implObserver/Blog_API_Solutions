@@ -1,3 +1,3 @@
-export const initialState: Focus = {
+export const initialState: FocusContext = {
     index: 0,
 }

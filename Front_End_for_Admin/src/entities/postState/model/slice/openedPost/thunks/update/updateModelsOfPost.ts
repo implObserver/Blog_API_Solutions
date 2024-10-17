@@ -4,7 +4,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const updateModelsOfPost = createAsyncThunk(
     'services/update/post/',
-    async (snapshot: SnapShot, thunkAPI) => {
+    async (snapshot: Snapshot, thunkAPI) => {
         try {
             const isAuth = store.getState().userServices.isAuth;
             if (isAuth) {

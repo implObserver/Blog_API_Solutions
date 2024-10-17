@@ -11,7 +11,7 @@ export const Tags = () => {
     const tags = getTags();
     const fill = () => {
         return tags.map(tag => {
-            const style = tag === selectedTag ? styles.tag : '';
+            const style = tag === selectedTag ? styles.tag : styles.not_active_tag;
             const postFilterContext: PostFilterType = {
                 tag,
                 children: <span>{tag}</span>

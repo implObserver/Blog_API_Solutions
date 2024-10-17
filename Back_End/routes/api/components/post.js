@@ -1,11 +1,9 @@
 import { Router } from 'express';
-
 import { userController } from '../../../controllers/user/index.js';
 import { postsController } from '../../../controllers/post/index.js';
 
 export const postRouter = Router();
 
-//postRouter.get('/user/:userid/posts', userController.user_auth_jwt_protected, postsController);
 postRouter.get(
   '/posts',
   userController.user_auth_jwt_protected,
@@ -41,6 +39,12 @@ postRouter.put(
   '/user/:userid/posts/:post_id/update_author',
   userController.user_auth_jwt_protected,
   postsController.post_update_author_put
+);
+
+postRouter.put(
+  '/user/:userid/posts/:post_id/update_title',
+  userController.user_auth_jwt_protected,
+  postsController.post_update_title_put
 );
 
 postRouter.put(

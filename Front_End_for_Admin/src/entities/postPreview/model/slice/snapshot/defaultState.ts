@@ -1,4 +1,4 @@
-export const initialState: SnapShot = {
-    post_id: null,
+export const initialState: Snapshot = {
+    postid: null,
     elements: [],
 }

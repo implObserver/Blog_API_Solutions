@@ -4,8 +4,8 @@
 }
 
 .container {
-    display: grid;
-    width: 90vw;
+    display: flex;
+    justify-content: center;
 }
 
 .title {

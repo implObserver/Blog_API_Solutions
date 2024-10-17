@@ -4,7 +4,7 @@ import { useListAreaContext } from '../../../lib/context/Context';
 
 export const Strong = () => {
     const context = useListAreaContext()
-    const strong = context.value.getStrong();
+    const strong = context.value.getStrongText();
     const inputRef = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
@@ -17,7 +17,7 @@ export const Strong = () => {
             e.stopPropagation();
         } else if (e.key !== 'ArrowUp') {
             adjustWidth();
-            context.value.setStrong(element.value);
+            context.value.setStrongText(element.value);
         }
     };
 

@@ -2,17 +2,10 @@ import { AppDispath } from "@/app/model/store/Store";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { CommentContext } from "@/shared/ui/comment/lib/context/Context";
-
 import styles from './styles/CommentsShowcase.module.css'
 import { selectComments } from "@/entities/comment/model/slice/comments/selectors";
 import { getPaginationComments } from "@/entities/comment/model/slice/comments/thunks/get/getPaginationComments";
 import { commentsActions } from "@/entities/comment/model/slice/comments/slice";
-import { DeleteComment } from "@/features/deleteComment/ui/DeleteComment";
-import { EntityComment } from "@/entities/comment/ui/EntityComment";
-import { UpdateComment } from "@/features/updateComment/ui/UpdateComment";
-import { useCustomState } from "@/shared/lib";
-import { EditComment } from "@/features/editComment/ui/EditComment";
 import { Comment } from "../components/ui/Comment";
 
 export const PaginationCommentsShowcase = () => {
@@ -23,6 +16,7 @@ export const PaginationCommentsShowcase = () => {
     const totalComments = commentsService.totalComments;
     const totalPages = commentsService.totalPages;
     const postid = parseInt(useParams().postid);
+    
     const loadComments = async () => {
         const data: PaginationData = {
             page: currentPage,

@@ -8,15 +8,15 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 
 export const PostsSlider = () => {
+    const posts = useSelector(selectPosts).posts;
+
     const settings = {
         dots: true, // Пункты навигации
         infinite: true, // Зацикливание
         speed: 500, // Скорость перехода
-        slidesToShow: 2, // Количество отображаемых слайдов
+        slidesToShow: posts.length > 6 ? 3 : 2, // Количество отображаемых слайдов
         slidesToScroll: 1 // Количество слайдов, прокручиваемых за один раз
     };
-
-    const posts = useSelector(selectPosts).posts;
 
     return (
         <div className={style.container}>

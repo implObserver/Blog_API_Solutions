@@ -5,25 +5,25 @@ export const modlelsOfOpenedPostSlice = createSlice({
     name: 'post/models',
     initialState,
     reducers: {
-        addModel: (state: Models, action: PayloadAction<UpdateElement>) => {
+        addModel: (state: ModelsData, action: PayloadAction<UpdateElement>) => {
             const models = state.models;
-            const id = action.payload.model.id;
+            const id = action.payload.currentModel.id;
             models.forEach((model, index) => {
                 if (model.id === id && index > 1) {
                     models.splice(index + 1, 0, action.payload.newModel);
                 }
             })
         },
-        updateModel: (state: Models, action: PayloadAction<UpdateElement>) => {
+        updateModel: (state: ModelsData, action: PayloadAction<UpdateElement>) => {
             const models = state.models;
-            const id = action.payload.model.id;
+            const id = action.payload.currentModel.id;
             models.forEach((model, index) => {
                 if (model.id === id) {
                     models.splice(index, 1, action.payload.newModel);
                 }
             })
         },
-        removeModel: (state: Models, action: PayloadAction<ModelType<TextAreaModel | PreviewModel | TitleModel>>) => {
+        removeModel: (state: ModelsData, action: PayloadAction<Model<TextModel | PreviewModel | TitleModel>>) => {
             const models = state.models;
             const id = action.payload.id;
             models.forEach((model, index) => {
@@ -32,13 +32,13 @@ export const modlelsOfOpenedPostSlice = createSlice({
                 }
             })
         },
-        removeModels: (state: Models) => {
+        removeModels: (state: ModelsData) => {
             state.models = [];
         },
-        uploadPosts: (state: Models, action: PayloadAction<ModelType<TextAreaModel | PreviewModel | TitleModel>[]>) => {
+        uploadPosts: (state: ModelsData, action: PayloadAction<Model<TextModel | PreviewModel | TitleModel>[]>) => {
             state.models = action.payload;
         },
-        updateAuthor: (state: Models, action: PayloadAction<string>) => {
+        updateAuthor: (state: ModelsData, action: PayloadAction<string>) => {
             state.author = action.payload;
         },
     },

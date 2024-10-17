@@ -7,7 +7,6 @@ export { logout } from './model/slice/services/thunks/auth/logout'
 export { signup } from './model/slice/services/thunks/auth/signup'
 export { addPost } from './model/slice/services/thunks/update/addPost'
 export { updateProfile } from './model/slice/services/thunks/update/updateProfile'
-
 export { Preview as UserPreview } from './components/preview/index'
 export { deletePostImage } from './model/slice/services/thunks/delete/deletePostImage'
 export { getPostImage } from './model/slice/services/thunks/get/getPostImage'
