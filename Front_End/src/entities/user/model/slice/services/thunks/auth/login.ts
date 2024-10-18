@@ -3,11 +3,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const login = createAsyncThunk(
     'services/auth/login',
-    async (data: AuthData, thunkAPI) => {
+    async (data: LoginData, thunkAPI) => {
         try {
-            const email = data.email;
+            const identifier = data.identifier;
             const password = data.password;
-            const resp = await AuthService.login(email, password);
+            const resp = await AuthService.login(identifier, password);
             const user = resp.data.user;
             const res = {
                 error: false,

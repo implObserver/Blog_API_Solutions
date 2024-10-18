@@ -36,12 +36,14 @@ const user_create_post = [
     if (!errors.isEmpty()) {
       return res.status(400).send({ error: errors.errors[0].msg });
     } else {
-      const checkUser = await prismaDB.findUserByEmail(userPg.email);
-      if (checkUser) {
+      const checkEmail = await prismaDB.findUserByEmail(userPg.email);
+      const checkUsername = await prismaDB.findUserByUsername(userPg.username);
+      if (checkEmail || checkUsername) {
         return res
           .status(403)
           .send({ error: 'такой пользователь уже существует' });
       }
+
       const id = await prismaDB.setNewUser(userPg);
       const refreshToken = getRefreshToken(id).token;
       await prismaDB.setToken(id, refreshToken);

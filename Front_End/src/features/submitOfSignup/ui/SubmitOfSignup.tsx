@@ -1,7 +1,7 @@
 import { AppDispath } from "@/app/model/store/Store";
-import { SignupForm } from "@/entities/signupForm";
+import { Signup } from "@/entities/signup";
 import { signup } from "@/entities/user";
-import { UserFormContext } from "@/shared/ui/userForm";
+import { SignupFormContext } from "@/shared/ui/signupForm";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -14,7 +14,7 @@ export const SubmitOfSignup = () => {
         password: '',
     })
 
-    const formContext: UserFormContextType = {
+    const formContext: SignupFormContextType = {
         data,
         setData,
         type: 'Sign Up',
@@ -27,9 +27,9 @@ export const SubmitOfSignup = () => {
 
     return (
         <div onSubmit={submitHandle}>
-            <UserFormContext.Provider value={formContext}>
-                <SignupForm></SignupForm>
-            </UserFormContext.Provider>
+            <SignupFormContext.Provider value={formContext}>
+                <Signup></Signup>
+            </SignupFormContext.Provider>
         </div>
     )
 }

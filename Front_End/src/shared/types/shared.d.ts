@@ -60,15 +60,26 @@ interface PlugContextType {
     index: string,
 }
 
-interface UserFormContextType {
-    data: userFormType,
-    setData: React.Dispatch<React.SetStateAction<userFormType>>,
+interface SignupFormContextType {
+    data: SignupType,
+    setData: React.Dispatch<React.SetStateAction<SignupType>>,
     type: string,
 }
 
-interface userFormType {
+interface LoginFormContextType {
+    data: LoginType,
+    setData: React.Dispatch<React.SetStateAction<LoginType>>,
+    type: string,
+}
+
+interface SignupType {
     username: string,
     email: string,
+    password: string,
+}
+
+interface LoginType {
+    identifier: string,
     password: string,
 }
 

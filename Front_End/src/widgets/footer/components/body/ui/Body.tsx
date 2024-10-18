@@ -5,8 +5,8 @@ import { PostFilterContext } from '@/features/postsFilter/lib/context/Context'
 const homeUrl = import.meta.env.VITE_BLOG_URL;
 const creatorUrl = import.meta.env.VITE_CREATOR_URL;
 
-const renderFilterLink = (tag) => (
-    <Link className={styles.link} to=''>
+const renderFilterLink = (tag: string) => (
+    <Link key={tag} className={styles.link} to=''>
         <PostFilterContext.Provider value={{ tag, children: <span>{tag}</span> }}>
             <PostsFilter />
         </PostFilterContext.Provider>

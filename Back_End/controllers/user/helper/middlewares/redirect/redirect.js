@@ -5,7 +5,7 @@ const redirect_main = asyncHandler(async (req, res) => {
 });
 
 const redirect_succesfull_email_verify = asyncHandler(async (req, res) => {
-  res.redirect(`${process.env.CREATOR_URL}succesfullEmailVerify`);
+  res.redirect(`${process.env.CREATOR_URL}/succesfullEmailVerify`);
 });
 
 export const redirectMiddlewares = {

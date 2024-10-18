@@ -49,6 +49,11 @@ interface AuthData {
     password: string,
 }
 
+interface LoginData {
+    identifier: string,
+    password: string,
+}
+
 interface ImageUpdate {
     nameFolder: string,
     file: File,

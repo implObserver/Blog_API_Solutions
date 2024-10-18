@@ -193,7 +193,7 @@ const setNewUser = async (user) => {
     const newUser = await prisma.user.create({
       data: {
         email: user.email,
-        user: user.username,
+        username: user.username,
         password: user.password,
         isAdmin: false,
       },
@@ -202,9 +202,8 @@ const setNewUser = async (user) => {
     await prisma.profile.create({
       data: {
         user: {
-          connect: newUser,
+          connect: { id: newUser.id },
         },
-        name: user.username,
         avatar: `public/images/${newUser.id}/avatar/`,
       },
     });
