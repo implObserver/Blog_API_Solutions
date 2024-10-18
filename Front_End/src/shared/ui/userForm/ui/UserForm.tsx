@@ -5,6 +5,7 @@ export const UserForm = () => {
     const context = useUserFormContext();
 
     const data = {
+        username: context.data.username,
         email: context.data.email,
         password: context.data.password,
     }
@@ -27,6 +28,19 @@ export const UserForm = () => {
                     type="text"
                     placeholder="email"
                     value={data.email}
+                    autoComplete="on"
+                    required>
+                </input>
+
+                <label htmlFor="username">Username:</label>
+                <input
+                    onChange={handle}
+                    className={styles.input}
+                    id="username"
+                    name="username"
+                    type="text"
+                    placeholder="username"
+                    value={data.username}
                     autoComplete="on"
                     required>
                 </input>

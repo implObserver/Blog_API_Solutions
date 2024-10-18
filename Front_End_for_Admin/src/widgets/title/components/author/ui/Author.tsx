@@ -5,9 +5,10 @@ import { useEffect, useState } from "react";
 import { AppDispath } from "@/app/model/store/Store";
 import { selectOpenedPost } from "@/entities/postState/model/slice/openedPost/selectors";
 import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
-import { modlelsOfOpenedPostActions } from "@/entities/element";
+import { virtualPostActions } from "@/entities/element";
 import { getVirtualAuthor } from "@/entities/element/lib/helper/getVirtualAuthor";
 import { updateAuthor } from "@/entities/postState/model/slice/openedPost/thunks/update/updateAuthor";
+import { useLocation } from "react-router-dom";
 
 export const Author = () => {
     const user = useSelector(selectUserServices).user;
@@ -16,19 +17,8 @@ export const Author = () => {
     const author = getVirtualAuthor();
     const dispatch = useDispatch<AppDispath>();
 
-    useEffect(() => {
-        return () => {
-            const authorData: UpdateAuthor = {
-                postid: post.id,
-                author: getVirtualAuthor(),
-            }
-            console.log(post.author)
-            dispatch(updateAuthor(authorData))
-        };
-    }, [])
-
     const handleKeyUp = (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(modlelsOfOpenedPostActions.updateAuthor(e.target.value));
+        dispatch(virtualPostActions.updateAuthor(e.target.value));
     };
 
     return (

@@ -5,7 +5,7 @@
 .custom_file_upload {
     display: inherit;
     position: inherit;
-
+    cursor: pointer;
     width: inherit;
     height: inherit;
     bottom: inherit;

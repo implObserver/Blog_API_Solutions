@@ -16,6 +16,7 @@ datasource db {
 model User {
   id           Int       @id @default(autoincrement())
   email        String?   @unique
+  username     String?   @unique
   password     String?
   isAdmin      Boolean   @default(false)
   isVerified   Boolean   @default(false)
@@ -34,7 +35,7 @@ model Post {
   isPublished Boolean   @default(false)
   postingDate DateTime  @default(now())
   tag         String    @default("Other")
-  elements    Json[]
+  models      Json[]    @map("elements")
   author      String    @default("")
   comments    Comment[]
 }

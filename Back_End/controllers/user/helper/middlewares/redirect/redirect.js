@@ -1,11 +1,11 @@
 import asyncHandler from 'express-async-handler';
 
 const redirect_main = asyncHandler(async (req, res) => {
-  res.redirect('http://localhost:5000/');
+  res.redirect(process.env.BLOG_URL);
 });
 
 const redirect_succesfull_email_verify = asyncHandler(async (req, res) => {
-  res.redirect('http://localhost:5000/succesfullEmailVerify');
+  res.redirect(`${process.env.CREATOR_URL}succesfullEmailVerify`);
 });
 
 export const redirectMiddlewares = {

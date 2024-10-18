@@ -7,6 +7,18 @@ export const sanitizeInput = (value) => {
   });
 };
 
+export const validateModels = (models) => {
+  models.forEach((element) => {
+    if (typeof element.id !== 'number') {
+      throw new Error('id каждой модели models должен быть числом');
+    }
+
+    validateModelsType(element);
+    validateModelContent(element);
+  });
+  return true;
+};
+
 const getEscapedInput = (input) => {
   const decode = decodeJSX(input);
   const escapeTags = escapeJsxTags(decode);
@@ -66,19 +78,7 @@ export const sanitizeCodeInput = (input) => {
   return sanitizedHtml;
 };
 
-export const validateElements = (elements) => {
-  elements.forEach((element) => {
-    if (typeof element.id !== 'number') {
-      throw new Error('id каждого элемента elements должен быть числом');
-    }
-
-    validateElementType(element);
-    validateElementContent(element);
-  });
-  return true;
-};
-
-const validateElementType = (element) => {
+const validateModelsType = (element) => {
   const validTypes = [
     'main_title',
     'list_header',
@@ -91,7 +91,7 @@ const validateElementType = (element) => {
   ];
   if (!validTypes.includes(element.type)) {
     throw new Error(
-      `type каждого элемента elements должен быть одним из: ${validTypes.join(', ')} а у вас ${element.type}`
+      `type каждой модели должен быть одним из: ${validTypes.join(', ')} а у вас ${element.type}`
     );
   }
 
@@ -105,7 +105,7 @@ const validateElementType = (element) => {
   }
 };
 
-const validateElementContent = (element) => {
+const validateModelContent = (element) => {
   if (element.type.includes('view')) {
     if (!element.imageUrl) {
       throw new Error('url изображения неправильный или отсутствует');

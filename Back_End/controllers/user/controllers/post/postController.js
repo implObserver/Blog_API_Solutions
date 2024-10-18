@@ -4,12 +4,22 @@ import passport from 'passport';
 import bcrypt from 'bcryptjs';
 import { getRefreshToken } from '../../../../app/use/dev/auth/token/JWT/issueJWT.js';
 import { prismaDB } from '../../../../database/prisma/queries.js';
+import { validateUsernameOrMail } from '../../helper/middlewares/validate/usernameOrMailValidation.js';
 
 const user_create_post = [
+  body('username')
+    .trim()
+    .isLength({ min: 3 })
+    .withMessage('Username must be at least 3 characters long.')
+    .matches(/^[a-zA-Z0-9_]+$/)
+    .withMessage(
+      'Username must contain only letters, numbers, and underscores.'
+    )
+    .escape(),
   body('email').isEmail().withMessage('Invalid email address.'),
   body('password')
     .trim()
-    .isLength({ min: 1 })
+    .isLength({ min: 8 })
     .escape()
     .withMessage('Password must be specified.'),
 
@@ -18,6 +28,7 @@ const user_create_post = [
     const hashPassword = await bcrypt.hash(req.body.password, 10);
 
     const userPg = {
+      username: req.body.username,
       email: req.body.email,
       password: hashPassword,
     };
@@ -25,7 +36,7 @@ const user_create_post = [
     if (!errors.isEmpty()) {
       return res.status(400).send({ error: errors.errors[0].msg });
     } else {
-      const checkUser = prismaDB.findUserByEmail(userPg.email);
+      const checkUser = await prismaDB.findUserByEmail(userPg.email);
       if (checkUser) {
         return res
           .status(403)
@@ -43,7 +54,7 @@ const user_create_post = [
 ];
 
 const user_auth_post = [
-  body('email').isEmail().withMessage('Invalid email address.'),
+  body('identifier').custom(validateUsernameOrMail),
   body('password')
     .trim()
     .isLength({ min: 1 })
@@ -61,7 +72,7 @@ const user_auth_post = [
         }
         if (!user) {
           return res
-            .status(info.status)
+            .status(info.status || 400) // Устанавливаем статус по умолчанию
             .json({ error: info.error || info.message });
         }
         req.logIn(user, (loginErr) => {

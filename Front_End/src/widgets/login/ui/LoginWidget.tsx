@@ -6,6 +6,7 @@ import { AppDispath } from "@/app/model/store/Store";
 import { useEffect } from "react";
 import { NotificationDestributor } from "@/features/notificationDestributor/ui/NotificationDestributor";
 
+const homeUrl = import.meta.env.VITE_BLOG_URL;
 
 export const LoginWidget = () => {
     const services = useSelector(selectUserServices);
@@ -33,6 +34,6 @@ export const LoginWidget = () => {
     }
 
     if (services.isAuth) {
-        window.location.href = "http://localhost:5001/";
+        window.location.href = homeUrl;
     }
 }

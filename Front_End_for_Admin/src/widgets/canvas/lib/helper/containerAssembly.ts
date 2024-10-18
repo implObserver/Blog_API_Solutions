@@ -3,6 +3,7 @@ import { convertModelToElement } from "@/entities/element/lib/helper/ModelsToEle
 
 export const modelsToContainers = (models: Model<TextModel | PreviewModel | TitleModel>[]) => {
     const containerContexts: Array<ContainerContext> = [];
+    console.log(models)
     models.forEach((model, index) => {
         const element = convertModelToElement(model);
         const containerContext: ContainerContext = {

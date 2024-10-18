@@ -1,8 +1,8 @@
 import { AppDispath } from "@/app/model/store/Store";
 import {
-    modlelsOfOpenedPostActions,
+    virtualPostActions,
 } from "@/entities/element";
-import { getVirtualModels } from "@/entities/element/lib/helper/getVirtualModels";
+import { getVirtualPost } from "@/entities/element/lib/helper/getVirtualPost";
 import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
 import { useDispatch } from "react-redux";
@@ -14,15 +14,14 @@ export const Remove = ({ children }) => {
     const dispatch = useDispatch<AppDispath>();
     const isEmpty = useEmptyContext();
     const postId = parseInt(useParams().postid, 10);
-    const models = getVirtualModels();
 
     const handleKeyUp = () => {
         if (!isEmpty.getState() || currentIndex <= 2) return;
-
+        const models = getVirtualPost().models;
         const updateContext: UpdateModels = { postid: postId, models };
         const cellContext: CellOfPost = { postid: postId, model };
 
-        dispatch(modlelsOfOpenedPostActions.removeModel(model));
+        dispatch(virtualPostActions.removeModel(model));
         dispatch(openedPostActions.updateModels(updateContext));
         dispatch(openedPostActions.removeModel(cellContext));
 

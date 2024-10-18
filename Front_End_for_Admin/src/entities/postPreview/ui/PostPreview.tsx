@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import styles from './styles/PostPreviewStyles.module.css'
-import { getImageByCode } from "../lib/helper/getPostImageFromIDB";
-import { loadImage } from "../lib/helper/loadImage";
-import { addPostImages } from "../lib/helper/loadImageToIDB";
+import { getImageByCode } from "../lib/helper/indexedDB/getPostImage";
+import { loadImage } from "../lib/helper/response/loadImage";
+import { savePostImage } from "../lib/helper/indexedDB/savePostImage";
 import { Menu } from "../components/menu/ui/Menu";
 import { getFormattedDate } from "@/shared/lib/helpers/getFormattedDate";
 import { Link, useParams } from "react-router-dom";
 
 export const PostPreview = ({ post }) => {
     const [preview, setPreview] = useState('');
-    const folderName = post.elements[1].imageUrl;
+    console.log(post)
+    const folderName = post.models[1].imageUrl;
     const date = new Date(post.postingDate);
     const postingDate = getFormattedDate(date);
     const user_id = useParams().id;
-    
+
     useEffect(() => {
         const loadPreview = async () => {
             try {
@@ -34,7 +35,7 @@ export const PostPreview = ({ post }) => {
                 code: folderName,
                 blob,
             }
-            addPostImages(post.id, image);
+            savePostImage(post.id, image);
             setPreview(URL.createObjectURL(blob));
         }
 
@@ -56,7 +57,7 @@ export const PostPreview = ({ post }) => {
                 <span className={styles.post_name}>
                     {post.title}
                     <div className={styles.intro}>
-                        <span>{post.elements[0].value}</span>
+                        <span>{post.models[0].value}</span>
                         <span>{postingDate}</span>
                     </div>
                 </span>

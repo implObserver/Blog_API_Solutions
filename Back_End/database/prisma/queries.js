@@ -2,6 +2,19 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+const updatePost = async (userid, post) => {
+  const updatedPost = prisma.post.update({
+    where: {
+      userId: userid,
+      id: post.id,
+    },
+    data: {
+      ...post,
+    },
+  });
+  return updatedPost;
+};
+
 const getPaginationPostsOfUser = async (id, offset, limit) => {
   const posts = await prisma.post.findMany({
     skip: offset,
@@ -22,6 +35,17 @@ const getPaginationPosts = async (offset, limit) => {
       isPublished: true,
     },
     include: {
+      user: {
+        select: {
+          // Используем select, чтобы ограничить возвращаемые поля
+          profile: {
+            // Включаем только профиль
+            select: {
+              name: true, // Выбираем только поле name из модели Profile
+            },
+          },
+        },
+      },
       comments: {
         include: {
           user: {
@@ -52,6 +76,7 @@ const getPaginationComments = async (offset, limit, postid) => {
     include: {
       user: {
         select: {
+          id: true,
           // Используем select, чтобы ограничить возвращаемые поля
           profile: {
             // Включаем только профиль
@@ -168,6 +193,7 @@ const setNewUser = async (user) => {
     const newUser = await prisma.user.create({
       data: {
         email: user.email,
+        user: user.username,
         password: user.password,
         isAdmin: false,
       },
@@ -178,6 +204,7 @@ const setNewUser = async (user) => {
         user: {
           connect: newUser,
         },
+        name: user.username,
         avatar: `public/images/${newUser.id}/avatar/`,
       },
     });
@@ -271,7 +298,7 @@ const findPostToId = async (postid) => {
 const addPost = async (user, title) => {
   const date = Date.now();
 
-  const defaultElements = [
+  const defaultModels = [
     {
       id: 0,
       type: 'main_title',
@@ -297,7 +324,7 @@ const addPost = async (user, title) => {
         user: {
           connect: { id: user.id },
         },
-        elements: defaultElements,
+        models: defaultModels,
       },
     });
   } catch (error) {
@@ -314,7 +341,7 @@ const updateModels = async (data) => {
         id: id,
       },
       data: {
-        elements: {
+        models: {
           set: models,
         },
       },
@@ -327,7 +354,7 @@ const updateModels = async (data) => {
 const updateModelsOfPost = async (user, snapshot) => {
   try {
     const postObj = {
-      elements: snapshot.elements,
+      models: snapshot.models,
     };
     const updatedPost = await prisma.user.update({
       where: {
@@ -378,6 +405,16 @@ const findUserByEmail = async (email) => {
       profile: true,
       posts: true,
       comments: true,
+    },
+  });
+  return user;
+};
+
+const findUserByUsername = async (username) => {
+  const user = await prisma.user.findFirst({
+    where: { username: username },
+    include: {
+      profile: true,
     },
   });
   return user;
@@ -514,6 +551,7 @@ const updateComment = async (userId, comment) => {
 };
 
 export const prismaDB = {
+  findUserByUsername,
   getAllUsers,
   getAllPosts,
   setNewUser,
@@ -524,7 +562,7 @@ export const prismaDB = {
   updateAvatar,
   addPost,
   dropUsers,
-  updatePost: updateModelsOfPost,
+  updateModelsOfPost,
   updateModels,
   removeAll,
   deletePost,
@@ -546,4 +584,5 @@ export const prismaDB = {
   countUserPost,
   updateAuthor,
   updateTitle,
+  updatePost,
 };

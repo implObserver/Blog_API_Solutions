@@ -1,5 +1,5 @@
 interface PostImages {
-    post_id: number;
+    postid: number;
     images: Array<ImageType>;
 }
 interface ImageType {
@@ -13,9 +13,17 @@ interface Post {
     postingDate: Date,
     isPublished: boolean,
     tag: string,
-    elements: Array<Model<TextModel | PreviewModel | TitleModel>>,
+    models: Array<Model<TextModel | PreviewModel | TitleModel>>,
     comments: Comment[],
     author?: string,
+}
+
+interface VirtualPost {
+    post: Post,
+}
+
+interface Backups {
+    backups: Post[],
 }
 
 interface Posts {
@@ -34,6 +42,7 @@ interface OpenedPost {
     updatePending: Boolean,
     openedPost: Post,
     author: string,
+    test: any,
 }
 
 interface Comment {
@@ -53,7 +62,7 @@ interface UpdateModels {
 }
 
 interface UpdatePublishStatus {
-    post_id: number,
+    postid: number,
     status: boolean,
 }
 

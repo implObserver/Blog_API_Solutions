@@ -4,24 +4,54 @@
   padding: 0;
   margin: 0;
   border: 0;
-  height: min-content; /* Задание минимальной высоты содержимого */
-  box-sizing: border-box; /* Учитывание границ и отступов в ширине/высоте */
+  height: min-content;
+  /* Задание минимальной высоты содержимого */
+  box-sizing: border-box;
+  /* Учитывание границ и отступов в ширине/высоте */
 }
 
 /* Определение глобальных переменных с темой и шрифтами */
 :root {
-  --color__main-theme: #f7f8fa; /* Основной цвет фона */
-  --color__main-theme_accent: #dedfe0; /* Цвет акцента */
-  --color__secondary-theme: #007bff; /* Второстепенный цвет (например, для кнопок) */
-  --font_family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; /* Семейство шрифтов */
+  --color__main-theme: #f7f8fa;
+  /* Основной цвет фона */
+  --color__main-theme_accent: #dedfe0;
+  /* Цвет акцента */
+  --color__secondary-theme: #007bff;
+  /* Второстепенный цвет (например, для кнопок) */
+  --font_family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Семейство шрифтов */
+}
+
+html {
+  height: 100%;
 }
 
 /* Основной стиль для приложения */
 .app {
-  display: grid; /* Использование сеточной модели для выравнивания содержимого */
-  width: 100%; /* Ширина приложения - 100% */
-  height: 100vh; /* Высота приложения - вся высота экрана */
-  font-size: 1rem; /* Базовый размер шрифта */
-  font-family: var(--font_family); /* Использование переменной для семейства шрифтов */
-  color-scheme: light dark; /* Поддержка светлой и тёмной схемы в зависимости от настроек пользователя */
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  font-size: 1rem;
+  font-family: var(--font_family);
+}
+
+.main_layout {
+  display: grid;
+  height: inherit;
+  grid-template-rows: min-content 1fr min-content;
+}
+
+header {
+  display: grid;
+}
+
+.body {
+  height: 100%;
+}
+
+footer {}
+
+.backup {
+  display: grid;
+  height: inherit;
 }

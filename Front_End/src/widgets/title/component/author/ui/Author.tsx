@@ -10,12 +10,12 @@ export const Author = () => {
     const user = useSelector(selectUserServices).user;
     const posts = useSelector(selectPosts).posts;
     const post: Post = posts.find(post => post.id === post_id);
-
+    console.log(post)
     return (
         <div className={styles.container}>
             <span className={styles.creator}>
                 Creator:
-                <span>{user.profile.name}</span>
+                <span>{post.user.profile.name}</span>
             </span>
             <span className={styles.author}>
                 Author:

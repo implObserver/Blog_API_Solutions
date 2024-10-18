@@ -1,6 +1,6 @@
 import { AppDispath } from "@/app/model/store/Store";
 import { elementToModel, selectFocus, useElementContext } from "@/entities/element";
-import { modlelsOfOpenedPostActions } from "@/entities/element/model/slice/elementsOfPost/slice";
+import { virtualPostActions } from "@/entities/element/model/slice/virtualPost/slice";
 import { TextArea, TextAreaContext } from "@/shared/ui/textArea"
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -21,7 +21,7 @@ export const Text = () => {
     const handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key === 'ArrowUp' || e.key === 'ArrowDown') return;
         const updatedModel = elementToModel(elementContext);
-        dispatch(modlelsOfOpenedPostActions.updateModel({
+        dispatch(virtualPostActions.updateModel({
             currentModel: model,
             newModel: updatedModel,
             postid: postId,

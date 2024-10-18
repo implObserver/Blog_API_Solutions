@@ -1,10 +1,10 @@
 import cors from 'cors';
 import { app } from '../../../../app.js';
 
-const allowedOrigins = ['http://localhost:5000', 'http://localhost:5001'];
-
 const corsOptions = {
   origin: (origin, callback) => {
+    const allowedOrigins = [process.env.CREATOR_URL, process.env.BLOG_URL];
+    console.log(origin);
     // Разрешаем запросы без origins (например, когда запрос исходит из Postman)
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, origin);

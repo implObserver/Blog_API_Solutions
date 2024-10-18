@@ -1,6 +1,6 @@
 import { TextArea, TextAreaContext } from "@/shared/ui/textArea";
 import styles from './styles/Title.module.css';
-import { elementToModel, modlelsOfOpenedPostActions, selectFocus, useElementContext } from "@/entities/element";
+import { elementToModel, virtualPostActions, selectFocus, useElementContext } from "@/entities/element";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispath } from "@/app/model/store/Store";
 import { useParams } from "react-router-dom";
@@ -24,7 +24,7 @@ export const Title = () => {
                 newModel,
                 postid,
             }
-            dispatch(modlelsOfOpenedPostActions.updateModel(updateContext));
+            dispatch(virtualPostActions.updateModel(updateContext));
         }
     }
 

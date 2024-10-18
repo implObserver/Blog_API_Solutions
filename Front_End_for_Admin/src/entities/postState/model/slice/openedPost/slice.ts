@@ -10,20 +10,20 @@ const openedPostSlice = createSlice({
     initialState,
     reducers: {
         addModel: (state: OpenedPost, action: PayloadAction<CellOfPost>) => {
-            const elements = state.openedPost.elements;
+            const models = state.openedPost.models;
             const id = action.payload.model.id;
-            elements.forEach((element, index) => {
+            models.forEach((element, index) => {
                 if (element.id === id && index > 1) {
-                    elements.splice(index + 1, 0, action.payload.newModel);
+                    models.splice(index + 1, 0, action.payload.newModel);
                 }
             });
         },
         updateModel: (state: OpenedPost, action: PayloadAction<CellOfPost>) => {
-            const elements = state.openedPost.elements;
+            const models = state.openedPost.models;
             const id = action.payload.model.id;
-            elements.forEach((element, index) => {
+            models.forEach((element, index) => {
                 if (element.id === id) {
-                    elements.splice(index, 1, action.payload.newModel);
+                    models.splice(index, 1, action.payload.newModel);
                 }
             });
         },
@@ -31,22 +31,22 @@ const openedPostSlice = createSlice({
             state.author = action.payload;
         },
         updateModels: (state: OpenedPost, action: PayloadAction<UpdateModels>) => {
-            state.openedPost.elements = action.payload.models;
+            state.openedPost.models = action.payload.models;
         },
         removeModel: (state: OpenedPost, action: PayloadAction<CellOfPost>) => {
-            const elements = state.openedPost.elements;
+            const models = state.openedPost.models;
             const id = action.payload.model.id;
-            elements.forEach((element, index) => {
+            models.forEach((element, index) => {
                 if (element.id === id && index > 2) {
-                    elements.splice(index, 1);
+                    models.splice(index, 1);
                 }
             });
         },
         setOpenedPost: (state: OpenedPost, action: PayloadAction<Post>) => {
             state.openedPost = action.payload;
         },
-        reject: (state: OpenedPost) => {
-            state.isPending = false;
+        reject: (state: OpenedPost, action: PayloadAction<any>) => {
+            state.test = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -63,6 +63,7 @@ const openedPostSlice = createSlice({
         const handleUpdateResponse = (state: OpenedPost, action: PayloadAction<any>) => {
             setFulfilledStatus(state);
             if (!action.payload.error) {
+                state.isPending = false;
                 state.openedPost = action.payload.data.message.updatedPost;
                 state.error = null;
             } else {
@@ -86,12 +87,15 @@ const openedPostSlice = createSlice({
         builder
             .addCase(updateModelsOfPost.pending, (state) => {
                 state.updatePending = true;
+                state.isPending = true;
             })
             .addCase(updateModelsOfPost.fulfilled, (state) => {
                 state.updatePending = false;
+                state.isPending = false;
             })
             .addCase(updateModelsOfPost.rejected, (state) => {
                 state.updatePending = false;
+                state.isPending = false;
             });
     },
 });

@@ -1,1 +1,1 @@
-export { updateModelsOfPost as updatePost } from './model/slice/openedPost/thunks/update/updateModelsOfPost'
+export { updateModelsOfPost } from './model/slice/openedPost/thunks/update/updateModelsOfPost'

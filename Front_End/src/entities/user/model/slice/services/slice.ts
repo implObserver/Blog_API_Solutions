@@ -19,11 +19,11 @@ const userServicesSlice = createSlice({
         addModel: (state: ServicesDataType, action: PayloadAction<CellOfPost>) => {
             const post_id = action.payload.post_id;
             const post = state.user.posts.find(post => post.id === post_id);
-            const elements = post.elements;
+            const models = post.models;
             const id = action.payload.model.id;
-            elements.forEach((element, index) => {
+            models.forEach((element, index) => {
                 if (element.id === id && index > 1) {
-                    elements.splice(index + 1, 0, action.payload.newModel);
+                    models.splice(index + 1, 0, action.payload.newModel);
                 }
             })
 
@@ -31,11 +31,11 @@ const userServicesSlice = createSlice({
         updateModel: (state: ServicesDataType, action: PayloadAction<CellOfPost>) => {
             const post_id = action.payload.post_id;
             const post = state.user.posts.find(post => post.id === post_id);
-            const elements = post.elements;
+            const models = post.models;
             const id = action.payload.model.id;
-            elements.forEach((element, index) => {
+            models.forEach((element, index) => {
                 if (element.id === id) {
-                    elements.splice(index, 1, action.payload.newModel);
+                    models.splice(index, 1, action.payload.newModel);
                 }
             })
         },
@@ -43,18 +43,18 @@ const userServicesSlice = createSlice({
             const post_id = action.payload.post_id;
             const post = state.user.posts.find(post => post.id === post_id);
 
-            const elements = post.elements;
+            const models = post.models;
             const id = action.payload.model.id;
-            elements.forEach((element, index) => {
+            models.forEach((element, index) => {
                 if (element.id === id && index > 2) {
-                    elements.splice(index, 1);
+                    models.splice(index, 1);
                 }
             })
         },
         updateModels: (state: ServicesDataType, action: PayloadAction<UpdateModels>) => {
             const post_id = action.payload.post_id;
             const post = state.user.posts.find(post => post.id === post_id);
-            post.elements = action.payload.models;
+            post.models = action.payload.models;
         },
         clearErrors: (state: ServicesDataType) => {
             state.error = null;

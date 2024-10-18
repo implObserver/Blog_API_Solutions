@@ -5,7 +5,6 @@ export const fastLogin = createAsyncThunk(
     'services/auth/fastlogin',
     async (thunkAPI) => {
         try {
-            console.log('ccc')
             const resp = await AuthService.fastLogin();
             const user = resp.data.user;
             const res = {

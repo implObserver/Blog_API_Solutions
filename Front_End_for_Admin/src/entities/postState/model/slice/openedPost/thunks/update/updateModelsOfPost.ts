@@ -3,18 +3,18 @@ import { UpdateService } from "@/entities/postState/api/api.update";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const updateModelsOfPost = createAsyncThunk(
-    'services/update/post/',
+    'services/update/post/models',
     async (snapshot: Snapshot, thunkAPI) => {
         try {
             const isAuth = store.getState().userServices.isAuth;
             if (isAuth) {
-                const resp = await UpdateService.updatePost(snapshot);
-                const user = resp.data.user;
+                const resp = await UpdateService.updateModels(snapshot);
+                const response = resp.data;
                 const res = {
                     error: false,
                     data: {
                         name: 200,
-                        message: user,
+                        message: response,
                     },
                 }
                 return res;

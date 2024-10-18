@@ -9,16 +9,16 @@ import { selectOpenedPost } from "@/entities/postState/model/slice/openedPost/se
 
 export const SelectTag = () => {
     const params = useParams();
-    const post_id = parseInt(params.postid);
+    const postid = parseInt(params.postid);
     const post = useSelector(selectOpenedPost).openedPost;
     const dispatch = useDispatch<AppDispath>();
 
     const tags = getTagList(post.tag);
 
     const onClick = (tag: string) => {
-        console.log(post_id)
+        console.log(postid)
         const args: TagDataType = {
-            post_id,
+            postid,
             tag,
         }
         dispatch(updateTag(args));

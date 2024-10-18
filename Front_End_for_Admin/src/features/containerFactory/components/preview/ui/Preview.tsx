@@ -2,21 +2,22 @@ import { ImageContext, UploadAndDisplayImage } from "@/shared/ui/uploadAndDispla
 import { useEffect, useState } from "react";
 import styles from './styles/Preview.module.css'
 import { useElementContext } from "@/entities/element";
-import { addPostImage, deletePostImage } from "@/entities/user";
 import { useParams } from "react-router-dom";
-import { addPostImages } from "@/entities/postPreview/lib/helper/loadImageToIDB";
-import { removePostImage } from "@/entities/postPreview/lib/helper/removePostImageFromIDB";
+import { savePostImage } from "@/entities/postPreview/lib/helper/indexedDB/savePostImage";
+import { removePostImage } from "@/entities/postPreview/lib/helper/indexedDB/removePostImage";
 import { handleExistingPostImages } from "../lib/helper/uploadImage";
+import { addPostImage } from "@/entities/postState/model/slice/openedPost/thunks/post/addPostImage";
+import { deletePostImage } from "@/entities/postState/model/slice/openedPost/thunks/delete/deletePostImage";
 
 export const Preview = () => {
     const context = useElementContext();
     const model = context.model;
     const params = useParams();
-    const post_id = parseInt(params.postid);
+    const postid = parseInt(params.postid);
     const [selectedImage, setSelectedImage] = useState(null);
 
     const verifyPostImages = async () => {
-        const blob = await handleExistingPostImages(post_id, model);
+        const blob = await handleExistingPostImages(postid, model);
         setSelectedImage(blob);
     };
 
@@ -33,7 +34,7 @@ export const Preview = () => {
         const element = e.target as HTMLDivElement;
         if (element.textContent === 'Remove') {
             deletePostImage(model.imageUrl);
-            removePostImage(post_id, model.imageUrl);
+            removePostImage(postid, model.imageUrl);
             setSelectedImage(null);
         }
     }
@@ -49,7 +50,7 @@ export const Preview = () => {
             isRetry: false,
         }
         addPostImage(context);
-        addPostImages(post_id, image);
+        savePostImage(postid, image);
         setSelectedImage(e.target.files[0]);
     }
 

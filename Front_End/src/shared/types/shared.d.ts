@@ -67,6 +67,7 @@ interface UserFormContextType {
 }
 
 interface userFormType {
+    username: string,
     email: string,
     password: string,
 }
@@ -74,9 +75,3 @@ interface userFormType {
 interface AvatarContextType {
     image: string,
 }
-
-/*interface ElementNodeContextType {
-    setElements: React.Dispatch<React.SetStateAction<React.ReactElement[]>>,
-    elements: Array<React.ReactElement>,
-    index: number,
-}*/

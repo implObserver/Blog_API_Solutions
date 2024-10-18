@@ -25,10 +25,10 @@ instance.interceptors.response.use(
                 currentRetryCount++;
 
                 if (currentRetryCount === 1) {
-                    console.error('Попытка обновить acess token');
+                    console.warn('Попытка обновить acess token');
                     await instance.get("/api/user/refresh-acess-token");
                 } else if (currentRetryCount === 2) {
-                    console.error('Попытка обновить refresh token');
+                    console.warn('Попытка обновить refresh token');
                     await instance.get("/api/user/refresh-refresh-token");
                 } else if (currentRetryCount === 3) {
                     store.dispatch(servicesActions.reset())

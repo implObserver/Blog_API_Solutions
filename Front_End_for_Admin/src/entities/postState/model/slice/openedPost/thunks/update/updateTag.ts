@@ -8,7 +8,7 @@ export const updateTag = createAsyncThunk(
         try {
             const isAuth = store.getState().userServices.isAuth;
             if (isAuth) {
-                const resp = await UpdateService.updateTag(data.post_id, data.tag);
+                const resp = await UpdateService.updateTag(data.postid, data.tag);
                 const response = resp.data;
                 const res = {
                     error: false,

@@ -1,7 +1,7 @@
 import { AppDispath } from "@/app/model/store/Store";
 import {
     elementToModel,
-    modlelsOfOpenedPostActions,
+    virtualPostActions,
     selectFocus,
     useElementContext
 } from "@/entities/element";
@@ -31,7 +31,7 @@ export const Code = () => {
                 newModel,
                 postid,
             }
-            dispatch(modlelsOfOpenedPostActions.updateModel(updateContext));
+            dispatch(virtualPostActions.updateModel(updateContext));
         }
     }
 

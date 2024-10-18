@@ -2,7 +2,7 @@ import { AppDispath } from "@/app/model/store/Store";
 import {
     focusActions,
 } from "@/entities/element";
-import { getVirtualModels } from "@/entities/element/lib/helper/getVirtualModels";
+import { getVirtualPost } from "@/entities/element/lib/helper/getVirtualPost";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
 import { useDispatch } from "react-redux";
 
@@ -10,10 +10,10 @@ export const Focus = ({ children }) => {
     const { containerContext } = useContainerContext();
     const dispatch = useDispatch<AppDispath>();
     const isEmpty = useEmptyContext();
-    const models = getVirtualModels();
     const currentIndex = containerContext.index;
 
     const handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
+        const models = getVirtualPost().models;
         const { key } = e;
         if (key === 'ArrowUp' || key === 'ArrowDown') {
             e.stopPropagation();
@@ -46,6 +46,7 @@ export const Focus = ({ children }) => {
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+        const models = getVirtualPost().models;
         const { key } = e;
         const model = models[currentIndex];
 

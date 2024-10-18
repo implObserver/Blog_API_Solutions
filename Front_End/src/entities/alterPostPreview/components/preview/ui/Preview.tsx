@@ -9,8 +9,8 @@ import { useAlterPostPreviewContext } from "@/entities/alterPostPreview/lib/cont
 
 export const Preview = () => {
     const [preview, setPreview] = useState('');
-    const post = useAlterPostPreviewContext().post;
-    const folderName = post.elements[1].imageUrl;
+    const post: Post = useAlterPostPreviewContext().post;
+    const folderName = post.models[1].imageUrl;
 
     useEffect(() => {
         const loadPreview = async () => {

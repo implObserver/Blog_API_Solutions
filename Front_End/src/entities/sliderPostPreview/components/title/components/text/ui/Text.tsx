@@ -13,7 +13,7 @@ export const Text = () => {
             state={post.id}
         >
             <div className={styles.title}>
-                {context.post.elements[0].value}
+                {context.post.models[0].value}
             </div>
         </Link>
     )

@@ -4,11 +4,7 @@ import { postsController } from '../../../controllers/post/index.js';
 
 export const postRouter = Router();
 
-postRouter.get(
-  '/posts',
-  userController.user_auth_jwt_protected,
-  postsController.pagination_posts_list_get
-);
+postRouter.get('/posts', postsController.pagination_posts_list_get);
 
 postRouter.get(
   '/user/:userid/posts/',
@@ -48,9 +44,15 @@ postRouter.put(
 );
 
 postRouter.put(
-  '/user/:userid/posts/update',
+  '/user/:userid/posts/:post_id/update_models',
   userController.user_auth_jwt_protected,
-  postsController.user_post_update_put
+  postsController.post_update_models_put
+);
+
+postRouter.put(
+  '/user/:userid/posts/:post_id/update',
+  userController.user_auth_jwt_protected,
+  postsController.post_update_put
 );
 
 postRouter.get(

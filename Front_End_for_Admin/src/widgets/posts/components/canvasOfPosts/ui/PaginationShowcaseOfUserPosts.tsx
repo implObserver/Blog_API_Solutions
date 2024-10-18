@@ -7,20 +7,22 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from './styles/CanvasOfPosts.module.css'
 import { DeletePost } from "@/features/deletePost";
 import { PostPreview, PostPreviewContext, snapshotSliceActions } from "@/entities/postPreview";
-import { modlelsOfOpenedPostActions } from "@/entities/element";
+import { virtualPostActions } from "@/entities/element";
 import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
 import { selectUserServices } from "@/entities/user";
 import { Post } from "../components/post/ui/Post";
+import { selectBackups } from "@/entities/postState/model/slice/backups/selectors";
 
 export const PaginationShowcaseOfUserPosts = () => {
     const dispatch = useDispatch<AppDispath>();
     const user = useSelector(selectUserServices).user;
     const postsService = useSelector(selectPosts);
-    const posts = postsService.posts;
+    const posts: Post[] = postsService.posts;
     const currentPage = postsService.currentPage;
-    const totalPosts = postsService.totalPosts;
+    const backups = useSelector(selectBackups).backups;
+    console.log(backups)
     const totalPages = postsService.totalPages;
-
+    const totalPosts = postsService.totalPosts;
     const loadPosts = async () => {
         const data: PaginationData = {
             page: currentPage,
@@ -29,10 +31,8 @@ export const PaginationShowcaseOfUserPosts = () => {
     };
 
     useEffect(() => {
-        setTimeout(() => {
-            loadPosts();
-        }, 100);
-    }, [currentPage, totalPages, totalPosts]);
+        loadPosts();
+    }, [totalPosts, currentPage]);
 
     const loadMorePostsUp = () => {
         if (currentPage < totalPages) {
@@ -48,36 +48,53 @@ export const PaginationShowcaseOfUserPosts = () => {
 
     const clickHandle = (e: React.MouseEvent<HTMLDivElement>, post: Post) => {
         const element = e.target as HTMLLinkElement;
+
         if (element.tagName === 'IMG') {
             dispatch(openedPostActions.setOpenedPost(post));
-            dispatch(modlelsOfOpenedPostActions.uploadPosts(post.elements));
+            dispatch(virtualPostActions.setPost(post));
             if (post.author === '') {
-                dispatch(modlelsOfOpenedPostActions.updateAuthor(user.profile.name));
+                dispatch(virtualPostActions.updateAuthor(user.profile.name));
             }
         }
     }
 
     const fill = () => {
         return posts.map((post, index) => {
+            const backupIndex = backups.findIndex(backup => backup.id === post.id);
+            const actualPost = backupIndex === -1
+                ? post
+                : backups[backupIndex]
+
             return (
-                <div onClick={(e) => clickHandle(e, post)} className={styles.wrapper} key={post.id}>
-                    <Post post={post}></Post>
+                <div onClick={(e) => clickHandle(e, actualPost)} className={styles.wrapper} key={post.id}>
+                    <Post post={actualPost}></Post>
                 </div>
             )
         });
     };
-    
+
     return (
         <div className={styles.container}>
             <div className={styles.container}>
                 {fill()}
             </div>
             <div className={styles.pagination}>
-                <button className={styles.pagination_btn} onClick={loadMorePostsBack} disabled={currentPage === 1}>
+                <button className={currentPage === 1
+                    ? styles.block
+                    : styles.pagination_btn}
+                    onClick={loadMorePostsBack}>
                     назад
                 </button>
-                <span>{currentPage} из {totalPages}</span>
-                <button className={styles.pagination_btn} onClick={loadMorePostsUp} disabled={currentPage === totalPages}>
+                <span className={totalPages === 1
+                    ? styles.block
+                    : ''}>
+                    {currentPage} из {totalPages}
+                </span>
+                <button
+                    className={totalPages === currentPage
+                        ? styles.block
+                        : styles.pagination_btn}
+                    onClick={loadMorePostsUp}>
                     вперед
                 </button>
             </div>

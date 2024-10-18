@@ -7,10 +7,10 @@ export const snapshotSlice = createSlice({
     reducers: {
         initialSnapshot: (state: Snapshot, action: PayloadAction<Post>) => {
             state.postid = action.payload.id;
-            state.elements = action.payload.elements;
+            state.models = action.payload.models;
         },
         updateSnapshot: (state: Snapshot, action: PayloadAction<Model<TextModel | PreviewModel | TitleModel>[]>) => {
-            state.elements = action.payload;
+            state.models = action.payload;
         },
     },
 })

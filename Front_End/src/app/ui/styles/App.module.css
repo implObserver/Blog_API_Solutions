@@ -23,3 +23,20 @@
   height: 100vh;
   font-size: 1rem;
 }
+
+.main_layout {
+  display: grid;
+  height: inherit;
+  grid-template-rows: min-content 1fr min-content;
+}
+
+header {
+  display: grid;
+}
+
+.body {
+  min-height: 100%;
+}
+
+footer {
+}

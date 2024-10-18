@@ -1,10 +1,10 @@
 export { Element } from './ui/Element'
 export { ElementContext, useElementContext } from './lib/context/Context'
 export { focusReducer, focusActions } from './model/slice/focus/slice'
-export { modlelsOfOpenedPostActions, modlelsOfOpenedPostReducer } from './model/slice/elementsOfPost/slice'
+export { virtualPostActions, virtualPostReducer as modlelsOfOpenedPostReducer } from './model/slice/virtualPost/slice'
 export { counterActions, counterReducer } from './model/slice/counter/slice'
 export { selectFocus } from './model/slice/focus/selectors'
-export { selectModelsOfOpenedPost } from './model/slice/elementsOfPost/selectors'
+export { selectVirtualPost as selectModelsOfOpenedPost } from './model/slice/virtualPost/selectors'
 export { convertElementToModel as elementToModel, convertElementsToModels as elementsToModels } from './lib/helper/ElementsToModels'
 export { convertModelToElement as modelToElement, convertModelsToElements as modelsToElements } from './lib/helper/ModelsToElements'
 export {

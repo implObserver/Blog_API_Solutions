@@ -9,6 +9,7 @@ export const SubmitOfSignup = () => {
     const dispath = useDispatch<AppDispath>();
 
     const [data, setData] = useState({
+        username: '',
         email: '',
         password: '',
     })

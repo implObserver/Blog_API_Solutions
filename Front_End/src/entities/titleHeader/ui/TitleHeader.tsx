@@ -3,13 +3,12 @@ import styles from './styles/TitleHeader.module.css'
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectUserServices } from '@/entities/user';
+import { selectPosts } from '@/entities/postState/model/slice/posts/selectors';
 
 export const TitleHeader = ({ children }) => {
     const params = useParams();
     const post_id = parseInt(params.postid);
-    const service = useSelector(selectUserServices);
-    const user = service.user;
-    const posts = user.posts;
+    const posts = useSelector(selectPosts).posts;
     const post = posts.find(post => post.id === post_id);
     if (!post) {
         return (

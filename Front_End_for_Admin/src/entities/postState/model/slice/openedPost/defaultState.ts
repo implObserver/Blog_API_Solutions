@@ -4,4 +4,5 @@ export const initialState: OpenedPost = {
     updatePending: false,
     openedPost: null,
     author: null,
+    test: 'nooo',
 }

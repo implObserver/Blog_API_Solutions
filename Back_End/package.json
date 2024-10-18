@@ -8,15 +8,14 @@
   },
   "scripts": {
     "installDeps": "node scriptDep",
-    "start": "node ./bin/www",
-    "devstart": "nodemon ./bin/www",
+    "start": "node ./bin/server/server",
+    "devstart": "nodemon ./bin/server/server",
     "serverstart": "DEBUG=express-locallibrary-tutorial:* npm run devstart"
   },
   "dependencies": {
     "base64url": "^3.0.1",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
-
     "cookie-parser": "^1.0.0",
     "cookie-session": "^2.1.0",
     "cors": "^2.8.5",
@@ -41,10 +40,11 @@
     "passport-local": "^1.0.0",
     "pg": "^8.13.0",
     "pug": "^3.0.3",
-    "sanitize-html": "^2.13.1"
+    "sanitize-html": "^2.13.1",
+    "validator": "^13.12.0"
   },
   "devDependencies": {
-    "@prisma/client": "^5.20.0",
+    "@prisma/client": "^5.21.1",
     "eslint": "^9.12.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
@@ -53,6 +53,6 @@
     "nodemon": "^3.1.7",
     "npm": "^10.9.0",
     "prettier": "^3.3.3",
-    "prisma": "^5.20.0"
+    "prisma": "^5.21.1"
   }
 }

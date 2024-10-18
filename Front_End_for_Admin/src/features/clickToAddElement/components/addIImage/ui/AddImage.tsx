@@ -3,11 +3,11 @@ import {
     counterActions,
     elementToModel,
     ImageArea,
-    modlelsOfOpenedPostActions,
+    virtualPostActions,
     useElementContext
 } from "@/entities/element";
-import { getVirtualModels } from "@/entities/element/lib/helper/getVirtualModels";
-import { addPostImages } from "@/entities/postPreview/lib/helper/loadImageToIDB";
+import { getVirtualPost } from "@/entities/element/lib/helper/getVirtualPost";
+import { savePostImage } from "@/entities/postPreview/lib/helper/indexedDB/savePostImage";
 import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -16,9 +16,9 @@ export const AddImage = () => {
     const { model, dropdownState: dropdownStatus } = useElementContext();
     const dispatch = useDispatch<AppDispath>();
     const postid = parseInt(useParams().postid, 10);
-    const models = getVirtualModels();
 
     const handleClick = () => {
+        const models = getVirtualPost().models;
         dispatch(counterActions.increment());
         const url = Date.now().toString();
         const imageArea = ImageArea();
@@ -35,10 +35,10 @@ export const AddImage = () => {
             isRetry: false,
         };
 
-        dispatch(modlelsOfOpenedPostActions.addModel(modelContext));
+        dispatch(virtualPostActions.addModel(modelContext));
         dispatch(openedPostActions.updateModels(updateContext));
         dispatch(openedPostActions.addModel(postContext));
-        addPostImages(postid, image);
+        savePostImage(postid, image);
         dropdownStatus.toggle();
     };
 

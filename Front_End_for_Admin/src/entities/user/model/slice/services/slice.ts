@@ -30,6 +30,18 @@ const userServicesSlice = createSlice({
         const handleFulfilled = (state: ServicesDataType) => {
             state.isPending = false;
         };
+
+        const handleFulfilledWithUserUpdate = (state: ServicesDataType, action: any) => {
+            state.isPending = false;
+            if (!action.payload.error) {
+                state.user = action.payload.data.message;
+                state.isAuth = true;
+                state.error = null;
+            } else {
+                state.error = action.payload.data;
+            }
+        };
+
         const handleRejected = (state: ServicesDataType) => {
             state.isPending = false;
         };
@@ -40,30 +52,12 @@ const userServicesSlice = createSlice({
         }
         builder
             .addCase(login.pending, handlePending)
-            .addCase(login.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (!action.payload.error) {
-                    state.user = action.payload.data.message;
-                    state.isAuth = true;
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
+            .addCase(login.fulfilled, handleFulfilledWithUserUpdate)
             .addCase(login.rejected, handleRejected)
 
         builder
             .addCase(fastLogin.pending, handlePending)
-            .addCase(fastLogin.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (!action.payload.error) {
-                    state.user = action.payload.data.message;
-                    state.isAuth = true;
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
+            .addCase(fastLogin.fulfilled, handleFulfilledWithUserUpdate)
             .addCase(fastLogin.rejected, handleRejected)
 
         builder
@@ -76,16 +70,7 @@ const userServicesSlice = createSlice({
 
         builder
             .addCase(signup.pending, handlePending)
-            .addCase(signup.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (!action.payload.error) {
-                    state.user = action.payload.data.message;
-                    state.isAuth = true;
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
+            .addCase(signup.fulfilled, handleFulfilledWithUserUpdate)
             .addCase(signup.rejected, handleRejected)
 
         builder
@@ -95,16 +80,7 @@ const userServicesSlice = createSlice({
 
         builder
             .addCase(updateProfile.pending, handlePending)
-            .addCase(updateProfile.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (!action.payload.error) {
-                    state.user = action.payload.data.message;
-                    state.isAuth = true;
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
+            .addCase(updateProfile.fulfilled, handleFulfilledWithUserUpdate)
             .addCase(updateProfile.rejected, handleRejected)
     }
 })

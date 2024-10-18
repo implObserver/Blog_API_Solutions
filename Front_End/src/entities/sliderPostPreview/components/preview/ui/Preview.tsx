@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 export const Preview = () => {
     const post = usePostPreviewContext().post;
-    const folderName = post.elements[1].imageUrl;
+    const folderName = post.models[1].imageUrl;
     const [preview, setPreview] = useState('');
 
     useEffect(() => {

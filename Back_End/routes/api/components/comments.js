@@ -10,11 +10,7 @@ commentsRouter.post(
   commentsController.comment_of_user_post
 );
 
-commentsRouter.get(
-  '/comments',
-  userController.user_auth_jwt_protected,
-  commentsController.pagination_comments_get
-);
+commentsRouter.get('/comments', commentsController.pagination_comments_get);
 
 commentsRouter.delete(
   '/user/:userid/post/:postid/comment/:commentid/delete',

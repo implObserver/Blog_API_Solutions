@@ -19,5 +19,9 @@ export const ProfilePage = () => {
                 <Posts></Posts>
             </div>
         )
+    } else {
+        <div>
+            не авторизован
+        </div>
     }
 }

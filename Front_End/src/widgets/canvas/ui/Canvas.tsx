@@ -18,7 +18,7 @@ export const Canvas = React.memo(() => {
         )
     }
     if (post_id || post_id === 0) {
-        const models = posts.length === 0 ? [] : post.elements;
+        const models = posts.length === 0 ? [] : post.models;
         const fill = () => {
             return models.map((model, index) => {
                 const container = {

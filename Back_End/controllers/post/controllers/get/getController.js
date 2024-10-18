@@ -18,7 +18,7 @@ const pagination_posts_of_user_get = asyncHandler(async (req, res, next) => {
     res.json({
       posts,
       totalPosts,
-      totalPages: Math.ceil(totalPosts / limit),
+      totalPages: Math.max(1, Math.ceil(totalPosts / limit)),
     });
   } catch (error) {
     console.error('Error fetching posts:', error);
@@ -49,12 +49,12 @@ const pagination_posts_list_get = asyncHandler(async (req, res) => {
 
   try {
     const posts = await prismaDB.getPaginationPosts(offset, limit);
-
     const totalPosts = await prismaDB.countPost();
+
     res.json({
       posts,
       totalPosts,
-      totalPages: Math.ceil(totalPosts / limit),
+      totalPages: Math.max(1, Math.ceil(totalPosts / limit)),
     });
   } catch (error) {
     console.error('Error fetching posts:', error);

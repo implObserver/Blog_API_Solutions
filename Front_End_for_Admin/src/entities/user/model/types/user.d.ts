@@ -1,5 +1,5 @@
 interface TagDataType {
-    post_id: number,
+    postid: number,
     tag: string,
 }
 
@@ -43,7 +43,13 @@ interface AuthType {
 }
 
 interface AuthData {
+    username: string,
     email: string,
+    password: string,
+}
+
+interface LoginData {
+    identifier: string,
     password: string,
 }
 

@@ -7,6 +7,8 @@ interface ImportMeta {
 }
 interface ImportMetaEnv {
   VITE_SERVER_URL: string; // Замените на ваши переменные окружения
+  VITE_CREATOR_URL: string;
+  VITE_BLOG_URL: string;
 }
 
 declare module '*.jpg';

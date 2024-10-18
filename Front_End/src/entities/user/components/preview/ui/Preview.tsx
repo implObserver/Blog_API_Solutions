@@ -5,7 +5,7 @@ import styles from './styles/Preview.module.css'
 import { useEffect, useState } from "react";
 import { selectUserServices } from "@/entities/user/model/slice/services/selectors";
 import { getAvatar } from "@/entities/user/lib/helper/getAvatar";
-
+const homeUrl = import.meta.env.VITE_CREATOR_URL;
 export const Preview = () => {
     const services = useSelector(selectUserServices);
     const user = services.user;
@@ -28,7 +28,7 @@ export const Preview = () => {
     return (
         <div className={styles.container}>
             <AvatarContext.Provider value={avatarContext}>
-                <Link className={styles.link} to={`http://localhost:5000/profile/${user.id}`}>
+                <Link className={styles.link} to={`${homeUrl}profile/${user.id}`}>
                     <Avatar></Avatar>
                 </Link>
             </AvatarContext.Provider>

@@ -110,9 +110,9 @@ interface CounterState {
 
 interface Snapshot {
     postid: number,
-    elements: Array<Model<TextModel | PreviewModel | TitleModel>>,
+    models: Array<Model<TextModel | PreviewModel | TitleModel>>,
 }
-//Elements
+
 interface PreviewState {
     code: string,
     status: boolean,
@@ -122,6 +122,8 @@ interface PreviewState {
 interface PreviewStates {
     statuses: PreviewState[],
 }
+
+//Elements
 interface BaseElement {
     getId: () => number;
     getType: () => string;

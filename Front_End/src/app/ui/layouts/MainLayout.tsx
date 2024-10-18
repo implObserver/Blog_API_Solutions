@@ -13,6 +13,7 @@ import { Footer } from '@/widgets/footer/ui/Footer';
 const getScroll = (pathname: string) => {
     const scrolls = store.getState().scrollRestoration.scrolls;
     const scroll = scrolls.find(scroll => scroll.pathname === pathname);
+
     return scroll;
 }
 
@@ -24,42 +25,44 @@ export const MainLayout: React.FC = () => {
     const queryParams = new URLSearchParams(location.search);
 
     useEffect(() => {
-        const updateInterval = setInterval(() => {
+        const handleScroll = () => {
             const scroll: Scroll = {
                 pathname,
                 scrollY: window.scrollY,
             };
             dispatch(scrollRestorationActions.setScroll(scroll));
-        }, 1);
-        return () => {
-            clearInterval(updateInterval);
         };
-    }, [pathname])
+
+        // Добавляем обработчик события scroll
+        window.addEventListener('scroll', handleScroll);
+
+        // Убираем обработчик при размонтировании
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [pathname, dispatch]);
 
     useEffect(() => {
         const scroll = getScroll(pathname);
-        if (queryParams.get('slider')) {
+        if (queryParams.get('slider') || !scroll) {
             queryParams.delete('slider');
-            navigate(`${location.pathname}?${queryParams.toString()}`);
             gsap.to(window, { duration: 0, scrollTo: { y: 0, autoKill: false } });
         } else {
             gsap.to(window, { duration: 0, scrollTo: { y: scroll.scrollY, autoKill: false } });
         }
-    }, [pathname]);
+    }, [pathname, queryParams]);
 
     return (
         <div className={styles.main_layout}>
             <header>
-                <Header></Header>
+                <Header />
             </header>
             <div>
                 <Outlet />
             </div>
             <footer>
-                <Footer></Footer>
+                <Footer />
             </footer>
         </div>
     );
 };
-
-export default MainLayout;

@@ -1,10 +1,10 @@
-import { addPostImages } from "@/entities/postPreview/lib/helper/loadImageToIDB";
+import { savePostImage } from "@/entities/postPreview/lib/helper/indexedDB/savePostImage";
 
-export const addPlaceholderImageToPost = async (post_id: number, model: Model<ModelVariant>) => {
+export const addPlaceholderImageToPost = async (postid: number, model: Model<ModelVariant>) => {
     const image: ImageType = {
         code: model.imageUrl,
         blob: null,
         isRetry: false,
     };
-    await addPostImages(post_id, image);
+    await savePostImage(postid, image);
 };

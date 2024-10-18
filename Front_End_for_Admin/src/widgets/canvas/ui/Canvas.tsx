@@ -5,33 +5,29 @@ import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispath } from "@/app/model/store/Store";
 import { modelsToContainers } from "../lib/helper/containerAssembly";
-import { getVirtualModels } from "../../../entities/element/lib/helper/getVirtualModels";
+import { getVirtualPost } from "../../../entities/element/lib/helper/getVirtualPost";
 import { selectOpenedPost } from "@/entities/postState/model/slice/openedPost/selectors";
-import { updatePost } from "@/entities/postState";
+import { backupsActions } from "@/entities/postState/model/slice/backups/slice";
 
 export const Canvas = React.memo(() => {
     const { postid } = useParams();
     const postId = parseInt(postid);
     const post = useSelector(selectOpenedPost).openedPost;
     const dispatch = useDispatch<AppDispath>();
-    console.log(post)
 
     if (!post || postId !== post.id) {
         return <div>Нет доступа или пост не существует</div>;
     }
 
-    const elements = post.elements;
-    const containerContexts = useMemo(() => modelsToContainers(elements), [elements]);
+    const models = post.models;
+    const containerContexts = useMemo(() => modelsToContainers(models), [models]);
 
     useEffect(() => {
         return () => {
-            const snapshot: Snapshot = {
-                postid: parseInt(postid),
-                elements: getVirtualModels(),
-            };
-            dispatch(updatePost(snapshot));
-        };
-    }, []);
+            const virtualPost = getVirtualPost();
+            dispatch(backupsActions.addBackup(virtualPost));
+        }
+    }, [])
 
     const renderContainers = () =>
         containerContexts.map(({ model }, index) => (

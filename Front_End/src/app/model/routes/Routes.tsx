@@ -1,4 +1,4 @@
-import MainLayout from "@/app/ui/layouts/MainLayout";
+import { MainLayout } from "@/app/ui/layouts/MainLayout";
 import { LoginPage } from "@/pages/login";
 import { MainPage } from "@/pages/main/ui/MainPage";
 import { PostPage } from "@/pages/post";

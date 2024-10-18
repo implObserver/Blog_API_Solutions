@@ -1,7 +1,8 @@
 import { AppDispath } from "@/app/model/store/Store";
-import { LoginForm } from "@/entities/loginForm";
+import { Login } from "@/entities/login";
+
 import { login } from "@/entities/user";
-import { UserFormContext } from "@/shared/ui/userForm";
+import { LoginFormContext } from "@/shared/ui/loginForm";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -9,11 +10,11 @@ export const SubmitOfLogin = () => {
     const dispath = useDispatch<AppDispath>();
     //localStorage.clear()
     const [data, setData] = useState({
-        email: '',
+        identifier: '',
         password: '',
     })
 
-    const formContext: UserFormContextType = {
+    const formContext: LoginFormContextType = {
         data,
         setData,
         type: 'Log In',
@@ -26,9 +27,9 @@ export const SubmitOfLogin = () => {
 
     return (
         <div onSubmit={submitHandle}>
-            <UserFormContext.Provider value={formContext}>
-                <LoginForm></LoginForm>
-            </UserFormContext.Provider>
+            <LoginFormContext.Provider value={formContext}>
+                <Login></Login>
+            </LoginFormContext.Provider>
         </div>
     )
 }

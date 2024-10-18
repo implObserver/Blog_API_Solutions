@@ -6,6 +6,8 @@ interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
 interface ImportMetaEnv {
+  VITE_BLOG_URL: string;
+  VITE_CREATOR_URL: string;
   VITE_SERVER_URL: string; // Замените на ваши переменные окружения
 }
 

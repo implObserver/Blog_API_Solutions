@@ -4,25 +4,28 @@ import { fastLogin } from "@/entities/user/model/slice/services/thunks/auth/fast
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 
+const blogUrl = import.meta.env.VITE_BLOG_URL;
+
 export const FastAuth = () => {
     const services = useSelector(selectUserServices);
     const isAuth = services.isAuth;
-    const isPending = services.isPending;
 
-    const [attempt, setAttempt] = useState(false);
+    const [attempt, setAttempt] = useState(0);
     const dispatch = useDispatch<AppDispath>();
-    if (!isAuth && !attempt) {
+    if (!isAuth && attempt > 2) {
         console.log('aa')
         dispatch(fastLogin());
-        setAttempt(true);
+        setAttempt(attempt + 1);
         return (
             <div>
 
             </div>
         )
-    } else if (!isAuth && attempt) {
+    } else if (!isAuth && attempt >= 2) {
         if (!services.isPending) {
-            window.location.href = "http://localhost:5001/";
+            <div>
+                не авторизован
+            </div>
         }
     }
 }

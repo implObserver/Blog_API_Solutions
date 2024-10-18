@@ -44,6 +44,7 @@ interface AuthType {
 }
 
 interface AuthData {
+    username: string,
     email: string,
     password: string,
 }
@@ -71,9 +72,10 @@ interface Post {
     postingDate: Date,
     isPublished: boolean,
     tag: string,
-    elements: Array<ModelType<TextAreaModel | PreviewModel | TitleModel>>,
+    models: Array<ModelType<TextAreaModel | PreviewModel | TitleModel>>,
     comments: PostComment[]
     author: string,
+    user?: User,
 }
 
 interface Posts {
