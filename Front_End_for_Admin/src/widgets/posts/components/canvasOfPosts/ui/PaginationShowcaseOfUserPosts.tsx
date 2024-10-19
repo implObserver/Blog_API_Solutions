@@ -2,25 +2,21 @@ import { AppDispath } from "@/app/model/store/Store";
 import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
 import { postsActions } from "@/entities/postState/model/slice/posts/slice";
 import { getPostsOfUser } from "@/entities/postState/model/slice/posts/thunks/get/getPostsOfUser";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from './styles/CanvasOfPosts.module.css'
-import { DeletePost } from "@/features/deletePost";
-import { PostPreview, PostPreviewContext, snapshotSliceActions } from "@/entities/postPreview";
-import { virtualPostActions } from "@/entities/element";
 import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
-import { selectUserServices } from "@/entities/user";
 import { Post } from "../components/post/ui/Post";
 import { selectBackups } from "@/entities/postState/model/slice/backups/selectors";
+import { virtualPostActions } from "@/entities/postState";
 
 export const PaginationShowcaseOfUserPosts = () => {
     const dispatch = useDispatch<AppDispath>();
-    const user = useSelector(selectUserServices).user;
     const postsService = useSelector(selectPosts);
     const posts: Post[] = postsService.posts;
     const currentPage = postsService.currentPage;
     const backups = useSelector(selectBackups).backups;
-    console.log(backups)
+
     const totalPages = postsService.totalPages;
     const totalPosts = postsService.totalPosts;
     const loadPosts = async () => {

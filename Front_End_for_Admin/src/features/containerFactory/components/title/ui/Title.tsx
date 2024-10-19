@@ -1,9 +1,10 @@
 import { TextArea, TextAreaContext } from "@/shared/ui/textArea";
 import styles from './styles/Title.module.css';
-import { elementToModel, virtualPostActions, selectFocus, useElementContext } from "@/entities/element";
+import { elementToModel, useElementContext } from "@/entities/element";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispath } from "@/app/model/store/Store";
 import { useParams } from "react-router-dom";
+import { selectFocus, virtualPostActions } from "@/entities/postState";
 
 export const Title = () => {
     const context = useElementContext();
@@ -29,11 +30,11 @@ export const Title = () => {
     }
 
     const getTitleTextArea = (placeholder: string) => {
-        const titleContext: TextAreaContextType = {
+        const titleContext: TextAreaProps = {
             placeholder,
             value: context.element,
             maxLength: 100,
-            isFocus: focus === context.index,
+            isFocused: focus === context.index,
             updater: context.updater,
         }
         return (

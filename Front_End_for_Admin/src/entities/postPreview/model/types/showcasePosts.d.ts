@@ -79,6 +79,6 @@ interface UpdateTitle {
 interface PostPreviewContext {
     deleteFeature: React.ReactElement,
     features?: React.ReactElement[],
-    toggle: CustomState,
-    text: CustomState,
+    toggle: StateHandler,
+    text: StateHandler,
 }

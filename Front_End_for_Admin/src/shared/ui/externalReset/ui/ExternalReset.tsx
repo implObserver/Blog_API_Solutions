@@ -36,9 +36,9 @@ export const ExternalReset = ({ children }) => {
         }
     }, [context]);
 
-    const plugContext: PlugContextType = {
-        state: context.state.getState(),
-        index: context.index,
+    const plugContext: PlaceholderContext = {
+        isActive: context.state.getState(),
+        key: context.index,
     }
 
     return (

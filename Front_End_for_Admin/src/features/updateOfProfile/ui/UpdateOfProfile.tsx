@@ -16,9 +16,9 @@ export const UpdateOfProfile = () => {
         age: user.profile.age,
     })
 
-    const formContext: ProfileFormContextType = {
-        data,
-        setData,
+    const formContext: ProfileFormContext = {
+        formData: data,
+        setFormData: setData,
         username,
     }
 

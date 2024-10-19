@@ -1,3 +1,3 @@
 interface UploadContextType {
-    update: CustomState,
+    update: StateHandler,
 }

@@ -5,15 +5,15 @@ export const SignupForm = () => {
     const context = useSignupFormContext();
 
     const data = {
-        username: context.data.username,
-        email: context.data.email,
-        password: context.data.password,
+        username: context.formData.username,
+        email: context.formData.email,
+        password: context.formData.password,
     }
 
     const handle = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newData = { ...data };
         newData[e.target.id] = e.target.value
-        context.setData(newData);
+        context.setFormData(newData);
     }
 
     return (
@@ -57,7 +57,7 @@ export const SignupForm = () => {
                     required>
                 </input>
             </div>
-            <button className={styles.button} type='submit'>{context.type}</button>
+            <button className={styles.button} type='submit'>{context.formType}</button>
         </form>
     )
 }

@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export const DropdownContext = createContext<undefined | DropdownContextType>(undefined);
+export const DropdownContext = createContext<undefined | DropdownState>(undefined);
 
 export const useDropdownContext = () => {
     const props = useContext(DropdownContext);

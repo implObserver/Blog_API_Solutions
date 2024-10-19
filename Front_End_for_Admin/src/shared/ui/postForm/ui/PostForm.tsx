@@ -4,7 +4,6 @@ import styles from './styles/PostForm.module.css'
 
 export const PostForm = () => {
     const id = getPostId();
-
     const context = usePostFormContext();
 
     const data = {

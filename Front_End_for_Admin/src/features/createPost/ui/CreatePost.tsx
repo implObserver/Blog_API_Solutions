@@ -12,7 +12,7 @@ export const CreatePost = () => {
         title: '',
     })
 
-    const formContext: PostFormContextType = {
+    const formContext: PostFormContext = {
         data,
         setData,
     }

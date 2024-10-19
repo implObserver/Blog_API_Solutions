@@ -4,7 +4,7 @@ import 'prismjs/themes/prism.css';
 import 'prismjs/components/prism-jsx.min.js';
 import styles from './styles/Input.module.css'
 import { useCodeAreaContext } from "../lib/context/Context";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 
 export const CodeArea = () => {
     const context = useCodeAreaContext();
@@ -29,18 +29,13 @@ export const CodeArea = () => {
         return Prism.highlight(code, Prism.languages.jsx, 'jsx');
     }, []);
 
-    const focusHandle = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-        const element = e.target as HTMLTextAreaElement;
-        element.setSelectionRange(element.value.length, element.value.length);
-    };
-
     return (
         <div
             id={`${context.value.getId()}`}
             className={styles.container}>
             <Editor
                 className={styles.area_code}
-                autoFocus={context.isFocus}
+                autoFocus={context.isFocused}
                 value={decodeJSX(value)}
                 onValueChange={handleChange}
                 highlight={highlight}
@@ -56,5 +51,3 @@ export const CodeArea = () => {
         </div>
     );
 };
-
-//<div className={styles.editable} contentEditable={true} data-placeholder={'woooow'}></div>

@@ -1,5 +1,4 @@
 import { AppDispath, store } from '@/app/model/store/Store';
-import { selectScrollRestoration } from '@/features/scrollRestoration/model/slice/selectors';
 import { scrollRestorationActions } from '@/features/scrollRestoration/model/slice/slice';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,8 +10,7 @@ import styles from '../styles/App.module.css'
 import { Footer } from '@/widgets/footer/ui/Footer';
 import { selectUserServices } from '@/entities/user';
 import { FastAuth } from '@/features/fastAuth/ui/FastAuth';
-import { processBackups } from '@/entities/postState/lib/helper/processBackups';
-import { Backup } from './Backup';
+import { Backup } from '../../../features/backup/ui/Backup';
 
 
 const getScroll = (pathname: string) => {

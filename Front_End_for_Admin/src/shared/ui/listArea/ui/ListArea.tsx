@@ -1,7 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
-import { useListAreaContext } from '../lib/context/Context';
 import styles from './styles/Input.module.css'
-import TextareaAutosize from 'react-textarea-autosize';
 import { Strong } from '../components/strong';
 import { Body } from '../components/body';
 

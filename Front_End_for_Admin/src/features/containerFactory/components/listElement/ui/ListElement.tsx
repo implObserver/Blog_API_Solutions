@@ -1,14 +1,13 @@
 import { AppDispath } from "@/app/model/store/Store";
 import {
     elementToModel,
-    virtualPostActions,
-    selectFocus,
     useElementContext
 } from "@/entities/element";
 import { ListArea, ListAreaContext } from "@/shared/ui/listArea";
 import { useDispatch, useSelector } from "react-redux";
 import styles from './styles/ListElement.module.css'
 import { useParams } from "react-router-dom";
+import { selectFocus, virtualPostActions } from "@/entities/postState";
 
 export const ListElement = () => {
     const context = useElementContext();
@@ -16,12 +15,12 @@ export const ListElement = () => {
     const dispatch = useDispatch<AppDispath>();
     const postid = parseInt(useParams().postid);
 
-    const textAreaContext: TextAreaContextType = {
+    const textAreaContext: TextAreaProps = {
         placeholder: 'Add text',
         strongPlaceholder: 'Strong',
         value: context.element,
         maxLength: 40,
-        isFocus: focus === context.index,
+        isFocused: focus === context.index,
     }
 
     const handleChange = (e: React.KeyboardEvent<HTMLDivElement>) => {

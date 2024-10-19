@@ -1,8 +1,6 @@
 import { AppDispath } from "@/app/model/store/Store";
-import {
-    focusActions,
-} from "@/entities/element";
-import { getVirtualPost } from "@/entities/element/lib/helper/getVirtualPost";
+import { getVirtualPost } from "@/entities/postState/lib/helper/getVirtualPost";
+import { focusActions } from "@/entities/postState";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
 import { useDispatch } from "react-redux";
 

@@ -20,8 +20,8 @@ export const Preview = () => {
         loadAvatar();
     }, [isUpdate]);
 
-    const avatarContext = {
-        image: avatar,
+    const avatarContext: AvatarContext = {
+        imageUrl: avatar,
     };
 
     return (

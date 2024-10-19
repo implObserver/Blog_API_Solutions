@@ -10,7 +10,7 @@ export const useContainerContext = () => {
     return props;
 }
 
-export const EmptyContext = createContext<undefined | CustomState>(undefined);
+export const EmptyContext = createContext<undefined | StateHandler>(undefined);
 
 export const useEmptyContext = () => {
     const props = useContext(EmptyContext);

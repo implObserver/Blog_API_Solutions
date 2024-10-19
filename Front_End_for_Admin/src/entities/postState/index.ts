@@ -1,1 +1,6 @@
 export { updateModelsOfPost } from './model/slice/openedPost/thunks/update/updateModelsOfPost'
+export { focusReducer, focusActions } from '../postState/model/slice/focus/slice'
+export { virtualPostActions, virtualPostReducer as modlelsOfOpenedPostReducer } from '../postState/model/slice/virtualPost/slice'
+export { counterActions, counterReducer } from '../postState/model/slice/counter/slice'
+export { selectFocus } from '../postState/model/slice/focus/selectors'
+export { selectVirtualPost as selectModelsOfOpenedPost } from '../postState/model/slice/virtualPost/selectors'

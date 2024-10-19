@@ -25,7 +25,7 @@ export const TextArea = React.memo(() => {
         <div className={styles.container} key={Math.random()}>
             <TextareaAutosize
                 id={context.value.getId().toString()}
-                autoFocus={context.isFocus}
+                autoFocus={context.isFocused}
                 onKeyUp={auto_grow}
                 placeholder={context.placeholder}
                 defaultValue={value}

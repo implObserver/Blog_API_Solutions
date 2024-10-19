@@ -5,7 +5,7 @@ import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispath } from "@/app/model/store/Store";
 import { modelsToContainers } from "../lib/helper/containerAssembly";
-import { getVirtualPost } from "../../../entities/element/lib/helper/getVirtualPost";
+import { getVirtualPost } from "../../../entities/postState/lib/helper/getVirtualPost";
 import { selectOpenedPost } from "@/entities/postState/model/slice/openedPost/selectors";
 import { backupsActions } from "@/entities/postState/model/slice/backups/slice";
 

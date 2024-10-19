@@ -1,12 +1,11 @@
 import { AppDispath } from "@/app/model/store/Store";
 import {
-    counterActions,
     elementToModel,
     ListElement,
-    virtualPostActions,
     TextArea
 } from "@/entities/element";
-import { getVirtualPost } from "@/entities/element/lib/helper/getVirtualPost";
+import { getVirtualPost } from "@/entities/postState/lib/helper/getVirtualPost";
+import { counterActions, virtualPostActions } from "@/entities/postState";
 import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
 import { useContainerContext } from "@/features/containerOS/lib";
 import { useDispatch } from "react-redux";

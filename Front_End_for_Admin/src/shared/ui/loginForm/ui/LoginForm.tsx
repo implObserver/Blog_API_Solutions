@@ -5,14 +5,14 @@ export const LoginForm = () => {
     const context = useLoginFormContext();
 
     const data = {
-        identifier: context.data.identifier,
-        password: context.data.password,
+        identifier: context.formData.identifier,
+        password: context.formData.password,
     }
 
     const handle = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newData = { ...data };
         newData[e.target.id] = e.target.value
-        context.setData(newData);
+        context.setFormData(newData);
     }
 
     return (
@@ -43,7 +43,7 @@ export const LoginForm = () => {
                     required>
                 </input>
             </div>
-            <button className={styles.button} type='submit'>{context.type}</button>
+            <button className={styles.button} type='submit'>{context.formType}</button>
         </form>
     )
 }

@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const updateProfile = createAsyncThunk(
     'services/update/profile',
-    async (profile: ProfileFormType, thunkAPI) => {
+    async (profile: ProfileForm, thunkAPI) => {
         try {
             const resp = await UpdateService.updateProfile(profile);
             const user = resp.data.user;

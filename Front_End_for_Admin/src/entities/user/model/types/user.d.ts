@@ -18,7 +18,7 @@ interface PostUpdate {
 
 interface UpdateData {
     user: UserData,
-    profile?: ProfileFormType,
+    profile?: ProfileForm,
     avatar?: File,
     posts?: Post,
 }

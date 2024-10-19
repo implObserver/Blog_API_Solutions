@@ -4,7 +4,7 @@ import { SubmitOfSignup } from "@/features/submitOfSignup";
 import { SpinnerLoader } from "@/shared/ui/spinnerLoader";
 import { useEffect } from "react";
 import { AppDispath } from "@/app/model/store/Store";
-import { NotificationDestributor } from "@/features/notificationDestributor/ui/NotificationDestributor";
+import { NotificationDistributor } from "@/features/notificationDistributor/ui/NotificationDistributor";
 
 const blogUrl = import.meta.env.VITE_BLOG_URL;
 
@@ -28,7 +28,7 @@ export const SignupWidget = () => {
         return (
             <div>
                 <SubmitOfSignup></SubmitOfSignup>
-                <NotificationDestributor />
+                <NotificationDistributor />
             </div>
         )
     }

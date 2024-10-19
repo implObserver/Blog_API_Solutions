@@ -1,13 +1,11 @@
 import { CheckBox } from "@/shared/ui/checkBox/ui/CheckBox"
 import styles from './styles/PublishBox.module.css'
 import { PublishPost } from "@/features/publishPost/ui/PublishPost"
-import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CheckBoxContext } from "@/shared/ui/checkBox/lib/context/Context";
 import { selectOpenedPost } from "@/entities/postState/model/slice/openedPost/selectors";
 
 export const PublishBox = () => {
-    const params = useParams();
     const post = useSelector(selectOpenedPost).openedPost;
 
     const isPublished = post.isPublished;

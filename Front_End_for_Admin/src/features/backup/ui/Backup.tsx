@@ -1,10 +1,10 @@
 import { AppDispath } from "@/app/model/store/Store";
-import { getVirtualPost } from "@/entities/element/lib/helper/getVirtualPost";
+import { getVirtualPost } from "@/entities/postState/lib/helper/getVirtualPost";
 import { processBackups } from "@/entities/postState/lib/helper/processBackups";
 import { backupsActions } from "@/entities/postState/model/slice/backups/slice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import styles from '../styles/App.module.css'
+import styles from './styles/Backup.module.css'
 
 export const Backup = ({ children }) => {
     const dispatch = useDispatch<AppDispath>();

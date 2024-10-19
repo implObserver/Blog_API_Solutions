@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export const ProfileFormContext = createContext<undefined | ProfileFormContextType>(undefined);
+export const ProfileFormContext = createContext<undefined | ProfileFormContext>(undefined);
 
 export const useProfileFormContext = () => {
     const props = useContext(ProfileFormContext);

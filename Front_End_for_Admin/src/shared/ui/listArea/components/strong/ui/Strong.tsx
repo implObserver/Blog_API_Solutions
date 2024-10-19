@@ -33,7 +33,7 @@ export const Strong = () => {
             <input
                 id={`strong_${context.value.getId()}`}
                 ref={inputRef}
-                autoFocus={context.isFocus}
+                autoFocus={context.isFocused}
                 onKeyUp={strong_grow}
                 placeholder={context.strongPlaceholder}
                 defaultValue={strong}

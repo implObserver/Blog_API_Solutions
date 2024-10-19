@@ -24,7 +24,7 @@ export const Body = () => {
         <div className={styles.container}>
             <TextareaAutosize
                 id={`body_${context.value.getId()}`}
-                autoFocus={context.isFocus}
+                autoFocus={context.isFocused}
                 onKeyUp={auto_grow}
                 placeholder={context.placeholder}
                 defaultValue={value}

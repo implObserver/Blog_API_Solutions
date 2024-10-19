@@ -1,6 +1,5 @@
 import styles from './styles/DisplayImage.module.css'
 import { useImageContext } from "../../../lib/context/Context";
-import { useMemo } from 'react';
 
 export const DisplayImage = () => {
     const context = useImageContext();

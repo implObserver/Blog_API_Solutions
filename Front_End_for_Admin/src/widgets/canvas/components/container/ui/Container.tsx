@@ -39,9 +39,9 @@ export const Container = React.memo(() => {
         index,
     };
 
-    const dropdownElementContext = {
-        state: dropdownStatus.getState(),
-        margin: false,
+    const dropdownElementContext: DropdownState = {
+        isOpen: dropdownStatus.getState(),
+        hasMargin: false,
     };
 
     const elementListContext = useMemo(() => ({

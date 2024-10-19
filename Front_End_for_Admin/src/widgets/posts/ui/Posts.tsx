@@ -1,10 +1,7 @@
 import styles from './styles/Posts.module.css'
 import { CreatePost } from "@/features/createPost"
-import { NotificationDestributor } from "@/features/notificationDestributor/ui/NotificationDestributor"
+import { NotificationDistributor } from "@/features/notificationDistributor/ui/NotificationDistributor"
 import { PaginationShowcaseOfUserPosts } from "../components/canvasOfPosts/ui/PaginationShowcaseOfUserPosts"
-import { useSelector } from 'react-redux'
-import { selectOpenedPost } from '@/entities/postState/model/slice/openedPost/selectors'
-import { SpinnerLoader } from '@/shared/ui/spinnerLoader'
 
 export const Posts = () => {
     return (
@@ -13,7 +10,7 @@ export const Posts = () => {
                 <span className={styles.text}>Your posts:</span>
                 <div>
                     <CreatePost></CreatePost>
-                    <NotificationDestributor />
+                    <NotificationDistributor />
                 </div>
             </div>
             <PaginationShowcaseOfUserPosts></PaginationShowcaseOfUserPosts>

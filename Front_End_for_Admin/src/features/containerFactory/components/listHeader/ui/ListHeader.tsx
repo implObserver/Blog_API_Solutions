@@ -1,14 +1,13 @@
 import { AppDispath } from "@/app/model/store/Store";
 import {
     elementToModel,
-    virtualPostActions,
-    selectFocus,
     useElementContext
 } from "@/entities/element";
 import { TextArea, TextAreaContext } from "@/shared/ui/textArea"
 import { useDispatch, useSelector } from "react-redux";
 import styles from './styles/ListHeader.module.css'
 import { useParams } from "react-router-dom";
+import { selectFocus, virtualPostActions } from "@/entities/postState";
 
 export const ListHeader = () => {
     const context = useElementContext();
@@ -16,11 +15,11 @@ export const ListHeader = () => {
     const dispatch = useDispatch<AppDispath>();
     const postid = parseInt(useParams().postid);
 
-    const textAreaContext: TextAreaContextType = {
+    const textAreaContext: TextAreaProps = {
         placeholder: 'Add list name',
         value: context.element,
         maxLength: -1,
-        isFocus: focus === context.index,
+        isFocused: focus === context.index,
         updater: context.updater,
     }
 

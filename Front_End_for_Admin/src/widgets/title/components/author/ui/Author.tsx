@@ -2,14 +2,11 @@ import { selectUserServices } from "@/entities/user"
 import { useDispatch, useSelector } from "react-redux"
 import styles from './styles/Author.module.css'
 import { AppDispath } from "@/app/model/store/Store";
-import { selectOpenedPost } from "@/entities/postState/model/slice/openedPost/selectors";
-import { virtualPostActions } from "@/entities/element";
-import { getVirtualAuthor } from "@/entities/element/lib/helper/getVirtualAuthor";
+import { getVirtualAuthor } from "@/entities/postState/lib/helper/getVirtualAuthor";
+import { virtualPostActions } from "@/entities/postState";
 
 export const Author = () => {
     const user = useSelector(selectUserServices).user;
-    const postService = useSelector(selectOpenedPost);
-    const post = postService.openedPost;
     const author = getVirtualAuthor();
     const dispatch = useDispatch<AppDispath>();
 

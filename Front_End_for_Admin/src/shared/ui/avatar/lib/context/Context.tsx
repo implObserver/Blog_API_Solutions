@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export const AvatarContext = createContext<undefined | AvatarContextType>(undefined);
+export const AvatarContext = createContext<undefined | AvatarContext>(undefined);
 
 export const useAvatarContext = () => {
     const props = useContext(AvatarContext);

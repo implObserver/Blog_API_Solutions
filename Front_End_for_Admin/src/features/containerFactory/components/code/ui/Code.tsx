@@ -1,14 +1,13 @@
 import { AppDispath } from "@/app/model/store/Store";
 import {
     elementToModel,
-    virtualPostActions,
-    selectFocus,
     useElementContext
 } from "@/entities/element";
 import { CodeArea, CodeAreaContext } from "@/shared/ui/codeArea";
 import { useDispatch, useSelector } from "react-redux";
 import styles from './styles/Code.module.css'
 import { useParams } from "react-router-dom";
+import { selectFocus, virtualPostActions } from "@/entities/postState";
 
 export const Code = () => {
     const context = useElementContext();
@@ -16,11 +15,11 @@ export const Code = () => {
     const dispatch = useDispatch<AppDispath>();
     const postid = parseInt(useParams().postid);
 
-    const codeAreaContext: TextAreaContextType = {
+    const codeAreaContext: TextAreaProps = {
         placeholder: 'Add code',
         value: context.element,
         maxLength: -1,
-        isFocus: focus === context.index,
+        isFocused: focus === context.index,
     }
 
     const handleChange = (e: React.KeyboardEvent<HTMLDivElement>) => {

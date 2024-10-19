@@ -1,12 +1,11 @@
 import { AppDispath } from "@/app/model/store/Store";
 import {
-    counterActions,
     elementToModel,
-    virtualPostActions,
     Title,
     useElementContext
 } from "@/entities/element";
-import { getVirtualPost } from "@/entities/element/lib/helper/getVirtualPost";
+import { getVirtualPost } from "@/entities/postState/lib/helper/getVirtualPost";
+import { counterActions, virtualPostActions } from "@/entities/postState";
 import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";

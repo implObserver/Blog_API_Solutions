@@ -1,11 +1,10 @@
 import { UpdateOfProfile } from "@/features/updateOfProfile"
 import styles from './styles/DataOfProfile.module.css'
-import { useDispatch, useSelector } from "react-redux";
-import { selectUserServices, servicesActions } from "@/entities/user";
+import { useDispatch } from "react-redux";
+import { servicesActions } from "@/entities/user";
 import { AppDispath } from "@/app/model/store/Store";
 import { useEffect } from "react";
-import { Error } from "@/entities/error";
-import { NotificationDestributor } from "@/features/notificationDestributor/ui/NotificationDestributor";
+import { NotificationDistributor } from "@/features/notificationDistributor/ui/NotificationDistributor";
 
 export const DataOfProfile = () => {
     const dispatch = useDispatch<AppDispath>();
@@ -17,7 +16,7 @@ export const DataOfProfile = () => {
     return (
         <div className={styles.data_of_profile}>
             <UpdateOfProfile></UpdateOfProfile>
-            <NotificationDestributor />
+            <NotificationDistributor />
         </div>
     )
 }

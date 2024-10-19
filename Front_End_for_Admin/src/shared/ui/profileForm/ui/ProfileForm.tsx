@@ -5,15 +5,15 @@ export const ProfileForm = () => {
     const context = useProfileFormContext();
     console.log(context)
     const data = {
-        nickname: context.data.nickname ? context.data.nickname : '',
-        gender: context.data.gender ? context.data.gender : 'other',
-        age: context.data.age ? context.data.age : 0,
+        nickname: context.formData.nickname ? context.formData.nickname : '',
+        gender: context.formData.gender ? context.formData.gender : 'other',
+        age: context.formData.age ? context.formData.age : 0,
     }
 
     const handle = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newData = { ...data };
         newData[e.target.id] = e.target.value
-        context.setData(newData);
+        context.setFormData(newData);
     }
 
     return (

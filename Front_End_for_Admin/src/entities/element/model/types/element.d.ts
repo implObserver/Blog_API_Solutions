@@ -7,9 +7,9 @@ interface CanvasElement {
     element: ElementData<ElementVariant>,
     model: Model<ModelVariant>,
     isFocused?: boolean,
-    dropdownState?: CustomState,
+    dropdownState?: StateHandler,
     index: number,
-    updater?: CustomState,
+    updater?: StateHandler,
 }
 
 interface ElementFeatures {

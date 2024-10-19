@@ -1,10 +1,7 @@
 import styles from './styles/UploadImage.module.css'
-import { useImageContext } from "../../../lib/context/Context";
 import { useMemo } from 'react';
 
 export const UploadImage = () => {
-    const context = useImageContext();
-
     const id = useMemo(() => `file_upload_${Math.random()}`, []);
 
     return (

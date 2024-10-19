@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 const id = Cookies.get('user_id');
 
 export const PostService = {
-    addPost(dataPost: PostFormType) {
+    addPost(dataPost: PostForm) {
         return instance.post(`/api/user/:${id}/posts/add`, dataPost)
     },
     addImage(data: ImageUpdate) {

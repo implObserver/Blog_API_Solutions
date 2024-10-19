@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export const SignupFormContext = createContext<undefined | SignupFormContextType>(undefined);
+export const SignupFormContext = createContext<undefined | SignupContext>(undefined);
 
 export const useSignupFormContext = () => {
     const props = useContext(SignupFormContext);

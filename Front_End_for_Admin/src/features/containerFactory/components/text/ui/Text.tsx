@@ -1,6 +1,6 @@
 import { AppDispath } from "@/app/model/store/Store";
-import { elementToModel, selectFocus, useElementContext } from "@/entities/element";
-import { virtualPostActions } from "@/entities/element/model/slice/virtualPost/slice";
+import { elementToModel, useElementContext } from "@/entities/element";
+import { selectFocus, virtualPostActions } from "@/entities/postState";
 import { TextArea, TextAreaContext } from "@/shared/ui/textArea"
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -11,11 +11,11 @@ export const Text = () => {
     const dispatch = useDispatch<AppDispath>();
     const postId = parseInt(useParams().postid, 10);
 
-    const textAreaContext: TextAreaContextType = {
+    const textAreaContext: TextAreaProps = {
         placeholder: 'Add text',
         value: elementContext,
         maxLength: -1,
-        isFocus: focusIndex === index,
+        isFocused: focusIndex === index,
     };
 
     const handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {

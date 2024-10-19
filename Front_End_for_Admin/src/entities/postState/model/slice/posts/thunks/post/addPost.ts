@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const addPost = createAsyncThunk(
     'services/add/post/',
-    async (dataPost: PostFormType, thunkAPI) => {
+    async (dataPost: PostForm, thunkAPI) => {
         try {
             const resp = await PostService.addPost(dataPost);
             const response = resp.data;

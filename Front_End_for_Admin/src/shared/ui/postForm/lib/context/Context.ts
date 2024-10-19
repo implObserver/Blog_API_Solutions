@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export const PostFormContext = createContext<undefined | PostFormContextType>(undefined);
+export const PostFormContext = createContext<undefined | PostFormContext>(undefined);
 
 export const usePostFormContext = () => {
     const props = useContext(PostFormContext);

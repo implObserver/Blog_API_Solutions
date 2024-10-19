@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export const TextAreaContext = createContext<undefined | TextAreaContextType>(undefined);
+export const TextAreaContext = createContext<undefined | TextAreaProps>(undefined);
 
 export const useTextAreaContext = () => {
     const props = useContext(TextAreaContext);

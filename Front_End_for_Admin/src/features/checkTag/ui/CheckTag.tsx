@@ -10,9 +10,9 @@ export const CheckTag = () => {
     const click = useCustomState(false);
     const post = useSelector(selectOpenedPost).openedPost;
 
-    const dropdownContext: DropdownContextType = {
-        margin: false,
-        state: click.getState(),
+    const dropdownContext: DropdownState = {
+        hasMargin: false,
+        isOpen: click.getState(),
     }
 
     const externalResetContext: ExternalResetContextType = {

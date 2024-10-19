@@ -1,6 +1,5 @@
-import { focusReducer, selectFocus, } from '@/entities/element';
-import { counterReducer } from '@/entities/element/model/slice/counter/slice';
-import { virtualPostReducer } from '@/entities/element/model/slice/virtualPost/slice';
+import { counterReducer } from '@/entities/postState/model/slice/counter/slice';
+import { virtualPostReducer } from '@/entities/postState/model/slice/virtualPost/slice';
 import { snapshotSliceReducer } from '@/entities/postPreview/model/slice/snapshot/slice';
 import { backupsReducer } from '@/entities/postState/model/slice/backups/slice';
 import { openedPostReducer } from '@/entities/postState/model/slice/openedPost/slice';
@@ -19,6 +18,7 @@ import {
   REGISTER,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage';
+import { focusReducer, selectFocus } from '@/entities/postState';
 
 const rootReducer = combineReducers({
   focus: focusReducer,

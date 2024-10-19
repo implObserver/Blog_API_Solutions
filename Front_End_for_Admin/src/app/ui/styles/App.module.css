@@ -50,8 +50,3 @@ header {
 }
 
 footer {}
-
-.backup {
-  display: grid;
-  height: inherit;
-}

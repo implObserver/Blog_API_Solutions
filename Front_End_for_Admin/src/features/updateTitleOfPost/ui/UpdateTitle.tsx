@@ -13,7 +13,7 @@ export const UpdateTitle = ({ postid }) => {
         title: context.text.getState(),
     })
 
-    const formContext: PostFormContextType = {
+    const formContext: PostFormContext = {
         data,
         setData,
     }

@@ -16,7 +16,7 @@ export const useCustomState = (state1 = false, state2 = true) => {
         return state;
     };
 
-    const result: CustomState = { toggle, getState, setState };
+    const result: StateHandler = { toggle, getState, setState };
 
     return result;
 };

@@ -25,7 +25,7 @@ export const Preview = () => {
         verifyPostImages();
     }, []);
 
-    const previewContext: ImageStateContextType = {
+    const previewContext: ImageContext = {
         model,
         file: selectedImage,
     }

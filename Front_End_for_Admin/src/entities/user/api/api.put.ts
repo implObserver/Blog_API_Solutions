@@ -16,7 +16,7 @@ export const UpdateService = {
 
         return instance.put(`/api/user/${id}/profile/update/avatar`, file, config)
     },
-    updateProfile(profile: ProfileFormType) {
+    updateProfile(profile: ProfileForm) {
         return instance.put(`/api/user/${id}/profile/update/`, profile)
     },
 }

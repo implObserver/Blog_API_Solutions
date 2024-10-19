@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export const LoginFormContext = createContext<undefined | LoginFormContextType>(undefined);
+export const LoginFormContext = createContext<undefined | LoginContext>(undefined);
 
 export const useLoginFormContext = () => {
     const props = useContext(LoginFormContext);

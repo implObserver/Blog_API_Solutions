@@ -13,10 +13,10 @@ export const SubmitOfLogin = () => {
         password: '',
     })
 
-    const formContext: LoginFormContextType = {
-        data,
-        setData,
-        type: 'Log In',
+    const formContext: LoginContext = {
+        formData: data,
+        setFormData: setData,
+        formType: 'Log In',
     }
 
     const submitHandle = (e) => {

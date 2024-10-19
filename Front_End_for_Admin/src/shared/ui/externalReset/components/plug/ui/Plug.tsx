@@ -6,8 +6,8 @@ export const Plug = () => {
     const context = usePlugContext();
 
     const className = useMemo(() => {
-        return context.state ? `${styles.plug} ${context.index}` : '';
-    }, [context.state, context.index]);
+        return context.isActive ? `${styles.plug} ${context.key}` : '';
+    }, [context.isActive, context.key]);
 
     return (
         <div className={className}></div>

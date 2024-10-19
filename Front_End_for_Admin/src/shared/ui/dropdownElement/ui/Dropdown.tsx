@@ -8,8 +8,8 @@ export const Dropdown = ({ children }) => {
         <div className={styles.dropdown}>
             <div className={`
                 ${styles.content} 
-                ${status.state ? styles.open : styles.close}
-                ${status.margin ? styles.margin : ''}`}
+                ${status.isOpen ? styles.open : styles.close}
+                ${status.hasMargin ? styles.margin : ''}`}
             >
                 {children}
             </div>

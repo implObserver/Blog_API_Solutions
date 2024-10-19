@@ -1,10 +1,10 @@
 import { AppDispath } from "@/app/model/store/Store"
 import {
-    virtualPostActions,
     useElementContext
 } from "@/entities/element";
-import { getVirtualPost } from "@/entities/element/lib/helper/getVirtualPost";
+import { getVirtualPost } from "@/entities/postState/lib/helper/getVirtualPost";
 import { removePostImage } from "@/entities/postPreview/lib/helper/indexedDB/removePostImage";
+import { virtualPostActions } from "@/entities/postState";
 import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
 import { deletePostImage } from "@/entities/postState/model/slice/openedPost/thunks/delete/deletePostImage";
 

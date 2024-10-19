@@ -1,81 +1,81 @@
-interface ImageStateContextType {
+interface ImageContext {
     model: Model<ModelVariant>,
     file: Blob,
-    setImgFile?: React.Dispatch<React.SetStateAction<File>>,
+    setImageFile?: React.Dispatch<React.SetStateAction<File>>,
 }
 
-interface ProfileFormContextType {
-    data: ProfileFormType,
-    setData: React.Dispatch<React.SetStateAction<ProfileFormType>>,
+interface ProfileFormContext {
+    formData: ProfileForm,
+    setFormData: React.Dispatch<React.SetStateAction<ProfileForm>>,
     username: string,
 }
 
-interface PostFormContextType {
-    data: PostFormType,
-    setData: React.Dispatch<React.SetStateAction<PostFormType>>,
+interface PostFormContext {
+    data: PostForm,
+    setData: React.Dispatch<React.SetStateAction<PostForm>>,
 }
 
-interface ProfileFormType {
+interface ProfileForm {
     nickname: string,
     gender: string,
     age: number,
 }
 
-interface PostFormType {
+interface PostForm {
     title: string,
 }
 
-interface DropdownContextType {
-    margin: boolean,
-    state: boolean,
+interface DropdownState {
+    hasMargin: boolean,
+    isOpen: boolean,
 }
 
-interface TextAreaContextType {
+interface TextAreaProps {
     placeholder: string,
     strongPlaceholder?: string,
     value: ElementData<ElementVariant>,
     maxLength: number,
-    isFocus?: boolean,
+    isFocused?: boolean,
     ref?: React.MutableRefObject<HTMLTextAreaElement | null>,
     id?: number,
-    updater?: CustomState,
+    updater?: StateHandler,
     index?: number,
 }
 
-interface CustomState {
+interface StateHandler {
     toggle: () => void;
     getState: () => any;
     setState: (state: any) => void;
 }
 
-interface PlugContextType {
-    state: boolean,
-    index: string,
+interface PlaceholderContext {
+    isActive: boolean,
+    key: string,
 }
 
-interface SignupFormContextType {
-    data: SignupType,
-    setData: React.Dispatch<React.SetStateAction<SignupType>>,
-    type: string,
+interface SignupContext {
+    formData: SignupData,
+    setFormData: React.Dispatch<React.SetStateAction<SignupData>>,
+    formType: string,
 }
 
-interface LoginFormContextType {
-    data: LoginType,
-    setData: React.Dispatch<React.SetStateAction<LoginType>>,
-    type: string,
+interface LoginContext {
+    formData: LoginData,
+    setFormData: React.Dispatch<React.SetStateAction<LoginData>>,
+    formType: string,
 }
 
-interface SignupType {
+interface SignupData {
     username: string,
     email: string,
     password: string,
 }
 
-interface LoginType {
+interface LoginData {
     identifier: string,
     password: string,
 }
 
-interface AvatarContextType {
-    image: string,
+interface AvatarContext {
+    imageUrl: string,
 }

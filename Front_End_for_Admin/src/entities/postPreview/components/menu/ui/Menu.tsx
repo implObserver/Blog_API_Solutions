@@ -17,9 +17,9 @@ export const Menu = ({foldername}) => {
         index: `${foldername} container`,
     }
 
-    const dropdownContext: DropdownContextType = {
-        state: update.getState(),
-        margin: false,
+    const dropdownContext: DropdownState = {
+        isOpen: update.getState(),
+        hasMargin: false,
     }
 
     const onClick = () => {
