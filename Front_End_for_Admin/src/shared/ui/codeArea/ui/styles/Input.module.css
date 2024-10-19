@@ -4,7 +4,8 @@
 }
 
 .area_code {
-    width: 70vw; /* или любое другое значение */
+    width: 70vw;
+    max-width: 1000px;
 }
 
 .editable:empty:before {

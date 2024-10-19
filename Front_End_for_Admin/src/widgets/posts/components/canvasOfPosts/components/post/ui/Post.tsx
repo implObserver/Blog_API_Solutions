@@ -9,7 +9,7 @@ export const Post = ({ post }) => {
     const toggle = useCustomState(false);
     const text = useCustomState(post.title);
 
-    const context: PostPreviewContextType = {
+    const context: PostPreviewContext = {
         features: [
             <DeletePost postId={post.id}></DeletePost>,
             <EditPost></EditPost>

@@ -25,7 +25,7 @@ export const MainLayout: React.FC = () => {
     const { pathname } = useLocation();
     const dispatch = useDispatch<AppDispath>();
     gsap.registerPlugin(ScrollToPlugin);
-    const isAuth = useSelector(selectUserServices).isAuth;
+    const isAuth = useSelector(selectUserServices).isAuthenticated;
 
 
 

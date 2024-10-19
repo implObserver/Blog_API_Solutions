@@ -31,13 +31,13 @@ const user_logout_get = (req, res, next) => {
 
 const user_get = asyncHandler(async (req, res) => {
   const user = res.locals.user;
+  console.log(user)
   res.json({
     user: {
       id: user.id,
       email: user.email,
+      username: user.username,
       profile: user.profile,
-      posts: user.posts,
-      comment: user.comments,
     },
   });
 });

@@ -1,9 +1,6 @@
-import { selectUserServices } from "@/entities/user";
 import { Dropdown, DropdownContext } from "@/shared/ui/dropdownElement";
 import { Tag, TagContext } from "@/shared/ui/tag"
-import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { SelectTag } from "../components/selectTag/ui/SelectTag";
 import { useCustomState } from "@/shared/lib";
 import { ExternalReset, ExternalResetContext } from "@/shared/ui/externalReset";

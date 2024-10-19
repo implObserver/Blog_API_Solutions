@@ -10,34 +10,34 @@ const postsSlice = createSlice({
     name: 'posts',
     initialState,
     reducers: {
-        setCurrentPage: (state: Posts, action: PayloadAction<number>) => {
+        setCurrentPage: (state: PostsState, action: PayloadAction<number>) => {
             state.currentPage = action.payload;
         },
-        setTotalPages: (state: Posts, action: PayloadAction<number>) => {
+        setTotalPages: (state: PostsState, action: PayloadAction<number>) => {
             state.totalPages = action.payload;
         },
-        updatePost: (state: Posts, action: PayloadAction<Post>) => {
+        updatePost: (state: PostsState, action: PayloadAction<Post>) => {
             const posts = state.posts;
             const index = posts.findIndex(post => post.id === action.payload.id);
             posts.splice(index, 1, action.payload);
         },
-        cancelRequest: (state: Posts) => {
-            state.isPending = false;
+        cancelRequest: (state: PostsState) => {
+            state.isLoading = false;
         },
     },
     extraReducers: (builder) => {
-        const setPendingStatus = (state: Posts) => {
-            state.isPending = true;
+        const setLoading = (state: PostsState) => {
+            state.isLoading = true;
         };
-        const setFulfilledStatus = (state: Posts) => {
-            state.isPending = false;
+        const setLoadingComplete = (state: PostsState) => {
+            state.isLoading = false;
         };
-        const setRejectedStatus = (state: Posts) => {
-            state.isPending = false;
+        const setErrorState = (state: PostsState) => {
+            state.isLoading = false;
         };
 
-        const handleFulfilledResponse = (state: Posts, action: PayloadAction<any>) => {
-            setFulfilledStatus(state);
+        const updateTotalPosts = (state: PostsState, action: PayloadAction<any>) => {
+            setLoadingComplete(state);
             if (!action.payload.error) {
                 state.totalPosts = action.payload.data.message.totalPosts;
             } else {
@@ -45,38 +45,28 @@ const postsSlice = createSlice({
             }
         };
 
-        builder
-            .addCase(getPostsOfUser.pending, setPendingStatus)
-            .addCase(getPostsOfUser.fulfilled, (state, action) => {
-                setFulfilledStatus(state);
-                if (!action.payload.error) {
-                    console.log(action.payload)
-                    state.posts = action.payload.data.message.posts;
-                    state.totalPages = action.payload.data.message.totalPages;
-                    state.totalPosts = action.payload.data.message.totalPosts;
-                }
-            })
-            .addCase(getPostsOfUser.rejected, setRejectedStatus);
+        const updatePosts = (state: PostsState, action: PayloadAction<any>) => {
+            updateTotalPosts(state, action);
+            if (!action.payload.error) {
+                state.posts = action.payload.data.message.posts;
+                state.totalPages = action.payload.data.message.totalPages;
+            }
+        };
 
-        builder
-            .addCase(addPost.pending, setPendingStatus)
-            .addCase(addPost.fulfilled, handleFulfilledResponse)
-            .addCase(addPost.rejected, setRejectedStatus);
+        const asyncActions = [
+            { action: addPost, handler: updateTotalPosts },
+            { action: deletePost, handler: updateTotalPosts },
+            { action: updateTitle, handler: updateTotalPosts },
+            { action: updatePost, handler: updateTotalPosts },
+            { action: getPostsOfUser, handler: updatePosts },
+        ];
 
-        builder
-            .addCase(deletePost.pending, setPendingStatus)
-            .addCase(deletePost.fulfilled, handleFulfilledResponse)
-            .addCase(deletePost.rejected, setRejectedStatus);
-
-        builder
-            .addCase(updateTitle.pending, setPendingStatus)
-            .addCase(updateTitle.fulfilled, handleFulfilledResponse)
-            .addCase(updateTitle.rejected, setRejectedStatus);
-
-        builder
-            .addCase(updatePost.pending, setPendingStatus)
-            .addCase(updatePost.fulfilled, handleFulfilledResponse)
-            .addCase(updatePost.rejected, setRejectedStatus);
+        asyncActions.forEach(({ action, handler }) => {
+            builder
+                .addCase(action.pending, setLoading)
+                .addCase(action.fulfilled, (state, action) => handler(state, action))
+                .addCase(action.rejected, setErrorState);
+        });
     }
 });
 

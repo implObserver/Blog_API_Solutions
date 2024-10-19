@@ -16,7 +16,7 @@ export const SignupWidget = () => {
         dispatch(servicesActions.clearErrors());
     }, [])
 
-    if (services.isPending) {
+    if (services.isLoading) {
         return (
             <>
                 <SpinnerLoader></SpinnerLoader>
@@ -24,7 +24,7 @@ export const SignupWidget = () => {
         )
     }
 
-    if (!services.isAuth) {
+    if (!services.isAuthenticated) {
         return (
             <div>
                 <SubmitOfSignup></SubmitOfSignup>
@@ -32,7 +32,7 @@ export const SignupWidget = () => {
             </div>
         )
     }
-    if (services.isAuth) {
+    if (services.isAuthenticated) {
         window.location.href = blogUrl;
     }
 }

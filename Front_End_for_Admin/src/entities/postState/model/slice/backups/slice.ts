@@ -5,14 +5,14 @@ const backupsSlice = createSlice({
     name: 'backups',
     initialState,
     reducers: {
-        addBackup: (state: Backups, action: PayloadAction<Post>) => {
+        addBackup: (state: PostBackups, action: PayloadAction<Post>) => {
             const backups = state.backups;
             const index = backups.findIndex(post => post.id === action.payload.id);
             index === -1
                 ? backups.push(action.payload)
                 : backups.splice(index, 1, action.payload);
         },
-        removeBackup: (state: Backups, action: PayloadAction<Post>) => {
+        removeBackup: (state: PostBackups, action: PayloadAction<Post>) => {
             const backups = state.backups;
             const index = backups.findIndex(post => post.id === action.payload.id);
             backups.splice(index, 1);

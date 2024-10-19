@@ -6,7 +6,7 @@ export const updatePublishStatus = createAsyncThunk(
     'services/update/publish_status/',
     async (data: UpdatePublishStatus, thunkAPI) => {
         try {
-            const isAuth = store.getState().userServices.isAuth;
+            const isAuth = store.getState().userServices.isAuthenticated;
             if (isAuth) {
                 const resp = await UpdateService.updatePublishStatusOfPost(data);
                 const response = resp.data;

@@ -1,6 +1,8 @@
 .profile {
     display: grid;
     column-gap: 10px;
+    width: min-content;
+    padding: 20px;
 }
 
 .wrapper_posts_info {
@@ -10,6 +12,5 @@
 
 .wrapper_profile_info {
     display: grid;
-    justify-content: center;
     padding: 10px;
 }

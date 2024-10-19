@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import styles from './styles/AuthPanel.module.css'
 
 export const AuthPanel = () => {
-    const user = useSelector(selectUserServices).user;
+    const user: User = useSelector(selectUserServices).user;
     console.log(user)
     if (user === null)
         return (
@@ -22,7 +22,7 @@ export const AuthPanel = () => {
         const username = user.profile.name !== null ? user.profile.name : user.email;
         return (
             <div className={styles.panel_auth}>
-                <span>{username}</span>
+                <span>{user.username}</span>
                 <div className={styles.wrapper_preview}>
                     <UserPreview></UserPreview>
                 </div>

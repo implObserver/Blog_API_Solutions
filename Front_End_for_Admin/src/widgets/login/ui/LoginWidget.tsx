@@ -16,7 +16,7 @@ export const LoginWidget = () => {
         dispatch(servicesActions.clearErrors());
     }, [])
 
-    if (services.isPending) {
+    if (services.isLoading) {
         return (
             <>
                 <SpinnerLoader></SpinnerLoader>
@@ -24,7 +24,7 @@ export const LoginWidget = () => {
         )
     }
 
-    if (!services.isAuth) {
+    if (!services.isAuthenticated) {
         return (
             <div>
                 <SubmitOfLogin></SubmitOfLogin>
@@ -33,7 +33,7 @@ export const LoginWidget = () => {
         )
     }
 
-    if (services.isAuth) {
+    if (services.isAuthenticated) {
         window.location.href = blogUrl;
     }
 }

@@ -18,7 +18,7 @@ export const ClickToRemoveElement = () => {
     const postid = parseInt(useParams().postid, 10);
 
     const handleClick = () => {
-        const context: CellOfPost = { postid, model };
+        const context: PostCell = { postid, model };
         const models = getVirtualPost().models;
 
         dispatch(virtualPostActions.removeModel(model));

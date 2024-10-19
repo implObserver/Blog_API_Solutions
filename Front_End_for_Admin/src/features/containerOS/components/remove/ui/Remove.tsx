@@ -19,7 +19,7 @@ export const Remove = ({ children }) => {
         if (!isEmpty.getState() || currentIndex <= 2) return;
         const models = getVirtualPost().models;
         const updateContext: UpdateModels = { postid: postId, models };
-        const cellContext: CellOfPost = { postid: postId, model };
+        const cellContext: PostCell = { postid: postId, model };
 
         dispatch(virtualPostActions.removeModel(model));
         dispatch(openedPostActions.updateModels(updateContext));

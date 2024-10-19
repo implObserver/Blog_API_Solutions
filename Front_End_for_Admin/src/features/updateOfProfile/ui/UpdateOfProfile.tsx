@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 export const UpdateOfProfile = () => {
     const dispath = useDispatch<AppDispath>();
     const user = useSelector(selectUserServices).user;
-    const username = user.profile.name ? user.profile.name : user.email;
+    const username = user.username;
 
     const [data, setData] = useState({
         nickname: user.profile.name,

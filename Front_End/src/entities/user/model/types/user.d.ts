@@ -28,7 +28,7 @@ interface User {
     id?: number,
     email?: string,
     profile?: Profile,
-    posts?: Post[],
+    username: string,
 }
 
 interface Profile {

@@ -39,7 +39,6 @@ export const virtualPostSlice = createSlice({
             state.post.models = action.payload;
         },
         setPost: (state: VirtualPost, action: PayloadAction<Post>) => {
-            console.log(action.payload)
             state.post = action.payload;
         },
         updateAuthor: (state: VirtualPost, action: PayloadAction<string>) => {

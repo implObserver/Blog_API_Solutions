@@ -52,9 +52,6 @@ export const PaginationShowcaseOfUserPosts = () => {
         if (element.tagName === 'IMG') {
             dispatch(openedPostActions.setOpenedPost(post));
             dispatch(virtualPostActions.setPost(post));
-            if (post.author === '') {
-                dispatch(virtualPostActions.updateAuthor(user.profile.name));
-            }
         }
     }
 

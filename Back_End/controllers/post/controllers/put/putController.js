@@ -43,6 +43,7 @@ const post_update_put = [
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
+    console.log(req.body);
     if (!errors.isEmpty()) {
       console.log(errors.errors[0].msg);
       return res.status(400).send({ error: errors.errors[0].msg });

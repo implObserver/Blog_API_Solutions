@@ -30,7 +30,7 @@ export const Add = ({ children }) => {
             : elementToModel(TextArea());
         const updateModelsContext: UpdateModels = { postid: postId, models };
         const updateElementContext: UpdateElement = { postid: postId, currentModel: model, newModel };
-        const addModelContext: CellOfPost = { postid: postId, model, newModel };
+        const addModelContext: PostCell = { postid: postId, model, newModel };
 
         dispatch(virtualPostActions.addModel(updateElementContext));
         dispatch(openedPostActions.updateModels(updateModelsContext));

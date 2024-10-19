@@ -11,77 +11,64 @@ const userServicesSlice = createSlice({
     name: 'services',
     initialState,
     reducers: {
-        clearErrors: (state: ServicesDataType) => {
+        clearErrors: (state: ServiceStatus) => {
             state.error = null;
         },
-        reset: (state: ServicesDataType) => {
-            state.isAuth = false;
+        reset: (state: ServiceStatus) => {
+            state.isAuthenticated = false;
             state.user = null;
-            state.isPending = false;
+            state.isLoading = false;
         },
-        update: (state: ServicesDataType) => {
-            state.isUpdate = !state.isUpdate;
+        update: (state: ServiceStatus) => {
+            state.isUpdating = !state.isUpdating;
         }
     },
     extraReducers: (builder) => {
-        const handlePending = (state: ServicesDataType) => {
-            state.isPending = true;
+        const setLoading = (state: ServiceStatus) => {
+            state.isLoading = true;
         };
-        const handleFulfilled = (state: ServicesDataType) => {
-            state.isPending = false;
+        const setAuthenticated = (state: ServiceStatus) => {
+            setLoadingComplete(state);
+            state.isAuthenticated = true;
+        }
+        const setLoadingComplete = (state: ServiceStatus) => {
+            state.isLoading = false;
         };
 
-        const handleFulfilledWithUserUpdate = (state: ServicesDataType, action: any) => {
-            state.isPending = false;
+        const handleUserUpdate = (state: ServiceStatus, action: any) => {
+            state.isLoading = false;
             if (!action.payload.error) {
                 state.user = action.payload.data.message;
-                state.isAuth = true;
-                state.error = null;
+                state.isAuthenticated = true;
             } else {
                 state.error = action.payload.data;
             }
         };
 
-        const handleRejected = (state: ServicesDataType) => {
-            state.isPending = false;
+        const setErrorState = (state: ServiceStatus) => {
+            state.isLoading = false;
         };
-        const handleFulfilledLogout = (state: ServicesDataType) => {
-            state.isAuth = false;
+        const handleLogout = (state: ServiceStatus) => {
+            state.isAuthenticated = false;
             state.user = null;
-            state.isPending = false;
+            state.isLoading = false;
         }
-        builder
-            .addCase(login.pending, handlePending)
-            .addCase(login.fulfilled, handleFulfilledWithUserUpdate)
-            .addCase(login.rejected, handleRejected)
 
-        builder
-            .addCase(fastLogin.pending, handlePending)
-            .addCase(fastLogin.fulfilled, handleFulfilledWithUserUpdate)
-            .addCase(fastLogin.rejected, handleRejected)
+        const asyncActions = [
+            { action: login, handler: handleUserUpdate },
+            { action: fastLogin, handler: handleUserUpdate },
+            { action: checkAuth, handler: setAuthenticated },
+            { action: signup, handler: handleUserUpdate },
+            { action: logout, handler: handleLogout },
+            { action: updateProfile, handler: handleUserUpdate },
+        ];
 
-        builder
-            .addCase(checkAuth.pending, handlePending)
-            .addCase(checkAuth.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                state.isAuth = true;
-            })
-            .addCase(checkAuth.rejected, handleRejected)
-
-        builder
-            .addCase(signup.pending, handlePending)
-            .addCase(signup.fulfilled, handleFulfilledWithUserUpdate)
-            .addCase(signup.rejected, handleRejected)
-
-        builder
-            .addCase(logout.pending, handlePending)
-            .addCase(logout.fulfilled, handleFulfilledLogout)
-            .addCase(logout.rejected, handleRejected)
-
-        builder
-            .addCase(updateProfile.pending, handlePending)
-            .addCase(updateProfile.fulfilled, handleFulfilledWithUserUpdate)
-            .addCase(updateProfile.rejected, handleRejected)
+        asyncActions.forEach(({ action, handler }) => {
+            builder
+                .addCase(action.pending, setLoading)
+                .addCase(action.fulfilled, (state, action) => handler(state, action))
+                .addCase(action.rejected, setErrorState);
+        });
     }
 })
 

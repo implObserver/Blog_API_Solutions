@@ -1,10 +1,9 @@
-export const initialState: Posts = {
+export const initialState: PostsState = {
     error: null,
     posts: [],
     currentPage: 1,
     totalPages: 1,
-    isPending: false,
-    updatePending: false,
+    isLoading: false,
+    isUpdating: false,
     totalPosts: 0,
-    openedPost: null,
 }

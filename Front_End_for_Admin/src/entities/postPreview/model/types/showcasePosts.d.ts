@@ -1,6 +1,6 @@
 interface PostImages {
     postid: number;
-    images: Array<ImageType>;
+    images: ImageType[];
 }
 interface ImageType {
     code: string,
@@ -13,7 +13,7 @@ interface Post {
     postingDate: Date,
     isPublished: boolean,
     tag: string,
-    models: Array<Model<TextModel | PreviewModel | TitleModel>>,
+    models: Model<ModelVariant>[],
     comments: Comment[],
     author?: string,
 }
@@ -22,24 +22,24 @@ interface VirtualPost {
     post: Post,
 }
 
-interface Backups {
+interface PostBackups {
     backups: Post[],
 }
 
-interface Posts {
+interface PostsState {
     error?: Error,
-    isPending?: Boolean,
-    updatePending: Boolean,
+    isLoading?: boolean,
+    isUpdating: boolean,
     posts: Post[],
     currentPage?: number,
     totalPages?: number,
     totalPosts?: number,
 }
 
-interface OpenedPost {
+interface OpenedPostState {
     error?: Error,
-    isPending?: Boolean,
-    updatePending: Boolean,
+    isLoading?: Boolean,
+    isUpdating: Boolean,
     openedPost: Post,
     author: string,
     test: any,
@@ -50,15 +50,15 @@ interface Comment {
     text: String,
 }
 
-interface CellOfPost {
+interface PostCell {
     postid?: number,
-    newModel?: Model<TextModel | PreviewModel | TitleModel>,
-    model: Model<TextModel | PreviewModel | TitleModel>,
+    newModel?: Model<ModelVariant>,
+    model: Model<ModelVariant>,
 }
 
 interface UpdateModels {
     postid: number,
-    models: Model<TextModel | PreviewModel | TitleModel>[],
+    models: Model<ModelVariant>[],
 }
 
 interface UpdatePublishStatus {
@@ -76,7 +76,7 @@ interface UpdateTitle {
     title: string,
 }
 
-interface PostPreviewContextType {
+interface PostPreviewContext {
     deleteFeature: React.ReactElement,
     features?: React.ReactElement[],
     toggle: CustomState,

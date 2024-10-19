@@ -25,7 +25,7 @@ export const AddImage = () => {
         imageArea.setUrl(url);
         const newModel = elementToModel(imageArea);
 
-        const postContext: CellOfPost = { postid, model, newModel };
+        const postContext: PostCell = { postid, model, newModel };
         const modelContext: UpdateElement = { postid, currentModel: model, newModel };
         const updateContext: UpdateModels = { postid, models };
 

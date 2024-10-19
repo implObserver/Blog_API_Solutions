@@ -1,11 +1,15 @@
 .container {
     display: grid;
+    max-width: 1000px;
+    min-width: 600px;
+    width: 70vw;
 }
 
 .header {
     display: flex;
     padding: 15px;
     justify-content: space-between;
+    gap:15px
 }
 
 .button {

@@ -6,9 +6,8 @@ import { updatePost } from "../../model/slice/posts/thunks/update/updatePost";
 
 export const processBackups = async () => {
     const backups = store.getState().backups.backups;
-    console.log(backups)
     for (const backup of backups) {
-        store.dispatch(backupsActions.removeBackup(backup));
         store.dispatch(updatePost(backup));
+        store.dispatch(backupsActions.removeBackup(backup));
     }
 };

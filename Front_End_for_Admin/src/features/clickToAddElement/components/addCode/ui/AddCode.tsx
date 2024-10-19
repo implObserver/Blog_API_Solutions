@@ -23,7 +23,7 @@ export const AddCode = () => {
         const codeArea = CodeArea();
         const newModel = elementToModel(codeArea);
 
-        const postContext: CellOfPost = { postid, model, newModel };
+        const postContext: PostCell = { postid, model, newModel };
         const modelContext: UpdateElement = { postid, currentModel: model, newModel };
         const updateContext: UpdateModels = { postid, models };
 

@@ -1,11 +1,9 @@
 import { useDispatch } from 'react-redux';
-import styles from './styles/DelepePost.module.css'
 import { AppDispath } from '@/app/model/store/Store';
 import { updateTitle } from '@/entities/postState/model/slice/posts/thunks/update/updateTitle';
 import { usePostPreviewContext } from '@/entities/postPreview';
 import { useState } from 'react';
 import { PostForm, PostFormContext } from '@/shared/ui/postForm';
-import { TogglePostForm } from '@/entities/togglePostForm';
 
 export const UpdateTitle = ({ postid }) => {
     const dispatch = useDispatch<AppDispath>();

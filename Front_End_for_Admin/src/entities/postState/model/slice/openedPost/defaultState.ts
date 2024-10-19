@@ -1,7 +1,7 @@
-export const initialState: OpenedPost = {
+export const initialState: OpenedPostState = {
     error: null,
-    isPending: false,
-    updatePending: false,
+    isLoading: false,
+    isUpdating: false,
     openedPost: null,
     author: null,
     test: 'nooo',

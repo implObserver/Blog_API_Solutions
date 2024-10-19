@@ -7,7 +7,7 @@ export const PostService = {
         return instance.post(`/api/user/:${id}/posts/add`, dataPost)
     },
     addImage(data: ImageUpdate) {
-        const nameFolder = data.nameFolder;
+        const nameFolder = data.folderName;
         const config = {
             headers: {
                 'Content-Type': 'multipart/form-data',

@@ -1,14 +1,14 @@
-interface TagDataType {
+interface Tag {
     postid: number,
-    tag: string,
+    tagName: string,
 }
 
-interface ServicesDataType {
-    user: User,
-    isAuth: boolean,
-    isPending?: boolean,
+interface ServiceStatus {
+    user: UserData,
+    isAuthenticated: boolean,
+    isLoading?: boolean,
     error?: Error,
-    isUpdate?: boolean;
+    isUpdating?: boolean;
 }
 
 interface PostUpdate {
@@ -17,28 +17,28 @@ interface PostUpdate {
 }
 
 interface UpdateData {
-    user: User,
+    user: UserData,
     profile?: ProfileFormType,
     avatar?: File,
     posts?: Post,
 }
 
-interface User {
+interface UserData {
     id: number,
-    email: string,
-    profile: Profile,
-    posts: Post[],
+    emailAddress: string,
+    username: string,
+    profile: UserProfile,
 }
 
-interface Profile {
+interface UserProfile {
     name: string,
     gender: string,
     age: number,
     avatar: File,
 }
 
-interface AuthType {
-    isAuth: boolean,
+interface AuthStatus {
+    isAuthenticated: boolean,
     isAuthInProgress: boolean,
 }
 
@@ -54,6 +54,6 @@ interface LoginData {
 }
 
 interface ImageUpdate {
-    nameFolder: string,
+    folderName: string,
     file: File,
 }

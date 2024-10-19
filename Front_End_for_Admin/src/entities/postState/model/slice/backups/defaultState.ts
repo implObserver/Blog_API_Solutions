@@ -1,3 +1,3 @@
-export const initialState: Backups = {
+export const initialState: PostBackups = {
     backups: [],
 }

@@ -12,11 +12,15 @@ import { postsActions } from "@/entities/postState/model/slice/posts/slice";
 export const ProfilePage = () => {
     const services = useSelector(selectUserServices);
 
-    if (services.isAuth) {
+    if (services.isAuthenticated) {
         return (
             <div className={styles.page_profile}>
-                <Profile></Profile>
-                <Posts></Posts>
+                <div className={styles.left}>
+                    <Profile></Profile>
+                </div>
+                <div className={styles.right}>
+                    <Posts></Posts>
+                </div>
             </div>
         )
     } else {

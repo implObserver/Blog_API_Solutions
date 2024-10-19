@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useCustomState } from "@/shared/lib";
 
 export const AvatarOfProfile = () => {
-    const pending = useSelector(selectUserServices).isPending;
+    const pending = useSelector(selectUserServices).isLoading;
     if (pending) {
         return (
             <>

@@ -41,7 +41,7 @@ export const Preview = () => {
 
     const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const context: ImageUpdate = {
-            nameFolder: model.imageUrl,
+            folderName: model.imageUrl,
             file: e.target.files[0],
         }
         const image: ImageType = {

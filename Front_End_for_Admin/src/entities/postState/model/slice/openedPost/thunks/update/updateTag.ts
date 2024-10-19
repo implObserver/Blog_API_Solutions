@@ -4,11 +4,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const updateTag = createAsyncThunk(
     'services/update/tag/',
-    async (data: TagDataType, thunkAPI) => {
+    async (data: Tag, thunkAPI) => {
         try {
-            const isAuth = store.getState().userServices.isAuth;
+            const isAuth = store.getState().userServices.isAuthenticated;
             if (isAuth) {
-                const resp = await UpdateService.updateTag(data.postid, data.tag);
+                const resp = await UpdateService.updateTag(data.postid, data.tagName);
                 const response = resp.data;
                 const res = {
                     error: false,

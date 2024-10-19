@@ -17,9 +17,9 @@ export const SelectTag = () => {
 
     const onClick = (tag: string) => {
         console.log(postid)
-        const args: TagDataType = {
+        const args: Tag = {
             postid,
-            tag,
+            tagName: tag,
         }
         dispatch(updateTag(args));
     }

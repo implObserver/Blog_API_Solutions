@@ -9,7 +9,7 @@ const openedPostSlice = createSlice({
     name: 'openedPost',
     initialState,
     reducers: {
-        addModel: (state: OpenedPost, action: PayloadAction<CellOfPost>) => {
+        addModel: (state: OpenedPostState, action: PayloadAction<PostCell>) => {
             const models = state.openedPost.models;
             const id = action.payload.model.id;
             models.forEach((element, index) => {
@@ -18,7 +18,7 @@ const openedPostSlice = createSlice({
                 }
             });
         },
-        updateModel: (state: OpenedPost, action: PayloadAction<CellOfPost>) => {
+        updateModel: (state: OpenedPostState, action: PayloadAction<PostCell>) => {
             const models = state.openedPost.models;
             const id = action.payload.model.id;
             models.forEach((element, index) => {
@@ -27,13 +27,13 @@ const openedPostSlice = createSlice({
                 }
             });
         },
-        updateAuthor: (state: OpenedPost, action: PayloadAction<string>) => {
+        updateAuthor: (state: OpenedPostState, action: PayloadAction<string>) => {
             state.author = action.payload;
         },
-        updateModels: (state: OpenedPost, action: PayloadAction<UpdateModels>) => {
+        updateModels: (state: OpenedPostState, action: PayloadAction<UpdateModels>) => {
             state.openedPost.models = action.payload.models;
         },
-        removeModel: (state: OpenedPost, action: PayloadAction<CellOfPost>) => {
+        removeModel: (state: OpenedPostState, action: PayloadAction<PostCell>) => {
             const models = state.openedPost.models;
             const id = action.payload.model.id;
             models.forEach((element, index) => {
@@ -42,28 +42,28 @@ const openedPostSlice = createSlice({
                 }
             });
         },
-        setOpenedPost: (state: OpenedPost, action: PayloadAction<Post>) => {
+        setOpenedPost: (state: OpenedPostState, action: PayloadAction<Post>) => {
             state.openedPost = action.payload;
         },
-        reject: (state: OpenedPost, action: PayloadAction<any>) => {
+        reject: (state: OpenedPostState, action: PayloadAction<any>) => {
             state.test = action.payload;
         },
     },
     extraReducers: (builder) => {
-        const setPendingStatus = (state: OpenedPost) => {
-            state.isPending = true;
+        const setLoading = (state: OpenedPostState) => {
+            state.isLoading = true;
         };
-        const setFulfilledStatus = (state: OpenedPost) => {
-            state.isPending = false;
+        const setLoadingComplete = (state: OpenedPostState) => {
+            state.isLoading = false;
         };
-        const setRejectedStatus = (state: OpenedPost) => {
-            state.isPending = false;
+        const setErrorState = (state: OpenedPostState) => {
+            state.isLoading = false;
         };
 
-        const handleUpdateResponse = (state: OpenedPost, action: PayloadAction<any>) => {
-            setFulfilledStatus(state);
+        const updateOpenedPost = (state: OpenedPostState, action: PayloadAction<any>) => {
+            setLoadingComplete(state);
             if (!action.payload.error) {
-                state.isPending = false;
+                state.isLoading = false;
                 state.openedPost = action.payload.data.message.updatedPost;
                 state.error = null;
             } else {
@@ -72,31 +72,17 @@ const openedPostSlice = createSlice({
         };
 
         const asyncActions = [
-            { action: updateTag, handler: handleUpdateResponse },
-            { action: updatePublishStatus, handler: handleUpdateResponse },
-            { action: updateAuthor, handler: handleUpdateResponse },
+            { action: updateTag, handler: updateOpenedPost },
+            { action: updatePublishStatus, handler: updateOpenedPost },
+            { action: updateAuthor, handler: updateOpenedPost },
         ];
 
         asyncActions.forEach(({ action, handler }) => {
             builder
-                .addCase(action.pending, setPendingStatus)
+                .addCase(action.pending, setLoading)
                 .addCase(action.fulfilled, (state, action) => handler(state, action))
-                .addCase(action.rejected, setRejectedStatus);
+                .addCase(action.rejected, setErrorState);
         });
-
-        builder
-            .addCase(updateModelsOfPost.pending, (state) => {
-                state.updatePending = true;
-                state.isPending = true;
-            })
-            .addCase(updateModelsOfPost.fulfilled, (state) => {
-                state.updatePending = false;
-                state.isPending = false;
-            })
-            .addCase(updateModelsOfPost.rejected, (state) => {
-                state.updatePending = false;
-                state.isPending = false;
-            });
     },
 });
 

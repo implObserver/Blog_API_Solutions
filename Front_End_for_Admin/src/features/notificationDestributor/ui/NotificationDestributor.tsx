@@ -5,36 +5,27 @@ import { useSelector } from "react-redux";
 import { isAccess, isDenied, isError } from "../lib/helper/getStatuses";
 import { Access } from "@/entities/access";
 
-export const NotificationDestributor = () => {
+export const NotificationDistributor = () => {
     const services = useSelector(selectUserServices);
-    console.log(`${services.error} its error`)
-    if (!services.error) {
-        return (
-            <>
-            </>
-        )
-    }
+    const { error } = services;
 
-    const status = parseInt(services.error.name);
-    if (isError(status)) {
-        return (
-            <div>
-                <Error message={services.error.message} />
-            </div>
-        )
-    }
-    if (isDenied(status)) {
-        return (
-            <div>
-                <Denied message={services.error.message} />
-            </div>
-        )
-    }
-    if (isAccess(status)) {
-        return (
-            <div>
-                <Access message={services.error.message} />
-            </div>
-        )
-    }
-}
+    if (!error) return null;
+
+    const status = parseInt(error.name);
+    const message = error.message;
+
+    const NotificationComponent = isError(status)
+        ? Error
+        : isDenied(status)
+            ? Denied
+            : isAccess(status)
+                ? Access
+                : null;
+
+    return NotificationComponent ? (
+        <div>
+            <NotificationComponent message={message} />
+        </div>
+
+    ) : null;
+};
