@@ -1,4 +1,4 @@
-import { instance } from "@/app/api/api.config"
+import { instance } from '@/shared/lib';
 import Cookies from 'js-cookie'
 const id = Cookies.get('user_id');
 

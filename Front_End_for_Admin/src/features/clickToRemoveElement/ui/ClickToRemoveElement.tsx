@@ -1,19 +1,16 @@
-import { AppDispath } from "@/app/model/store/Store"
 import {
     useElementContext
 } from "@/entities/element";
-import { getVirtualPost } from "@/entities/postState/lib/helper/getVirtualPost";
 import { removePostImage } from "@/entities/postPreview/lib/helper/indexedDB/removePostImage";
 import { virtualPostActions } from "@/entities/postState";
 import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
 import { deletePostImage } from "@/entities/postState/model/slice/openedPost/thunks/delete/deletePostImage";
-
+import { getVirtualPost, useAppDispatch } from "@/shared/lib";
 import { MinusButton } from "@/shared/ui/minusButton"
-import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 export const ClickToRemoveElement = () => {
-    const dispatch = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
     const { model, dropdownState: dropdownStatus } = useElementContext();
     const postid = parseInt(useParams().postid, 10);
 

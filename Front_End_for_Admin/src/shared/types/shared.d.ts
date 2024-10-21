@@ -15,12 +15,6 @@ interface PostFormContext {
     setData: React.Dispatch<React.SetStateAction<PostForm>>,
 }
 
-interface ProfileForm {
-    nickname: string,
-    gender: string,
-    age: number,
-}
-
 interface PostForm {
     title: string,
 }

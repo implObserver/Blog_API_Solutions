@@ -1,13 +1,11 @@
-import { useElementContext } from "@/entities/element";
 import { useCustomState } from "@/shared/lib";
-import { ButtonForActionMenu } from "@/shared/ui/buttonForActionMenu/ui/ButtonForActionMenu"
 import { Dropdown, DropdownContext } from "@/shared/ui/dropdownElement"
 import { ExternalReset, ExternalResetContext } from "@/shared/ui/externalReset"
 import styles from './styles/Menu.module.css'
-import { usePostPreviewContext } from "@/entities/postPreview/lib/context/Context";
+import { ButtonForActionMenu } from "@/shared/ui/buttonForActionMenu";
+import { usePostPreviewContext } from "@/entities/postPreview/lib";
 
-export const Menu = ({foldername}) => {
-
+export const Menu = ({ foldername }) => {
     const update = useCustomState();
     const context = usePostPreviewContext();
     const features = context.features;

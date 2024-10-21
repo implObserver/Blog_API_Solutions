@@ -1,10 +1,10 @@
 import { TextArea, TextAreaContext } from "@/shared/ui/textArea";
 import styles from './styles/Title.module.css';
 import { elementToModel, useElementContext } from "@/entities/element";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispath } from "@/app/model/store/Store";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectFocus, virtualPostActions } from "@/entities/postState";
+import { useAppDispatch } from "@/shared/lib";
 
 export const Title = () => {
     const context = useElementContext();
@@ -14,7 +14,7 @@ export const Title = () => {
         : styles.title;
     const h = context.element.getFontSize();
     const focus = useSelector(selectFocus).index;
-    const dispatch = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
     const postid = parseInt(useParams().postid);
 
     const handleChange = (e: React.KeyboardEvent<HTMLDivElement>) => {

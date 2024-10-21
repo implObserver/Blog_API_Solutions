@@ -1,5 +1,4 @@
 import { AppDispath, store } from '@/app/model/store/Store';
-import { scrollRestorationActions } from '@/features/scrollRestoration/model/slice/slice';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useLocation } from 'react-router-dom';
@@ -7,11 +6,11 @@ import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { Header } from '@/widgets/header';
 import styles from '../styles/App.module.css'
-import { Footer } from '@/widgets/footer/ui/Footer';
 import { selectUserServices } from '@/entities/user';
-import { FastAuth } from '@/features/fastAuth/ui/FastAuth';
-import { Backup } from '../../../features/backup/ui/Backup';
-
+import { Backup } from '@/features/backup';
+import { scrollRestorationActions } from '@/features/scrollRestoration';
+import { FastAuth } from '@/features/fastAuth';
+import { Footer } from '@/widgets/footer';
 
 const getScroll = (pathname: string) => {
     const scrolls = store.getState().scrollRestoration.scrolls;
@@ -24,8 +23,6 @@ export const MainLayout: React.FC = () => {
     const dispatch = useDispatch<AppDispath>();
     gsap.registerPlugin(ScrollToPlugin);
     const isAuth = useSelector(selectUserServices).isAuthenticated;
-
-
 
     // Сохранение текущей позиции прокрутки при скролле
     useEffect(() => {

@@ -1,6 +1,6 @@
 import axios from "axios";
-import { store } from "../model/store/Store";
-import { servicesActions } from "@/entities/user";
+
+let currentRetryCount: number = 0;
 
 const apiUrl = import.meta.env.VITE_SERVER_URL;
 
@@ -12,10 +12,9 @@ export const instance = axios.create({
     }
 });
 
-let currentRetryCount = 0;
-
 instance.interceptors.response.use(
     (response) => {
+        console.log('lllll')
         currentRetryCount = 0;
         return response;
     },
@@ -23,7 +22,6 @@ instance.interceptors.response.use(
         if (error.response) {
             if (error.response.status === 401) {
                 currentRetryCount++;
-
                 if (currentRetryCount === 1) {
                     console.warn('Попытка обновить acess token');
                     await instance.get("/api/user/refresh-acess-token");
@@ -31,7 +29,6 @@ instance.interceptors.response.use(
                     console.warn('Попытка обновить refresh token');
                     await instance.get("/api/user/refresh-refresh-token");
                 } else if (currentRetryCount === 3) {
-                    store.dispatch(servicesActions.reset())
                     console.error('ошибка авторизации');
                 }
             }

@@ -1,5 +1,4 @@
-import { instance } from "@/app/api/api.config"
-
+import { instance } from "@/shared/lib";
 
 export const AuthService = {
     signup(email: string, password: string, username: string) {

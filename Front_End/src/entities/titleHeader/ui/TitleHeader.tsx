@@ -1,22 +1,8 @@
-import { formattedToday } from '@/shared/lib';
 import styles from './styles/TitleHeader.module.css'
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectUserServices } from '@/entities/user';
-import { selectPosts } from '@/entities/postState/model/slice/posts/selectors';
+import { useTitleHeaderContext } from '../lib/context/Context';
 
 export const TitleHeader = ({ children }) => {
-    const params = useParams();
-    const post_id = parseInt(params.postid);
-    const posts = useSelector(selectPosts).posts;
-    const post = posts.find(post => post.id === post_id);
-    if (!post) {
-        return (
-            <div></div>
-        )
-    }
-
-    const date = post.postingDate;
+    const date = useTitleHeaderContext();
     const postingDate = new Date(date);
 
     // Форматирование даты

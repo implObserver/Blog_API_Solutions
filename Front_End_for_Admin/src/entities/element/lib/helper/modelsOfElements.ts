@@ -1,7 +1,7 @@
-import { store } from "@/app/model/store/Store";
+import { getCounter } from "@/shared/lib";
 
 const CreateElement = (id?: number) => {
-    const defaultId = id === undefined ? store.getState().counter.count : id;
+    const defaultId = id === undefined ? getCounter() : id;
     const getId = () => {
         return defaultId;
     }

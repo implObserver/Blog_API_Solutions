@@ -1,6 +1,5 @@
 import { counterReducer } from '@/entities/postState/model/slice/counter/slice';
 import { virtualPostReducer } from '@/entities/postState/model/slice/virtualPost/slice';
-import { snapshotSliceReducer } from '@/entities/postPreview/model/slice/snapshot/slice';
 import { backupsReducer } from '@/entities/postState/model/slice/backups/slice';
 import { openedPostReducer } from '@/entities/postState/model/slice/openedPost/slice';
 import { postsReducer } from '@/entities/postState/model/slice/posts/slice';
@@ -25,7 +24,6 @@ const rootReducer = combineReducers({
   counter: counterReducer,
   userServices: servicesReducer,
   virtualPost: virtualPostReducer,
-  snapshot: snapshotSliceReducer,
   scrollRestoration: scrollRestorationReducer,
   userPosts: postsReducer,
   openedPost: openedPostReducer,
@@ -52,6 +50,7 @@ export const store = configureStore({
 export const selectors = {
   focus: selectFocus,
   userServices: selectUserServices,
+  
 }
 
 export const persistor = persistStore(store);

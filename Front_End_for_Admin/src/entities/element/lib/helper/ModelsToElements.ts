@@ -10,7 +10,6 @@ import {
 } from "./modelsOfElements";
 
 export const convertModelsToElements = (models: Array<Model<ModelVariant>>) => {
-
     const elements: Array<ElementData<ElementVariant>> = [];
 
     models.forEach((model: Model<ModelVariant>) => {

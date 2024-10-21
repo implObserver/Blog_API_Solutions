@@ -1,15 +1,21 @@
 import { selectUserServices } from "@/entities/user"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import styles from './styles/Author.module.css'
-import { AppDispath } from "@/app/model/store/Store";
-import { getVirtualAuthor } from "@/entities/postState/lib/helper/getVirtualAuthor";
 import { virtualPostActions } from "@/entities/postState";
+import { useEffect } from "react";
+import { getVirtualAuthor, useAppDispatch } from "@/shared/lib";
 
 export const Author = () => {
     const user = useSelector(selectUserServices).user;
     const author = getVirtualAuthor();
-    const dispatch = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
 
+    useEffect(() => {
+        if (!author) {
+            dispatch(virtualPostActions.updateAuthor(user.username));
+        }
+    })
+    
     const handleKeyUp = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(virtualPostActions.updateAuthor(e.target.value));
     };
@@ -25,7 +31,7 @@ export const Author = () => {
                 <input
                     type="text"
                     placeholder="Enter Author"
-                    defaultValue={author ? author : user.username}
+                    defaultValue={author}
                     onChange={handleKeyUp}
                     maxLength={20}
                     className={styles.input} />

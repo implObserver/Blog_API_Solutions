@@ -1,4 +1,4 @@
-import { useElementContext } from "@/entities/element/lib/context/Context";
+import { useElementContext } from '@/entities/element/lib';
 import styles from './styles/Panel.module.css'
 import React, { useCallback } from "react";
 

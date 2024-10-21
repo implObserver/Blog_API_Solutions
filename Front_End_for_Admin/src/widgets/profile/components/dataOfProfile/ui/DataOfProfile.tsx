@@ -1,13 +1,12 @@
 import { UpdateOfProfile } from "@/features/updateOfProfile"
 import styles from './styles/DataOfProfile.module.css'
-import { useDispatch } from "react-redux";
 import { servicesActions } from "@/entities/user";
-import { AppDispath } from "@/app/model/store/Store";
 import { useEffect } from "react";
 import { NotificationDistributor } from "@/features/notificationDistributor/ui/NotificationDistributor";
+import { useAppDispatch } from "@/shared/lib";
 
 export const DataOfProfile = () => {
-    const dispatch = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(servicesActions.clearErrors());

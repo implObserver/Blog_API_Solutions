@@ -1,3 +1,1 @@
-import { RootState } from "@/app/model/store/Store";
-
-export const selectVirtualPost = (state: RootState) => state.virtualPost;
+export const selectVirtualPost = (state: { virtualPost: VirtualPost }) => state.virtualPost;

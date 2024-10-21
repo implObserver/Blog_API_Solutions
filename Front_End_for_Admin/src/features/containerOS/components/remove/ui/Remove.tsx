@@ -1,15 +1,13 @@
-import { AppDispath } from "@/app/model/store/Store";
-import { getVirtualPost } from "@/entities/postState/lib/helper/getVirtualPost";
 import { virtualPostActions } from "@/entities/postState";
 import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
-import { useDispatch } from "react-redux";
+import { getVirtualPost, useAppDispatch } from "@/shared/lib";
 import { useParams } from "react-router-dom";
 
 export const Remove = ({ children }) => {
     const { containerContext } = useContainerContext();
     const { model, index: currentIndex } = containerContext;
-    const dispatch = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
     const isEmpty = useEmptyContext();
     const postId = parseInt(useParams().postid, 10);
 

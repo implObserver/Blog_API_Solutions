@@ -1,3 +1,4 @@
+import { ReadService } from "@/entities/postState/api/api.get";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getAllPosts = createAsyncThunk(

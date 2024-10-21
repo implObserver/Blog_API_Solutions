@@ -1,4 +1,6 @@
-import { dbPromise } from "@/app/model/store/indexedDB";
+import { useIndexedDb } from "@/shared/lib";
+
+const dbPromise = useIndexedDb();
 
 export const removePostImage = async (post_id: number, code: string): Promise<void> => {
     const db = await dbPromise;

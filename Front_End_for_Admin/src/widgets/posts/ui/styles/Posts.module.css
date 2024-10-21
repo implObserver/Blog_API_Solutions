@@ -29,15 +29,3 @@
 .text {
     font-size: min(4vh, 64px);
 }
-
-@media screen and (min-width: 800px) {
-    .container {
-        
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .container {
-        
-    }
-}

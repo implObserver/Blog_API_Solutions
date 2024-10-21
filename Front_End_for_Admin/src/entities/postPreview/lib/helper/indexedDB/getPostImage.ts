@@ -1,4 +1,7 @@
-import { dbPromise } from "@/app/model/store/indexedDB";
+import { useIndexedDb } from "@/shared/lib";
+
+const dbPromise = useIndexedDb();
+
 export const getPostImages = async (post_id: number): Promise<Array<ImageType> | null> => {
     const db = await dbPromise;
     const postRecord = await db.get('posts', post_id);

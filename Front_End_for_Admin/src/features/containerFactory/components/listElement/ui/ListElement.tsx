@@ -1,18 +1,18 @@
-import { AppDispath } from "@/app/model/store/Store";
 import {
     elementToModel,
     useElementContext
 } from "@/entities/element";
 import { ListArea, ListAreaContext } from "@/shared/ui/listArea";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styles from './styles/ListElement.module.css'
 import { useParams } from "react-router-dom";
 import { selectFocus, virtualPostActions } from "@/entities/postState";
+import { useAppDispatch } from "@/shared/lib";
 
 export const ListElement = () => {
     const context = useElementContext();
     const focus = useSelector(selectFocus).index;
-    const dispatch = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
     const postid = parseInt(useParams().postid);
 
     const textAreaContext: TextAreaProps = {

@@ -1,19 +1,17 @@
-import { AppDispath } from "@/app/model/store/Store";
 import {
     elementToModel,
     TextArea,
     useElementContext
 } from "@/entities/element";
-import { getVirtualPost } from "@/entities/postState/lib/helper/getVirtualPost";
 import { counterActions, virtualPostActions } from "@/entities/postState";
 import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
-import { useDispatch } from "react-redux";
+import { getVirtualPost, useAppDispatch } from "@/shared/lib";
 import { useParams } from "react-router-dom";
 
 export const AddText = () => {
     const { model, dropdownState: dropdownStatus } = useElementContext();
     const postid = parseInt(useParams().postid, 10);
-    const dispatch = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
 
     const handleClick = () => {
         const models = getVirtualPost().models;

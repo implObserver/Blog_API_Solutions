@@ -1,3 +1,1 @@
-import { RootState } from "@/app/model/store/Store";
-
-export const selectPosts = (state: RootState) => state.userPosts;
+export const selectPosts = (state: { userPosts: PostsState }) => state.userPosts;

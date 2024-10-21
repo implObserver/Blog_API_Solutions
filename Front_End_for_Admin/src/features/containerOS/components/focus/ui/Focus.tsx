@@ -1,12 +1,10 @@
-import { AppDispath } from "@/app/model/store/Store";
-import { getVirtualPost } from "@/entities/postState/lib/helper/getVirtualPost";
 import { focusActions } from "@/entities/postState";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
-import { useDispatch } from "react-redux";
+import { getVirtualPost, useAppDispatch } from "@/shared/lib";
 
 export const Focus = ({ children }) => {
     const { containerContext } = useContainerContext();
-    const dispatch = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
     const isEmpty = useEmptyContext();
     const currentIndex = containerContext.index;
 

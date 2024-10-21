@@ -1,12 +1,12 @@
-import { AppDispath } from "@/app/model/store/Store";
 import { Signup } from "@/entities/signup";
 import { signup } from "@/entities/user";
+import { useAppDispatch } from "@/shared/lib";
 import { SignupFormContext } from "@/shared/ui/signupForm";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 export const SubmitOfSignup = () => {
-    const dispath = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
 
     const [data, setData] = useState({
         username: '',
@@ -22,7 +22,7 @@ export const SubmitOfSignup = () => {
 
     const submitHandle = (e) => {
         e.preventDefault();
-        dispath(signup(data));
+        dispatch(signup(data));
     }
 
     return (

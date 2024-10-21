@@ -1,19 +1,17 @@
-import { AppDispath } from "@/app/model/store/Store";
 import {
     elementToModel,
     ImageArea,
     useElementContext
 } from "@/entities/element";
-import { getVirtualPost } from "@/entities/postState/lib/helper/getVirtualPost";
 import { savePostImage } from "@/entities/postPreview/lib/helper/indexedDB/savePostImage";
 import { counterActions, virtualPostActions } from "@/entities/postState";
 import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
-import { useDispatch } from "react-redux";
+import { getVirtualPost, useAppDispatch } from "@/shared/lib";
 import { useParams } from "react-router-dom";
 
 export const AddImage = () => {
     const { model, dropdownState: dropdownStatus } = useElementContext();
-    const dispatch = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
     const postid = parseInt(useParams().postid, 10);
 
     const handleClick = () => {

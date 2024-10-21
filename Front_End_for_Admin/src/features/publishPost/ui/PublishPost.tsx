@@ -1,13 +1,10 @@
-import { AppDispath } from "@/app/model/store/Store"
 import { virtualPostActions } from "@/entities/postState";
-
 import { updatePublishStatus } from "@/entities/postState/model/slice/openedPost/thunks/update/updatePublishStatus";
-
-import { useDispatch } from "react-redux"
+import { useAppDispatch } from "@/shared/lib";
 import { useParams } from "react-router-dom";
 
 export const PublishPost = ({ children }) => {
-    const dispatch = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
     const params = useParams();
     const postid = parseInt(params.postid);
 

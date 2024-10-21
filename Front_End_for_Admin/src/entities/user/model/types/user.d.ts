@@ -1,26 +1,9 @@
-interface Tag {
-    postid: number,
-    tagName: string,
-}
-
 interface ServiceStatus {
     user: UserData,
     isAuthenticated: boolean,
     isLoading?: boolean,
     error?: Error,
     isUpdating?: boolean;
-}
-
-interface PostUpdate {
-    id: number,
-    models?: Model<TextModel | PreviewModel | TitleModel>[],
-}
-
-interface UpdateData {
-    user: UserData,
-    profile?: ProfileForm,
-    avatar?: File,
-    posts?: Post,
 }
 
 interface UserData {
@@ -37,11 +20,6 @@ interface UserProfile {
     avatar: File,
 }
 
-interface AuthStatus {
-    isAuthenticated: boolean,
-    isAuthInProgress: boolean,
-}
-
 interface AuthData {
     username: string,
     email: string,
@@ -53,7 +31,8 @@ interface LoginData {
     password: string,
 }
 
-interface ImageUpdate {
-    folderName: string,
-    file: File,
+interface ProfileForm {
+    nickname: string,
+    gender: string,
+    age: number,
 }

@@ -1,12 +1,11 @@
-import { AppDispath } from "@/app/model/store/Store";
 import { TogglePostForm } from "@/entities/togglePostForm";
 import { addPost } from "@/entities/postState/model/slice/posts/thunks/post/addPost";
 import { PostFormContext } from "@/shared/ui/postForm";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "@/shared/lib";
 
 export const CreatePost = () => {
-    const dispath = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
 
     const [data, setData] = useState({
         title: '',
@@ -19,7 +18,7 @@ export const CreatePost = () => {
 
     const submitHandle = (e) => {
         e.preventDefault();
-        dispath(addPost(data));
+        dispatch(addPost(data));
     }
 
     return (

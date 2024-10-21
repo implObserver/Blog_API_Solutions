@@ -1,13 +1,12 @@
-import { AppDispath } from "@/app/model/store/Store";
 import { logout } from "@/entities/user";
-import { useDispatch } from "react-redux";
 import styles from './styles/Logout.module.css'
+import { useAppDispatch } from "@/shared/lib";
 
 export const Logout = ({ children }) => {
-    const dispath = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
 
     const clickHandle = () => {
-        dispath(logout());
+        dispatch(logout());
     }
 
     return (

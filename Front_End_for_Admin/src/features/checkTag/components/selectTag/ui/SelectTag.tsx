@@ -1,17 +1,17 @@
 import { useParams } from "react-router-dom";
 import { getTagList } from "../lib/helper/getTagList"
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Tag, TagContext } from "@/shared/ui/tag";
-import { AppDispath } from "@/app/model/store/Store";
 import styles from './styles/SelectTag.module.css'
 import { updateTag } from "@/entities/postState/model/slice/openedPost/thunks/update/updateTag";
 import { selectOpenedPost } from "@/entities/postState/model/slice/openedPost/selectors";
+import { useAppDispatch } from "@/shared/lib";
 
 export const SelectTag = () => {
     const params = useParams();
     const postid = parseInt(params.postid);
     const post = useSelector(selectOpenedPost).openedPost;
-    const dispatch = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
 
     const tags = getTagList(post.tag);
 

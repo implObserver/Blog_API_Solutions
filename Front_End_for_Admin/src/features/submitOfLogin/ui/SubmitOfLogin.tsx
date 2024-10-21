@@ -1,12 +1,11 @@
-import { AppDispath } from "@/app/model/store/Store";
 import { Login } from "@/entities/login";
 import { login } from "@/entities/user";
+import { useAppDispatch } from "@/shared/lib";
 import { LoginFormContext } from "@/shared/ui/loginForm";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 
 export const SubmitOfLogin = () => {
-    const dispath = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
 
     const [data, setData] = useState({
         identifier: '',
@@ -21,7 +20,7 @@ export const SubmitOfLogin = () => {
 
     const submitHandle = (e) => {
         e.preventDefault();
-        dispath(login(data));
+        dispatch(login(data));
     }
 
     return (

@@ -1,20 +1,22 @@
-import { AppDispath } from "@/app/model/store/Store";
-import { getVirtualPost } from "@/entities/postState/lib/helper/getVirtualPost";
-import { processBackups } from "@/entities/postState/lib/helper/processBackups";
 import { backupsActions } from "@/entities/postState/model/slice/backups/slice";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import styles from './styles/Backup.module.css'
+import { getBackups, getVirtualPost, useAppDispatch } from "@/shared/lib";
+import { updatePost } from "@/entities/postState/model/slice/posts/thunks/update/updatePost";
 
 export const Backup = ({ children }) => {
-    const dispatch = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         const handleUnload = () => {
             const virtualPost = getVirtualPost();
             if (virtualPost) {
                 dispatch(backupsActions.addBackup(virtualPost));
-                processBackups();
+                const backups = getBackups();
+                for (const backup of backups) {
+                    dispatch(updatePost(backup));
+                    dispatch(backupsActions.removeBackup(backup));
+                }
             }
         };
         window.addEventListener('beforeunload', handleUnload);

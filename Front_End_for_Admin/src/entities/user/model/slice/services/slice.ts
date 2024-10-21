@@ -46,6 +46,7 @@ const userServicesSlice = createSlice({
         };
 
         const setErrorState = (state: ServiceStatus) => {
+            console.log(state.error)
             state.isLoading = false;
         };
         const handleLogout = (state: ServiceStatus) => {

@@ -1,7 +1,3 @@
-interface FocusContext {
-    index: Number,
-}
-
 interface CanvasElement {
     features?: ElementFeatures,
     element: ElementData<ElementVariant>,
@@ -50,9 +46,7 @@ interface ElementValue {
     getValue: () => string;
 }
 
-
 //Models
-
 interface ModelsData {
     models: Array<Model<ModelVariant>>
     author: string,
@@ -102,15 +96,6 @@ interface TitleModel extends BaseModel {
 
 interface CodeModel extends BaseModel {
     value: string,
-}
-
-interface CounterState {
-    count: number,
-}
-
-interface Snapshot {
-    postid: number,
-    models: Array<Model<TextModel | PreviewModel | TitleModel>>,
 }
 
 interface PreviewState {

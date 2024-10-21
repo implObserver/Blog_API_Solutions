@@ -4,12 +4,11 @@ import { getImageByCode } from "../lib/helper/indexedDB/getPostImage";
 import { loadImage } from "../lib/helper/response/loadImage";
 import { savePostImage } from "../lib/helper/indexedDB/savePostImage";
 import { Menu } from "../components/menu/ui/Menu";
-import { getFormattedDate } from "@/shared/lib/helpers/getFormattedDate";
 import { Link, useParams } from "react-router-dom";
+import { getFormattedDate } from "@/shared/lib";
 
 export const PostPreview = ({ post }) => {
     const [preview, setPreview] = useState('');
-    console.log(post)
     const folderName = post.models[1].imageUrl;
     const date = new Date(post.postingDate);
     const postingDate = getFormattedDate(date);

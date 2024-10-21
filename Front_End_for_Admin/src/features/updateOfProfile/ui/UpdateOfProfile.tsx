@@ -1,12 +1,12 @@
-import { AppDispath } from "@/app/model/store/Store";
 import { ToggleProfileForm } from "@/entities/toggleProfileForm";
 import { selectUserServices, updateProfile } from "@/entities/user";
+import { useAppDispatch } from "@/shared/lib";
 import { ProfileFormContext } from "@/shared/ui/profileForm";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export const UpdateOfProfile = () => {
-    const dispath = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
     const user = useSelector(selectUserServices).user;
     const username = user.username;
 
@@ -24,7 +24,7 @@ export const UpdateOfProfile = () => {
 
     const submitHandle = (e) => {
         e.preventDefault();
-        dispath(updateProfile(data));
+        dispatch(updateProfile(data));
     }
 
     return (

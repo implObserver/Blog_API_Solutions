@@ -44,7 +44,7 @@ export const Container = React.memo(() => {
         hasMargin: false,
     };
 
-    const elementListContext = useMemo(() => ({
+    const elementListContext: ElementListContextType = useMemo(() => ({
         text: <AddText key="text" />,
         title: <AddTitle key="title" />,
         image: <AddImage key="image" />,

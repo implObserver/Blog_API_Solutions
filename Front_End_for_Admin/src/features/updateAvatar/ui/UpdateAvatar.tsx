@@ -1,11 +1,10 @@
-import { useDispatch } from "react-redux";
 import styles from './styles/UploadFile.module.css'
-import { AppDispath } from "@/app/model/store/Store";
 import { updateAvatar } from "@/entities/user/lib/helper/updateAvatar";
 import { servicesActions } from "@/entities/user";
+import { useAppDispatch } from '@/shared/lib';
 
-export const UploadFile = ({ children }) => {
-    const dispatch = useDispatch<AppDispath>();
+export const UpdateAvatar = ({ children }) => {
+    const dispatch = useAppDispatch();
 
     const changeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const { files } = e.target;
