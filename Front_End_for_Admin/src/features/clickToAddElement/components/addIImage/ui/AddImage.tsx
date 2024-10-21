@@ -3,9 +3,12 @@ import {
     ImageArea,
     useElementContext
 } from "@/entities/element";
-import { savePostImage } from "@/entities/postPreview/lib/helper/indexedDB/savePostImage";
-import { counterActions, virtualPostActions } from "@/entities/postState";
-import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
+import { savePostImage } from "@/entities/postPreview/lib";
+import {
+    counterActions,
+    openedPostActions,
+    virtualPostActions
+} from "@/entities/postState";
 import { getVirtualPost, useAppDispatch } from "@/shared/lib";
 import { useParams } from "react-router-dom";
 

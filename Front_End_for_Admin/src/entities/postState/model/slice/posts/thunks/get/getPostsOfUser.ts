@@ -1,11 +1,11 @@
-import { ReadService } from "@/entities/postState/api/api.get";
+import { GetService } from "@/entities/postState/api/services/api.get";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getPostsOfUser = createAsyncThunk(
     'services/get/usersPosts',
     async (data: PaginationData, thunkAPI) => {
         try {
-            const resp = await ReadService.getPostsOfuser(data);
+            const resp = await GetService.getPostsOfuser(data);
             const posts = resp.data
             const res = {
                 error: false,

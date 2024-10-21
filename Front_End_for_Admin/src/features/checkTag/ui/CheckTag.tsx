@@ -1,10 +1,10 @@
 import { Dropdown, DropdownContext } from "@/shared/ui/dropdownElement";
 import { Tag, TagContext } from "@/shared/ui/tag"
 import { useSelector } from "react-redux";
-import { SelectTag } from "../components/selectTag/ui/SelectTag";
 import { useCustomState } from "@/shared/lib";
 import { ExternalReset, ExternalResetContext } from "@/shared/ui/externalReset";
-import { selectOpenedPost } from "@/entities/postState/model/slice/openedPost/selectors";
+import { SelectTag } from "../components/selectTag";
+import { selectOpenedPost } from "@/entities/postState";
 
 export const CheckTag = () => {
     const click = useCustomState(false);

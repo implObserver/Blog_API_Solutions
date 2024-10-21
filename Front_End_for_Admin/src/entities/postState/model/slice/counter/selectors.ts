@@ -1,1 +1,1 @@
-const CounterState = (state: { counter: CounterState }) => state.counter;
+export const selectCounter = (state: { counter: CounterState }) => state.counter;

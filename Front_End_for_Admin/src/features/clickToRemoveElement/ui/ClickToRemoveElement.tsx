@@ -1,10 +1,12 @@
 import {
     useElementContext
 } from "@/entities/element";
-import { removePostImage } from "@/entities/postPreview/lib/helper/indexedDB/removePostImage";
-import { virtualPostActions } from "@/entities/postState";
-import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
-import { deletePostImage } from "@/entities/postState/model/slice/openedPost/thunks/delete/deletePostImage";
+import { removePostImage } from "@/entities/postPreview/lib";
+import {
+    deletePostImage,
+    openedPostActions,
+    virtualPostActions
+} from "@/entities/postState";
 import { getVirtualPost, useAppDispatch } from "@/shared/lib";
 import { MinusButton } from "@/shared/ui/minusButton"
 import { useParams } from "react-router-dom";

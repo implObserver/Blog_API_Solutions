@@ -2,7 +2,7 @@ import { instance } from '@/shared/lib';
 import Cookies from 'js-cookie'
 const id = Cookies.get('user_id');
 
-export const UpdateService = {
+export const PutService = {
     updatePost(post: Post) {
         return instance.put(`/api/user/${id}/posts/${post.id}/update`, post)
     },

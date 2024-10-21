@@ -1,4 +1,4 @@
-import { UpdateService } from "@/entities/postState/api/api.update";
+import { PutService } from "@/entities/postState/api";
 import { getAuthState } from "@/shared/lib";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -8,7 +8,7 @@ export const updateAuthor = createAsyncThunk(
         try {
             const isAuth = getAuthState();
             if (isAuth) {
-                const resp = await UpdateService.updateAuthor(data);
+                const resp = await PutService.updateAuthor(data);
                 const response = resp.data;
                 const res = {
                     error: false,

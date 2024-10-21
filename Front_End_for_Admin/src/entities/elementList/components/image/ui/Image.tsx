@@ -1,4 +1,4 @@
-import { useElementListContext } from '@/entities/elementList/lib/context/Context';
+import { useElementListContext } from '@/entities/elementList/lib';
 import styles from './styles/Image.module.css'
 
 export const Image = () => {

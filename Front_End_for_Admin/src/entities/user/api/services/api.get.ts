@@ -2,7 +2,7 @@ import { instance } from "@/shared/lib";
 import Cookies from "js-cookie";
 const userID = Cookies.get('user_id');
 
-export const ReadService = {
+export const GetService = {
     readProfile() {
         return instance.get(`/api/user/:${userID}/profile/`);
     },

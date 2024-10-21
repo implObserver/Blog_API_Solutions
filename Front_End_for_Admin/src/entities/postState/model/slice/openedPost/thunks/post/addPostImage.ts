@@ -1,4 +1,4 @@
-import { PostService } from "@/entities/user/api/api.post";
+import { PostService } from "@/entities/postState/api";
 
 export const addPostImage = async (data: ImageUpdate) => {
     try {

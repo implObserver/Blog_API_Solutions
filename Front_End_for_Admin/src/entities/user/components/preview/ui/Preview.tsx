@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styles from './styles/Preview.module.css'
 import { useEffect, useState } from "react";
 import { selectUserServices } from "@/entities/user/model/slice/services/selectors";
-import { getAvatar } from "@/entities/user/lib/helper/getAvatar";
+import { getAvatar } from "@/entities/user/lib";
 
 export const Preview = () => {
     const services = useSelector(selectUserServices);

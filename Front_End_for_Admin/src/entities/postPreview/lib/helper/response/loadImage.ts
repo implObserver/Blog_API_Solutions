@@ -1,8 +1,8 @@
-import { ReadService } from "../../../api/api.get";
+import { GetService } from "@/entities/postPreview/api";
 
 export const loadImage = async (imageUrl: string) => {
     try {
-        const resp = await ReadService.getPostImage(imageUrl);
+        const resp = await GetService.getPostImage(imageUrl);
         const contentType = resp.headers['content-type']
         const blob = resp.data;
         if (contentType.startsWith('image/')) {

@@ -1,4 +1,4 @@
-import { AuthService } from "@/entities/user/api/api.auth";
+import { AuthService } from "@/entities/user/api";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const logout = createAsyncThunk(

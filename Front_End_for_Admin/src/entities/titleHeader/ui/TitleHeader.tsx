@@ -1,6 +1,4 @@
 import styles from './styles/TitleHeader.module.css'
-import { useSelector } from 'react-redux';
-import { selectOpenedPost } from '@/entities/postState/model/slice/openedPost/selectors';
 import { getFormattedDate } from '@/shared/lib/helpers/getFormattedDate';
 import { useTitleHeaderContext } from '../lib/context/Context';
 

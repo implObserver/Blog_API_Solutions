@@ -1,1 +1,5 @@
 export { PostPreviewContext, usePostPreviewContext } from './context/Context'
+export { getPostImages, getImageByCode } from './helper/indexedDB/getPostImage'
+export { removePostImage } from './helper/indexedDB/removePostImage'
+export { savePostImage } from './helper/indexedDB/savePostImage'
+export { loadImage } from './helper/response/loadImage'

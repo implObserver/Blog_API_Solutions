@@ -3,10 +3,12 @@ import {
     Title,
     useElementContext
 } from "@/entities/element";
-import { counterActions, virtualPostActions } from "@/entities/postState";
-import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
+import {
+    counterActions,
+    openedPostActions,
+    virtualPostActions
+} from "@/entities/postState";
 import { getVirtualPost, useAppDispatch } from "@/shared/lib";
-import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 export const AddTitle = () => {

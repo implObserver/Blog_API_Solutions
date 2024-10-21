@@ -1,4 +1,4 @@
-import { PostService } from "@/entities/postState/api/api.post";
+import { PostService } from "@/entities/postState/api/services/api.post";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const addPost = createAsyncThunk(

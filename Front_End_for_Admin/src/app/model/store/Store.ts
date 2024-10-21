@@ -1,8 +1,3 @@
-import { counterReducer } from '@/entities/postState/model/slice/counter/slice';
-import { virtualPostReducer } from '@/entities/postState/model/slice/virtualPost/slice';
-import { backupsReducer } from '@/entities/postState/model/slice/backups/slice';
-import { openedPostReducer } from '@/entities/postState/model/slice/openedPost/slice';
-import { postsReducer } from '@/entities/postState/model/slice/posts/slice';
 import { servicesReducer, selectUserServices } from '@/entities/user';
 import { scrollRestorationReducer } from '@/features/scrollRestoration/model/slice/slice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
@@ -17,7 +12,14 @@ import {
   REGISTER,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage';
-import { focusReducer, selectFocus } from '@/entities/postState';
+import {
+  backupsReducer,
+  counterReducer,
+  focusReducer,
+  openedPostReducer,
+  postsReducer,
+  virtualPostReducer
+} from '@/entities/postState';
 
 const rootReducer = combineReducers({
   focus: focusReducer,
@@ -46,12 +48,6 @@ export const store = configureStore({
       },
     }),
 });
-
-export const selectors = {
-  focus: selectFocus,
-  userServices: selectUserServices,
-  
-}
 
 export const persistor = persistStore(store);
 

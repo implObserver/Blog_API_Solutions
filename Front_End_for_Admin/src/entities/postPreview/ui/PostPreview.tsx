@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import styles from './styles/PostPreviewStyles.module.css'
-import { getImageByCode } from "../lib/helper/indexedDB/getPostImage";
-import { loadImage } from "../lib/helper/response/loadImage";
-import { savePostImage } from "../lib/helper/indexedDB/savePostImage";
-import { Menu } from "../components/menu/ui/Menu";
 import { Link, useParams } from "react-router-dom";
 import { getFormattedDate } from "@/shared/lib";
+import { getImageByCode, savePostImage, loadImage } from "../lib";
+import { Menu } from "../components/menu";
 
 export const PostPreview = ({ post }) => {
     const [preview, setPreview] = useState('');

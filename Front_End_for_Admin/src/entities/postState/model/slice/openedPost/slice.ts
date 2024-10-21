@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./defaultState";
-import { updateModelsOfPost } from "./thunks/update/updateModelsOfPost";
-import { updateTag } from "./thunks/update/updateTag";
-import { updatePublishStatus } from "./thunks/update/updatePublishStatus";
-import { updateAuthor } from "./thunks/update/updateAuthor";
+import { updateTag } from "./thunks/put/updateTag";
+import { updatePublishStatus } from "./thunks/put/updatePublishStatus";
+import { updateAuthor } from "./thunks/put/updateAuthor";
 
 const openedPostSlice = createSlice({
     name: 'openedPost',

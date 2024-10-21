@@ -2,7 +2,7 @@ import { instance } from '@/shared/lib';
 import Cookies from 'js-cookie'
 const id = Cookies.get('user_id');
 
-export const UpdateService = {
+export const PutService = {
     updateAvatar(avatar: File) {
         const config = {
             headers: {

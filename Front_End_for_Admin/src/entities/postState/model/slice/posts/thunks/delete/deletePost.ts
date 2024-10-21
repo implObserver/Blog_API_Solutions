@@ -1,4 +1,4 @@
-import { DeleteService } from "@/entities/postState/api/api.delete";
+import { DeleteService } from "@/entities/postState/api/services/api.delete";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const deletePost = createAsyncThunk(

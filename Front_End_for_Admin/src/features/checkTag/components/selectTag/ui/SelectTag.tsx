@@ -3,9 +3,8 @@ import { getTagList } from "../lib/helper/getTagList"
 import { useSelector } from "react-redux";
 import { Tag, TagContext } from "@/shared/ui/tag";
 import styles from './styles/SelectTag.module.css'
-import { updateTag } from "@/entities/postState/model/slice/openedPost/thunks/update/updateTag";
-import { selectOpenedPost } from "@/entities/postState/model/slice/openedPost/selectors";
 import { useAppDispatch } from "@/shared/lib";
+import { selectOpenedPost, updateTag } from "@/entities/postState";
 
 export const SelectTag = () => {
     const params = useParams();
