@@ -10,6 +10,7 @@ export {
     getAuthState,
     getVirtualAuthor,
     getBackups,
+    getScroll,
 } from './hooks/redux/useRedux'
 export { instance } from './helpers/instance/getInstance'
 export { useIndexedDb } from './hooks/indexedDB/useIndexedDB'

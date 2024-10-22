@@ -1,5 +1,7 @@
-import { virtualPostActions } from "@/entities/postState";
-import { updatePublishStatus } from "@/entities/postState/model/slice/openedPost/thunks/put/updatePublishStatus";
+import {
+    updatePublishStatus,
+    virtualPostActions
+} from "@/entities/postState";
 import { useAppDispatch } from "@/shared/lib";
 import { useParams } from "react-router-dom";
 

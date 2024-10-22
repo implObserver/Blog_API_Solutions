@@ -1,7 +1,7 @@
 import styles from './styles/Posts.module.css'
 import { CreatePost } from "@/features/createPost"
-import { NotificationDistributor } from "@/features/notificationDistributor/ui/NotificationDistributor"
-import { PaginationShowcaseOfUserPosts } from "../components/canvasOfPosts/ui/PaginationShowcaseOfUserPosts"
+import { NotificationDistributor } from '@/features/notificationDistributor'
+import { PaginationShowcaseOfUserPosts } from '../components/canvasOfPosts'
 
 export const Posts = () => {
     return (

@@ -1,12 +1,11 @@
-import { useDispatch } from 'react-redux';
-import { AppDispath } from '@/app/model/store/Store';
-import { updateTitle } from '@/entities/postState/model/slice/posts/thunks/update/updateTitle';
 import { usePostPreviewContext } from '@/entities/postPreview';
 import { useState } from 'react';
 import { PostForm, PostFormContext } from '@/shared/ui/postForm';
+import { useAppDispatch } from '@/shared/lib';
+import { updateTitle } from '@/entities/postState';
 
 export const UpdateTitle = ({ postid }) => {
-    const dispatch = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
     const context = usePostPreviewContext();
 
     const [data, setData] = useState({

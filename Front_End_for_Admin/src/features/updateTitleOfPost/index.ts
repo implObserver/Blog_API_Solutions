@@ -1,0 +1,1 @@
+export { UpdateTitle } from './ui/UpdateTitle'

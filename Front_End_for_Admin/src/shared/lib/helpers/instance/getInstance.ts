@@ -14,7 +14,6 @@ export const instance = axios.create({
 
 instance.interceptors.response.use(
     (response) => {
-        console.log('lllll')
         currentRetryCount = 0;
         return response;
     },

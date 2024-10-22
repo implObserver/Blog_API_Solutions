@@ -3,8 +3,8 @@ import { selectUserServices, servicesActions } from "@/entities/user";
 import { SubmitOfSignup } from "@/features/submitOfSignup";
 import { SpinnerLoader } from "@/shared/ui/spinnerLoader";
 import { useEffect } from "react";
-import { NotificationDistributor } from "@/features/notificationDistributor/ui/NotificationDistributor";
 import { useAppDispatch } from "@/shared/lib";
+import { NotificationDistributor } from "@/features/notificationDistributor";
 
 const blogUrl = import.meta.env.VITE_BLOG_URL;
 

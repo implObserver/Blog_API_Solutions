@@ -1,6 +1,6 @@
 import styles from './styles/UploadFile.module.css'
-import { updateAvatar } from "@/entities/user/lib/helper/updateAvatar";
 import { servicesActions } from "@/entities/user";
+import { updateAvatar } from '@/entities/user/lib';
 import { useAppDispatch } from '@/shared/lib';
 
 export const UpdateAvatar = ({ children }) => {

@@ -1,9 +1,9 @@
-import { CheckBox } from "@/shared/ui/checkBox/ui/CheckBox"
+import { selectOpenedPost } from '@/entities/postState';
 import styles from './styles/PublishBox.module.css'
-import { PublishPost } from "@/features/publishPost/ui/PublishPost"
 import { useSelector } from "react-redux";
-import { CheckBoxContext } from "@/shared/ui/checkBox/lib/context/Context";
-import { selectOpenedPost } from "@/entities/postState/model/slice/openedPost/selectors";
+import { PublishPost } from '@/features/publishPost';
+import { CheckBox, CheckBoxContext } from '@/shared/ui/checkBox';
+
 
 export const PublishBox = () => {
     const post = useSelector(selectOpenedPost).openedPost;

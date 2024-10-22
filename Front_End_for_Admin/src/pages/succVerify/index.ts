@@ -1,0 +1,1 @@
+export { SuccVerifyPage } from './ui/SuccVerifyPage'

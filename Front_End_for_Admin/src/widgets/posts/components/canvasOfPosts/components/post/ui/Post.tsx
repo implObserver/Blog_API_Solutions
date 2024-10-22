@@ -1,9 +1,9 @@
 import { PostPreview, PostPreviewContext } from "@/entities/postPreview"
 import { DeletePost } from "@/features/deletePost"
-import { EditPost } from "@/features/editPost/ui/EditPost";
-import { UpdateTitle } from "@/features/updateTitleOfPost/ui/UpdateTitle";
 import { useCustomState } from "@/shared/lib"
 import styles from './styles/Post.module.css'
+import { UpdateTitle } from "@/features/updateTitleOfPost";
+import { EditPost } from "@/features/editPost";
 
 export const Post = ({ post }) => {
     const toggle = useCustomState(false);

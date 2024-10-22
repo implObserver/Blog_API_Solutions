@@ -32,4 +32,10 @@ export const getBackups = () => {
     const backups = store.getState().backups.backups;
     return backups;
 }
+
+export const getScroll = (pathname: string) => {
+    const scrolls = store.getState().scrollRestoration.scrolls;
+    const scroll = scrolls.find(scroll => scroll.pathname === pathname);
+    return scroll;
+}
 //useAnythingData = () => {...}

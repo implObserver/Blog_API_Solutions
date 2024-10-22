@@ -1,5 +1,3 @@
-import { error } from "console";
-
 export const isError = (status: number) => {
     const errors = [400, 401, 404, 500];
     return errors.includes(status);

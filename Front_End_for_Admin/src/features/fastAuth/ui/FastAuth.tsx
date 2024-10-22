@@ -1,5 +1,8 @@
-import { logout, selectUserServices, servicesActions } from "@/entities/user"
-import { fastLogin } from "@/entities/user/model/slice/services/thunks/auth/fastLogin";
+import {
+    fastLogin,
+    logout,
+    selectUserServices
+} from "@/entities/user"
 import { useAppDispatch } from "@/shared/lib";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux"

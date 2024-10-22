@@ -1,14 +1,17 @@
-import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
-import { postsActions } from "@/entities/postState/model/slice/posts/slice";
-import { getPostsOfUser } from "@/entities/postState/model/slice/posts/thunks/get/getPostsOfUser";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styles from './styles/CanvasOfPosts.module.css'
-import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
-import { Post } from "../components/post/ui/Post";
-import { selectBackups } from "@/entities/postState/model/slice/backups/selectors";
-import { virtualPostActions } from "@/entities/postState";
+
+import {
+    getPostsOfUser,
+    openedPostActions,
+    postsActions,
+    selectBackups,
+    selectPosts,
+    virtualPostActions
+} from "@/entities/postState";
 import { useAppDispatch } from "@/shared/lib";
+import { Post } from "../components/post";
 
 export const PaginationShowcaseOfUserPosts = () => {
     const dispatch = useAppDispatch();

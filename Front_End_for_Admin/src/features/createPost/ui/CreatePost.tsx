@@ -1,8 +1,8 @@
 import { TogglePostForm } from "@/entities/togglePostForm";
-import { addPost } from "@/entities/postState/model/slice/posts/thunks/post/addPost";
 import { PostFormContext } from "@/shared/ui/postForm";
 import { useState } from "react";
 import { useAppDispatch } from "@/shared/lib";
+import { addPost } from "@/entities/postState";
 
 export const CreatePost = () => {
     const dispatch = useAppDispatch();

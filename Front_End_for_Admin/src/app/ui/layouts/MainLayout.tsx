@@ -1,6 +1,5 @@
-import { AppDispath, store } from '@/app/model/store/Store';
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Outlet, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
@@ -11,16 +10,11 @@ import { Backup } from '@/features/backup';
 import { scrollRestorationActions } from '@/features/scrollRestoration';
 import { FastAuth } from '@/features/fastAuth';
 import { Footer } from '@/widgets/footer';
-
-const getScroll = (pathname: string) => {
-    const scrolls = store.getState().scrollRestoration.scrolls;
-    const scroll = scrolls.find(scroll => scroll.pathname === pathname);
-    return scroll;
-}
+import { getScroll, useAppDispatch } from '@/shared/lib';
 
 export const MainLayout: React.FC = () => {
     const { pathname } = useLocation();
-    const dispatch = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
     gsap.registerPlugin(ScrollToPlugin);
     const isAuth = useSelector(selectUserServices).isAuthenticated;
 

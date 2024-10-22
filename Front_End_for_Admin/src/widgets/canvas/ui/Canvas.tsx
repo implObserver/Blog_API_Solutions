@@ -4,10 +4,12 @@ import { useParams } from "react-router-dom";
 import React, { useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { modelsToContainers } from "../lib/helper/containerAssembly";
-import { selectOpenedPost } from "@/entities/postState/model/slice/openedPost/selectors";
-import { backupsActions } from "@/entities/postState/model/slice/backups/slice";
-import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
 import { getVirtualPost, useAppDispatch } from "@/shared/lib";
+import {
+    backupsActions,
+    openedPostActions,
+    selectOpenedPost
+} from "@/entities/postState";
 
 export const Canvas = React.memo(() => {
     const { postid } = useParams();

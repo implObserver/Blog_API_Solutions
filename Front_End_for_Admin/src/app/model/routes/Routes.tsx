@@ -2,8 +2,8 @@ import { SignupPage } from "@/pages/signup";
 import { LoginPage } from "@/pages/login";
 import { PostPage } from "@/pages/post";
 import { ProfilePage } from "@/pages/profile";
-import { SuccVerifyPage } from "@/pages/succVerify/ui/SuccVerifyPage";
 import { MainLayout } from "@/app/ui/layouts/MainLayout";
+import { SuccVerifyPage } from "@/pages/succVerify";
 
 const routes = [
     {

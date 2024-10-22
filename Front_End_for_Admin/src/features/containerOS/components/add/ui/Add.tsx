@@ -3,8 +3,11 @@ import {
     ListElement,
     TextArea
 } from "@/entities/element";
-import { counterActions, virtualPostActions } from "@/entities/postState";
-import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
+import {
+    counterActions,
+    openedPostActions,
+    virtualPostActions
+} from "@/entities/postState";
 import { useContainerContext } from "@/features/containerOS/lib";
 import { getVirtualPost, useAppDispatch } from "@/shared/lib";
 import { useParams } from "react-router-dom";

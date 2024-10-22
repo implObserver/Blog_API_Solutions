@@ -1,11 +1,10 @@
-import { TitleHeader } from '@/entities/titleHeader'
+import { TitleHeader, TitleHeaderContext } from '@/entities/titleHeader'
 import styles from './styles/Title.module.css'
-import { Tags } from '../components/tags/ui/Tags'
-import { PublishBox } from '../components/publishBox/ui/PublishBox'
-import { Author } from '../components/author/ui/Author'
 import { useSelector } from 'react-redux'
-import { TitleHeaderContext } from '@/entities/titleHeader/lib/context/Context'
-import { selectOpenedPost } from '@/entities/postState/model/slice/openedPost/selectors'
+import { selectOpenedPost } from '@/entities/postState'
+import { Author } from '../components/author'
+import { Tags } from '../components/tags'
+import { PublishBox } from '../components/publishBox'
 
 export const CategoryDate = () => {
     const post = useSelector(selectOpenedPost).openedPost;

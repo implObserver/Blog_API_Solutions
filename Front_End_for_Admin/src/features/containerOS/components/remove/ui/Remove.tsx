@@ -1,5 +1,4 @@
-import { virtualPostActions } from "@/entities/postState";
-import { openedPostActions } from "@/entities/postState/model/slice/openedPost/slice";
+import { openedPostActions, virtualPostActions } from "@/entities/postState";
 import { useContainerContext, useEmptyContext } from "@/features/containerOS/lib";
 import { getVirtualPost, useAppDispatch } from "@/shared/lib";
 import { useParams } from "react-router-dom";
