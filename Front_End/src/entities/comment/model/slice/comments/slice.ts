@@ -17,74 +17,62 @@ const commentsSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        const handlePending = (state: Comments) => {
-            state.isPending = true;
-        };
-        const handleFulfilled = (state: Comments) => {
-            state.isPending = false;
-        };
-        const handleRejected = (state: Comments) => {
-            state.isPending = false;
+        const setLoading = (state: Comments) => {
+            state.isLoading = true;
         };
 
-        builder
-            .addCase(getPaginationComments.pending, handlePending)
-            .addCase(getPaginationComments.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                console.log(action.payload)
-                if (!action.payload.error) {
-                    state.comments = action.payload.data.message.comments;
-                    state.totalPages = action.payload.data.message.totalPages;
-                    state.totalComments = action.payload.data.message.totalComments;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
-            .addCase(getPaginationComments.rejected, handleRejected)
+        const setLoadingComplete = (state: Comments) => {
+            state.isLoading = false;
+        };
 
-        builder
-            .addCase(addComment.pending, handlePending)
-            .addCase(addComment.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (!action.payload.error) {
-                    console.log(action.payload.data)
-                    state.totalComments = action.payload.data.message.totalComments;
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
-            .addCase(addComment.rejected, handleRejected)
+        const setErrorState = (state: Comments) => {
+            state.isLoading = false;
+        };
 
-        builder
-            .addCase(deleteComment.pending, handlePending)
-            .addCase(deleteComment.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (!action.payload.error) {
-                    console.log(action.payload.data)
-                    state.totalComments = action.payload.data.message.totalComments;
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
-            .addCase(deleteComment.rejected, handleRejected)
+        const putCommentInState = (state: Comments, action: PayloadAction<any>) => {
+            setLoadingComplete(state);
+            if (!action.payload.error) {
+                const updatedComment = action.payload.data.message.updatedComment;
+                const index = state.comments.findIndex(comment => comment.id === updatedComment.id);
+                state.comments.splice(index, 1, updatedComment);
+            } else {
+                state.error = action.payload.data;
+            }
+        }
 
-        builder
-            .addCase(putComment.pending, handlePending)
-            .addCase(putComment.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                console.log(action.payload)
-                if (!action.payload.error) {
-                    const updatedComment = action.payload.data.message.updatedComment;
-                    const index = state.comments.findIndex(comment => comment.id === updatedComment.id);
-                    state.comments.splice(index, 1, updatedComment);
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
-            .addCase(putComment.rejected, handleRejected)
+        const getComments = (state: Comments, action: PayloadAction<any>) => {
+            setLoadingComplete(state);
+            if (!action.payload.error) {
+                state.comments = action.payload.data.message.comments;
+                state.totalPages = action.payload.data.message.totalPages;
+                state.totalComments = action.payload.data.message.totalComments;
+            } else {
+                state.error = action.payload.data;
+            }
+        }
+
+        const updateTotalComments = (state: Comments, action: PayloadAction<any>) => {
+            setLoadingComplete(state);
+            if (!action.payload.error) {
+                state.totalComments = action.payload.data.message.totalComments;
+            } else {
+                state.error = action.payload.data;
+            }
+        }
+
+        const asyncActions = [
+            { action: getPaginationComments, handler: getComments },
+            { action: addComment, handler: updateTotalComments },
+            { action: deleteComment, handler: updateTotalComments },
+            { action: putComment, handler: putCommentInState },
+        ];
+
+        asyncActions.forEach(({ action, handler }) => {
+            builder
+                .addCase(action.pending, setLoading)
+                .addCase(action.fulfilled, (state, action) => handler(state, action))
+                .addCase(action.rejected, setErrorState);
+        });
     }
 })
 

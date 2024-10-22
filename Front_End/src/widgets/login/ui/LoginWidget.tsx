@@ -1,22 +1,22 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectUserServices, servicesActions } from "@/entities/user";
 import { SubmitOfLogin } from "@/features/submitOfLogin";
 import { SpinnerLoader } from "@/shared/ui/spinnerLoader";
-import { AppDispath } from "@/app/model/store/Store";
 import { useEffect } from "react";
-import { NotificationDestributor } from "@/features/notificationDestributor/ui/NotificationDestributor";
+import { useAppDispatch } from "@/shared/lib";
+import { NotificationDestributor } from "@/features/notificationDestributor";
 
 const homeUrl = import.meta.env.VITE_BLOG_URL;
 
 export const LoginWidget = () => {
     const services = useSelector(selectUserServices);
-    const dispatch = useDispatch<AppDispath>();
-    //localStorage.clear()
+    const dispatch = useAppDispatch();
+
     useEffect(() => {
         dispatch(servicesActions.clearErrors());
     }, [])
 
-    if (services.isPending) {
+    if (services.isLoading) {
         return (
             <>
                 <SpinnerLoader></SpinnerLoader>
@@ -24,7 +24,7 @@ export const LoginWidget = () => {
         )
     }
 
-    if (!services.isAuth) {
+    if (!services.isAuthenticated) {
         return (
             <div>
                 <SubmitOfLogin></SubmitOfLogin>
@@ -33,7 +33,7 @@ export const LoginWidget = () => {
         )
     }
 
-    if (services.isAuth) {
+    if (services.isAuthenticated) {
         window.location.href = homeUrl;
     }
 }

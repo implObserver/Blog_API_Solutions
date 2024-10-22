@@ -1,0 +1,1 @@
+export { GetService } from './services/api.get'

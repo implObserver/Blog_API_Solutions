@@ -1,14 +1,14 @@
-import { AppDispath } from "@/app/model/store/Store"
 import { tagActions } from "@/entities/tag";
-import { useDispatch } from "react-redux"
 import { usePostFilterContext } from "../lib/context/Context";
 import { useLocation } from "react-router-dom";
+import { useAppDispatch } from "@/shared/lib";
+
 const homeUrl = import.meta.env.VITE_BLOG_URL;
 
 export const PostsFilter = () => {
     const context = usePostFilterContext();
     const { pathname } = useLocation();
-    const dispatch = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
 
     const clickHandle = (e: React.MouseEvent<HTMLDivElement>) => {
         dispatch(tagActions.setTag(context.tag));

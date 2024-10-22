@@ -1,10 +1,9 @@
 import { Container } from "../components/container";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectUserServices } from "@/entities/user";
-import { ContainerContext } from "../lib/context/Context";
-import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
+import { ContainerContext } from "../lib";
+import { selectPosts } from "@/entities/postState";
 
 export const Canvas = React.memo(() => {
     const params = useParams();

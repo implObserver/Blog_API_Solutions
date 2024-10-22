@@ -1,28 +1,27 @@
-import { useElementContext } from "@/entities/element";
 import { useCustomState } from "@/shared/lib";
-import { ButtonForActionMenu } from "@/shared/ui/buttonForActionMenu/ui/ButtonForActionMenu"
-import { useCommentContext } from "@/shared/ui/comment/lib/context/Context";
 import { Dropdown, DropdownContext } from "@/shared/ui/dropdownElement"
 import { ExternalReset, ExternalResetContext } from "@/shared/ui/externalReset"
 import styles from './styles/Menu.module.css'
+import { ButtonForActionMenu } from "@/shared/ui/buttonForActionMenu";
+import { useCommentContext } from "@/shared/ui/comment";
 
 export const Menu = () => {
-
-    const update = useCustomState();
+    const state = useCustomState();
     const context = useCommentContext();
     const features = context.features;
+
     const externalResetContext: ExternalResetContextType = {
-        state: update,
+        state,
         index: `${context.comment.id} container`,
     }
 
     const dropdownContext: DropdownContextType = {
-        state: update.getState(),
+        state: state.getState(),
         margin: false,
     }
 
     const onClick = () => {
-        update.toggle();
+        state.toggle();
     }
 
     const fill = () => {

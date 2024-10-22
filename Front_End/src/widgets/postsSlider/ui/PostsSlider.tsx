@@ -1,11 +1,10 @@
-import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
-import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Item } from "../components/item/ui/Item";
 import style from './style/PostsSlider.module.css'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
+import { selectPosts } from "@/entities/postState";
+import { Item } from "../components/item";
 
 export const PostsSlider = () => {
     const posts = useSelector(selectPosts).posts;

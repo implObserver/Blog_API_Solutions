@@ -71,19 +71,13 @@ const getPaginationComments = async (offset, limit, postid) => {
     take: limit,
     where: { postId: postid },
     orderBy: {
-      postingDate: 'desc', // Сортируем по полю createdAt в порядке убывания
+      postingDate: 'desc',
     },
     include: {
       user: {
         select: {
           id: true,
-          // Используем select, чтобы ограничить возвращаемые поля
-          profile: {
-            // Включаем только профиль
-            select: {
-              name: true, // Выбираем только поле name из модели Profile
-            },
-          },
+          username: true,
         },
       },
     },

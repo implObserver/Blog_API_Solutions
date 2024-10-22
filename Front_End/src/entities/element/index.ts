@@ -1,8 +1,11 @@
 export { Element } from './ui/Element'
-export { ElementContext, useElementContext } from './lib/context/Context'
-export { elementToModel, elementsToModels } from './lib/helper/ElementsToModels'
-export { modelToElement, modelsToElements } from './lib/helper/ModelsToElements'
 export {
+    elementToModel,
+    elementsToModels,
+    modelToElement,
+    modelsToElements,
+    ElementContext,
+    useElementContext,
     TextArea,
     Title,
     MainTitle,
@@ -11,4 +14,4 @@ export {
     ListElement,
     ListHeader,
     CodeArea
-} from './lib/helper/modelsOfElements'
+} from './lib'

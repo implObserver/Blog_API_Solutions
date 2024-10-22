@@ -1,15 +1,14 @@
-import { AppDispath } from "@/app/model/store/Store";
 import { postsActions } from "@/entities/user";
-import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styles from './styles/Posts.module.css';
-import { getPaginationPosts } from "@/entities/postState/model/slice/posts/thunks/get/getPaginationPost";
 import { ClassicShowcase } from "../components/classic";
-import { AlterShowcase } from "../components/alternate/ui/AlterShowcase";
+import { useAppDispatch } from "@/shared/lib";
+import { getPaginationPosts, selectPosts } from "@/entities/postState";
+import { AlterShowcase } from "../components/alternate";
 
-export const Pposts = () => {
-    const dispatch = useDispatch<AppDispath>();
+export const Posts = () => {
+    const dispatch = useAppDispatch();
     const postsService = useSelector(selectPosts);
     const currentPage = postsService.currentPage;
     const totalPages = postsService.totalPages;

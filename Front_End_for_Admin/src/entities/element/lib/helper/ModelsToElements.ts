@@ -70,13 +70,13 @@ const createTitleElement = (model: Model<ModelVariant>) => {
 
 const createPreviewElement = (model: Model<ModelVariant>) => {
     const preview = createPreview(model.id);
-    preview.setUrl(model.imageUrl);
+    preview.setImageUrl(model.imageUrl);
     return preview;
 }
 
 const createViewElement = (model: Model<ModelVariant>) => {
     const preview = createImageArea(model.id);
-    preview.setUrl(model.imageUrl);
+    preview.setImageUrl(model.imageUrl);
     return preview;
 }
 

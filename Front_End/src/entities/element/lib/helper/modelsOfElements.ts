@@ -1,7 +1,5 @@
-import { store } from "@/app/model/store/Store";
-
 const Element = (id?: number) => {
-    const defaultId = id === undefined ? store.getState().counter.count : id;
+    const defaultId = id;
     const getId = () => {
         return defaultId;
     }
@@ -25,15 +23,15 @@ const Value = () => {
 const ImageUrl = () => {
     let url = '';
 
-    const setUrl = (val: string) => {
+    const setImageUrl = (val: string) => {
         url = val;
     }
 
-    const getUrl = () => {
+    const getImageUrl = () => {
         return url;
     }
 
-    return { setUrl, getUrl };
+    return { setImageUrl, getImageUrl };
 }
 
 const Image = (id?: number) => {

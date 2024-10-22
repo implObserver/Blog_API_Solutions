@@ -1,6 +1,4 @@
-import {
-    useElementContext
-} from "@/entities/element";
+import { useElementContext } from "@/entities/element";
 import { ListArea, ListAreaContext } from "@/shared/ui/listArea";
 import styles from './styles/ListElement.module.css'
 

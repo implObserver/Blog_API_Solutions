@@ -22,7 +22,7 @@ export const Container = React.memo(() => {
     const { element, model, index } = context.containerContext;
 
     const elementContext: CanvasElement = {
-        features: {
+        featuresContext: {
             panel: {
                 features: [
                     <ClickToAddElement key={`${model.id}_add`} />,

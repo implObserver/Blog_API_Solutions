@@ -1,18 +1,12 @@
 import styles from './styles/TitleHeader.module.css'
 import { useTitleHeaderContext } from '../lib/context/Context';
+import { getFormattedDate } from '@/shared/lib';
 
 export const TitleHeader = ({ children }) => {
     const date = useTitleHeaderContext();
     const postingDate = new Date(date);
 
-    // Форматирование даты
-    const options: Intl.DateTimeFormatOptions = {
-        year: 'numeric',
-        month: 'long',
-        day: '2-digit',
-    };
-
-    const formattedDate = new Intl.DateTimeFormat('en-US', options).format(postingDate);
+    const formattedDate = getFormattedDate(postingDate);
 
     return (
         <div className={styles.header_title}>

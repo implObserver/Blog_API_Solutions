@@ -25,15 +25,15 @@ const createValueManager = () => {
 const createImageUrlManager = () => {
     let url = '';
 
-    const setUrl = (val: string) => {
+    const setImageUrl = (val: string) => {
         url = val;
     }
 
-    const getUrl = () => {
+    const getImageUrl = () => {
         return url;
     }
 
-    return { setUrl, getUrl };
+    return { setImageUrl, getImageUrl };
 }
 
 const createImageElement = (id?: number) => {

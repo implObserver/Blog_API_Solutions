@@ -1,12 +1,11 @@
 import styles from './styles/AlterShowcase.module.css'
 import { useSelector } from "react-redux";
-import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
 import { selectTag } from "@/entities/tag";
-import { PostFilterContext } from "@/features/postsFilter/lib/context/Context";
-import { PostsFilter } from "@/features/postsFilter/ui/PostsFilter";
 import { Tag } from "@/shared/ui/tag";
-import { AlterPostPreview } from "@/entities/alterPostPreview";
-import { AlterPostPreviewContext } from "@/entities/alterPostPreview/lib/context/Context";
+import { PostPreview } from '@/entities/postPreview';
+import { selectPosts } from '@/entities/postState';
+import { PostFilterContext, PostsFilter } from '@/features/postsFilter';
+import { PostPreviewContext } from '@/entities/postPreview/lib';
 
 
 export const AlterShowcase = () => {
@@ -29,12 +28,13 @@ export const AlterShowcase = () => {
                             <PostFilterContext.Provider value={postFilterContext}>
                                 <PostsFilter></PostsFilter>
                             </PostFilterContext.Provider>
-                        </>
+                        </>,
+                        type: 'alter',
                     };
                     return (
-                        <AlterPostPreviewContext.Provider value={postPreviewContext} key={post.id}>
-                            <AlterPostPreview></AlterPostPreview>
-                        </AlterPostPreviewContext.Provider>
+                        <PostPreviewContext.Provider value={postPreviewContext} key={post.id}>
+                            <PostPreview></PostPreview>
+                        </PostPreviewContext.Provider>
                     );
                 }
             }

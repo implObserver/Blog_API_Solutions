@@ -1,13 +1,11 @@
-import { TitleHeader } from '@/entities/titleHeader'
+import { TitleHeader, TitleHeaderContext } from '@/entities/titleHeader'
 import styles from './styles/Title.module.css'
 import { Tag, TagContext } from '@/shared/ui/tag'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { PostFilterContext } from '@/features/postsFilter/lib/context/Context'
-import { PostsFilter } from '@/features/postsFilter/ui/PostsFilter'
-import { selectPosts } from '@/entities/postState/model/slice/posts/selectors'
-import { Author } from '../component/author/ui/Author'
-import { TitleHeaderContext } from '@/entities/titleHeader/lib/context/Context'
+import { selectPosts } from '@/entities/postState'
+import { PostFilterContext, PostsFilter } from '@/features/postsFilter'
+import { Author } from '../component/author'
 
 export const CategoryDate = () => {
     const params = useParams();

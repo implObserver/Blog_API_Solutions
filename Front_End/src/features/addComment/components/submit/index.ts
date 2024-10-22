@@ -1,0 +1,1 @@
+export { SubmitComment } from './ui/SubmitComment'

@@ -1,6 +1,11 @@
 export { useCustomState } from './hooks/useCustomState'
-export { useLocalStorage } from './hooks/useLocalStorage'
 export { formattedToday } from './helpers/getCurrentDate'
-export { getPostId } from './helpers/getPostId'
-export { fileToBase64, base64ToFile } from './helpers/blobToBase64'
 export { getFormattedDate } from './helpers/getFormattedDate'
+export { getPostId } from './helpers/getPostId'
+export {
+    useAppDispatch,
+    getAuthState,
+    getScroll,
+} from './hooks/redux/useRedux'
+export { instance } from './helpers/instance/getInstance'
+export { useIndexedDb } from './hooks/indexedDB/useIndexedDB'

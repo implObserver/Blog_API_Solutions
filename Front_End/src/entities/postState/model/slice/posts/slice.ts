@@ -16,51 +16,49 @@ const postsSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        const handlePending = (state: Posts) => {
-            state.isPending = true;
-        };
-        const handleFulfilled = (state: Posts) => {
-            state.isPending = false;
-        };
-        const handleRejected = (state: Posts) => {
-            state.isPending = false;
+        const setLoading = (state: Posts) => {
+            state.isLoading = true;
         };
 
-        builder
-            .addCase(getAllPosts.pending, handlePending)
-            .addCase(getAllPosts.fulfilled, (state, action) => {
-                handleFulfilled(state);
+        const setLoadingComplete = (state: Posts) => {
+            state.isLoading = false;
+        };
 
-            })
-            .addCase(getAllPosts.rejected, handleRejected)
-        builder
-            .addCase(getPaginationPosts.pending, handlePending)
-            .addCase(getPaginationPosts.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                console.log(action.payload)
-                if (!action.payload.error) {
-                    state.posts = action.payload.data.message.posts;
-                    state.totalPages = action.payload.data.message.totalPages;
+        const setErrorState = (state: Posts) => {
+            state.isLoading = false;
+        };
 
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
-            .addCase(getPaginationPosts.rejected, handleRejected)
+        const getPosts = (state: Posts, action: PayloadAction<any>) => {
+            setLoadingComplete(state);
+            if (!action.payload.error) {
+                state.posts = action.payload.data.message.posts;
+                state.totalPages = action.payload.data.message.totalPages;
+            } else {
+                state.error = action.payload.data;
+            }
+        }
 
-        builder
-            .addCase(getPostToId.pending, handlePending)
-            .addCase(getPostToId.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                console.log(action.payload)
-                if (!action.payload.error) {
-                    const index = state.posts.findIndex(post => post.id === action.payload.data.message.post.id);
-                    state.posts.splice(index, 1, action.payload.data.message.post);
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
-            .addCase(getPostToId.rejected, handleRejected)
+        const updatePost = (state: Posts, action: PayloadAction<any>) => {
+            setLoadingComplete(state);
+            if (!action.payload.error) {
+                const index = state.posts.findIndex(post => post.id === action.payload.data.message.post.id);
+                state.posts.splice(index, 1, action.payload.data.message.post);
+            } else {
+                state.error = action.payload.data;
+            }
+        }
+
+        const asyncActions = [
+            { action: getPaginationPosts, handler: getPosts },
+            { action: getPostToId, handler: updatePost },
+        ];
+
+        asyncActions.forEach(({ action, handler }) => {
+            builder
+                .addCase(action.pending, setLoading)
+                .addCase(action.fulfilled, (state, action) => handler(state, action))
+                .addCase(action.rejected, setErrorState);
+        });
     }
 })
 

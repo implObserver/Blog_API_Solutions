@@ -4,11 +4,11 @@ interface Containers {
 
 interface Container {
     index: number,
-    model: ModelType<TextAreaModel | PreviewModel | TitleModel>,
+    model: Model<TextModel | PreviewModel | TitleModel>,
 }
 
 interface ContainerContext {
     index: number,
-    element: ElementType<Title | TextArea | Preview>,
-    model: ModelType<TextAreaModel | PreviewModel | TitleModel>,
+    element: ElementData<TitleElement | TextElement | PreviewElement>,
+    model: Model<TextModel | PreviewModel | TitleModel>,
 }

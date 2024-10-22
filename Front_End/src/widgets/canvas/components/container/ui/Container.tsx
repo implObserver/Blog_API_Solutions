@@ -2,14 +2,10 @@ import { Factory } from "@/features/containerFactory";
 import { Element, ElementContext } from "@/entities/element";
 import styles from './styles/Container.module.css'
 import React from "react";
-import { useCustomState } from "@/shared/lib";
-import { useContainerContext } from "@/widgets/canvas/lib/context/Context";
-
-
+import { useContainerContext } from "@/widgets/canvas/lib";
 
 export const Container = React.memo(() => {
     const context = useContainerContext();
-    const dropdownStatus = useCustomState();
 
     const model = context.model;
 
@@ -26,7 +22,7 @@ export const Container = React.memo(() => {
     return (
         <div className={styles.container}>
             <ElementContext.Provider value={elementContext}>
-                    <Element />
+                <Element />
             </ElementContext.Provider>
         </div>
     );

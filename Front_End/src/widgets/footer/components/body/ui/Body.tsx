@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import styles from './styles/Body.module.css'
-import { PostsFilter } from '@/features/postsFilter/ui/PostsFilter'
-import { PostFilterContext } from '@/features/postsFilter/lib/context/Context'
+import { PostFilterContext } from '@/features/postsFilter/lib/context/Context';
+import { PostsFilter } from '@/features/postsFilter';
+
 const homeUrl = import.meta.env.VITE_BLOG_URL;
 const creatorUrl = import.meta.env.VITE_CREATOR_URL;
 

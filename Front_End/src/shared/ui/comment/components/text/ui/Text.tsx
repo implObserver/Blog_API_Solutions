@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useCommentContext } from "../../../lib/context/Context";
 import styles from './styles/Text.module.css'
 import TextareaAutosize from 'react-textarea-autosize';

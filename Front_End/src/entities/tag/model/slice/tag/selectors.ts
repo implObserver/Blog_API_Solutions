@@ -1,3 +1,1 @@
-import { RootState } from "@/app/model/store/Store";
-
-export const selectTag = (state: RootState) => state.tag;
+export const selectTag = (state: { tag: Tag }) => state.tag;

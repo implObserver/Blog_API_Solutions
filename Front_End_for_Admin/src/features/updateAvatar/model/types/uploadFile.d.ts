@@ -1,3 +1,3 @@
 interface UploadContextType {
-    update: StateHandler,
+    update: StateHandler<boolean>,
 }

@@ -4,201 +4,70 @@ import { login } from "./thunks/auth/login";
 import { checkAuth } from "./thunks/auth/checkAuth";
 import { logout } from "./thunks/auth/logout";
 import { signup } from "./thunks/auth/signup";
-import { updateProfile } from "./thunks/update/updateProfile";
-import { addPost } from "./thunks/update/addPost";
-import { updatePost } from "./thunks/update/updatePost";
-
-import { deletePost } from "./thunks/delete/deletePost";
 import { fastLogin } from "./thunks/auth/fastLogin";
-import { addComment } from "../../../../comment/model/slice/comments/thunks/post/addComment";
 
 const userServicesSlice = createSlice({
     name: 'services',
     initialState,
     reducers: {
-        addModel: (state: ServicesDataType, action: PayloadAction<CellOfPost>) => {
-            const post_id = action.payload.post_id;
-            const post = state.user.posts.find(post => post.id === post_id);
-            const models = post.models;
-            const id = action.payload.model.id;
-            models.forEach((element, index) => {
-                if (element.id === id && index > 1) {
-                    models.splice(index + 1, 0, action.payload.newModel);
-                }
-            })
-
-        },
-        updateModel: (state: ServicesDataType, action: PayloadAction<CellOfPost>) => {
-            const post_id = action.payload.post_id;
-            const post = state.user.posts.find(post => post.id === post_id);
-            const models = post.models;
-            const id = action.payload.model.id;
-            models.forEach((element, index) => {
-                if (element.id === id) {
-                    models.splice(index, 1, action.payload.newModel);
-                }
-            })
-        },
-        removeModel: (state: ServicesDataType, action: PayloadAction<CellOfPost>) => {
-            const post_id = action.payload.post_id;
-            const post = state.user.posts.find(post => post.id === post_id);
-
-            const models = post.models;
-            const id = action.payload.model.id;
-            models.forEach((element, index) => {
-                if (element.id === id && index > 2) {
-                    models.splice(index, 1);
-                }
-            })
-        },
-        updateModels: (state: ServicesDataType, action: PayloadAction<UpdateModels>) => {
-            const post_id = action.payload.post_id;
-            const post = state.user.posts.find(post => post.id === post_id);
-            post.models = action.payload.models;
-        },
-        clearErrors: (state: ServicesDataType) => {
+        clearErrors: (state: ServiceStatus) => {
             state.error = null;
         },
-        update: (state: ServicesDataType) => {
-            state.isUpdate = !state.isUpdate;
-        },
-        reset: (state: ServicesDataType) => {
-            state.isAuth = false;
+        reset: (state: ServiceStatus) => {
+            state.isAuthenticated = false;
             state.user = null;
-            state.avatar = null;
-            state.isPending = false;
+            state.isLoading = false;
         },
+        update: (state: ServiceStatus) => {
+            state.isUpdating = !state.isUpdating;
+        }
     },
     extraReducers: (builder) => {
-        const handlePending = (state: ServicesDataType) => {
-            state.isPending = true;
+        const setLoading = (state: ServiceStatus) => {
+            state.isLoading = true;
         };
-        const handleFulfilled = (state: ServicesDataType) => {
-            state.isPending = false;
-        };
-        const handleRejected = (state: ServicesDataType) => {
-            state.isPending = false;
-        };
-        const handleFulfilledLogout = (state: ServicesDataType) => {
-            state.isAuth = false;
-            state.user = null;
-            state.avatar = null;
-            state.isPending = false;
+        const setAuthenticated = (state: ServiceStatus) => {
+            setLoadingComplete(state);
+            state.isAuthenticated = true;
         }
-        builder
-            .addCase(login.pending, handlePending)
-            .addCase(login.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (!action.payload.error) {
-                    state.user = action.payload.data.message;
-                    state.isAuth = true;
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
-            .addCase(login.rejected, handleRejected)
+        const setLoadingComplete = (state: ServiceStatus) => {
+            state.isLoading = false;
+        };
 
-        builder
-            .addCase(fastLogin.pending, handlePending)
-            .addCase(fastLogin.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (!action.payload.error) {
-                    state.user = action.payload.data.message;
-                    state.isAuth = true;
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
-            .addCase(fastLogin.rejected, handleRejected)
+        const handleUserUpdate = (state: ServiceStatus, action: any) => {
+            setLoadingComplete(state);
+            if (!action.payload.error) {
+                state.user = action.payload.data.message;
+                state.isAuthenticated = true;
+            } else {
+                state.error = action.payload.data;
+            }
+        };
 
-        builder
-            .addCase(checkAuth.pending, handlePending)
-            .addCase(checkAuth.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                state.isAuth = true;
-            })
-            .addCase(checkAuth.rejected, handleRejected)
+        const setErrorState = (state: ServiceStatus) => {
+            state.isLoading = false;
+        };
 
-        builder
-            .addCase(signup.pending, handlePending)
-            .addCase(signup.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (!action.payload.error) {
-                    state.user = action.payload.data.message;
-                    state.isAuth = true;
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
-            .addCase(signup.rejected, handleRejected)
+        const handleLogout = (state: ServiceStatus) => {
+            state.isAuthenticated = false;
+            state.user = null;
+            state.isLoading = false;
+        }
 
-        builder
-            .addCase(logout.pending, handlePending)
-            .addCase(logout.fulfilled, handleFulfilledLogout)
-            .addCase(logout.rejected, handleRejected)
+        const asyncActions = [
+            { action: login, handler: handleUserUpdate },
+            { action: fastLogin, handler: handleUserUpdate },
+            { action: checkAuth, handler: setAuthenticated },
+            { action: signup, handler: handleUserUpdate },
+            { action: logout, handler: handleLogout },
+        ];
 
-        builder
-            .addCase(updateProfile.pending, handlePending)
-            .addCase(updateProfile.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (!action.payload.error) {
-                    state.user = action.payload.data.message;
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
-            .addCase(updateProfile.rejected, handleRejected)
-
-        builder
-            .addCase(addPost.pending, handlePending)
-            .addCase(addPost.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (!action.payload.error) {
-                    state.user = action.payload.data.message;
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
-            .addCase(addPost.rejected, handleRejected)
-
-        builder
-            .addCase(deletePost.pending, handlePending)
-            .addCase(deletePost.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (!action.payload.error) {
-                    state.user = action.payload.data.message;
-                    state.error = null;
-                } else {
-                    state.error = action.payload.data;
-                }
-            })
-            .addCase(deletePost.rejected, handleRejected)
-
-        builder
-            .addCase(updatePost.pending, (state) => {
-                state.isPending = true;
-                state.isUpdate = true;
-            })
-            .addCase(updatePost.fulfilled, (state, action) => {
-                handleFulfilled(state);
-                if (action.payload !== false) {
-                    if (!action.payload.error) {
-                        state.user = action.payload.data.message;
-                        state.error = null;
-                    } else {
-                        state.error = action.payload.data;
-                    }
-                }
-            })
-            .addCase(updatePost.rejected, (state) => {
-                state.isPending = false;
-                state.isUpdate = false;
-            })
+        asyncActions.forEach(({ action, handler }) => {
+            builder
+                .addCase(action.pending, setLoading)
+                .addCase(action.fulfilled, (state, action) => handler(state, action))
+                .addCase(action.rejected, setErrorState);
+        });
     }
 })
 

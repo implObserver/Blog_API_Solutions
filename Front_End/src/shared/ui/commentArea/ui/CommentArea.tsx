@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useCommentAreaContext } from '../lib/context/Context'
 import styles from './styles/CommentArea.module.css'
 

@@ -1,22 +1,16 @@
 interface CanvasElement {
-    features?: ElementFeatures,
+    featuresContext?: ElementFeatures,
     element: ElementData<ElementVariant>,
     model: Model<ModelVariant>,
     isFocused?: boolean,
-    dropdownState?: StateHandler,
+    dropdownState?: StateHandler<boolean>,
     index: number,
-    updater?: StateHandler,
+    updater?: StateHandler<boolean>,
 }
 
 interface ElementFeatures {
     panel: FeaturePanel,
     container: FeatureContainer,
-}
-
-interface UpdateElement {
-    newModel: Model<ModelVariant>,
-    currentModel: Model<ModelVariant>,
-    postid: number,
 }
 
 interface FeaturePanel {
@@ -27,31 +21,7 @@ interface FeatureContainer {
     features: React.ReactElement,
 }
 
-interface ModelPanelState {
-    isVisible: Boolean,
-}
-
-interface ModelContainerState {
-    type: string,
-    identifier: string,
-    value: ElementValue,
-}
-
-interface ValueContainerState {
-    value: ElementValue,
-}
-
-interface ElementValue {
-    setValue: (val: string) => void;
-    getValue: () => string;
-}
-
 //Models
-interface ModelsData {
-    models: Array<Model<ModelVariant>>
-    author: string,
-}
-
 interface BaseModel {
     id: number,
     type: string,
@@ -146,8 +116,8 @@ interface TitleElement extends BaseElement {
 }
 
 interface PreviewElement extends BaseElement {
-    getUrl: () => string;
-    setUrl: (val: string) => void;
+    getImageUrl: () => string;
+    setImageUrl: (val: string) => void;
 }
 
 interface ListHeaderElement extends BaseElement {

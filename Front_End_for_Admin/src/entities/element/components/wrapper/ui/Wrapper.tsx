@@ -6,8 +6,8 @@ export const Wrapper = React.memo(() => {
     const context = useElementContext();
 
     const features = useMemo(() => {
-        return context.features.container.features;
-    }, [context.features.container.features]);
+        return context.featuresContext.container.features;
+    }, [context.featuresContext.container.features]);
 
     return (
         <div className={styles.container}>

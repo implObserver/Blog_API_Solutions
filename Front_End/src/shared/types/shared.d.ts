@@ -1,5 +1,5 @@
 interface ImageStateContextType {
-    model: ModelType<ModelSubtype>,
+    model: Model<ModelVariant>,
     file: Blob,
     setImgFile?: React.Dispatch<React.SetStateAction<File>>,
 }
@@ -33,23 +33,23 @@ interface DropdownContextType {
 interface TextAreaContextType {
     placeholder: string,
     strongPlaceholder?: string,
-    value: ModelType<ModelSubtype>,
+    value: Model<ModelVariant>,
     maxLength?: number,
 }
 
 interface CommentAreaContextType {
-    comment: CustomState<string>,
+    comment: StateHandler<string>,
 }
 
 interface CommentContextType {
     comment: PostComment,
     features: React.ReactElement[],
     deepFeatures: React.ReactElement[],
-    update?: CustomState<boolean>,
-    text?: CustomState<string>,
+    update?: StateHandler<boolean>,
+    text?: StateHandler<string>,
 }
 
-interface CustomState<T> {
+interface StateHandler<T> {
     toggle: () => void;
     getState: () => T;
     setState: (state: T) => void;

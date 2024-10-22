@@ -1,0 +1,6 @@
+export { postsReducer, postsActions } from './model/slice/posts/slice'
+export { selectPosts } from './model/slice/posts/selectors'
+export { getAllPosts } from './model/slice/posts/thunks/get/getAllPosts'
+export { getPaginationPosts } from './model/slice/posts/thunks/get/getPaginationPost'
+export { getPostImage } from './model/slice/posts/thunks/get/getPostImage'
+export { getPostToId } from './model/slice/posts/thunks/get/getPostToId'

@@ -72,3 +72,9 @@ interface Tag {
     postid: number,
     tagName: string,
 }
+
+interface UpdateElement {
+    postid: number,
+    currentModel: Model<ModelVariant>,
+    newModel: Model<ModelVariant>,
+}

@@ -1,8 +1,5 @@
-
-import { PostService } from "@/entities/comment/api/api.post";
-import { PutService } from "@/entities/comment/api/api.put";
+import { PutService } from "@/entities/comment/api";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { useParams } from "react-router-dom";
 
 export const putComment = createAsyncThunk(
     'services/put/comment/',

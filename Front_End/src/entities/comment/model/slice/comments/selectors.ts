@@ -1,3 +1,1 @@
-import { RootState } from "@/app/model/store/Store";
-
-export const selectComments = (state: RootState) => state.comments;
+export const selectComments = (state: { comments: Comments }) => state.comments;

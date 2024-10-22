@@ -1,22 +1,14 @@
 import { useState } from 'react';
 
-export const useCustomState = (state1 = false, state2 = true) => {
-    const [state, setNewState] = useState(state1);
+export const useCustomState = <T>(state1: T = false as T, state2: T = true as T): StateHandler<T> => {
+    const [state, setNewState] = useState<T>(state1);
 
     const toggle = () => {
         const newState = state === state1 ? state2 : state1;
-        setState(newState);
+        setNewState(newState);
     };
 
-    const setState = (state: any) => {
-        setNewState(state);
-    }
+    const getState = () => state;
 
-    const getState = () => {
-        return state;
-    };
-
-    const result: StateHandler = { toggle, getState, setState };
-
-    return result;
+    return { toggle, getState, setState: setNewState };
 };

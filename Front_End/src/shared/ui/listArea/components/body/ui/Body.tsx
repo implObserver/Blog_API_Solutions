@@ -1,5 +1,4 @@
 import styles from './styles/Body.module.css'
-import TextareaAutosize from 'react-textarea-autosize';
 import { useListAreaContext } from '../../../lib/context/Context';
 
 export const Body = () => {

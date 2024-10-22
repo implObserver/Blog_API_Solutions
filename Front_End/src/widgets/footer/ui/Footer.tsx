@@ -1,5 +1,5 @@
-import { Body } from "../components/body/ui/Body"
-import { Madeby } from "../components/madeby/ui/Madeby"
+import { Body } from '../components/body'
+import { Madeby } from '../components/madeby'
 import styles from './styles/Footer.module.css'
 
 export const Footer = () => {

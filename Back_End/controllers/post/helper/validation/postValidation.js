@@ -7,39 +7,6 @@ export const sanitizeInput = (value) => {
   });
 };
 
-export const validateModels = (models) => {
-  models.forEach((element) => {
-    if (typeof element.id !== 'number') {
-      throw new Error('id каждой модели models должен быть числом');
-    }
-
-    validateModelsType(element);
-    validateModelContent(element);
-  });
-  return true;
-};
-
-const getEscapedInput = (input) => {
-  const decode = decodeJSX(input);
-  const escapeTags = escapeJsxTags(decode);
-  return escapeTags;
-};
-
-const decodeJSX = (input) => {
-  return input
-    .replace(/&amp;/g, '&') // Декодируем символ &
-    .replace(/&lt;/g, '<') // Декодируем символ <
-    .replace(/&gt;/g, '>'); // Декодируем символ >
-};
-
-const escapeJsxTags = (input) => {
-  return input
-    .replace(/</g, '&lt;') // Экстрируем символ <
-    .replace(/>/g, '&gt;') // Экстрируем символ >
-    .replace(/&/g, '&amp;'); // Экстрируем символ &
-};
-
-// Функция для безопасной обработки ввода
 export const sanitizeCodeInput = (input) => {
   if (typeof input !== 'string') {
     throw new Error('Input must be a string');
@@ -76,6 +43,38 @@ export const sanitizeCodeInput = (input) => {
   const sanitizedHtml = sanitizeHtml(escapedInput, options);
 
   return sanitizedHtml;
+};
+
+const getEscapedInput = (input) => {
+  const decode = decodeJSX(input);
+  const escapeTags = escapeJsxTags(decode);
+  return escapeTags;
+};
+
+const decodeJSX = (input) => {
+  return input
+    .replace(/&amp;/g, '&') // Декодируем символ &
+    .replace(/&lt;/g, '<') // Декодируем символ <
+    .replace(/&gt;/g, '>'); // Декодируем символ >
+};
+
+const escapeJsxTags = (input) => {
+  return input
+    .replace(/</g, '&lt;') // Экстрируем символ <
+    .replace(/>/g, '&gt;') // Экстрируем символ >
+    .replace(/&/g, '&amp;'); // Экстрируем символ &
+};
+
+export const validateModels = (models) => {
+  models.forEach((element) => {
+    if (typeof element.id !== 'number') {
+      throw new Error('id каждой модели models должен быть числом');
+    }
+
+    validateModelsType(element);
+    validateModelContent(element);
+  });
+  return true;
 };
 
 const validateModelsType = (element) => {

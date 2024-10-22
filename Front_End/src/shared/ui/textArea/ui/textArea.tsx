@@ -1,6 +1,5 @@
 import { useTextAreaContext } from '../lib/context/Context';
 import styles from './styles/Input.module.css'
-import TextareaAutosize from 'react-textarea-autosize';
 
 export const TextArea = () => {
     const context = useTextAreaContext();

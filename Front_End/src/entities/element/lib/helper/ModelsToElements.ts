@@ -9,11 +9,11 @@ import {
     CodeArea
 } from "./modelsOfElements";
 
-export const modelsToElements = (models: Array<ModelType<ModelSubtype>>) => {
+export const modelsToElements = (models: Array<Model<ModelVariant>>) => {
 
-    const elements: Array<ElementType<ElementSubtype>> = [];
+    const elements: Array<ElementData<ElementVariant>> = [];
 
-    models.forEach((model: ModelType<ModelSubtype>) => {
+    models.forEach((model: Model<ModelVariant>) => {
         const element = modelToElement(model);
         elements.push(element);
     });
@@ -21,8 +21,8 @@ export const modelsToElements = (models: Array<ModelType<ModelSubtype>>) => {
     return elements;
 }
 
-export const modelToElement = (model: ModelType<ModelSubtype>) => {
-    let element: ElementType<ElementSubtype>;
+export const modelToElement = (model: Model<ModelVariant>) => {
+    let element: ElementData<ElementVariant>;
 
     switch (model.type) {
         case 'main_title':
@@ -57,50 +57,50 @@ export const modelToElement = (model: ModelType<ModelSubtype>) => {
     return element;
 };
 
-const getMainTitle = (model: ModelType<ModelSubtype>) => {
+const getMainTitle = (model: Model<ModelVariant>) => {
     const title = MainTitle(model.id);
     title.setValue(model.value);
     return title;
 }
 
-const getTitle = (model: ModelType<ModelSubtype>) => {
+const getTitle = (model: Model<ModelVariant>) => {
     const title = Title(model.id);
     title.setValue(model.value);
     return title;
 }
 
-const getPreview = (model: ModelType<ModelSubtype>) => {
+const getPreview = (model: Model<ModelVariant>) => {
     const preview = Preview(model.id);
-    preview.setUrl(model.imageUrl);
+    preview.setImageUrl(model.imageUrl);
     return preview;
 }
 
-const getView = (model: ModelType<ModelSubtype>) => {
+const getView = (model: Model<ModelVariant>) => {
     const preview = ImageArea(model.id);
-    preview.setUrl(model.imageUrl);
+    preview.setImageUrl(model.imageUrl);
     return preview;
 }
 
-const getTextArea = (model: ModelType<ModelSubtype>) => {
+const getTextArea = (model: Model<ModelVariant>) => {
     const textArea = TextArea(model.id);
     textArea.setValue(model.value);
     return textArea;
 }
 
-const getListHeader = (model: ModelType<ModelSubtype>) => {
+const getListHeader = (model: Model<ModelVariant>) => {
     const listHeader = ListHeader(model.id);
     listHeader.setValue(model.value);
     return listHeader;
 }
 
-const getListElement = (model: ModelType<ModelSubtype>) => {
+const getListElement = (model: Model<ModelVariant>) => {
     const listElement = ListElement(model.id);
     listElement.setValue(model.value);
     listElement.setStrong(model.strong);
     return listElement;
 }
 
-const getCodeArea = (model: ModelType<ModelSubtype>) => {
+const getCodeArea = (model: Model<ModelVariant>) => {
     const codeArea = CodeArea(model.id);
     codeArea.setValue(model.value);
     return codeArea;

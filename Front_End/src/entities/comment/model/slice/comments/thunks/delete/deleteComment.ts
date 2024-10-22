@@ -1,8 +1,6 @@
 
-import { DeleteService } from "@/entities/comment/api/api.delete";
-import { PostService } from "@/entities/comment/api/api.post";
+import { DeleteService } from "@/entities/comment/api";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { useParams } from "react-router-dom";
 
 export const deleteComment = createAsyncThunk(
     'services/delete/comment/',

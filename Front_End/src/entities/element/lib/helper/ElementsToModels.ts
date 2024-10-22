@@ -1,5 +1,5 @@
-export const elementsToModels = (elements: Array<ElementType<ElementSubtype>>) => {
-    const models: Array<ModelType<ModelSubtype>> = [];
+export const elementsToModels = (elements: Array<ElementData<ElementVariant>>) => {
+    const models: Array<Model<ModelVariant>> = [];
     elements.forEach(element => {
         const model = elementToModel(element);
         models.push(model);
@@ -8,8 +8,8 @@ export const elementsToModels = (elements: Array<ElementType<ElementSubtype>>) =
     return models;
 }
 
-export const elementToModel = (element: ElementType<ElementSubtype>) => {
-    let model: ModelType<ModelSubtype>;
+export const elementToModel = (element: ElementData<ElementVariant>) => {
+    let model: Model<ModelVariant>;
     const elementType = element.getType();
 
     switch (true) {
@@ -41,16 +41,16 @@ export const elementToModel = (element: ElementType<ElementSubtype>) => {
 };
 
 
-const getPreviewModel = (element: ElementType<ElementSubtype>) => {
+const getPreviewModel = (element: ElementData<ElementVariant>) => {
     const model: PreviewModel = {
         id: element.getId(),
         type: element.getType(),
-        imageUrl: element.getUrl(),
+        imageUrl: element.getImageUrl(),
     }
     return model;
 }
 
-const getTitleModel = (element: ElementType<ElementSubtype>) => {
+const getTitleModel = (element: ElementData<ElementVariant>) => {
     const model: TitleModel = {
         id: element.getId(),
         type: element.getType(),
@@ -60,8 +60,8 @@ const getTitleModel = (element: ElementType<ElementSubtype>) => {
     return model;
 }
 
-const getTextAreaModel = (element: ElementType<ElementSubtype>) => {
-    const model: TextAreaModel = {
+const getTextAreaModel = (element: ElementData<ElementVariant>) => {
+    const model: TextModel = {
         id: element.getId(),
         type: element.getType(),
         value: element.getValue(),
@@ -69,8 +69,8 @@ const getTextAreaModel = (element: ElementType<ElementSubtype>) => {
     return model;
 }
 
-const getCodeAreaModel = (element: ElementType<ElementSubtype>) => {
-    const model: CodeAreaModel = {
+const getCodeAreaModel = (element: ElementData<ElementVariant>) => {
+    const model: CodeModel = {
         id: element.getId(),
         type: element.getType(),
         value: element.getValue(),
@@ -78,7 +78,7 @@ const getCodeAreaModel = (element: ElementType<ElementSubtype>) => {
     return model;
 }
 
-const getListHeaderModel = (element: ElementType<ElementSubtype>) => {
+const getListHeaderModel = (element: ElementData<ElementVariant>) => {
     const model: ListHeaderModel = {
         id: element.getId(),
         type: element.getType(),
@@ -87,12 +87,12 @@ const getListHeaderModel = (element: ElementType<ElementSubtype>) => {
     return model;
 }
 
-const getListElementModel = (element: ElementType<ElementSubtype>) => {
-    const model: ListElementModel = {
+const getListElementModel = (element: ElementData<ElementVariant>) => {
+    const model: ListItemModel = {
         id: element.getId(),
         type: element.getType(),
         value: element.getValue(),
-        strong: element.getStrong(),
+        strong: element.getStrongText(),
     }
     return model;
 }

@@ -1,0 +1,7 @@
+export { commentsReducer, commentsActions } from './model/slice/comments/slice'
+export { selectComments } from './model/slice/comments/selectors'
+export { deleteComment } from './model/slice/comments/thunks/delete/deleteComment'
+export { getPaginationComments } from './model/slice/comments/thunks/get/getPaginationComments'
+export { addComment } from './model/slice/comments/thunks/post/addComment'
+export { putComment } from './model/slice/comments/thunks/put/putComment'
+export { EntityComment } from './ui/EntityComment'

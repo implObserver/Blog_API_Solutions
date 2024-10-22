@@ -1,8 +1,5 @@
-import { PostPreview } from "@/entities/postPreview";
-import { PostPreviewContext } from "@/entities/postPreview/lib/context/Context";
-import { SliderPostPreview } from "@/entities/sliderPostPreview";
-import { PostFilterContext } from "@/features/postsFilter/lib/context/Context";
-import { PostsFilter } from "@/features/postsFilter/ui/PostsFilter";
+import { PostPreview, PostPreviewContext } from "@/entities/postPreview";
+import { PostFilterContext, PostsFilter } from "@/features/postsFilter";
 import { Tag } from "@/shared/ui/tag";
 
 export const Item = ({ post }) => {
@@ -16,12 +13,13 @@ export const Item = ({ post }) => {
             <PostFilterContext.Provider value={postFilterContext}>
                 <PostsFilter></PostsFilter>
             </PostFilterContext.Provider>
-        </>
+        </>,
+        type: 'slider',
     };
     return (
         <div>
             <PostPreviewContext.Provider value={postPreviewContext} key={post.id}>
-                <SliderPostPreview />
+                <PostPreview />
             </PostPreviewContext.Provider>
         </div>
     )

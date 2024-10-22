@@ -1,11 +1,18 @@
 import { Preview } from "../components/preview"
 import { Title } from "../components/title"
-import { usePostPreviewContext } from "../lib/context/Context"
-import styles from './styles/PostPreview.module.css'
+import { getAlternative, getClassic, getSlider, usePostPreviewContext } from "../lib";
 
 export const PostPreview = () => {
+    const type = usePostPreviewContext().type;
+
+    const style = type === 'slider'
+        ? getSlider()
+        : type === 'alter'
+            ? getAlternative()
+            : getClassic();
+
     return (
-        <div className={styles.container}>
+        <div className={style.container}>
             <Preview></Preview>
             <Title></Title>
         </div>

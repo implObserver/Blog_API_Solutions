@@ -1,10 +1,7 @@
-import { getTags } from "@/entities/tag/lib/helper/getTags"
-import { selectTag } from "@/entities/tag";
-import { PostsFilter } from "@/features/postsFilter/ui/PostsFilter";
+import { getTags, selectTag } from "@/entities/tag";
 import { useSelector } from "react-redux";
 import styles from './style/Tags.module.css';
-import { PostFilterContext } from "@/features/postsFilter/lib/context/Context";
-import { selectUserServices } from "@/entities/user";
+import { PostFilterContext, PostsFilter } from "@/features/postsFilter";
 
 export const Tags = () => {
     const selectedTag = useSelector(selectTag).tag;

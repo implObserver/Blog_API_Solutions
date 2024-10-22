@@ -4,7 +4,7 @@ import 'prismjs/themes/prism.css';
 import 'prismjs/components/prism-jsx.min.js';
 import styles from './styles/Input.module.css'
 import { useCodeAreaContext } from "../lib/context/Context";
-import { useCallback, useRef, useState } from "react";
+import { useCallback } from "react";
 
 export const CodeArea = () => {
     const context = useCodeAreaContext();

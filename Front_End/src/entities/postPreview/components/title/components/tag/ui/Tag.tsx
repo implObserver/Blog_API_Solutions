@@ -1,6 +1,6 @@
-import { usePostPreviewContext } from "@/entities/postPreview/lib/context/Context";
-import { Tag, TagContext } from "@/shared/ui/tag"
+import { TagContext } from "@/shared/ui/tag"
 import styles from './styles/Tag.module.css'
+import { usePostPreviewContext } from "@/entities/postPreview/lib";
 
 export const TagOfPost = () => {
     const context = usePostPreviewContext();

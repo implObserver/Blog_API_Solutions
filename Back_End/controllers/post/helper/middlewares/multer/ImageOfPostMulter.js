@@ -4,9 +4,8 @@ import path from 'path';
 
 const storage = multer.diskStorage({
   destination: async (req, file, cb) => {
-    const id = req.user.id;
     const nameFolder = req.params.nameFolder;
-    const directory = `public/images/${id}/${nameFolder}/`;
+    const directory = `public/images/${nameFolder}/`;
     fs.readdir(directory, (err, files) => {
       if (files) {
         files.forEach(async (file) => {

@@ -1,4 +1,4 @@
-import { useCommentContext } from "@/shared/ui/comment/lib/context/Context";
+import { useCommentContext } from '@/shared/ui/comment';
 import styles from './styles/EditComment.module.css'
 
 export const EditComment = () => {

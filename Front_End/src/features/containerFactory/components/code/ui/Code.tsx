@@ -1,6 +1,4 @@
-import {
-    useElementContext
-} from "@/entities/element";
+import { useElementContext } from "@/entities/element";
 import { CodeArea, CodeAreaContext } from "@/shared/ui/codeArea";
 import styles from './styles/Code.module.css'
 

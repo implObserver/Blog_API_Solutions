@@ -1,8 +1,8 @@
-export const initialState: ServicesDataType = {
-    isAuth: false,
-    isPending: false,
+export const initialState: ServiceStatus = {
+    isAuthenticated: false,
+    isLoading: false,
     user: null,
     avatar: null,
     error: null,
-    isUpdate: false,
+    isUpdating: false,
 }

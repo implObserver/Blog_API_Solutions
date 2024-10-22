@@ -32,11 +32,11 @@ interface TextAreaProps {
     isFocused?: boolean,
     ref?: React.MutableRefObject<HTMLTextAreaElement | null>,
     id?: number,
-    updater?: StateHandler,
+    updater?: StateHandler<boolean>,
     index?: number,
 }
 
-interface StateHandler {
+interface StateHandler<T> {
     toggle: () => void;
     getState: () => any;
     setState: (state: any) => void;

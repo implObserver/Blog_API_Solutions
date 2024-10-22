@@ -22,7 +22,7 @@ export const AddImage = () => {
         dispatch(counterActions.increment());
         const url = Date.now().toString();
         const imageArea = ImageArea();
-        imageArea.setUrl(url);
+        imageArea.setImageUrl(url);
         const newModel = elementToModel(imageArea);
 
         const postContext: PostCell = { postid, model, newModel };

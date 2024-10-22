@@ -57,7 +57,6 @@ postRouter.put(
 
 postRouter.get(
   '/user/:userid/posts/image/:imageid',
-  userController.user_auth_jwt_protected,
   postsController.image_of_post_get
 );
 

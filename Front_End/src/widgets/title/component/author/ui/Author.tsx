@@ -2,7 +2,7 @@ import { selectUserServices } from "@/entities/user"
 import { useSelector } from "react-redux"
 import styles from './styles/Author.module.css'
 import { useParams } from "react-router-dom";
-import { selectPosts } from "@/entities/postState/model/slice/posts/selectors";
+import { selectPosts } from "@/entities/postState";
 
 export const Author = () => {
     const params = useParams();

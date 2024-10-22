@@ -1,6 +1,6 @@
-import { Comment } from "@/shared/ui/comment/ui/Comment";
 import styles from './styles/EntityComment.module.css'
-import { Menu } from "../components/menu/ui/Menu";
+import { Menu } from "../components/menu";
+import { Comment } from '@/shared/ui/comment';
 
 export const EntityComment = ({ isMyComment }) => {
     return (

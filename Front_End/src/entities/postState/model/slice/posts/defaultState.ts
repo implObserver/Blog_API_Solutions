@@ -3,5 +3,5 @@ export const initialState: Posts = {
     posts: [],
     currentPage: 1,
     totalPages: 1,
-    isPending: false,
+    isLoading: false,
 }

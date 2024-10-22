@@ -1,10 +1,10 @@
-import { EntityComment } from "@/entities/comment/ui/EntityComment";
+import { EntityComment } from "@/entities/comment";
 import { selectUserServices } from "@/entities/user";
-import { DeleteComment } from "@/features/deleteComment/ui/DeleteComment";
-import { EditComment } from "@/features/editComment/ui/EditComment";
-import { UpdateComment } from "@/features/updateComment/ui/UpdateComment";
+import { DeleteComment } from "@/features/deleteComment";
+import { EditComment } from "@/features/editComment";
+import { UpdateComment } from "@/features/updateComment";
 import { useCustomState } from "@/shared/lib";
-import { CommentContext } from "@/shared/ui/comment/lib/context/Context";
+import { CommentContext } from "@/shared/ui/comment";
 import { useSelector } from "react-redux";
 
 export const Comment = ({ comment }) => {
@@ -12,7 +12,7 @@ export const Comment = ({ comment }) => {
     const text = useCustomState(comment.text);
     const userService = useSelector(selectUserServices);
     const user = userService.user;
-    const isMycomment = userService.isAuth
+    const isMycomment = userService.isAuthenticated
         ? user.id === comment.user.id
             ? true
             : false

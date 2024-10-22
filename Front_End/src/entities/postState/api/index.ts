@@ -1,0 +1,1 @@
+export { ReadService } from './services/api.get'

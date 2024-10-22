@@ -1,22 +1,24 @@
-import { AppDispath } from "@/app/model/store/Store";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import styles from './styles/CommentsShowcase.module.css'
-import { selectComments } from "@/entities/comment/model/slice/comments/selectors";
-import { getPaginationComments } from "@/entities/comment/model/slice/comments/thunks/get/getPaginationComments";
-import { commentsActions } from "@/entities/comment/model/slice/comments/slice";
-import { Comment } from "../components/ui/Comment";
+import { useAppDispatch } from "@/shared/lib";
+import {
+    commentsActions,
+    getPaginationComments,
+    selectComments
+} from "@/entities/comment";
+import { Comment } from "../components";
 
 export const PaginationCommentsShowcase = () => {
-    const dispatch = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
     const commentsService = useSelector(selectComments);
     const comments = commentsService.comments;
     const currentPage = commentsService.currentPage;
     const totalComments = commentsService.totalComments;
     const totalPages = commentsService.totalPages;
     const postid = parseInt(useParams().postid);
-    
+
     const loadComments = async () => {
         const data: PaginationData = {
             page: currentPage,

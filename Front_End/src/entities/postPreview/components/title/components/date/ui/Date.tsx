@@ -1,4 +1,4 @@
-import { usePostPreviewContext } from "@/entities/postPreview/lib/context/Context";
+import { usePostPreviewContext } from "@/entities/postPreview/lib";
 import { getFormattedDate } from "@/shared/lib";
 
 export const PostingDate = () => {

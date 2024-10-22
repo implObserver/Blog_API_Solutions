@@ -8,6 +8,6 @@ interface Container {
 
 interface ContainerContext {
     index: number,
-    element: ElementData<TitleElement | TextElement | PreviewElement>,
-    model: Model<TextModel | PreviewModel | TitleModel>,
+    element: ElementData<ElementVariant>,
+    model: Model<ModelVariant>,
 }

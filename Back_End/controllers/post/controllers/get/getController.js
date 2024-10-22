@@ -65,7 +65,7 @@ const pagination_posts_list_get = asyncHandler(async (req, res) => {
 const image_of_post_get = asyncHandler(async (req, res) => {
   const folderName = req.params.imageid;
   const defaultFolderPath = `${__dirname}/public/images/default/post/defaultPost.svg`;
-  const folderPath = `${__dirname}/public/images/${req.user.id}/${folderName}`;
+  const folderPath = `${__dirname}/public/images/${folderName}`;
   let filePath;
   let extname;
   fs.readdir(folderPath, (err, files) => {

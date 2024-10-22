@@ -1,14 +1,13 @@
-import { AppDispath } from "@/app/model/store/Store";
-import { selectUserServices } from "@/entities/user"
-import { fastLogin } from "@/entities/user/model/slice/services/thunks/auth/fastLogin";
+import { fastLogin, selectUserServices } from "@/entities/user"
+import { useAppDispatch } from "@/shared/lib";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 
 export const FastAuth = () => {
     const services = useSelector(selectUserServices);
-    const isAuth = services.isAuth;
+    const isAuth = services.isAuthenticated;
     const [attempt, setAttempt] = useState(0);
-    const dispatch = useDispatch<AppDispath>();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         if (!isAuth && attempt < 2) {
@@ -20,7 +19,7 @@ export const FastAuth = () => {
         }
     }, [isAuth, attempt, dispatch]);
 
-    if (!isAuth && attempt >= 2 && !services.isPending) {
+    if (!isAuth && attempt >= 2 && !services.isLoading) {
         return <div>не авторизован</div>;
     }
 
