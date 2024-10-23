@@ -15,6 +15,11 @@ const set_cookie = asyncHandler(async (req, res, next) => {
     sameSite: 'Strict', // или 'Lax', в зависимости от вашего случая
   });
   res.cookie('user_id', user.id);
+  console.log('Cookies set:', {
+    refreshToken: refreshToken,
+    acessToken: acessToken,
+    user_id: user.id,
+  });
   next();
 });
 
