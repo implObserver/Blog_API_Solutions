@@ -10,6 +10,13 @@ export const useCORS = () => {
     console.log(`CORS middleware triggered for origin: ${req.headers.origin}`);
     next();
   });
+  app.use((req, res, next) => {
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    );
+    next();
+  });
   app.use(
     cors({
       origin: [
