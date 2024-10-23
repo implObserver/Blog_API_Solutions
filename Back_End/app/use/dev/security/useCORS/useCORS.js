@@ -23,6 +23,8 @@ const corsOptions = {
 
 export const useCORS = () => {
   app.use((req, res, next) => {
+    console.log('Request Origin:', req.headers.origin); // Логируем origin
+    console.log('Request Headers:', req.headers); // Логируем заголовки запроса
     console.log(`CORS middleware triggered for origin: ${req.headers.origin}`);
     next();
   });
