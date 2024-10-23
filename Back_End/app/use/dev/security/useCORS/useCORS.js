@@ -28,6 +28,14 @@ export const useCORS = () => {
     console.log(`CORS middleware triggered for origin: ${req.headers.origin}`);
     next();
   });
-  app.use(cors(corsOptions));
-  app.options('*', cors(corsOptions)); // Обработка preflight-запросов
+  app.use(
+    cors({
+      origin: [
+        'http://localhost:3000',
+        'https://blogapifronttwo.netlify.app/',
+        'https://blogapifront.netlify.app/',
+      ],
+      credentials: true,
+    })
+  );
 };
