@@ -7,6 +7,9 @@ const apiUrl = import.meta.env.VITE_SERVER_URL;
 export const instance = axios.create({
     withCredentials: true,
     baseURL: apiUrl,
+    headers: {
+        'Access-Control-Allow-Origin': apiUrl,
+    }
 });
 
 instance.interceptors.response.use(
@@ -15,7 +18,7 @@ instance.interceptors.response.use(
         return response;
     },
     async (error) => {
-
+        
         if (error.response) {
             if (error.response.status === 401) {
                 currentRetryCount++;
