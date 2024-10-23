@@ -1,13 +1,20 @@
 import session from 'express-session';
+import RedisStore from 'connect-redis';
+import Redis from 'ioredis';
 import { app } from '../../../app.js';
 import 'dotenv/config';
+
+// Создаем экземпляр клиента Redis
+const redisClient = new Redis();
 
 export const useSession = () => {
   app.use(
     session({
-      secret: process.env.SESSION_SECRET,
+      store: new RedisStore({ client: redisClient }), // Используем new для инициализации RedisStore
+      secret: process.env.SESSION_SECRET, // Убедитесь, что переменная окружения настроена
       resave: false,
-      saveUninitialized: true,
+      saveUninitialized: false, // Установите в false для предотвращения создания пустых сессий
+      cookie: { secure: false }, // Убедитесь, что это false, если вы не используете HTTPS
     })
   );
 };
