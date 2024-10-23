@@ -22,6 +22,10 @@ const corsOptions = {
 };
 
 export const useCORS = () => {
+  app.use((req, res, next) => {
+    console.log(`CORS middleware triggered for origin: ${req.headers.origin}`);
+    next();
+  });
   app.use(cors(corsOptions));
   app.options('*', cors(corsOptions)); // Обработка preflight-запросов
 };
