@@ -15,5 +15,8 @@ export default defineConfig({
       '@pages': path.resolve(__dirname, './src/pages'),
     },
   },
+  build: {
+    outDir: 'dist', // Директория, куда будут собираться файлы
+  },
   plugins: [react()],
 });
