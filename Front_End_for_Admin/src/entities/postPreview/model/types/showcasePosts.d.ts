@@ -4,6 +4,7 @@ interface PostImages {
 }
 interface ImageType {
     code: string,
+    version: string,
     blob: Blob,
     isRetry?: boolean,
 }

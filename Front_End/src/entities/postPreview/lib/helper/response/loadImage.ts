@@ -1,4 +1,4 @@
-import { ReadService } from "../../api/api.get";
+import { ReadService } from "@/entities/postPreview/api/api.get";
 
 export const loadImage = async (imageUrl: string) => {
     try {
@@ -6,7 +6,8 @@ export const loadImage = async (imageUrl: string) => {
         const contentType = resp.headers['content-type']
         const blob = resp.data;
         if (contentType.startsWith('image/')) {
-            const file = new File([blob], 'avatar', { type: contentType });
+            const lastModified = resp.headers['last-modified'];
+            const file = new File([blob], 'avatar', { type: contentType, lastModified });
             return file;
         } else {
             return null;

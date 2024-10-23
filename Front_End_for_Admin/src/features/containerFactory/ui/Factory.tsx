@@ -4,11 +4,10 @@ import { ListHeader } from "../components/listHeader";
 import { Preview } from "../components/preview";
 import { Text } from "../components/text";
 import { Title } from "../components/title";
-
 import { useElementContext } from "@/entities/element";
 
 export const Factory = () => {
-    const { element: elementContext } = useElementContext();
+    const { element: elementContext }: CanvasElement = useElementContext();
     const type = elementContext.getType();
 
     const componentMap = {
@@ -22,6 +21,7 @@ export const Factory = () => {
     if (type.includes('title')) {
         return <Title />;
     }
+
     if (type.includes('view')) {
         return <Preview />;
     }

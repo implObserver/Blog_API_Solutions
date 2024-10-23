@@ -66,18 +66,18 @@ const escapeJsxTags = (input) => {
 };
 
 export const validateModels = (models) => {
-  models.forEach((element) => {
-    if (typeof element.id !== 'number') {
+  models.forEach((model) => {
+    if (typeof model.id !== 'number') {
       throw new Error('id каждой модели models должен быть числом');
     }
 
-    validateModelsType(element);
-    validateModelContent(element);
+    validateModelsType(model);
+    validateModelContent(model);
   });
   return true;
 };
 
-const validateModelsType = (element) => {
+const validateModelsType = (model) => {
   const validTypes = [
     'main_title',
     'list_header',
@@ -88,50 +88,49 @@ const validateModelsType = (element) => {
     'text',
     'code',
   ];
-  if (!validTypes.includes(element.type)) {
+
+  if (!validTypes.includes(model.type)) {
     throw new Error(
-      `type каждой модели должен быть одним из: ${validTypes.join(', ')} а у вас ${element.type}`
+      `type каждой модели должен быть одним из: ${validTypes.join(', ')} а у вас ${model.type}`
     );
   }
 
-  if (element.type === 'main_title') {
-    if (element.fontSize === null) {
+  if (model.type === 'main_title') {
+    if (model.fontSize === null) {
       throw new Error('fontSize должен быть указан для типа main_title');
     }
-    if (element.value.length > 100) {
+    if (model.value.length > 100) {
       throw new Error('Название слишком длинное');
     }
   }
 };
 
-const validateModelContent = (element) => {
-  if (element.type.includes('view')) {
-    if (!element.imageUrl) {
+const validateModelContent = (model) => {
+  if (model.type.includes('view')) {
+    if (!model.imageUrl || !model.version) {
       throw new Error('url изображения неправильный или отсутствует');
     }
-    element.imageUrl = sanitizeInput(element.imageUrl);
+    model.imageUrl = sanitizeInput(model.imageUrl);
+    model.version = sanitizeInput(model.imageUrl);
   }
 
-  if (element.value !== undefined && typeof element.value !== 'string') {
+  if (model.value !== undefined && typeof model.value !== 'string') {
     throw new Error('value должно быть строкой или отсутствовать');
   }
 
-  if (element.type.includes('code')) {
-    element.value = sanitizeCodeInput(element.value);
+  if (model.type.includes('code')) {
+    model.value = sanitizeCodeInput(model.value);
   } else {
-    if (element.value) {
-      element.value = sanitizeInput(element.value);
+    if (model.value) {
+      model.value = sanitizeInput(model.value);
     }
   }
 
-  if (element.strong) {
-    element.strong = sanitizeInput(element.strong);
+  if (model.strong) {
+    model.strong = sanitizeInput(model.strong);
   }
 
-  if (
-    element.freshness !== undefined &&
-    typeof element.freshness !== 'number'
-  ) {
+  if (model.freshness !== undefined && typeof model.freshness !== 'number') {
     throw new Error('freshness должно быть числом');
   }
 };

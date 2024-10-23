@@ -50,6 +50,7 @@ interface OpenedPostState {
 interface ImageUpdate {
     folderName: string,
     file: File,
+    version: string,
 }
 
 interface PostCell {

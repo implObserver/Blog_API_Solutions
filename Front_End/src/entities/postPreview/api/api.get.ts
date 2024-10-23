@@ -8,4 +8,7 @@ export const ReadService = {
             responseType: 'blob',
         });
     },
+    getLastModified(url: string) {
+        return instance.get(`/api/user/:${userID}/posts/image/${url}/modified`);
+    }
 }

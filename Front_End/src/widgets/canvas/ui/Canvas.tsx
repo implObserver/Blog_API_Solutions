@@ -16,6 +16,7 @@ export const Canvas = React.memo(() => {
             <div>Поста не существует</div>
         )
     }
+    
     if (post_id || post_id === 0) {
         const models = posts.length === 0 ? [] : post.models;
         const fill = () => {

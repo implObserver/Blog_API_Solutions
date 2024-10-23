@@ -40,6 +40,7 @@ interface Model<T> {
     imageUrl?: string,
     fontSize?: number,
     strongText?: string,
+    version?: string,
 }
 
 interface ListHeaderModel extends BaseModel {
@@ -57,6 +58,7 @@ interface TextModel extends BaseModel {
 
 interface PreviewModel extends BaseModel {
     imageUrl: string,
+    version: string,
 }
 
 interface TitleModel extends BaseModel {
@@ -102,6 +104,8 @@ interface ElementData<T> {
     setImageUrl?: (val: string) => void;
     getStrongText?: () => string;
     setStrongText?: (val: string) => void;
+    updateVersion?: (val: string) => void;
+    getVersion?: () => string;
 }
 
 interface TextElement extends BaseElement {
@@ -118,8 +122,9 @@ interface TitleElement extends BaseElement {
 interface PreviewElement extends BaseElement {
     getImageUrl: () => string;
     setImageUrl: (val: string) => void;
+    updateVersion: (val: string) => void;
+    getVersion: () => string;
 }
-
 interface ListHeaderElement extends BaseElement {
     getValue: () => string;
     setValue: (val: string) => void;

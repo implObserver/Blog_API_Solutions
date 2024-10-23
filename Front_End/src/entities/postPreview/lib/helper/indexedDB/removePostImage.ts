@@ -1,18 +1,18 @@
 import { useIndexedDb } from "@/shared/lib";
 
 const dbPromise = useIndexedDb();
+
 export const removePostImage = async (post_id: number, code: string): Promise<void> => {
     const db = await dbPromise;
 
-    const existingPost = await db.get('posts', post_id);
+    const postRecord = await db.get('posts', post_id);
 
-    if (existingPost) {
-        const imageIndex = existingPost.images.findIndex(item => item.code === code);
-
+    if (postRecord) {
+        const imageIndex = postRecord.images.findIndex(item => item.code === code);
         if (imageIndex !== -1) {
-            existingPost.images.splice(imageIndex, 1);
+            postRecord.images.splice(imageIndex, 1);
             console.log('Изображение успешно удалено:', { post_id, code });
-            await db.put('posts', existingPost);
+            await db.put('posts', postRecord);
         } else {
             console.log('Изображение не найдено для удаления:', { post_id, code });
         }

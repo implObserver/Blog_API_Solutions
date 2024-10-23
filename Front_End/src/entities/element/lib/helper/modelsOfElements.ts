@@ -34,11 +34,26 @@ const ImageUrl = () => {
     return { setImageUrl, getImageUrl };
 }
 
+const Version = (beta: number) => {
+    let version = beta;
+
+    const updateVersion = (newVersion: number) => {
+        version = newVersion;
+    }
+
+    const getVersion = () => {
+        return version;
+    }
+
+    return { updateVersion, getVersion };
+}
+
 const Image = (id?: number) => {
     const element = Element(id);
     const image = ImageUrl();
+    const version = Version(0);
 
-    return Object.assign(image, element)
+    return Object.assign(image, element, version)
 }
 
 const Text = (id?: number) => {

@@ -46,6 +46,7 @@ const getPreviewModel = (element: ElementData<ElementVariant>) => {
         id: element.getId(),
         type: element.getType(),
         imageUrl: element.getImageUrl(),
+        version: element.getVersion(),
     }
     return model;
 }

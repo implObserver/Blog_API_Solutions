@@ -1,4 +1,4 @@
-import styles from '../../ui/styles/PostPreview.module.css'
+import styles from '../../../ui/styles/PostPreview.module.css'
 
 export const getClassic = () => {
     const classicStyle = {

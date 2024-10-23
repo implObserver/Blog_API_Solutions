@@ -72,6 +72,7 @@ const getTitle = (model: Model<ModelVariant>) => {
 const getPreview = (model: Model<ModelVariant>) => {
     const preview = Preview(model.id);
     preview.setImageUrl(model.imageUrl);
+    preview.updateVersion(model.version);
     return preview;
 }
 

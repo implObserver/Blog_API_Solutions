@@ -1,3 +1,6 @@
+export { getAlternative, getClassic, getSlider } from './helper/styles/variantsOfStyles'
 export { PostPreviewContext, usePostPreviewContext } from './context/Context'
-export { loadImage } from './helper/loadImage'
-export { getAlternative, getClassic, getSlider } from './helper/variantsOfStyles'
+export { getPostImages, getImageByCode } from './helper/indexedDB/getPostImage'
+export { removePostImage } from './helper/indexedDB/removePostImage'
+export { savePostImage } from './helper/indexedDB/savePostImage'
+export { loadImage } from './helper/response/loadImage'

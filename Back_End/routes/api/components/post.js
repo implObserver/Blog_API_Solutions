@@ -60,11 +60,17 @@ postRouter.get(
   postsController.image_of_post_get
 );
 
+postRouter.get(
+  '/user/:userid/posts/image/:imageid/modified',
+  postsController.last_modifier_image_of_post_get
+);
+
 postRouter.post(
   '/user/:userid/posts/image/:nameFolder/update',
   userController.user_auth_jwt_protected,
   postsController.upload_image_of_post.single('file'),
-  postsController.image_update_post
+  postsController.image_update_post,
+  postsController.handleImageUpload
 );
 
 postRouter.delete(

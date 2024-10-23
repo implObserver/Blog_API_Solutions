@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import styles from './styles/Preview.module.css'
 import { useElementContext } from "@/entities/element";
 import { useParams } from "react-router-dom";
-import { savePostImage } from "@/entities/postPreview/lib/helper/indexedDB/savePostImage";
 import { removePostImage } from "@/entities/postPreview/lib/helper/indexedDB/removePostImage";
 import { handleExistingPostImages } from "../lib/helper/uploadImage";
 import { addPostImage } from "@/entities/postState/model/slice/openedPost/thunks/post/addPostImage";
 import { deletePostImage } from "@/entities/postState/model/slice/openedPost/thunks/delete/deletePostImage";
+import { savePostImage } from "@/entities/postPreview/lib";
+import { compressImage } from "@/shared/lib";
 
 export const Preview = () => {
     const context = useElementContext();
@@ -40,18 +41,22 @@ export const Preview = () => {
     }
 
     const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files[0];
+        const compressFile = await compressImage(file);
         const context: ImageUpdate = {
             folderName: model.imageUrl,
-            file: e.target.files[0],
+            file: file,
+            version: file.lastModified.toString(),
         }
         const image: ImageType = {
             code: model.imageUrl,
-            blob: e.target.files[0],
+            version: file.lastModified.toString(),
+            blob: compressFile,
             isRetry: false,
         }
         addPostImage(context);
         savePostImage(postid, image);
-        setSelectedImage(e.target.files[0]);
+        setSelectedImage(file);
     }
 
     return (

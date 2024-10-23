@@ -5,8 +5,8 @@ import fs from 'fs';
 
 const image_of_post_delete = asyncHandler(async (req, res) => {
   const namefolder = req.params.nameFolder;
-  const folderPath = `${__dirname}/public/images/${req.user.id}/${namefolder}`;
-
+  const folderPath = `${__dirname}/public/images/${namefolder}`;
+  console.log(folderPath);
   if (!fs.existsSync(folderPath)) {
     return res.status(404).json({ message: 'Папка не найдена' });
   }

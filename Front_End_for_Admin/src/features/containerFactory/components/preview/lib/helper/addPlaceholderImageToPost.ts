@@ -5,6 +5,7 @@ export const addPlaceholderImageToPost = async (postid: number, model: Model<Mod
         code: model.imageUrl,
         blob: null,
         isRetry: false,
+        version: null,
     };
     await savePostImage(postid, image);
 };

@@ -69,48 +69,68 @@ const image_of_post_get = asyncHandler(async (req, res) => {
   let filePath;
   let extname;
   fs.readdir(folderPath, (err, files) => {
-    let isEmpty;
-    let isError;
-    let isEmptyError;
-
-    if (err) {
-      isError = true;
-      isEmpty = err.message.includes('no such file or directory');
-      isEmptyError = isEmpty && isError;
-      if (isEmptyError || files.length === 0) {
-        filePath = defaultFolderPath;
-        extname = '.svg';
-      }
+    if (err || files.length === 0) {
+      filePath = defaultFolderPath;
+      extname = '.svg';
     } else {
       filePath = path.join(folderPath, files[0]);
       extname = path.extname(files[0]).toLowerCase();
     }
 
-    let contentType = 'application/octet-stream';
+    fs.stat(filePath, (err, stats) => {
+      if (err) {
+        return res.status(500).send('Ошибка при получении метаданных файла');
+      }
 
-    switch (extname) {
-      case '.avif':
-        contentType = 'image/avif';
-        break;
-      case '.webp':
-        contentType = 'image/webp';
-        break;
-      case '.jpeg':
-      case '.jpg':
-        contentType = 'image/jpeg';
-        break;
-      case '.png':
-        contentType = 'image/png';
-        break;
-      case '.svg':
-        contentType = 'image/svg+xml';
-        break;
-      default:
-        return res.status(415).send('Unsupported Media Type');
+      let contentType = 'application/octet-stream';
+      switch (extname) {
+        case '.avif':
+          contentType = 'image/avif';
+          break;
+        case '.webp':
+          contentType = 'image/webp';
+          break;
+        case '.jpeg':
+        case '.jpg':
+          contentType = 'image/jpeg';
+          break;
+        case '.png':
+          contentType = 'image/png';
+          break;
+        case '.svg':
+          contentType = 'image/svg+xml';
+          break;
+        default:
+          return res.status(415).send('Unsupported Media Type');
+      }
+
+      res.set('Content-Type', contentType);
+      res.set('Last-Modified', stats.mtime.getTime());
+      res.sendFile(filePath);
+    });
+  });
+});
+
+const last_modifier_image_of_post_get = asyncHandler(async (req, res) => {
+  const folderName = req.params.imageid;
+  const folderPath = `${__dirname}/public/images/${folderName}`;
+
+  fs.readdir(folderPath, (err, files) => {
+    if (err || !files || files.length === 0) {
+      return res.json({ error: 'Ошибка при получении данных' });
     }
 
-    res.set('Content-Type', contentType);
-    res.sendFile(filePath);
+    const filePath = path.join(folderPath, files[0]);
+
+    fs.stat(filePath, (err, stats) => {
+      if (err) {
+        return res
+          .status(500)
+          .json({ message: 'Ошибка при получении метаданных файла' });
+      }
+
+      res.json({ lastModified: stats.mtime.getTime() });
+    });
   });
 });
 
@@ -120,4 +140,5 @@ export const getController = {
   image_of_post_get,
   pagination_posts_list_get,
   posts_to_id_get,
+  last_modifier_image_of_post_get,
 };

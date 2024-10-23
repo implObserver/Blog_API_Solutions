@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { version } from 'mongoose';
 
 const prisma = new PrismaClient();
 
@@ -302,6 +303,7 @@ const addPost = async (user, title) => {
       id: 1,
       type: 'preview',
       imageUrl: `${date}`,
+      version: `${date}`,
     },
     {
       id: 2,

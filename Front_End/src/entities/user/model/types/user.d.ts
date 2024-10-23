@@ -36,6 +36,7 @@ interface ImageType {
     code: string,
     blob: Blob,
     isRetry?: boolean,
+    version: number,
 }
 
 interface PostPreviewContextType {

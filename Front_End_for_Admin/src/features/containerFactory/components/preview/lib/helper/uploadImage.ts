@@ -1,6 +1,5 @@
-import { getImageByCode } from "@/entities/postPreview/lib/helper/indexedDB/getPostImage";
-import { savePostImage } from "@/entities/postPreview/lib/helper/indexedDB/savePostImage";
-import { getPostImage } from "@/entities/postState/model/slice/openedPost/thunks/get/getPostImage";
+import { getImageByCode, savePostImage } from "@/entities/postPreview/lib";
+import { getPostImage } from "@/entities/postState";
 
 
 export const handleExistingPostImages = async (post_id: number, model: Model<ModelVariant>) => {
@@ -20,8 +19,9 @@ export const uploadImage = async (post_id: number, model: Model<ModelVariant>) =
     const blob = await getPostImage(model.imageUrl);
     const isRetry = blob === null;
     const image: ImageType = {
-        code: model.imageUrl,
         blob,
+        code: model.imageUrl,
+        version: blob.lastModified.toString(),
         isRetry,
     };
     await savePostImage(post_id, image);

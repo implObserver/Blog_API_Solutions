@@ -36,11 +36,25 @@ const createImageUrlManager = () => {
     return { setImageUrl, getImageUrl };
 }
 
+const Version = (beta: string) => {
+    let version = beta;
+
+    const updateVersion = (newVersion: string) => {
+        version = newVersion;
+    }
+
+    const getVersion = () => {
+        return version;
+    }
+
+    return { updateVersion, getVersion };
+}
+
 const createImageElement = (id?: number) => {
     const element = CreateElement(id);
     const image = createImageUrlManager();
-
-    return Object.assign(image, element)
+    const version = Version(image.getImageUrl())
+    return Object.assign(image, element, version)
 }
 
 const createTextElement = (id?: number) => {
