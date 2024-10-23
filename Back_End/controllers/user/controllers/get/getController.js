@@ -14,9 +14,10 @@ const authProtected = (req, res, next) => {
     res.locals.user = req.user;
     res.locals.refreshToken = req.user.refreshToken;
     res.locals.acessToken = getAcessToken(req.user.id).token;
-    next();
+    return next(); // Явно возвращаем next() для улучшения читаемости
   } else {
-    res.json({ err: 'error' });
+    // Вернем 401 статус и сообщение об ошибке
+    return res.status(401).json({ error: 'User is not authenticated' });
   }
 };
 
