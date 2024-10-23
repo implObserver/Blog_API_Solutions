@@ -32,3 +32,7 @@ const set_cookie = asyncHandler(async (req, res, next) => {
 
   next();
 });
+
+export const cookieMiddlewares = {
+  set_cookie,
+};
