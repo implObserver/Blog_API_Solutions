@@ -7,12 +7,12 @@ const set_cookie = asyncHandler(async (req, res, next) => {
   res.cookie('refreshToken', refreshToken, {
     httpOnly: true,
     secure: true, // только для HTTPS
-    sameSite: 'Strict', // или 'Lax', в зависимости от вашего случая
+    sameSite: 'Lax', // или 'Lax', в зависимости от вашего случая
   });
   res.cookie('acessToken', acessToken, {
     httpOnly: true,
     secure: true, // только для HTTPS
-    sameSite: 'Strict', // или 'Lax', в зависимости от вашего случая
+    sameSite: 'Lax', // или 'Lax', в зависимости от вашего случая
   });
   res.cookie('user_id', user.id);
   console.log('Cookies set:', {
