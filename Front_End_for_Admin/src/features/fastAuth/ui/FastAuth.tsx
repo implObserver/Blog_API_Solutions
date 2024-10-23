@@ -24,7 +24,7 @@ export const FastAuth = () => {
             makeAttempt();
         }
         if (!isAuth && attempt >= 2 && !services.isLoading) {
-            dispatch(logout());
+            
         }
     }, [isAuth, attempt]);
 
