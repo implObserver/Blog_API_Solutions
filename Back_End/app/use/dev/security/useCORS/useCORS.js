@@ -4,7 +4,6 @@ import { app } from '../../../../app.js';
 const corsOptions = {
   origin: (origin, callback) => {
     const allowedOrigins = [process.env.CREATOR_URL, process.env.BLOG_URL];
-    console.log(origin);
     // Разрешаем запросы без origins (например, когда запрос исходит из Postman)
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, origin);
@@ -18,4 +17,5 @@ const corsOptions = {
 
 export const useCORS = () => {
   app.use(cors(corsOptions));
+  app.options('*', cors(corsOptions));
 };
