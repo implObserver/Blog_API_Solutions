@@ -8,16 +8,19 @@ export const fastLogin = createAsyncThunk(
             const resp = await AuthService.fastLogin();
             const user = resp.data.user;
             const res = {
+                id:'fastLogin',
+                message: 'Авторизован',
                 error: false,
                 data: {
-                    name: 200,
+                    status: 200,
                     message: user,
                 },
             }
             return res;
         } catch (error) {
             const data = {
-                name: error.response.status,
+                id:'fastLogin',
+                status: error.response.status,
                 message: error.response.data.error,
             }
             const res = {

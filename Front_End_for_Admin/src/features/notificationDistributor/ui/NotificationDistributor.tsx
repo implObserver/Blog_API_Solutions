@@ -1,31 +1,31 @@
-import { Denied } from "@/entities/denied";
-import { Error } from "@/entities/error";
 import { selectUserServices } from "@/entities/user";
 import { useSelector } from "react-redux";
-import { isAccess, isDenied, isError } from "../lib/helper/getStatuses";
-import { Access } from "@/entities/access";
+import styles from './styles/NotificationDistributor.module.css'
+import { selectStatuses } from "../model/slice/statuses/selectors";
+import { ViewError } from "../components/viewError";
+import { ViewAccess } from "../components/viewAccess";
 
-export const NotificationDistributor = () => {
-    const services = useSelector(selectUserServices);
-    const { error } = services;
+export const NotificationDistributor = ({ ids }) => {
+    const statuses = useSelector(selectStatuses);
+    const errors = statuses.errors;
+    const accesses = statuses.accesses;
 
-    if (!error) return null;
+    let NotificationComponent: React.ReactElement;
 
-    const status = parseInt(error.name);
-    const message = error.message;
+    errors.forEach(error => {
+        if (ids.includes(error.id)) {
+            NotificationComponent = <div className={styles.container}>
+                <ViewError error={error}></ViewError>
+            </div>
+        }
+    })
 
-    const NotificationComponent = isError(status)
-        ? Error
-        : isDenied(status)
-            ? Denied
-            : isAccess(status)
-                ? Access
-                : null;
-
-    return NotificationComponent ? (
-        <div>
-            <NotificationComponent message={message} />
-        </div>
-
-    ) : null;
+    accesses.forEach(access => {
+        if (ids.includes(access.id)) {
+            NotificationComponent = <div className={styles.container}>
+                <ViewAccess access={access}></ViewAccess>
+            </div>
+        }
+    })
+    return NotificationComponent;
 };

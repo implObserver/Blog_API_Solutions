@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { Outlet, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
@@ -7,7 +6,6 @@ import styles from '../styles/App.module.css'
 import { scrollRestorationActions } from '@/features/scrollRestoration';
 import { Header } from '@/widgets/header';
 import { Footer } from '@/widgets/footer/ui/Footer';
-import { selectUserServices } from '@/entities/user';
 import { getScroll, useAppDispatch } from '@/shared/lib';
 import { FastAuth } from '@/features/fastAuth';
 
@@ -15,7 +13,6 @@ export const MainLayout: React.FC = () => {
     const { pathname } = useLocation();
     const dispatch = useAppDispatch();
     gsap.registerPlugin(ScrollToPlugin);
-    const isAuth = useSelector(selectUserServices).isAuthenticated;
     const queryParams = new URLSearchParams(location.search);
 
     useEffect(() => {
@@ -51,7 +48,7 @@ export const MainLayout: React.FC = () => {
                 <Header />
             </header>
             <div>
-                {isAuth ? null : <FastAuth />}
+                <FastAuth />
                 <Outlet />
             </div>
             <footer>

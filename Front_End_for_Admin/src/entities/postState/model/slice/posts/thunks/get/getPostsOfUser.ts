@@ -8,6 +8,8 @@ export const getPostsOfUser = createAsyncThunk(
             const resp = await GetService.getPostsOfuser(data);
             const posts = resp.data
             const res = {
+                id:'getPost',
+                message: `Посты успешно загружены`,
                 error: false,
                 data: {
                     name: 200,
@@ -17,7 +19,8 @@ export const getPostsOfUser = createAsyncThunk(
             return res;
         } catch (error) {
             const data = {
-                name: error.response.status,
+                id:'getPost',
+                status: error.response.status,
                 message: error.response.data.error,
             }
             const res = {

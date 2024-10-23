@@ -1,4 +1,4 @@
-import { servicesReducer, selectUserServices } from '@/entities/user';
+import { servicesReducer } from '@/entities/user';
 import { scrollRestorationReducer } from '@/features/scrollRestoration/model/slice/slice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
@@ -20,6 +20,7 @@ import {
   postsReducer,
   virtualPostReducer
 } from '@/entities/postState';
+import { statusesReducer } from '@/features/notificationDistributor';
 
 const rootReducer = combineReducers({
   focus: focusReducer,
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   userPosts: postsReducer,
   openedPost: openedPostReducer,
   backups: backupsReducer,
+  statuses: statusesReducer,
 })
 
 const persistConfig = {

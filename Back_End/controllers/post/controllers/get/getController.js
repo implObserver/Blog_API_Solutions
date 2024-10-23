@@ -50,7 +50,6 @@ const pagination_posts_list_get = asyncHandler(async (req, res) => {
   try {
     const posts = await prismaDB.getPaginationPosts(offset, limit);
     const totalPosts = await prismaDB.countPost();
-
     res.json({
       posts,
       totalPosts,

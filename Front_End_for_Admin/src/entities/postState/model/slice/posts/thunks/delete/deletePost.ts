@@ -8,6 +8,8 @@ export const deletePost = createAsyncThunk(
             const resp = await DeleteService.deletePost(postId);
             const response = resp.data;
             const res = {
+                id:'deletePost',
+                message: `Пост ${postId} успешно удален`,
                 error: false,
                 data: {
                     name: 200,
@@ -17,7 +19,8 @@ export const deletePost = createAsyncThunk(
             return res;
         } catch (error) {
             const data = {
-                name: error.response.status,
+                id:'deletePost',
+                status: error.response.status,
                 message: error.response.data.error,
             }
             const res = {

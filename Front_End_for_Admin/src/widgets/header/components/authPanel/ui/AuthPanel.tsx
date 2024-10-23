@@ -6,7 +6,6 @@ import styles from './styles/AuthPanel.module.css'
 
 export const AuthPanel = () => {
     const user = useSelector(selectUserServices).user;
-    console.log(user)
     if (user === null)
         return (
             <div className={styles.panel_auth}>

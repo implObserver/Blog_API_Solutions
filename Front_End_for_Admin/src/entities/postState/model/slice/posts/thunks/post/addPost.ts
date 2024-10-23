@@ -8,6 +8,8 @@ export const addPost = createAsyncThunk(
             const resp = await PostService.addPost(dataPost);
             const response = resp.data;
             const res = {
+                id: 'addPost',
+                message: `Пост ${dataPost.title} успешно добавлен`,
                 error: false,
                 data: {
                     name: 200,
@@ -18,7 +20,8 @@ export const addPost = createAsyncThunk(
         } catch (error) {
             console.log(error)
             const data = {
-                name: error.response.status,
+                id: 'addPost',
+                status: error.response.status,
                 message: error.response.data.error,
             }
             const res = {

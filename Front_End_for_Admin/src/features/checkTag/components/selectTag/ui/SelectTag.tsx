@@ -15,7 +15,6 @@ export const SelectTag = () => {
     const tags = getTagList(post.tag);
 
     const onClick = (tag: string) => {
-        console.log(postid)
         const args: Tag = {
             postid,
             tagName: tag,

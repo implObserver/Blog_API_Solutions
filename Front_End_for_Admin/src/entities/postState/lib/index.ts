@@ -1,0 +1,1 @@
+export { getPostsResponseIds } from './helper/functions/getResponseIds'

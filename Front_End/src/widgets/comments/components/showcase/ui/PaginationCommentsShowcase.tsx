@@ -43,7 +43,6 @@ export const PaginationCommentsShowcase = () => {
     };
 
     const loadMorePostsBack = () => {
-        console.log(commentsService.currentPage, totalPages)
         if (currentPage > 1) {
             dispatch(commentsActions.setCurrentPage(currentPage - 1)); // Увеличиваем номер текущей страницы
         }
@@ -54,7 +53,7 @@ export const PaginationCommentsShowcase = () => {
             return <Comment key={comment.id} comment={comment}></Comment>
         })
     };
-    console.log(currentPage)
+
     return (
         <div className={styles.container}>
             <div className={styles.container}>

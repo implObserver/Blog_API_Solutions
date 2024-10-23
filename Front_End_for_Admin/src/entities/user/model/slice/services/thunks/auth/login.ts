@@ -10,6 +10,8 @@ export const login = createAsyncThunk(
             const resp = await AuthService.login(identifier, password);
             const user = resp.data.user;
             const res = {
+                id:'login',
+                message: 'Авторизован',
                 error: false,
                 data: {
                     name: 200,
@@ -19,7 +21,8 @@ export const login = createAsyncThunk(
             return res;
         } catch (error) {
             const data = {
-                name: error.response.status,
+                id:'login',
+                status: error.response.status,
                 message: error.response.data.error,
             }
             const res = {

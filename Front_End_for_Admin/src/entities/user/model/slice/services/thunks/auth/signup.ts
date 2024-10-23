@@ -11,6 +11,8 @@ export const signup = createAsyncThunk(
             const resp = await AuthService.signup(email, password, username);
             const user = resp.data.user;
             const res = {
+                id:'signup',
+                message: 'Пользователь успешно создан',
                 error: false,
                 data: {
                     name: 200,
@@ -21,7 +23,8 @@ export const signup = createAsyncThunk(
         } catch (error) {
             console.log(error)
             const data = {
-                name: error.response.status,
+                id:'signup',
+                status: error.response.status,
                 message: error.response.data.error,
             }
             const res = {

@@ -41,11 +41,22 @@ export const Posts = () => {
             <AlterShowcase></AlterShowcase>
             <ClassicShowcase></ClassicShowcase>
             <div className={styles.pagination}>
-                <button className={styles.pagination_btn} onClick={loadMorePostsBack} disabled={currentPage === 1}>
+                <button className={currentPage === 1
+                    ? styles.block
+                    : styles.pagination_btn}
+                    onClick={loadMorePostsBack}>
                     назад
                 </button>
-                <span>{currentPage} из {totalPages}</span>
-                <button className={styles.pagination_btn} onClick={loadMorePostsUp} disabled={currentPage === totalPages}>
+                <span className={totalPages === 1
+                    ? styles.block
+                    : ''}>
+                    {currentPage} из {totalPages}
+                </span>
+                <button
+                    className={totalPages === currentPage
+                        ? styles.block
+                        : styles.pagination_btn}
+                    onClick={loadMorePostsUp}>
                     вперед
                 </button>
             </div>

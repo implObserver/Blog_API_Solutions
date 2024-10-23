@@ -17,7 +17,6 @@ export const addComment = createAsyncThunk(
             }
             return res;
         } catch (error) {
-            console.log(error)
             const data = {
                 name: error.response.status,
                 message: error.response.data.error,

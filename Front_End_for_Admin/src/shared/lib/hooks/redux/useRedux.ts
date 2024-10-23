@@ -33,6 +33,11 @@ export const getBackups = () => {
     return backups;
 }
 
+export const getStatuses = () => {
+    const statuses = store.getState().statuses
+    return statuses;
+}
+
 export const getScroll = (pathname: string) => {
     const scrolls = store.getState().scrollRestoration.scrolls;
     const scroll = scrolls.find(scroll => scroll.pathname === pathname);

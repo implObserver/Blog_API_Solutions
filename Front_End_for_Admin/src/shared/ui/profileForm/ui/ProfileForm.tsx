@@ -3,7 +3,6 @@ import styles from './styles/ProfileForm.module.css'
 
 export const ProfileForm = () => {
     const context = useProfileFormContext();
-    console.log(context)
     const data = {
         nickname: context.formData.nickname ? context.formData.nickname : '',
         gender: context.formData.gender ? context.formData.gender : 'other',

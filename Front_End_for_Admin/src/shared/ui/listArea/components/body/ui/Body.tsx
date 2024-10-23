@@ -30,7 +30,7 @@ export const Body = () => {
                 defaultValue={value}
                 className={styles.area_list}
                 wrap='hard'
-                maxLength={context.maxLength}
+                maxLength={-1}
                 onFocus={focusHandle}>
             </TextareaAutosize>
         </div>

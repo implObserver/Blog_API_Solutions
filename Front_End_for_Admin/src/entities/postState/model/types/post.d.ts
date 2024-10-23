@@ -29,7 +29,7 @@ interface VirtualPost {
 }
 
 interface PostsState {
-    error?: Error,
+    error?: ErrorType,
     isLoading?: boolean,
     isUpdating: boolean,
     posts: Post[],

@@ -10,7 +10,6 @@ export const PutService = {
         return instance.put(`/api/user/${id}/posts/${snapshot.postid}/update_models`, snapshot)
     },
     updatePublishStatusOfPost(data: UpdatePublishStatus) {
-        console.log(data.postid)
         return instance.put(`/api/user/${id}/posts/${data.postid}/update_publish_status`, data)
     },
     updateTag(postid: number, tag: string) {

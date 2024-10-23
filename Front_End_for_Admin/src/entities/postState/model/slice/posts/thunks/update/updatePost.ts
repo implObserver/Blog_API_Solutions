@@ -11,6 +11,8 @@ export const updatePost = createAsyncThunk(
                 const resp = await PutService.updatePost(post);
                 const response = resp.data;
                 const res = {
+                    id: 'updatePost',
+                    message: `Пост ${post.id} успешно обновлен`,
                     error: false,
                     data: {
                         name: 200,
@@ -22,7 +24,8 @@ export const updatePost = createAsyncThunk(
         } catch (error) {
             console.log(error)
             const data = {
-                name: error.response.status,
+                id: 'updatePost',
+                status: error.response.status,
                 message: error.response.data.error,
             }
             const res = {

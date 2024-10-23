@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from './styles/PostPreviewStyles.module.css'
 import { Link, useParams } from "react-router-dom";
-import { compressImage, getFormattedDate } from "@/shared/lib";
+import { getFormattedDate } from "@/shared/lib";
 import { getImageByCode, savePostImage, loadImage } from "../lib";
 import { Menu } from "../components/menu";
 
@@ -16,12 +16,14 @@ export const PostPreview = ({ post }) => {
         const loadPreview = async () => {
             try {
                 const image = (await getImageByCode(post.id, folderName));
+                console.log(image)
                 if (!image || !image.blob) {
                     loadPreviewOnServer();
                 } else {
                     setPreview(URL.createObjectURL(image.blob));
                 }
             } catch (error) {
+                console.log(error)
                 setPreview(null);
             }
         }

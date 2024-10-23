@@ -58,7 +58,7 @@ export const MainLayout: React.FC = () => {
             </header>
             <div className={styles.body}>
                 <Backup>
-                    {isAuth ? null : <FastAuth />}
+                    <FastAuth />
                     <Outlet />
                 </Backup>
             </div>

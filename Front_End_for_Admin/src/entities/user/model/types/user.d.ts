@@ -2,7 +2,7 @@ interface ServiceStatus {
     user: UserData,
     isAuthenticated: boolean,
     isLoading?: boolean,
-    error?: Error,
+    error?: ErrorType,
     isUpdating?: boolean;
 }
 

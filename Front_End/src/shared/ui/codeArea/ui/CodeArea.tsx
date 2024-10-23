@@ -14,8 +14,7 @@ export const CodeArea = () => {
 
     };
 
-    const decodeJSX = (input) => {
-        console.log(`decode ${input}`)
+    const decodeJSX = (input: string) => {
         return input
             .replace(/&amp;/g, '&') // Декодируем символ &
             .replace(/&lt;/g, '<') // Декодируем символ <

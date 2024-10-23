@@ -32,3 +32,8 @@
     transform: scale(0.95); /* Уменьшение кнопки при нажатии */
     transition: background-color 0.1s ease; /* Быстрый переход */
 }
+
+.block {
+    visibility: hidden;
+    pointer-events: none;
+}

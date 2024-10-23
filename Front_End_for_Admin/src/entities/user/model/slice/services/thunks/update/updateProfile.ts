@@ -8,6 +8,8 @@ export const updateProfile = createAsyncThunk(
             const resp = await PutService.updateProfile(profile);
             const user = resp.data.user;
             const res = {
+                id:'updateProfile',
+                message: 'Профиль успешно обновлен',
                 error: false,
                 data: {
                     name: 200,
@@ -17,7 +19,8 @@ export const updateProfile = createAsyncThunk(
             return res;
         } catch (error) {
             const data = {
-                name: error.response.status,
+                id:'updateProfile',
+                status: error.response.status,
                 message: error.response.data.error,
             }
             const res = {

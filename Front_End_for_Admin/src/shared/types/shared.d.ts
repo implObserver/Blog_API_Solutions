@@ -1,3 +1,8 @@
+interface ErrorType {
+    id: string,
+    status: number,
+    message: string,
+}
 interface ImageContext {
     model: Model<ModelVariant>,
     file: Blob,

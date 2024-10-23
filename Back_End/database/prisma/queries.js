@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-import { version } from 'mongoose';
 
 const prisma = new PrismaClient();
 
@@ -86,7 +85,11 @@ const getPaginationComments = async (offset, limit, postid) => {
 };
 
 const countPost = async () => {
-  return await prisma.post.count();
+  return await prisma.post.count({
+    where: {
+      isPublished: true,
+    },
+  });
 };
 
 const countUserPost = async (id) => {

@@ -42,7 +42,6 @@ export const convertElementToModel = (element: ElementData<ElementVariant>) => {
 
 
 const createPreviewModel = (element: ElementData<ElementVariant>) => {
-    console.log(element)
     const model: PreviewModel = {
         id: element.getId(),
         type: element.getType(),

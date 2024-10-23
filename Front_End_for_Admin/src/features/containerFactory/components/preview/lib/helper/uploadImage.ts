@@ -1,14 +1,14 @@
-import { getImageByCode, savePostImage } from "@/entities/postPreview/lib";
+import { getImageByCode, loadImage, savePostImage } from "@/entities/postPreview/lib";
 import { getPostImage } from "@/entities/postState";
 
 
 export const handleExistingPostImages = async (post_id: number, model: Model<ModelVariant>) => {
     const image = await getImageByCode(post_id, model.imageUrl);
     if (image === null) {
-        return await uploadImage(post_id, model);
+        return await loadImage(model.imageUrl);
     } else {
         if (image.blob === null && !image.isRetry) {
-            return await uploadImage(post_id, model);
+            return await loadImage(model.imageUrl);
         } else {
             return image.blob;
         }
