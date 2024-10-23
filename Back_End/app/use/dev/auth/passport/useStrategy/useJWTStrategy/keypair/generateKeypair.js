@@ -5,6 +5,8 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 export const __pathToKeyFolder = dirname(fileURLToPath(import.meta.url));
+const publicKeyPath = `${__pathToKeyFolder}/id_rsa_pub.pem`;
+const privateKeyPath = `${__pathToKeyFolder}/id_rsa_priv.pem`;
 
 const getKeyPair = () => {
   const keyPair = crypto.generateKeyPairSync('rsa', {
@@ -27,3 +29,10 @@ const getKeyPair = () => {
     keyPair.privateKey.toString()
   );
 };
+
+if (!fs.existsSync(publicKeyPath) || !fs.existsSync(privateKeyPath)) {
+  getKeyPair();
+  console.log('Ключи успешно сгенерированы.');
+} else {
+  console.log('Ключи уже существуют, генерация не требуется.');
+}
