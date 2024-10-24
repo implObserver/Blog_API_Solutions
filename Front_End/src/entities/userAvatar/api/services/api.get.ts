@@ -4,7 +4,10 @@ const userID = Cookies.get('user_id');
 
 export const GetService = {
     getAvatar() {
-        return instance.get(`/api/user/:${userID}/profile/avatar`, {
+        console.log(userID)
+        const id = Cookies.get('user_id');
+        console.log(id)
+        return instance.get(`/api/user/:${id}/profile/avatar`, {
             responseType: 'blob',
         });
     },
