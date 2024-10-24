@@ -49,15 +49,15 @@ export const getRefreshToken = (id) => {
 export const issueJWTPG = (id) => {
   const _id = id;
 
-  const acessExpiresIn = '15m';
+  const accessExpiresIn = '15m';
 
-  const acessPayload = {
+  const accessPayload = {
     sub: _id,
     iat: Math.floor(Date.now() / 1000),
   };
 
-  const acessToken = jwt.sign(acessPayload, PRIV_KEY, {
-    expiresIn: acessExpiresIn,
+  const accessToken = jwt.sign(accessPayload, PRIV_KEY, {
+    expiresIn: accessExpiresIn,
     algorithm: 'RS256',
   });
 
@@ -78,9 +78,9 @@ export const issueJWTPG = (id) => {
       token: 'Bearer ' + refreshToken,
       expires: refreshExpiresIn,
     },
-    acessToken: {
-      token: 'Bearer ' + acessToken,
-      expires: acessExpiresIn,
+    accessToken: {
+      token: 'Bearer ' + accessToken,
+      expires: accessExpiresIn,
     },
   };
 };

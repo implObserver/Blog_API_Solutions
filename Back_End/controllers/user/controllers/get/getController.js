@@ -13,7 +13,7 @@ const authProtected = (req, res, next) => {
   if (req.isAuthenticated()) {
     res.locals.user = req.user;
     res.locals.refreshToken = req.user.refreshToken;
-    res.locals.acessToken = getAccessToken(req.user.id).token;
+    res.locals.accessToken = getAccessToken(req.user.id).token;
     return next(); // Явно возвращаем next() для улучшения читаемости
   } else {
     // Вернем 401 статус и сообщение об ошибке
@@ -96,11 +96,11 @@ const refresh_refreshToken = asyncHandler(async (req, res, next) => {
   if (!user) return res.sendStatus(403);
 
   refreshToken = getRefreshToken(user.id).token;
-  const acessToken = getAccessToken(user.id).token;
+  const accessToken = getAccessToken(user.id).token;
   await prismaDB.setToken(user.id, refreshToken);
   res.locals.user = user;
   res.locals.refreshToken = refreshToken;
-  res.locals.acessToken = acessToken;
+  res.locals.accessToken = accessToken;
   next();
 });
 

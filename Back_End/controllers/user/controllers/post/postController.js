@@ -90,7 +90,7 @@ const user_auth_post = [
 ];
 
 const user_logout_post = asyncHandler(async (req, res) => {
-  res.clearCookie('acessToken');
+  res.clearCookie('accessToken');
   res.clearCookie('token');
   res.clearCookie('refreshToken');
   res.clearCookie('user_id');
