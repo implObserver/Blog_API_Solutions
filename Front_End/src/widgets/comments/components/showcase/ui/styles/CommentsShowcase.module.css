@@ -13,6 +13,10 @@
     align-items: center;
 }
 
+.block {
+    display: none;
+}
+
 .pagination_btn {
     background-color: transparent;
     border: 2px solid #007bff;

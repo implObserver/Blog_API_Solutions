@@ -7,9 +7,10 @@
     border-radius: 3px;
     outline: none;
     font-size: inherit;
+
     padding-left: 4px;
     padding-right: 4px;
-    min-width: 5vw !important;
+    min-width: 1vw !important;
     transition: width 0.2s;
     font-weight: 800;
     /* Для плавной анимации изменения ширины */

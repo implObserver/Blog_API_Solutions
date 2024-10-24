@@ -19,7 +19,7 @@ export const ListElement = () => {
         placeholder: 'Add text',
         strongPlaceholder: 'Strong',
         value: context.element,
-        maxLength: 50,
+        maxLength: 40,
         isFocused: focus === context.index,
     }
 

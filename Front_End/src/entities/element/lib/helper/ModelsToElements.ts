@@ -97,7 +97,7 @@ const getListHeader = (model: Model<ModelVariant>) => {
 const getListElement = (model: Model<ModelVariant>) => {
     const listElement = ListElement(model.id);
     listElement.setValue(model.value);
-    listElement.setStrong(model.strong);
+    listElement.setStrong(model.strongText);
     return listElement;
 }
 

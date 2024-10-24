@@ -3,8 +3,7 @@ import { useListAreaContext } from '../../../lib/context/Context';
 
 export const Strong = () => {
     const context = useListAreaContext()
-    const strong = context.value.strong;
-
+    const strong = context.value.strongText;
     return (
         <div className={styles.container}>
             <div

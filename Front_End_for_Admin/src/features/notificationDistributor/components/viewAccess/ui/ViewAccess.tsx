@@ -1,4 +1,4 @@
-import { isAccess} from "@/features/notificationDistributor/lib/helper/getStatuses";
+import { isAccess } from "@/features/notificationDistributor/lib/helper/getStatuses";
 import { statusesActions } from "@/features/notificationDistributor/model/slice/statuses/slice";
 import { useAppDispatch } from "@/shared/lib";
 import { useEffect } from "react";
@@ -15,6 +15,9 @@ export const ViewAccess = ({ access }) => {
             dispatch(statusesActions.removeAccess(access));
         };
         window.addEventListener('beforeunload', handleUnload);
+        setTimeout(() => {
+            dispatch(statusesActions.removeAccess(access));
+        }, 5000);
         return () => {
             window.removeEventListener('beforeunload', handleUnload);
         };

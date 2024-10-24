@@ -93,7 +93,7 @@ const getListElementModel = (element: ElementData<ElementVariant>) => {
         id: element.getId(),
         type: element.getType(),
         value: element.getValue(),
-        strong: element.getStrongText(),
+        strongText: element.getStrongText(),
     }
     return model;
 }

@@ -34,7 +34,7 @@ interface Model<T> {
     value?: string,
     imageUrl?: string,
     fontSize?: number,
-    strong?: string,
+    strongText?: string,
     version?: number,
 }
 
@@ -43,7 +43,7 @@ interface ListHeaderModel extends BaseModel {
 }
 
 interface ListItemModel extends BaseModel {
-    strong: string,
+    strongText: string,
     value: string,
 }
 
