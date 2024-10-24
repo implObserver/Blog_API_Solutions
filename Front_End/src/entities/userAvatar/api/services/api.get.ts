@@ -5,6 +5,7 @@ const userID = Cookies.get('user_id');
 export const GetService = {
     getAvatar() {
         console.log(userID)
+        console.log(document.cookie);
         const id = Cookies.get('user_id');
         console.log(id)
         return instance.get(`/api/user/:${id}/profile/avatar`, {
