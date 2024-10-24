@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs';
 import { getRefreshToken } from '../../../../app/use/dev/auth/token/JWT/issueJWT.js';
 import { prismaDB } from '../../../../database/prisma/queries.js';
 import { validateUsernameOrMail } from '../../helper/middlewares/validate/usernameOrMailValidation.js';
+import redisClient from './redisClient.js';
 
 const user_create_post = [
   body('username')
@@ -92,21 +93,30 @@ const user_auth_post = [
 ];
 
 const user_logout_post = asyncHandler(async (req, res) => {
+  await redisClient.set('clining', JSON.stringify(true));
   res.clearCookie('accessToken');
-  res.clearCookie('token');
   res.clearCookie('refreshToken');
   res.clearCookie('user_id');
   res.clearCookie('connect.sid', { path: '/' });
   res.json({ res: 'logout' });
+  // eslint-disable-next-line no-undef
+  setTimeout(async () => {
+    await redisClient.set('clining', JSON.stringify(false));
+  }, 3000);
 });
 
 const user_auth_jwt_protected = async (req, res, next) => {
-  try {
-    passport.authenticate('jwt', {
-      session: false,
-    })(req, res, next);
-  } catch (err) {
-    console.log(err);
+  const isCleaning = await redisClient.get('clining');
+  if (!isCleaning) {
+    try {
+      passport.authenticate('jwt', {
+        session: false,
+      })(req, res, next);
+    } catch (err) {
+      console.log(err);
+    }
+  } else {
+    res.send('подождите');
   }
 };
 
