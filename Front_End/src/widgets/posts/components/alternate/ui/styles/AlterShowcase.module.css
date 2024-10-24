@@ -33,3 +33,29 @@
     height: 32vw;
     grid-area: third;
 }
+
+@media screen and (max-width:700px) {
+    .posts_alternate {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        padding: max(1vh, 1vw);
+        height: max-content;
+    }
+    .posts_alternate>div:nth-child(1) {
+        width: max(30vw, 400px);
+    }
+    
+    .posts_alternate>div:nth-child(2) {
+        width: max(30vw, 400px);
+        max-width: 700px;
+        height: 100%;
+    }
+    
+    .posts_alternate>div:nth-child(3) {
+        width: max(30vw, 400px);
+        max-width: 700px;
+        height: 100%;
+    }
+}
