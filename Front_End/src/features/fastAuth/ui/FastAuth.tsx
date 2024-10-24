@@ -10,16 +10,18 @@ export const FastAuth = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if (!isAuth && attempt < 2) {
-            const makeAttempt = async () => {
-                await dispatch(fastLogin());
-                setAttempt((prev) => prev + 1);
-            };
-            makeAttempt();
-        }
-        if (!isAuth && attempt >= 2 && !services.isLoading) {
-            dispatch(logout());
-        }
+        setTimeout(() => {
+            if (!isAuth && attempt < 2) {
+                const makeAttempt = async () => {
+                    await dispatch(fastLogin());
+                    setAttempt((prev) => prev + 1);
+                };
+                makeAttempt();
+            }
+            if (!isAuth && attempt >= 2 && !services.isLoading) {
+                dispatch(logout());
+            }
+        }, 1000);
     }, [isAuth, attempt]);
 
     return null;
