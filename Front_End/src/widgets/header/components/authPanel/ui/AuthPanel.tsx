@@ -23,7 +23,7 @@ export const AuthPanel = () => {
     else {
         return (
             <div className={styles.panel_auth}>
-                <span>{user.username}</span>
+                
                 <div className={styles.wrapper_preview}>
                     <UserAvatarContext.Provider value={service}>
                         <UserAvatar></UserAvatar>
