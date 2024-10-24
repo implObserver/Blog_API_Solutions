@@ -10,7 +10,6 @@ export const useCORS = () => {
     console.log(`CORS middleware triggered for origin: ${req.headers.origin}`);
     next();
   });
-
   app.use((req, res, next) => {
     res.header(
       'Access-Control-Allow-Headers',
@@ -18,4 +17,16 @@ export const useCORS = () => {
     );
     next();
   });
+  app.use(
+    cors({
+      origin: [
+        'http://localhost:3000',
+        'http://localhost:5000',
+        'http://localhost:5001',
+        'https://blogapifronttwo.netlify.app',
+        'https://blogapifront.netlify.app',
+      ],
+      credentials: true,
+    })
+  );
 };
