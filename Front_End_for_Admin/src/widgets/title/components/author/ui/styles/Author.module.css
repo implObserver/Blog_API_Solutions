@@ -39,3 +39,22 @@
     font-size: 20px;
     width: 260px;
 }
+
+@media screen and (max-width:700px) {
+    .creator {
+        font-size: 14px;
+    }
+    
+    .creator>span {
+        font-size: 18px;
+    }
+    
+    .author {
+        font-size: 14px;
+    }
+
+    .input {
+        font-size: 18px;
+        width: 220px;
+    }
+}
