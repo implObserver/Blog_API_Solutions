@@ -9,7 +9,7 @@ export const AuthPanel = () => {
     const service = useSelector(selectUserServices);
     const user: UserData = service.user;
 
-    if (user === null)
+    if (user)
         return (
             <div className={styles.panel_auth}>
                 <Link to={'/login'}>
