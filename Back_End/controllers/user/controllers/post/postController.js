@@ -70,6 +70,7 @@ const user_auth_post = [
     } else {
       await passport.authenticate('local', (err, user, info) => {
         if (err) {
+          console.error('Authentication error 1:', err); // Логирование ошибки
           return res.status(500).json({ error: 'Internal server error' });
         }
         if (!user) {
@@ -79,6 +80,7 @@ const user_auth_post = [
         }
         req.logIn(user, (loginErr) => {
           if (loginErr) {
+            console.error('Authentication error 2:', err); // Логирование ошибки
             return res.status(500).json({ error: 'Login failed' });
           }
           console.log('Successfully authenticated:');
