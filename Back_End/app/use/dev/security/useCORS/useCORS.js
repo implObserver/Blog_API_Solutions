@@ -1,10 +1,10 @@
 import cors from 'cors';
-import { app } from '../../../../app.js';
+import express from 'express';
 
-// Проверка на наличие переменных окружения
+const app = express();
 
 export const useCORS = () => {
-  // Сначала логируем информацию о запросе
+  // Логируем информацию о запросе
   app.use((req, res, next) => {
     console.log('Request Origin:', req.headers.origin); // Логируем origin
     console.log('Request Headers:', req.headers); // Логируем заголовки запроса
@@ -12,7 +12,7 @@ export const useCORS = () => {
     next();
   });
 
-  // Затем используем cors() с нужной конфигурацией
+  // Настройка CORS с конфигурацией
   app.use(
     cors({
       origin: [
@@ -24,21 +24,53 @@ export const useCORS = () => {
       ],
       credentials: true,
       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-      allowedHeaders:
-        'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+      allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
     })
   );
 
-  // Дополнительно явно указываем заголовки для всех ответов
+  // Явное добавление CORS заголовков ко всем ответам
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+    next();
+  });
+
+  // Обработка preflight-запросов типа OPTIONS
+  app.options('*', (req, res) => {
+    res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+    res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    res.sendStatus(200);
+  });
+};
+
+/*
+  export const useCORS = () => {
+  app.use((req, res, next) => {
+    console.log('Request Origin:', req.headers.origin); // Логируем origin
+    console.log('Request Headers:', req.headers); // Логируем заголовки запроса
+    console.log(`CORS middleware triggered for origin: ${req.headers.origin}`);
+    next();
+  });
+  app.use(
+    cors({
+      origin: [
+        'http://localhost:3000',
+        'http://localhost:5000',
+        'http://localhost:5001',
+        'https://blogapifronttwo.netlify.app',
+        'https://blogapifront.netlify.app',
+      ],
+      credentials: true,
+    })
+  );
   app.use((req, res, next) => {
     res.header(
       'Access-Control-Allow-Headers',
       'Origin, X-Requested-With, Content-Type, Accept, Authorization'
     );
-    res.header(
-      'Access-Control-Allow-Methods',
-      'GET,HEAD,PUT,PATCH,POST,DELETE'
-    );
     next();
   });
 };
+*/
