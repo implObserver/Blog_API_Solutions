@@ -6,6 +6,6 @@ export const logout = createAsyncThunk(
     async (thunkApi, { getState }) => {
         localStorage.clear();
         indexedDB.deleteDatabase('blog_api_creater_idb');
-        AuthService.logout();
+        await AuthService.logout();
     }
 )
