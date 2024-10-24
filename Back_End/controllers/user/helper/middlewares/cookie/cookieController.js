@@ -20,7 +20,7 @@ const set_cookie = asyncHandler(async (req, res, next) => {
   });
 
   res.cookie('user_id', user.id, {
-    maxAge: 0,
+    maxAge: 604800000,
   });
 
   // Логируем куки
