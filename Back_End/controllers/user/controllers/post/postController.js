@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs';
 import { getRefreshToken } from '../../../../app/use/dev/auth/token/JWT/issueJWT.js';
 import { prismaDB } from '../../../../database/prisma/queries.js';
 import { validateUsernameOrMail } from '../../helper/middlewares/validate/usernameOrMailValidation.js';
-import redisClient from './redisClient.js';
+import { redisClient } from '../../../../app/use/dev/session/useSession.js';
 
 const user_create_post = [
   body('username')
