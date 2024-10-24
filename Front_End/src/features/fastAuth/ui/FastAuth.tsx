@@ -8,7 +8,7 @@ export const FastAuth = () => {
     const isAuth = services.isAuthenticated;
     const [attempt, setAttempt] = useState(0);
     const dispatch = useAppDispatch();
- 
+
     useEffect(() => {
         if (!isAuth && attempt < 2) {
             const makeAttempt = async () => {
@@ -18,7 +18,7 @@ export const FastAuth = () => {
             makeAttempt();
         }
         if (!isAuth && attempt >= 2 && !services.isLoading) {
-            
+            dispatch(logout());
         }
     }, [isAuth, attempt]);
 
