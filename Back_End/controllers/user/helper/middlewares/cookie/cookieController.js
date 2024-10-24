@@ -9,18 +9,18 @@ const set_cookie = asyncHandler(async (req, res, next) => {
     httpOnly: true,
     secure: true,
     sameSite: 'None',
-    maxAge: 3600000, // 1 час
+    maxAge: '7d',
   });
 
   res.cookie('acessToken', acessToken, {
     httpOnly: true,
     secure: true,
     sameSite: 'None',
-    maxAge: 3600000, // 1 час
+    maxAge: '30m',
   });
 
   res.cookie('user_id', user.id, {
-    maxAge: 3600000, // 1 час
+    maxAge: 'Infinity',
   });
 
   // Логируем куки

@@ -64,7 +64,7 @@ const refresh_acessToken = asyncHandler(async (req, res, next) => {
   console.log('acess');
   const tokens = req.cookies;
   const refreshToken = tokens?.refreshToken;
-
+  console.log(req.cookies);
   if (!refreshToken) {
     return res.status(401).send({ error: 'Refresh token is required.' });
   }
@@ -85,8 +85,8 @@ const refresh_acessToken = asyncHandler(async (req, res, next) => {
 
 const refresh_refreshToken = asyncHandler(async (req, res, next) => {
   console.log('refresh');
-  const tokens = req.query;
-  let refreshToken = tokens.refreshToken;
+  const tokens = req.cookies;
+  const refreshToken = tokens.refreshToken;
 
   if (!refreshToken)
     return res.status(401).send({ error: 'Ошибка авторизации' });

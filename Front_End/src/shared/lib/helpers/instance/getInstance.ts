@@ -22,13 +22,17 @@ instance.interceptors.response.use(
             if (error.response.status === 401) {
                 currentRetryCount++;
                 if (currentRetryCount === 1) {
-                    console.warn('Попытка обновить acess token');
-                    await instance.get("/api/user/refresh-acess-token");
+                    console.warn('Попытка обновить access token');
+                    await instance.get("/api/user/refresh-access-token");
+                    // Повторите оригинальный запрос
+                    return instance(error.config);
                 } else if (currentRetryCount === 2) {
                     console.warn('Попытка обновить refresh token');
                     await instance.get("/api/user/refresh-refresh-token");
+                    // Повторите оригинальный запрос
+                    return instance(error.config);
                 } else if (currentRetryCount === 3) {
-                    console.error('ошибка авторизации');
+                    console.error('Ошибка авторизации');
                 }
             }
         } else {
