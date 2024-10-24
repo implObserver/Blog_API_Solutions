@@ -1,8 +1,6 @@
 import cors from 'cors';
 import { app } from '../../../../app.js';
 
-// Проверка на наличие переменных окружения
-
 export const useCORS = () => {
   const allowedOrigins = [
     'https://blogapifronttwo.netlify.app',
