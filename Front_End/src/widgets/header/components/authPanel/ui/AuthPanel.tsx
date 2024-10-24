@@ -21,7 +21,6 @@ export const AuthPanel = () => {
             </div>
         )
     else {
-        const username = user.profile.name !== null ? user.profile.name : user.emailAddress;
         return (
             <div className={styles.panel_auth}>
                 <span>{user.username}</span>
