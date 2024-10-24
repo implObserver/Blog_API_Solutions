@@ -9,22 +9,22 @@ const PRIV_KEY = fs.readFileSync(pathToPrivKey, 'utf8');
 //jwt.verify(signedJWT, PUB_KEY, { algorithms: ['RS256'] }, (err, payload) => {});
 
 //for postgresDB
-export const getAcessToken = (id) => {
+export const getAccessToken = (id) => {
   const _id = id;
 
-  const acessExpiresIn = '30m';
+  const accessExpiresIn = '30m';
 
-  const acessPayload = {
+  const accessPayload = {
     sub: _id,
     iat: Math.floor(Date.now() / 1000),
   };
 
-  const acessToken = jwt.sign(acessPayload, PRIV_KEY, {
-    expiresIn: acessExpiresIn,
+  const accessToken = jwt.sign(accessPayload, PRIV_KEY, {
+    expiresIn: accessExpiresIn,
     algorithm: 'RS256',
   });
   return {
-    token: 'Bearer ' + acessToken,
+    token: 'Bearer ' + accessToken,
   };
 };
 

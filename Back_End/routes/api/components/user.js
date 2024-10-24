@@ -24,8 +24,8 @@ userRouter.get(
 );
 userRouter.post('/user/logout', userController.user_logout_post);
 userRouter.get(
-  '/user/refresh-acess-token',
-  userController.refresh_acessToken,
+  '/user/refresh-access-token',
+  userController.refresh_accessToken,
   userController.set_cookie,
   userController.user_get
 );

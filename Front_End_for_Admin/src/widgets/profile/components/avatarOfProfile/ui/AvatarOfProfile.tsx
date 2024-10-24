@@ -1,6 +1,5 @@
 import { selectUserServices, UserPreview } from "@/entities/user"
 import styles from './styles/AvatarOfProfile.module.css'
-
 import { useSelector } from "react-redux";
 import { SpinnerLoader } from "@/shared/ui/spinnerLoader";
 import { UpdateAvatar } from "@/features/updateAvatar";

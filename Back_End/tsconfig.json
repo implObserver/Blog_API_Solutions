@@ -4,6 +4,6 @@
     "allowJs": true,
     "noEmit": true
   },
-  "include": ["**/*.js"],
+  "include": ["**/*.js", "controllers/post/helper/validation/postValidation.ts"],
   "exclude": ["node_modules"]
 }

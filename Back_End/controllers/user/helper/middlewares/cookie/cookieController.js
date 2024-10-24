@@ -3,7 +3,7 @@ import asyncHandler from 'express-async-handler';
 const set_cookie = asyncHandler(async (req, res, next) => {
   const user = res.locals.user;
   const refreshToken = res.locals.refreshToken;
-  const acessToken = res.locals.acessToken;
+  const accessToken = res.locals.accessToken;
 
   res.cookie('refreshToken', refreshToken, {
     httpOnly: true,
@@ -12,7 +12,7 @@ const set_cookie = asyncHandler(async (req, res, next) => {
     maxAge: '7d',
   });
 
-  res.cookie('acessToken', acessToken, {
+  res.cookie('accessToken', accessToken, {
     httpOnly: true,
     secure: true,
     sameSite: 'None',
@@ -26,7 +26,7 @@ const set_cookie = asyncHandler(async (req, res, next) => {
   // Логируем куки
   console.log('Cookies set:', {
     refreshToken: refreshToken,
-    acessToken: acessToken,
+    accessToken: accessToken,
     user_id: user.id,
   });
 

@@ -28,7 +28,7 @@ export const Preview = () => {
                 } else {
                     const lastVersion = await getLastModified(folderName);
                     console.log(`last ${lastVersion} current ${image.version}`)
-                    if (lastVersion && lastVersion !== image.version) {
+                    if (lastVersion !== image.version) {
                         loadPreviewOnServer();
                     } else {
                         setPreview(URL.createObjectURL(image.blob));
