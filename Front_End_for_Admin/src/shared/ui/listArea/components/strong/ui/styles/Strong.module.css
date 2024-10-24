@@ -3,17 +3,21 @@
 }
 
 .strong_list {
-    display: grid;
+    display: flex;
     border-radius: 3px;
     outline: none;
     font-size: inherit;
-
     padding-left: 4px;
     padding-right: 4px;
     min-width: 1vw !important;
     transition: width 0.2s;
     font-weight: 800;
-    /* Для плавной анимации изменения ширины */
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    background: #ffffff !important;
+    resize: none;
+    word-break: break-word;
 }
 
 .strong_list::placeholder {

@@ -3,4 +3,7 @@
     width: 100%;
     font-size: inherit;
     padding-left: 4px;
+    word-wrap: break-word; /* Перенос длинных слов */
+    overflow-wrap: break-word; /* Перенос длинных слов */
+    white-space: normal;
 }

@@ -1,11 +1,16 @@
 .container {
     display: grid;
+    width: 30vw;
+    max-width: 400px;
 }
 
 .strong_list {
-    width: max-content;
+    display: flex;
     font-size: inherit;
     padding-left: 4px;
     padding-right: 4px;
     font-weight: 800;
+    word-wrap: break-word; /* Перенос длинных слов */
+    overflow-wrap: break-word; /* Перенос длинных слов */
+    white-space: normal;
 }
