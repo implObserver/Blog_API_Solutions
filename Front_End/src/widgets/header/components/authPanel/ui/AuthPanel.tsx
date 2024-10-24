@@ -8,7 +8,7 @@ import { UserAvatar, UserAvatarContext } from "@/entities/userAvatar";
 export const AuthPanel = () => {
     const service = useSelector(selectUserServices);
     const user: UserData = service.user;
-
+    console.log(user)
     if (user)
         return (
             <div className={styles.panel_auth}>
@@ -21,17 +21,10 @@ export const AuthPanel = () => {
             </div>
         )
     else {
+        console.log(user)
         return (
             <div className={styles.panel_auth}>
-                
-                <div className={styles.wrapper_preview}>
-                    <UserAvatarContext.Provider value={service}>
-                        <UserAvatar></UserAvatar>
-                    </UserAvatarContext.Provider>
-                </div>
-                <Logout>
-                    <button className={styles.button}>Logout</button>
-                </Logout>
+                wwww
             </div>
         )
     }
