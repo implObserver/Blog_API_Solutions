@@ -1,7 +1,5 @@
 import { getUserID, instance } from "@/shared/lib";
 
-const userID = getUserID();
-
 export const ReadService = {
     getPostToId(postid: number) {
         return instance.get(`/api/posts/${postid}`);
@@ -13,6 +11,7 @@ export const ReadService = {
         return instance.get(`/api/posts/`);
     },
     getPostImage(url: string) {
+        const userID = getUserID();
         return instance.get(`/api/user/:${userID}/posts/image/${url}`, {
             responseType: 'blob',
         });

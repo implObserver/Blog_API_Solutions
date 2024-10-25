@@ -2,10 +2,9 @@ import cors from 'cors';
 import { app } from '../../../../app.js';
 
 export const useCORS = () => {
-  const allowedOrigins = [
-    'https://blogapifronttwo.netlify.app',
-    'https://blogapifront.netlify.app',
-  ];
+  const blog = process.env.BLOG_URL;
+  const constructor = process.env.CONSTRUCTOR_URL;
+  const allowedOrigins = [blog, constructor];
 
   app.use((req, res, next) => {
     console.log('Request Origin:', req.headers.origin);

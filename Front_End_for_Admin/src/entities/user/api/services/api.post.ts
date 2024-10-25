@@ -1,12 +1,12 @@
 import { getUserID, instance } from '@/shared/lib';
 
-const userID = getUserID();
-
 export const PostService = {
     addPost(dataPost: PostForm) {
+        const userID = getUserID();
         return instance.post(`/api/user/:${userID}/posts/add`, dataPost)
     },
     addImage(data: ImageUpdate) {
+        const userID = getUserID();
         const nameFolder = data.folderName;
         const config = {
             headers: {
