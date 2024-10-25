@@ -40,7 +40,9 @@ const verifyCallbackPg = async (req, payload, done) => {
     }
     console.log(user.refreshToken !== refreshToken);
     if (user.refreshToken !== refreshToken) {
-      return done(null, false);
+      const error = new Error('Invalid refresh token');
+      error.status = 401;
+      return done(error, false);
     }
     return done(null, user);
   } catch (err) {
