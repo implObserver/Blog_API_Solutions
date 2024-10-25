@@ -1,3 +1,4 @@
+import { store } from "@/app/model/store/Store";
 import axios from "axios";
 
 let currentRetryCount: number = 0;

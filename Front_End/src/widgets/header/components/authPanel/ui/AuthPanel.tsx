@@ -3,7 +3,8 @@ import { Logout } from "@/features/logout";
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 import styles from './styles/AuthPanel.module.css'
-import { UserAvatar, UserAvatarContext } from "@/entities/userAvatar";
+import { UpdateAvatar } from "@/features/updateAvatar";
+import { UserAvatarContext } from "@/features/updateAvatar/lib";
 
 export const AuthPanel = () => {
     const service = useSelector(selectUserServices);
@@ -25,7 +26,7 @@ export const AuthPanel = () => {
                 <span>{user.username}</span>
                 <div className={styles.wrapper_preview}>
                     <UserAvatarContext.Provider value={service}>
-                        <UserAvatar></UserAvatar>
+                        <UpdateAvatar></UpdateAvatar>
                     </UserAvatarContext.Provider>
                 </div>
                 <Logout>

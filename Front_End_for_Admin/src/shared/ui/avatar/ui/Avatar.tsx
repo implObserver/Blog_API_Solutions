@@ -7,11 +7,11 @@ export const Avatar = () => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.circle}>
-                {context.imageUrl === null
+                {context.image === null
                     ? <Default></Default>
                     : <img className={styles.img}
                         alt="avatar"
-                        src={context.imageUrl} />}
+                        src={context.image} />}
             </div>
         </div>
     )

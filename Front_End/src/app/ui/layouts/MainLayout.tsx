@@ -48,6 +48,7 @@ export const MainLayout: React.FC = () => {
                 <Header />
             </header>
             <div>
+                <FastAuth />
                 <Outlet />
             </div>
             <footer>

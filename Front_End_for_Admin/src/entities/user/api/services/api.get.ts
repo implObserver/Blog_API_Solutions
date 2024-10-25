@@ -10,7 +10,7 @@ export const GetService = {
         return instance.get(`/api/user/:${userID}/posts/`);
     },
     getAvatar() {
-        const userID = getUserID();
+        const userID = getUserID();  
         return instance.get(`/api/user/:${userID}/profile/avatar`, {
             responseType: 'blob',
         });

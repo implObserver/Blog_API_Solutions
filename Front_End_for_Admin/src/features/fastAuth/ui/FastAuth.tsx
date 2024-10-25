@@ -1,32 +1,21 @@
-import {
-    fastLogin,
-    logout,
-    selectUserServices
-} from "@/entities/user"
+import { fastLogin, selectUserServices } from "@/entities/user"
 import { useAppDispatch } from "@/shared/lib";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux"
-
-const blogUrl = import.meta.env.VITE_BLOG_URL;
 
 export const FastAuth = () => {
     const services = useSelector(selectUserServices);
     const isAuth = services.isAuthenticated;
-    const [attempt, setAttempt] = useState(0);
     const dispatch = useAppDispatch();
- 
+
     useEffect(() => {
-        if (!isAuth && attempt < 2) {
+        if (!isAuth) {
             const makeAttempt = async () => {
                 await dispatch(fastLogin());
-                setAttempt((prev) => prev + 1);
             };
             makeAttempt();
         }
-        if (!isAuth && attempt >= 2 && !services.isLoading) {
-            dispatch(logout());
-        }
-    }, [isAuth, attempt]);
+    }, [isAuth]);
 
     return null;
 };

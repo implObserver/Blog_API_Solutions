@@ -1,0 +1,1 @@
+export { AutoUpdateAvatar } from './ui/AutoUpdateAvatar'

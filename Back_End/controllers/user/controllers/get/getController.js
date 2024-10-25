@@ -9,9 +9,10 @@ const failureProtected = (req, res) => {
   res.status(401).json({ message: 'unauthorized' });
 };
 
-const authProtected = (req, res, next) => {
+const authProtected = asyncHandler(async (req, res, next) => {
   if (req.isAuthenticated()) {
-    res.locals.user = req.user;
+    const user = await prismaDB.signupUser(req.user.id);
+    res.locals.user = user;
     res.locals.refreshToken = req.user.refreshToken;
     res.locals.accessToken = getAccessToken(req.user.id).token;
     return next();
@@ -19,7 +20,7 @@ const authProtected = (req, res, next) => {
     // Вернем 401 статус и сообщение об ошибке
     return res.status(401).json({ error: 'User is not authenticated' });
   }
-};
+});
 
 const user_logout_get = (req, res, next) => {
   req.logout((err) => {
@@ -61,10 +62,9 @@ const confirm_email = asyncHandler(async (req, res, next) => {
 });
 
 const refresh_accessToken = asyncHandler(async (req, res, next) => {
-  console.log('acess');
   const tokens = req.cookies;
   const refreshToken = tokens?.refreshToken;
-  console.log(req.cookies);
+
   if (!refreshToken) {
     return res.status(401).send({ error: 'Refresh token is required.' });
   }
@@ -76,7 +76,6 @@ const refresh_accessToken = asyncHandler(async (req, res, next) => {
   }
 
   const accessToken = getAccessToken(user.id).token;
-
   res.locals.user = user;
   res.locals.refreshToken = refreshToken;
   res.locals.accessToken = accessToken;
@@ -84,7 +83,6 @@ const refresh_accessToken = asyncHandler(async (req, res, next) => {
 });
 
 const refresh_refreshToken = asyncHandler(async (req, res, next) => {
-  console.log('refresh');
   const tokens = req.cookies;
   const refreshToken = tokens.refreshToken;
 
@@ -94,10 +92,11 @@ const refresh_refreshToken = asyncHandler(async (req, res, next) => {
   const user = await prismaDB.findUserByRefreshToken(refreshToken);
 
   if (!user) return res.sendStatus(403);
-
+  if (!user.isAuthenticated) return res.sendStatus(403);
   refreshToken = getRefreshToken(user.id).token;
   const accessToken = getAccessToken(user.id).token;
   await prismaDB.setToken(user.id, refreshToken);
+
   res.locals.user = user;
   res.locals.refreshToken = refreshToken;
   res.locals.accessToken = accessToken;

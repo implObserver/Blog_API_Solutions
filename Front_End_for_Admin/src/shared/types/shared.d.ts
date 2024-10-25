@@ -9,6 +9,10 @@ interface ImageContext {
     setImageFile?: React.Dispatch<React.SetStateAction<File>>,
 }
 
+interface AvatarContextType {
+    image: string,
+}
+
 interface ProfileFormContext {
     formData: ProfileForm,
     setFormData: React.Dispatch<React.SetStateAction<ProfileForm>>,
@@ -76,5 +80,5 @@ interface LoginData {
 }
 
 interface AvatarContext {
-    imageUrl: string,
+    image: string,
 }

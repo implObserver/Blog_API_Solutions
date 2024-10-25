@@ -6,7 +6,7 @@ import { Posts } from "@/widgets/posts";
 
 export const ProfilePage = () => {
     const services = useSelector(selectUserServices);
-
+    console.log(services.user)
     if (services.isAuthenticated) {
         return (
             <div className={styles.page_profile}>

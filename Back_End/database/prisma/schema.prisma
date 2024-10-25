@@ -25,6 +25,7 @@ model User {
   posts        Post[]
   comments     Comment[]
   verifyCode   String?
+  isAuthenticated Boolean? @default(false)
 }
 
 model Post {

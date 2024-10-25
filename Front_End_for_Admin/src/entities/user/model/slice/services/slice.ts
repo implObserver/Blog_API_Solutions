@@ -41,6 +41,18 @@ const userServicesSlice = createSlice({
                 state.user = action.payload.data.message;
                 state.isAuthenticated = true;
             } else {
+                state.isAuthenticated = false;
+                state.error = action.payload.data;
+            }
+        };
+
+        const handleProfileUpdate = (state: ServiceStatus, action: any) => {
+            state.isLoading = false;
+            if (!action.payload.error) {
+                state.user = action.payload.data.message;
+                state.isAuthenticated = true;
+            } else {
+                console.log(action.payload.data)
                 state.error = action.payload.data;
             }
         };
@@ -61,7 +73,7 @@ const userServicesSlice = createSlice({
             { action: checkAuth, handler: setAuthenticated },
             { action: signup, handler: handleUserUpdate },
             { action: logout, handler: handleLogout },
-            { action: updateProfile, handler: handleUserUpdate },
+            { action: updateProfile, handler: handleProfileUpdate },
         ];
 
         asyncActions.forEach(({ action, handler }) => {

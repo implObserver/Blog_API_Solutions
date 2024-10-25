@@ -1,8 +1,9 @@
 import { getUserID, instance } from "@/shared/lib";
 
 export const GetService = {
-    getPostImage(url: string) {
-        return instance.get(`/api/posts/image/${url}`, {
+    getAvatar() {
+        const userID = getUserID();
+        return instance.get(`/api/user/:${userID}/profile/avatar`, {
             responseType: 'blob',
         });
     },

@@ -401,8 +401,6 @@ const findUserByEmail = async (email) => {
     where: { email: email },
     include: {
       profile: true,
-      posts: true,
-      comments: true,
     },
   });
   return user;
@@ -528,13 +526,8 @@ const updateComment = async (userId, comment) => {
       include: {
         user: {
           select: {
-            // Используем select, чтобы ограничить возвращаемые поля
-            profile: {
-              // Включаем только профиль
-              select: {
-                name: true, // Выбираем только поле name из модели Profile
-              },
-            },
+            id: true,
+            username: true,
           },
         },
       },
@@ -546,6 +539,34 @@ const updateComment = async (userId, comment) => {
     console.error('Ошибка при обновлении комментария:', error); // Обработка ошибок
     throw error; // Опционально: пробрасываем ошибку дальше
   }
+};
+
+const logoutUser = async (userId) => {
+  const res = await prisma.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      isAuthenticated: false,
+      refreshToken: null,
+    },
+  });
+};
+
+const signupUser = async (userId) => {
+  const user = await prisma.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      isAuthenticated: true,
+    },
+    include: {
+      profile: true,
+    },
+  });
+
+  return user;
 };
 
 export const prismaDB = {
@@ -583,4 +604,6 @@ export const prismaDB = {
   updateAuthor,
   updateTitle,
   updatePost,
+  logoutUser,
+  signupUser,
 };

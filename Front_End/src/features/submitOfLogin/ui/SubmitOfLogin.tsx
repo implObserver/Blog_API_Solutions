@@ -18,9 +18,9 @@ export const SubmitOfLogin = () => {
         type: 'Log In',
     }
 
-    const submitHandle = (e) => {
+    const submitHandle = async (e) => {
         e.preventDefault();
-        dispath(login(data));
+        await dispath(login(data));
     }
 
     return (

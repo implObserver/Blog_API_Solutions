@@ -8,7 +8,7 @@ export const Comment = () => {
     const comment: PostComment = context.comment;
     const date = new Date(comment.postingDate);
     const formattedDate = timeAgo(date);
-    
+    console.log(comment)
     return (
         <div className={styles.comment}>
             <div className={styles.comment_header}>

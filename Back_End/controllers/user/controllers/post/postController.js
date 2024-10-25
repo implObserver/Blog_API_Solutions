@@ -92,6 +92,7 @@ const user_auth_post = [
 ];
 
 const user_logout_post = asyncHandler(async (req, res) => {
+  await prismaDB.logoutUser(req.user.id);
   res.clearCookie('accessToken');
   res.clearCookie('refreshToken');
   res.clearCookie('user_id');

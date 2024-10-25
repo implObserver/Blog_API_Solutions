@@ -1,4 +1,4 @@
-import { GetService } from "../../api";
+import { GetService } from "@/entities/userAvatar/api";
 
 export const getAvatar = async () => {
     try {
@@ -8,6 +8,6 @@ export const getAvatar = async () => {
         const file = new File([data], 'avatar', { type: contentType });
         return file;
     } catch (error) {
-        return null;
+        return error.response.status;
     }
 }

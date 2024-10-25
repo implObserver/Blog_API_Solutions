@@ -7,7 +7,7 @@ export const GetService = {
     },
     getPostImage(url: string) {
         const userID = getUserID();
-        return instance.get(`/api/user/:${userID}/posts/image/${url}`, {
+        return instance.get(`/api/posts/image/${url}`, {
             responseType: 'blob',
         });
     },
