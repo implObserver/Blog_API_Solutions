@@ -27,13 +27,19 @@ const options = {
   jwtFromRequest: cookieExtractor,
   secretOrKey: PUB_KEY,
   algorithms: ['RS256'],
+  passReqToCallback: true,
 };
 
 //for postgresDB
-const verifyCallbackPg = async (payload, done) => {
+const verifyCallbackPg = async (req, payload, done) => {
   try {
+    const refreshToken = req.cookies['refreshToken'];
     const user = await prismaDB.findUser(payload.sub);
     if (!user) {
+      return done(null, false);
+    }
+    console.log(user.refreshToken !== refreshToken);
+    if (user.refreshToken !== refreshToken) {
       return done(null, false);
     }
     return done(null, user);

@@ -7,8 +7,6 @@ export const useCORS = () => {
   const allowedOrigins = [blog, constructor];
 
   app.use((req, res, next) => {
-    console.log('Request Origin:', req.headers.origin);
-    console.log('Request Headers:', req.headers);
     next();
   });
 

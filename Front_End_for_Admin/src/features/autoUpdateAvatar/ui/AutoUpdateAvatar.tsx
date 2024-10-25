@@ -17,7 +17,9 @@ export const AutoUpdateAvatar = () => {
     const dispatch = useAppDispatch();
 
     const loadAvatar = async () => {
+        console.log('ddddd')
         const avatar = await getAvatar();
+        console.log(avatar)
         if (avatar === 401) {
             dispatch(servicesActions.reset());
         }

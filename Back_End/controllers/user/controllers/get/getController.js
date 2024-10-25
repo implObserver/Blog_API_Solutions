@@ -12,9 +12,12 @@ const failureProtected = (req, res) => {
 const authProtected = asyncHandler(async (req, res, next) => {
   if (req.isAuthenticated()) {
     const user = await prismaDB.signupUser(req.user.id);
+    const refreshToken = getRefreshToken(req.user.id).token;
+    const accessToken = getAccessToken(req.user.id).token;
+    await prismaDB.setToken(req.user.id, refreshToken);
     res.locals.user = user;
-    res.locals.refreshToken = req.user.refreshToken;
-    res.locals.accessToken = getAccessToken(req.user.id).token;
+    res.locals.refreshToken = refreshToken;
+    res.locals.accessToken = accessToken;
     return next();
   } else {
     // Вернем 401 статус и сообщение об ошибке
@@ -74,6 +77,8 @@ const refresh_accessToken = asyncHandler(async (req, res, next) => {
   if (!user) {
     return res.status(403).send({ error: 'Invalid refresh token.' });
   }
+
+  if (!user.isAuthenticated) return res.sendStatus(403);
 
   const accessToken = getAccessToken(user.id).token;
   res.locals.user = user;
