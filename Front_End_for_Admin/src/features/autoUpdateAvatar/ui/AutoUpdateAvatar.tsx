@@ -17,13 +17,16 @@ export const AutoUpdateAvatar = () => {
     const dispatch = useAppDispatch();
 
     const loadAvatar = async () => {
-        console.log('ddddd')
-        const avatar = await getAvatar();
-        console.log(avatar)
-        if (avatar === 401) {
-            dispatch(servicesActions.reset());
+        try {
+            const avatar = await getAvatar();
+            console.log(`AVATAAR ${avatar}`)
+            if (avatar === 401) {
+                dispatch(servicesActions.reset());
+            }
+            setAvatar(URL.createObjectURL(avatar));
+        } catch (error) {
+            console.log(`LOOOG ${error}`);
         }
-        setAvatar(URL.createObjectURL(avatar));
     }
 
     useEffect(() => {
