@@ -1,6 +1,6 @@
-import { instance } from "@/shared/lib";
-import Cookies from "js-cookie";
-const userID = Cookies.get('user_id');
+import { getUserID, instance } from '@/shared/lib';
+
+const userID = getUserID();
 
 export const GetService = {
     readProfile() {
@@ -10,9 +10,6 @@ export const GetService = {
         return instance.get(`/api/user/:${userID}/posts/`);
     },
     getAvatar() {
-        console.log(userID)
-        const id = Cookies.get('user_id');
-        console.log(id)
         return instance.get(`/api/user/:${userID}/profile/avatar`, {
             responseType: 'blob',
         });

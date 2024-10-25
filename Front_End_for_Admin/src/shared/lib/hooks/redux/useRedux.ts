@@ -43,4 +43,9 @@ export const getScroll = (pathname: string) => {
     const scroll = scrolls.find(scroll => scroll.pathname === pathname);
     return scroll;
 }
+
+export const getUserID = () => {
+    const userID = store.getState().userServices.user.id;
+    return userID;
+}
 //useAnythingData = () => {...}

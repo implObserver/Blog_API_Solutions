@@ -6,6 +6,7 @@ export {
     useAppDispatch,
     getAuthState,
     getScroll,
+    getUserID,
 } from './hooks/redux/useRedux'
 export { instance } from './helpers/instance/getInstance'
 export { useIndexedDb } from './hooks/indexedDB/useIndexedDB'

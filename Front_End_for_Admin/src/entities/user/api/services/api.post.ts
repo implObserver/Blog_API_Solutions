@@ -1,10 +1,10 @@
-import { instance } from '@/shared/lib';
-import Cookies from 'js-cookie'
-const id = Cookies.get('user_id');
+import { getUserID, instance } from '@/shared/lib';
+
+const userID = getUserID();
 
 export const PostService = {
     addPost(dataPost: PostForm) {
-        return instance.post(`/api/user/:${id}/posts/add`, dataPost)
+        return instance.post(`/api/user/:${userID}/posts/add`, dataPost)
     },
     addImage(data: ImageUpdate) {
         const nameFolder = data.folderName;
@@ -15,6 +15,6 @@ export const PostService = {
         }
         const file = new FormData();
         file.append('file', data.file);
-        return instance.post(`/api/user/:${id}/posts/image/${nameFolder}/update`, file, config)
+        return instance.post(`/api/user/:${userID}/posts/image/${nameFolder}/update`, file, config)
     },
 }

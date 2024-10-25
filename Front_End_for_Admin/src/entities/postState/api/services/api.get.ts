@@ -1,6 +1,6 @@
-import { instance } from "@/shared/lib";
-import Cookies from "js-cookie";
-const userID = Cookies.get('user_id');
+import { getUserID, instance } from "@/shared/lib";
+
+const userID = getUserID();
 
 export const GetService = {
     getPostsOfuser(data: PaginationData) {

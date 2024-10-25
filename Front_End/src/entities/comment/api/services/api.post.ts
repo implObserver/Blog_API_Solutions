@@ -1,6 +1,6 @@
-import { instance } from '@/shared/lib';
-import Cookies from 'js-cookie'
-const id = Cookies.get('user_id');
+import { getUserID, instance } from '@/shared/lib';
+
+const id = getUserID();
 
 export const PostService = {
     addComment(data: PostComment) {
