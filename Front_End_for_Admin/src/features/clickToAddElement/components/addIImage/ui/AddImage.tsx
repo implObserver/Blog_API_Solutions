@@ -23,6 +23,7 @@ export const AddImage = () => {
         const url = Date.now().toString();
         const imageArea = ImageArea();
         imageArea.setImageUrl(url);
+        imageArea.updateVersion(url);
         const newModel = elementToModel(imageArea);
 
         const postContext: PostCell = { postid, model, newModel };
