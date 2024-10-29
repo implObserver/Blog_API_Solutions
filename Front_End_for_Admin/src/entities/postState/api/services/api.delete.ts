@@ -1,12 +1,19 @@
 import { getUserID, instance } from "@/shared/lib";
 
 export const DeleteService = {
-    deletePostImage(folderName: string) {
+    deletePostImage(data: FormData) {
         const userID = getUserID();
-        return instance.delete(`/api/user/:${userID}/posts/image/${folderName}/delete`);
+        const folderName = data.get('folderName');
+        const postid = data.get('postid');
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        }
+        return instance.delete(`/api/user/${userID}/posts/${postid}/${folderName}/delete`, config);
     },
     deletePost(postId: number) {
         const userID = getUserID();
-        return instance.delete(`/api/user/:${userID}/posts/${postId}/delete`);
+        return instance.delete(`/api/user/${userID}/posts/${postId}/delete`);
     }
 }

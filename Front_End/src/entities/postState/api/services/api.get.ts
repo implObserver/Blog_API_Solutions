@@ -10,10 +10,4 @@ export const ReadService = {
     getPosts() {
         return instance.get(`/api/posts/`);
     },
-    getPostImage(url: string) {
-        const userID = getUserID();
-        return instance.get(`/api/user/:${userID}/posts/image/${url}`, {
-            responseType: 'blob',
-        });
-    },
 }

@@ -26,7 +26,10 @@ export const Preview = () => {
                 if (!image || !image.blob) {
                     loadPreviewOnServer();
                 } else {
-                    const lastVersion = await getLastModified(folderName);
+                    const formData = new FormData();
+                    formData.append('postid', post.id.toString());
+                    formData.append('folderName', folderName);
+                    const lastVersion = await getLastModified(formData);
                     console.log(`last ${lastVersion} current ${image.version}`)
                     if (lastVersion !== image.version) {
                         loadPreviewOnServer();
@@ -40,7 +43,10 @@ export const Preview = () => {
         }
 
         const loadPreviewOnServer = async () => {
-            const blob = await loadImage(folderName);
+            const formData = new FormData();
+            formData.append('postid', post.id.toString());
+            formData.append('folderName', folderName);
+            const blob = await loadImage(formData);
             console.log(blob.lastModified)
             const image: ImageType = {
                 code: folderName,

@@ -55,10 +55,13 @@ postRouter.put(
   postsController.post_update_put
 );
 
-postRouter.get('/posts/image/:imageid', postsController.image_of_post_get);
+postRouter.get(
+  '/posts/:postid/image/:folderName',
+  postsController.image_of_post_get
+);
 
 postRouter.get(
-  '/posts/image/:imageid/modified',
+  '/posts/:postid/image/:folderName/modified',
   postsController.last_modifier_image_of_post_get
 );
 
@@ -71,7 +74,7 @@ postRouter.post(
 );
 
 postRouter.delete(
-  '/user/:userid/posts/image/:nameFolder/delete',
+  '/user/:userid/posts/:postid/:nameFolder/delete',
   userController.user_auth_jwt_protected,
   postsController.image_of_post_delete
 );

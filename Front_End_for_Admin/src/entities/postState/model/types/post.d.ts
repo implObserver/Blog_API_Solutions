@@ -48,8 +48,9 @@ interface OpenedPostState {
 }
 
 interface ImageUpdate {
+    postid: number,
     folderName: string,
-    file: File,
+    file: FormData
     version: string,
 }
 

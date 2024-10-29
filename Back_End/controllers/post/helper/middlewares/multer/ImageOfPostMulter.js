@@ -1,53 +1,72 @@
 import multer from 'multer';
-import fs from 'fs';
 import path from 'path';
 import { compressImage } from '../compress/imageCompress.js';
+import {
+  deleteAllFilesInFolder,
+  uploadFileToBucket,
+} from '../../../../../app/cloudStore/yandexStorage/yandexStorage.js';
+import { getContentTypeByExtension } from '../../getters/getContentTypeByExtension.js';
 
-const storage = multer.diskStorage({
-  destination: async (req, file, cb) => {
-    const nameFolder = req.params.nameFolder;
-    const directory = `public/images/${nameFolder}/`;
-    fs.readdir(directory, (err, files) => {
-      if (files) {
-        files.forEach(async (file) => {
-          fs.promises.unlink(path.join(directory, file));
-        });
-      }
-    });
-
-    await fs.promises.mkdir(directory, { recursive: true });
-
-    cb(null, directory);
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
+const storage = multer.memoryStorage();
 
 const upload_image_of_post = multer({ storage });
 
-const handleImageUpload = async (req, res) => {
-  const filePath = req.file.path;
-  const compressedPath = path.join(
-    path.dirname(filePath),
-    `compressed_${req.file.filename}`
-  );
+const allowedExtensions = [
+  '.jpg',
+  '.jpeg',
+  '.png',
+  '.gif',
+  '.bmp',
+  '.tiff',
+  '.svg',
+  '.avif',
+  '.webp',
+  '.heic',
+  '.heif',
+  '.ico',
+];
+
+export const handleImageUpload = async (req, res) => {
+  const file = req.file;
+  const bucketName = 'blog-api-store';
+  const folderName = req.body.folderName;
+  const postid = req.body.postid;
+  const folderPath = `images/${postid}/${folderName}`;
+  const fileName = `images/${postid}/${folderName}/${file.originalname}`;
+  const fileExtension = path.extname(file.originalname).toLowerCase();
 
   try {
-    // Сжатие изображения
-    await compressImage(filePath, compressedPath);
+    let fileBuffer = file.buffer;
 
-    // Удаляем оригинал после сжатия
-    await fs.promises.unlink(filePath);
+    if (allowedExtensions.includes(fileExtension)) {
+      console.log('Сжатие изображения');
+      fileBuffer = await compressImage(file.buffer);
+    } else {
+      console.log('Загрузка файла без сжатия');
+    }
 
+    // Определяем Content-Type
+    const contentType = getContentTypeByExtension(fileExtension);
+
+    // Удаляем предыдущие файлы
+    await deleteAllFilesInFolder(bucketName, folderPath);
+
+    // Загружаем файл с Content-Type
+    const fileUrl = await uploadFileToBucket(
+      bucketName,
+      fileName,
+      fileBuffer,
+      contentType
+    );
     return res.status(200).json({
-      message: 'Изображение успешно загружено и сжато',
-      path: compressedPath,
+      message: 'Изображение успешно загружено',
+      path: fileUrl,
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ message: 'Ошибка при сжатии изображения', error: error.message });
+    return res.status(500).json({
+      message: 'Ошибка при загрузке изображения',
+      error: error.message,
+    });
   }
 };
 

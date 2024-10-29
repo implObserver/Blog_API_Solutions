@@ -202,7 +202,8 @@ const setNewUser = async (user) => {
         user: {
           connect: { id: newUser.id },
         },
-        avatar: `public/images/${newUser.id}/avatar/`,
+        avatar:
+          'https://blog-api-store.storage.yandexcloud.net/user-avatars/default/default.svg',
       },
     });
 
@@ -212,11 +213,11 @@ const setNewUser = async (user) => {
   }
 };
 
-const updateAvatar = async (id) => {
+const updateAvatar = async (id, url) => {
   await prisma.profile.update({
     where: { userId: id },
     data: {
-      avatar: `public/images/${id}/avatar/`,
+      avatar: url,
     },
   });
 };

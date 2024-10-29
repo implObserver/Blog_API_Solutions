@@ -3,6 +3,12 @@ import { __dirname } from '../../../../app/dirname/dirname.js';
 import fs from 'fs';
 import path from 'path';
 import { prismaDB } from '../../../../database/prisma/queries.js';
+import {
+  getFileFromBucket,
+  getFileFromFolder,
+  getObjectMetadata,
+} from '../../../../app/cloudStore/yandexStorage/yandexStorage.js';
+import { getContentTypeByExtension } from '../../helper/getters/getContentTypeByExtension.js';
 
 const pagination_posts_of_user_get = asyncHandler(async (req, res, next) => {
   const page = parseInt(req.query.page) || 1; // Текущая страница
@@ -62,75 +68,63 @@ const pagination_posts_list_get = asyncHandler(async (req, res) => {
 });
 
 const image_of_post_get = asyncHandler(async (req, res) => {
-  const folderName = req.params.imageid;
-  const defaultFolderPath = `${__dirname}/public/images/default/post/defaultPost.svg`;
-  const folderPath = `${__dirname}/public/images/${folderName}`;
-  let filePath;
-  let extname;
-  fs.readdir(folderPath, (err, files) => {
-    if (err || files.length === 0) {
-      filePath = defaultFolderPath;
-      extname = '.svg';
-    } else {
-      filePath = path.join(folderPath, files[0]);
-      extname = path.extname(files[0]).toLowerCase();
+  const postid = req.params.postid;
+  const folderName = req.params.folderName;
+  const folderPath = `images/${postid}/${folderName}`;
+  const defaultPath = 'images/default/';
+  const defaultImageUrl =
+    'https://blog-api-store.storage.yandexcloud.net/images/default/defaultPost.svg';
+  try {
+    const fileBuffer = await getFileFromFolder('blog-api-store', folderPath);
+    const metaData = await getObjectMetadata('blog-api-store', folderPath);
+    const contentType = metaData.ContentType;
+    res.setHeader('Last-Modified', metaData.LastModified.getTime());
+    res.setHeader('Content-Type', contentType);
+    res.setHeader(
+      'Content-Disposition',
+      `inline; filename="${path.basename(folderPath)}"`
+    );
+
+    res.status(200).send(fileBuffer);
+  } catch (error) {
+    console.error('Ошибка при получении изображения:', error.message);
+
+    try {
+      const defaultImageBuffer = await getFileFromBucket(
+        'blog-api-store',
+        defaultImageUrl
+      );
+      const metaData = await getObjectMetadata('blog-api-store', defaultPath);
+      res.setHeader('Last-Modified', metaData.LastModified.getTime());
+      res.setHeader('Content-Type', 'image/svg+xml');
+      res.setHeader('Content-Disposition', 'inline; filename="default.svg"');
+
+      res.status(200).send(defaultImageBuffer);
+    } catch (defaultError) {
+      console.error(
+        'Ошибка при загрузке дефолтного изображения:',
+        defaultError.message
+      );
+      res.status(500).json({
+        message: 'Ошибка при загрузке изображения и дефолтного изображения',
+        error: defaultError.message,
+      });
     }
-
-    fs.stat(filePath, (err, stats) => {
-      if (err) {
-        return res.status(500).send('Ошибка при получении метаданных файла');
-      }
-
-      let contentType = 'application/octet-stream';
-      switch (extname) {
-        case '.avif':
-          contentType = 'image/avif';
-          break;
-        case '.webp':
-          contentType = 'image/webp';
-          break;
-        case '.jpeg':
-        case '.jpg':
-          contentType = 'image/jpeg';
-          break;
-        case '.png':
-          contentType = 'image/png';
-          break;
-        case '.svg':
-          contentType = 'image/svg+xml';
-          break;
-        default:
-          return res.status(415).send('Unsupported Media Type');
-      }
-
-      res.set('Content-Type', contentType);
-      res.set('Last-Modified', stats.mtime.getTime());
-      res.sendFile(filePath);
-    });
-  });
+  }
 });
 
 const last_modifier_image_of_post_get = asyncHandler(async (req, res) => {
-  const folderName = req.params.imageid;
-  const folderPath = `${__dirname}/public/images/${folderName}`;
+  const postid = req.params.postid;
+  const folderName = req.params.folderName;
+  const folderPath = `images/${postid}/${folderName}`;
+  const defaultPath = 'images/default/';
+  let metaData = await getObjectMetadata(
+    'blog-api-store',
+    folderPath,
+    defaultPath
+  );
 
-  fs.readdir(folderPath, (err, files) => {
-    if (err || !files || files.length === 0) {
-      return res.json({ error: 'Ошибка при получении данных' });
-    }
-
-    const filePath = path.join(folderPath, files[0]);
-
-    fs.stat(filePath, (err, stats) => {
-      if (err) {
-        return res
-          .status(500)
-          .json({ message: 'Ошибка при получении метаданных файла' });
-      }
-
-      res.json({ lastModified: stats.mtime.getTime() });
-    });
-  });
+  res.json({ lastModified: metaData.LastModified.getTime() });
 });
 
 export const getController = {

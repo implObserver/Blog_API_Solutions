@@ -3,6 +3,7 @@ import { prismaDB } from '../../../../database/prisma/queries.js';
 import { __dirname } from '../../../../app/dirname/dirname.js';
 import fs from 'fs';
 import path from 'path';
+import { getFileFromBucket } from '../../../../app/cloudStore/yandexStorage/yandexStorage.js';
 
 const profile_detail_api = asyncHandler(async (req, res, next) => {
   const profile = prismaDB.findProfile(req.id);
@@ -19,38 +20,65 @@ const profile_detail_api = asyncHandler(async (req, res, next) => {
 });
 
 const profile_avatar_get = asyncHandler(async (req, res) => {
-  const directory = req.user.profile.avatar;
-  const defaultDirectory = `${__dirname}/public/images/default/avatar/default.svg`;
+  const bucketName = 'blog-api-store';
+  const defaultAvatarPath =
+    'https://blog-api-store.storage.yandexcloud.net/user-avatars/default/default.svg'; // Путь к стандартному аватару
 
-  fs.readdir(directory, (err, files) => {
-    if (files) {
-      const extname = path.extname(files[0]).toLowerCase();
-      let contentType = 'application/octet-stream';
+  try {
+    // Проверка на наличие аватара пользователя
+    const avatarUrl = req.user?.profile?.avatar; // Безопасное получение URL аватара
+    console.log('Аватар URL:', avatarUrl);
 
-      switch (extname) {
-        case '.avif':
-          contentType = 'image/avif';
-          break;
-        case '.jpeg':
-        case '.jpg':
-          contentType = 'image/jpeg';
-          break;
-        case '.png':
-          contentType = 'image/png';
-          break;
-        case '.svg':
-          contentType = 'image/svg+xml';
-          break;
-        default:
-          return res.status(415).send('Unsupported Media Type');
+    if (avatarUrl) {
+      console.log(avatarUrl);
+      try {
+        // Попытка получить аватар из хранилища
+        const fileBuffer = await getFileFromBucket(bucketName, avatarUrl); // Получаем файл по URL
+
+        if (fileBuffer) {
+          // Определяем тип контента на основе расширения файла
+          const extname = path.extname(avatarUrl).toLowerCase(); // Получаем расширение файла
+          let contentType = 'application/octet-stream';
+
+          switch (extname) {
+            case '.avif':
+              contentType = 'image/avif';
+              break;
+            case '.jpeg':
+            case '.jpg':
+              contentType = 'image/jpeg';
+              break;
+            case '.png':
+              contentType = 'image/png';
+              break;
+            case '.svg':
+              contentType = 'image/svg+xml';
+              break;
+            default:
+              return res.status(415).send('Unsupported Media Type');
+          }
+
+          // Устанавливаем заголовок Content-Type
+          res.set('Content-Type', contentType);
+          return res.send(fileBuffer); // Возвращаем файл из хранилища
+        }
+      } catch (error) {
+        console.error(
+          'Ошибка при получении аватара из хранилища:',
+          error.message
+        );
       }
-
-      res.set('Content-Type', contentType);
-      res.sendFile(path.resolve(`${__dirname}/${directory}/${files[0]}`));
-    } else {
-      res.sendFile(path.resolve(defaultDirectory));
     }
-  });
+
+    // Если аватар не найден или произошла ошибка, возвращаем стандартный аватар
+    const contentType = 'image/svg+xml';
+    const fileBuffer = await getFileFromBucket(bucketName, defaultAvatarPath); // Получаем стандартный аватар
+    res.set('Content-Type', contentType);
+    return res.send(fileBuffer);
+  } catch (error) {
+    console.error('Ошибка при получении аватара:', error.message);
+    return res.status(500).send('Ошибка сервера');
+  }
 });
 
 export const getController = {

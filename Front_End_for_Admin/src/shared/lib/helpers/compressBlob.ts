@@ -1,5 +1,14 @@
 export const compressImage = (blob: Blob, maxWidth: number = 1920, maxHeight: number = 1080): Promise<File> => {
     return new Promise((resolve, reject) => {
+        // Проверка на допустимые форматы изображений
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp']; // Убрали SVG
+
+        // Если тип изображения не поддерживается, отклоняем промис
+        if (!allowedTypes.includes(blob.type)) {
+            const extension = getFileExtension(blob.type); // Получаем расширение по типу
+            return resolve(new File([blob], `compressed_image${extension}`, { type: blob.type }));
+        }
+
         const reader = new FileReader();
         reader.readAsDataURL(blob);
         reader.onload = () => {
@@ -31,7 +40,8 @@ export const compressImage = (blob: Blob, maxWidth: number = 1920, maxHeight: nu
                     canvas.toBlob(
                         (compressedBlob) => {
                             if (compressedBlob) {
-                                const file = new File([compressedBlob], 'compressed_image.jpg', { type: 'image/jpeg' });
+                                const extension = getFileExtension(blob.type); // Получаем расширение по типу
+                                const file = new File([blob], `compressed_image${extension}`, { type: blob.type });
                                 resolve(file);
                             } else {
                                 reject(new Error('Не удалось создать Blob'));
@@ -48,4 +58,27 @@ export const compressImage = (blob: Blob, maxWidth: number = 1920, maxHeight: nu
         };
         reader.onerror = (error) => reject(error);
     });
+};
+
+const getFileExtension = (mimeType) => {
+    switch (mimeType) {
+        case 'image/jpeg':
+            return '.jpg';
+        case 'image/png':
+            return '.png';
+        case 'image/gif':
+            return '.gif';
+        case 'image/webp':
+            return '.webp';
+        case 'image/bmp':
+            return '.bmp';
+        case 'image/tiff':
+            return '.tiff';
+        case 'image/svg+xml':
+            return '.svg';
+        case 'image/vnd.microsoft.icon':
+            return '.ico';
+        default:
+            return mimeType; // Возвращаем исходный mimeType, если не найдено соответствующее расширение
+    }
 };

@@ -33,8 +33,11 @@ export const Preview = () => {
 
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
         const element = e.target as HTMLDivElement;
+        const formData = new FormData();
+        formData.append('folderName', model.imageUrl);
+        formData.append('postid', params.postid);
         if (element.textContent === 'Remove') {
-            deletePostImage(model.imageUrl);
+            deletePostImage(formData);
             removePostImage(postid, model.imageUrl);
             setSelectedImage(null);
         }
@@ -43,18 +46,18 @@ export const Preview = () => {
     const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files[0];
         const compressFile = await compressImage(file);
-        const context: ImageUpdate = {
-            folderName: model.imageUrl,
-            file: file,
-            version: file.lastModified.toString(),
-        }
+        const formData = new FormData();
+        formData.append('file', compressFile, compressFile.name);
+        formData.append('postid', params.postid);
+        formData.append('folderName', model.imageUrl);
+        formData.append('version', file.lastModified.toString());
         const image: ImageType = {
             code: model.imageUrl,
-            version: file.lastModified.toString(),
+            version: file.lastModified,
             blob: compressFile,
             isRetry: false,
         }
-        addPostImage(context);
+        addPostImage(formData);
         savePostImage(postid, image);
         setSelectedImage(file);
     }

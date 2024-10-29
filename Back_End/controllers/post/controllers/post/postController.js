@@ -30,7 +30,6 @@ const user_post_add_post = [
 ];
 
 const image_update_post = asyncHandler(async (req, res, next) => {
-  console.log(req);
   next();
 });
 

@@ -20,7 +20,7 @@ const send_email = asyncHandler(async (req, res) => {
   const email = res.locals.user.email;
   const secretKey = crypto.randomBytes(16).toString('hex');
   prismaDB.setVerifyCode(id, secretKey);
-  const url = `https://blog-api-solutions.onrender.com/api/confirm-email?refreshToken=${refreshToken}&key=${secretKey}`;
+  const url = `http://localhost:3000/api/confirm-email?refreshToken=${refreshToken}&key=${secretKey}`;
 
   try {
     await transporter.sendMail({
