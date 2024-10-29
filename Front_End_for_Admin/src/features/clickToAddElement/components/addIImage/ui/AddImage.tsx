@@ -31,7 +31,7 @@ export const AddImage = () => {
 
         const image: ImageType = {
             code: url,
-            version: url,
+            version: parseInt(url),
             blob: null,
             isRetry: false,
         };

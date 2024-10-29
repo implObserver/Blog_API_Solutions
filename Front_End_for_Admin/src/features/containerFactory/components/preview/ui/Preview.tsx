@@ -57,6 +57,7 @@ export const Preview = () => {
             blob: compressFile,
             isRetry: false,
         }
+        console.log(image)
         addPostImage(formData);
         savePostImage(postid, image);
         setSelectedImage(file);
