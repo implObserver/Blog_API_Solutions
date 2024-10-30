@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom";
 import styles from './styles/SubmitComment.module.css'
 import { useAppDispatch } from "@/shared/lib";
-import { addComment } from "@/entities/comment";
+import { addComment, commentsActions } from "@/entities/comment";
 import { useCommentAreaContext } from "@/shared/ui/commentArea";
+import { useEffect } from "react";
+import { io } from "socket.io-client";
+const socket = io(import.meta.env.VITE_SERVER_URL);
 
 export const SubmitComment = () => {
     const dispatch = useAppDispatch();
@@ -17,6 +20,16 @@ export const SubmitComment = () => {
         await dispatch(addComment(comment));
         context.comment.setState('')
     }
+
+    useEffect(() => {
+        socket.on('addComment', (totalComments) => {
+            dispatch(commentsActions.updateTotalComments(totalComments));
+        });
+
+        return () => {
+            socket.off('addComment');
+        };
+    }, [dispatch]);
 
     return (
         <div className={styles.submit} onClick={handleClick}>

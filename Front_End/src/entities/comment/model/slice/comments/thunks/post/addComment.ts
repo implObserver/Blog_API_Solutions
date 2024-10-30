@@ -1,6 +1,10 @@
 
 import { PostService } from "@/entities/comment/api";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { io } from "socket.io-client";
+
+const serverUrl = import.meta.env.VITE_SERVER_URL;
+const socket = io(serverUrl);
 
 export const addComment = createAsyncThunk(
     'services/add/comment/',

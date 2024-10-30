@@ -15,6 +15,9 @@ const commentsSlice = createSlice({
         setTotalPages: (state: Comments, action: PayloadAction<number>) => {
             state.totalPages = action.payload;
         },
+        updateTotalComments: (state: Comments, action: PayloadAction<number>) => {
+            state.totalComments = action.payload;
+        },
     },
     extraReducers: (builder) => {
         const setLoading = (state: Comments) => {

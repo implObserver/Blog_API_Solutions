@@ -2,6 +2,7 @@ import asyncHandler from 'express-async-handler';
 import { body, validationResult } from 'express-validator';
 import { prismaDB } from '../../../../database/prisma/queries.js';
 import { validateComment } from '../../helper/validation/commentValidation.js';
+import { io } from '../../../../bin/server/server.js';
 
 const comment_of_user_put = [
   body('text')
@@ -22,6 +23,7 @@ const comment_of_user_put = [
     const postid = parseInt(comment.post_id);
     console.log(`ВНИМАНИЕ: пост ${postid}, юзер ${userid} коммент ${comment}`);
     const updatedComment = await prismaDB.updateComment(userid, comment);
+    io.emit('updateComment', updatedComment);
     res.json({
       isUpdate: true,
       date: new Date(),

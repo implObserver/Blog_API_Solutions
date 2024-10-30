@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { prismaDB } from '../../../../database/prisma/queries.js';
 import { validateComment } from '../../helper/validation/commentValidation.js';
+import { io } from '../../../../bin/server/server.js';
 
 const comment_of_user_post = [
   body('text')
@@ -26,7 +27,7 @@ const comment_of_user_post = [
     await prismaDB.addComment(userid, comment);
 
     const totalComments = await prismaDB.countComments(postid);
-
+    io.emit('addComment', totalComments);
     res.json({
       totalComments,
     });
