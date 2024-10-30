@@ -29,7 +29,7 @@ export const PaginationCommentsShowcase = () => {
 
     useEffect(() => {
         loadComments();
-    }, [currentPage]);
+    }, [currentPage, comments]);
 
     useEffect(() => {
         dispatch(commentsActions.setCurrentPage(1));
