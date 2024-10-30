@@ -3,6 +3,7 @@ import { PostingDate } from '../components/date'
 import { TagOfPost } from '../components/tag'
 import { Text } from '../components/text'
 import { getAlternative, getClassic, getSlider } from '../lib'
+import styles from './styles/Title.module.css'
 
 export const Title = () => {
     const type = usePostPreviewContext().type;
@@ -15,7 +16,7 @@ export const Title = () => {
 
     return (
         <div className={style.container}>
-            <div>
+            <div className={styles.text_wrapper}>
                 <Text></Text>
             </div>
             <div className={style.info}>

@@ -83,8 +83,8 @@ export const PaginationShowcaseOfUserPosts = () => {
                 </button>
                 <span className={totalPages === 1
                     ? styles.block
-                    : ''}>
-                    {currentPage} из {totalPages}
+                    : styles.total_pages}>
+                    {currentPage} / {totalPages}
                 </span>
                 <button
                     className={totalPages === currentPage

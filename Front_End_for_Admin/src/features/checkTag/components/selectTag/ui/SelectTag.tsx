@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Tag, TagContext } from "@/shared/ui/tag";
 import styles from './styles/SelectTag.module.css'
 import { useAppDispatch } from "@/shared/lib";
-import { selectOpenedPost, updateTag } from "@/entities/postState";
+import { openedPostActions, selectOpenedPost, updateTag, virtualPostActions } from "@/entities/postState";
 
 export const SelectTag = () => {
     const params = useParams();
@@ -19,7 +19,8 @@ export const SelectTag = () => {
             postid,
             tagName: tag,
         }
-        dispatch(updateTag(args));
+        dispatch(virtualPostActions.updateTag(tag));
+        dispatch(openedPostActions.updateTag(tag));
     }
 
     const fill = () => {

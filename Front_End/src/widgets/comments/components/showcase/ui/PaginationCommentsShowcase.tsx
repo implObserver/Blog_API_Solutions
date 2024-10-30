@@ -69,7 +69,7 @@ export const PaginationCommentsShowcase = () => {
                 <span className={totalPages === 1
                     ? styles.block
                     : ''}>
-                    {currentPage} из {totalPages}
+                    {currentPage} / {totalPages}
                 </span>
                 <button
                     className={totalPages === currentPage

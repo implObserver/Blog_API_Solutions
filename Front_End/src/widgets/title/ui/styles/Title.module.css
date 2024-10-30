@@ -1,6 +1,6 @@
 .title {
     display: grid;
-    row-gap: 1vh;
+    row-gap: 5px;
     padding-left: 42px;
     padding-right: 42px;
 }

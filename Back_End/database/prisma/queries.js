@@ -37,26 +37,16 @@ const getPaginationPosts = async (offset, limit) => {
     include: {
       user: {
         select: {
-          // Используем select, чтобы ограничить возвращаемые поля
-          profile: {
-            // Включаем только профиль
-            select: {
-              name: true, // Выбираем только поле name из модели Profile
-            },
-          },
+          id: true,
+          username: true,
         },
       },
       comments: {
         include: {
           user: {
             select: {
-              // Используем select, чтобы ограничить возвращаемые поля
-              profile: {
-                // Включаем только профиль
-                select: {
-                  name: true, // Выбираем только поле name из модели Profile
-                },
-              },
+              id: true,
+              username: true,
             },
           },
         },
@@ -276,13 +266,8 @@ const findPostToId = async (postid) => {
         include: {
           user: {
             select: {
-              // Используем select, чтобы ограничить возвращаемые поля
-              profile: {
-                // Включаем только профиль
-                select: {
-                  name: true, // Выбираем только поле name из модели Profile
-                },
-              },
+              id: true,
+              username: true,
             },
           },
         },

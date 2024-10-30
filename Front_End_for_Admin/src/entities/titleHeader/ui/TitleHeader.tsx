@@ -10,7 +10,7 @@ export const TitleHeader = ({ children }) => {
     return (
         <div className={styles.header_title}>
             {children}
-            <span>{formattedDate}</span>
+            <span className={styles.date}>{formattedDate}</span>
         </div>
     )
 }

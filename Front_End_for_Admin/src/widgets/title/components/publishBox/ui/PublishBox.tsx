@@ -16,7 +16,7 @@ export const PublishBox = () => {
                     {isPublished
                         ? '(опубликовано)'
                         : ''}</span>
-                <span>Опубликовать</span>
+                <span className={styles.publish}>Опубликовать</span>
                 <PublishPost>
                     <CheckBoxContext.Provider value={isPublished}>
                         <CheckBox></CheckBox>

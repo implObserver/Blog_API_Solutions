@@ -3,15 +3,19 @@
     max-width: 1300px;
     display: grid;
     grid-template-columns: min-content auto;
-}
-
-.li {
+    margin: 2px;
     padding-top: 10px;
 }
 
 @media screen and (max-width:700px) {
     .container {
         display: flex;
+        width: 70vw;
         flex-wrap: wrap;
+        gap: 10px;
     }
+}
+
+.li {
+    padding-top: 10px;
 }

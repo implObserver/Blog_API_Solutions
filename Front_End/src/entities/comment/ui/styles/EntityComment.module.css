@@ -3,6 +3,7 @@
     grid-template-areas: 'once';
     justify-self: center;
     gap: 15px;
+    width: inherit;
 }
 
 .menu {
@@ -14,5 +15,7 @@
 }
 
 .comment {
+    display: grid;
+    width: inherit;
     grid-area: once;
 }

@@ -1,7 +1,9 @@
 .panel_auth {
     display: flex;
+    flex-wrap: wrap;
     column-gap: 10px;
     align-items: center;
+    justify-content: center;
 }
 
 .wrapper_preview {

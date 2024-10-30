@@ -8,19 +8,21 @@ export const Comment = () => {
     const comment: PostComment = context.comment;
     const date = new Date(comment.postingDate);
     const formattedDate = timeAgo(date);
-    console.log(comment)
+
     return (
         <div className={styles.comment}>
             <div className={styles.comment_header}>
                 <span className={styles.container_nickname}>
                     {comment.user.username}
                 </span>
-                <span className={styles.container_time_ago}>
-                    {formattedDate}
-                </span>
-                <span className={styles.update}>
-                    {comment.isUpdate ? '(изменено)' : ''}
-                </span>
+                <div className={styles.info}>
+                    <span className={styles.container_time_ago}>
+                        {formattedDate}
+                    </span>
+                    <span className={styles.update}>
+                        {comment.isUpdate ? '(изменено)' : ''}
+                    </span>
+                </div>
             </div>
             <div className={styles.comment_body}>
                 <Text></Text>

@@ -6,14 +6,17 @@
 .element {
     display: flex;
     gap: 5px;
-    padding-right: 32px;
+    width: 95vw;
+    justify-self: center;
 }
 
 .element:hover {
     --panel_opacity: 1;
 }
 
-
+.nogap {
+    gap: 0px;
+}
 
 .wrapper {
     width: 100%;
@@ -27,4 +30,5 @@
 .hidden {
     opacity: 0 !important;
     visibility: hidden;
+    width: 0px;
 }

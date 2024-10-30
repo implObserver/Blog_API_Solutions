@@ -22,6 +22,7 @@ export const PostForm = () => {
             <div className={styles.form_group}>
                 <label htmlFor="title">Post Title:</label>
                 <input
+                    maxLength={30}
                     onChange={handle}
                     className={styles.input}
                     id={`${id}_title`}

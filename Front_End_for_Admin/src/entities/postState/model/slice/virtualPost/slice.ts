@@ -47,6 +47,9 @@ export const virtualPostSlice = createSlice({
         updatePublishStatus: (state: VirtualPost, action: PayloadAction<boolean>) => {
             state.post.isPublished = action.payload;
         },
+        updateTag: (state: VirtualPost, action: PayloadAction<string>) => {
+            state.post.tag = action.payload;
+        },
     },
 })
 

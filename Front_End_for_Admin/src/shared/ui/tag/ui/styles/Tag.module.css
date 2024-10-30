@@ -10,6 +10,7 @@
     padding-left: 5px;
     padding-right: 5px;
     cursor: pointer;
+    background-color: white;
     transition: color var(--tag__transition-speed) ease-in-out, 
     background-color var(--tag__transition-speed) ease-in-out;
 }
@@ -17,4 +18,10 @@
 .tag:hover {
     background-color: var(--tag__hover-background-color);
     color: var(--tag__hover-color);
+}
+
+@media screen and (max-width:400px) {
+    .tag {
+        font-size: 12px;
+    }
 }

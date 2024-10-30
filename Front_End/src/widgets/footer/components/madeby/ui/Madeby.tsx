@@ -4,7 +4,7 @@ import styles from './styles/Madeby.module.css'
 export const Madeby = () => {
     return (
         <Link className={styles.container} to='https://github.com/implObserver'>
-            Made by Observer
+            <span>Made by Observer</span>
         </Link>
     )
 }

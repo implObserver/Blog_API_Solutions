@@ -2,5 +2,5 @@
     display: grid;
     margin-top: 15px;
     border: 2px var(--color__main-theme_accent) solid;
-    grid-template-rows: 300px min-content;
+   
 }

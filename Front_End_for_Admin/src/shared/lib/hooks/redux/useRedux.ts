@@ -45,7 +45,11 @@ export const getScroll = (pathname: string) => {
 }
 
 export const getUserID = () => {
-    const userID = store.getState().userServices.user.id;
-    return userID;
+    try {
+        const userID = store.getState().userServices.user.id;
+        return userID;
+    } catch (error) {
+
+    }
 }
 //useAnythingData = () => {...}

@@ -8,6 +8,7 @@
     outline: none;
     resize: none;
     font-size: inherit;
+    font-weight: inherit;
     padding-left: 4px;
     width: 80vw;
     max-width: 1600px;

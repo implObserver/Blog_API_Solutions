@@ -4,6 +4,7 @@ import { useAppDispatch } from "@/shared/lib";
 import { TextArea, TextAreaContext } from "@/shared/ui/textArea"
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import styles from './styles/Text.module.css'
 
 export const Text = () => {
     const { element: elementContext, index, model } = useElementContext();
@@ -29,7 +30,7 @@ export const Text = () => {
     };
 
     return (
-        <div onKeyUp={handleKeyUp}>
+        <div className={styles.text} onKeyUp={handleKeyUp}>
             <TextAreaContext.Provider value={textAreaContext}>
                 <TextArea />
             </TextAreaContext.Provider>

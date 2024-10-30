@@ -32,6 +32,9 @@ const openedPostSlice = createSlice({
         updateModels: (state: OpenedPostState, action: PayloadAction<UpdateModels>) => {
             state.openedPost.models = action.payload.models;
         },
+        updateTag: (state: OpenedPostState, action: PayloadAction<string>) => {
+            state.openedPost.tag = action.payload;
+        },
         removeModel: (state: OpenedPostState, action: PayloadAction<PostCell>) => {
             const models = state.openedPost.models;
             const id = action.payload.model.id;

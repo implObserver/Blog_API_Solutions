@@ -2,7 +2,7 @@
     width: 70vw;
     max-width: 1300px;
     display: grid;
-    grid-template-columns: max-content auto;
+    grid-template-columns: min-content auto;
     margin: 2px;
     padding-top: 10px;
 }
@@ -13,5 +13,11 @@
         width: 70vw;
         flex-wrap: wrap;
         gap: 10px;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .container {
+        font-size: 12px;
     }
 }

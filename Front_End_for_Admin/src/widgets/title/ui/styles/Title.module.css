@@ -2,12 +2,13 @@
     display: flex;
     gap: 10px;
     justify-content: space-between;
-    padding-left: 42px;
-    padding-right: 42px;
     flex-wrap: wrap;
+    padding: 5px;
 }
 
 .container {
     display: grid;
+    flex-wrap: wrap;
+    width: min-content;
     gap: 10px;
 }

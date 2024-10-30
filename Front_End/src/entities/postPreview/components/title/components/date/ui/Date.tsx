@@ -1,5 +1,6 @@
 import { usePostPreviewContext } from "@/entities/postPreview/lib";
 import { getFormattedDate } from "@/shared/lib";
+import styles from './styles/Date.module.css'
 
 export const PostingDate = () => {
     const context = usePostPreviewContext();
@@ -7,7 +8,7 @@ export const PostingDate = () => {
 
     const formattedDate = getFormattedDate(postingDate);
     return (
-        <div>
+        <div className={styles.date}>
             {formattedDate}
         </div>
     )

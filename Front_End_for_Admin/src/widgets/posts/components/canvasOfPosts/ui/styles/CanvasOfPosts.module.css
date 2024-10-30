@@ -13,10 +13,9 @@
 
 .pagination {
     display: flex;
-    gap: 20px;
-    /* Отступ между кнопками */
+    flex-wrap: wrap;
     justify-content: space-between;
-    padding: 20px;
+    padding: 10px;
     align-items: center;
     align-self: flex-end;
 }
@@ -24,18 +23,12 @@
 .pagination_btn {
     background-color: transparent;
     border: 2px solid #007bff;
-    /* Цвет бордюра */
     color: #007bff;
-    /* Цвет текста */
     padding: 10px 20px;
-    /* Отступы кнопки */
     font-size: 16px;
-    /* Размер шрифта */
     border-radius: 5px;
-    /* Скругление углов */
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
-    /* Плавный переход */
 }
 
 .block {
@@ -45,18 +38,23 @@
 
 .pagination_btn:hover {
     background-color: #007bff;
-    /* Цвет фона при наведении */
     color: white;
-    /* Цвет текста при наведении */
 }
 
 .pagination_btn:active {
     background-color: #0056b3;
-    /* Цвет фона при нажатии */
     border-color: #0056b3;
-    /* Цвет бордюра при нажатии */
     transform: scale(0.95);
-    /* Уменьшение кнопки при нажатии */
     transition: background-color 0.1s ease;
-    /* Быстрый переход */
+}
+
+@media screen and (max-width:700px) {
+    .pagination_btn {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+}
+
+.text {
+    font-size: min(4vh, 64px);
 }

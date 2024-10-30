@@ -3,6 +3,21 @@
     width: 80vw;
 }
 
+.slider>div {
+}
+
+.slider>div>div {
+    display: flex;
+    gap: 15px;
+    width: 80vw !important;
+}
+
+.slider>div>div>div {
+    display: flex;
+    width: 80vw !important;
+    border:1px rgb(47, 0, 255) solid;
+}
+
 .container {
     display: flex;
     justify-content: center;

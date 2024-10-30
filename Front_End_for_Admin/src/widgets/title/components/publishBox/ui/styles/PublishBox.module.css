@@ -1,5 +1,6 @@
 .box {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 10px;
 }
@@ -7,4 +8,14 @@
 .status {
     font-size: 12px;
     opacity: 0.5;
+}
+
+@media screen and (max-width:700px) {
+    .status {
+        font-size: 8px;
+    }
+
+    .publish {
+        font-size: 14px;
+    };
 }
