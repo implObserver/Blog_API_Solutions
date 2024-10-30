@@ -23,11 +23,12 @@ export const UpdateComment = () => {
     }
 
     useEffect(() => {
+        console.log("Setting up updateComment listener");
         socket.on('updateComment', (updatedComments) => {
-            console.log(updatedComments);
+            console.log("Received updateComment:", updatedComments);
             dispatch(commentsActions.updateComment(updatedComments));
         });
-
+    
         return () => {
             socket.off('updateComment');
         };
