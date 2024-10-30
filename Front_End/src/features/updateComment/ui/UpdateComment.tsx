@@ -24,6 +24,7 @@ export const UpdateComment = () => {
 
     useEffect(() => {
         socket.on('updateComment', (updatedComments) => {
+            console.log(updatedComments);
             dispatch(commentsActions.updateComment(updatedComments));
         });
 
