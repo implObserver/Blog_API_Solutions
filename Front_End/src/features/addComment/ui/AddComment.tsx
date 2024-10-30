@@ -8,6 +8,7 @@ import { SubmitComment } from '../components/submit';
 export const AddComment = () => {
     const comment = useCustomState('');
     const user = useSelector(selectUserServices).user;
+    
     const commentContext: CommentAreaContextType = {
         comment,
     }

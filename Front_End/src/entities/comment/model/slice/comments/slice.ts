@@ -18,6 +18,11 @@ const commentsSlice = createSlice({
         updateTotalComments: (state: Comments, action: PayloadAction<number>) => {
             state.totalComments = action.payload;
         },
+        updateComment: (state: Comments, action: PayloadAction<PostComment>) => {
+            const updatedComment = action.payload;
+            const index = state.comments.findIndex(comment => comment.id === updatedComment.id);
+            state.comments.splice(index, 1, updatedComment);
+        },
     },
     extraReducers: (builder) => {
         const setLoading = (state: Comments) => {
