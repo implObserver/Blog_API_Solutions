@@ -19,9 +19,11 @@ const commentsSlice = createSlice({
             state.totalComments = action.payload;
         },
         updateComment: (state: Comments, action: PayloadAction<PostComment>) => {
+            const emitDate = new Date().getTime();
             const updatedComment = action.payload;
             const index = state.comments.findIndex(comment => comment.id === updatedComment.id);
             state.comments.splice(index, 1, updatedComment);
+            state.isEmit = emitDate;
         },
     },
     extraReducers: (builder) => {

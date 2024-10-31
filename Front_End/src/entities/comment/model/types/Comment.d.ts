@@ -17,4 +17,5 @@ interface Comments {
     totalComments: number,
     isUpdate?: boolean,
     updatingDate?: Date,
+    isEmit: number,
 }

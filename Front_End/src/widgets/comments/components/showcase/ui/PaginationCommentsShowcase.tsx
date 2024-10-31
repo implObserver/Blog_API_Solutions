@@ -17,6 +17,7 @@ export const PaginationCommentsShowcase = () => {
     const currentPage = commentsService.currentPage;
     const totalComments = commentsService.totalComments;
     const totalPages = commentsService.totalPages;
+    const isEmit = commentsService.isEmit;
     const postid = parseInt(useParams().postid);
 
     const loadComments = async () => {
@@ -29,7 +30,7 @@ export const PaginationCommentsShowcase = () => {
 
     useEffect(() => {
         loadComments();
-    }, [currentPage, comments]);
+    }, [currentPage, isEmit]);
 
     useEffect(() => {
         dispatch(commentsActions.setCurrentPage(1));
