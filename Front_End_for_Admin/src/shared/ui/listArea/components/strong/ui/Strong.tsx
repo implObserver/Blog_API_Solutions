@@ -8,7 +8,7 @@ export const Strong = () => {
     const context = useListAreaContext();
     const strong = context.value.getStrongText();
     const inputRef = useRef<HTMLTextAreaElement | null>(null);
-   
+
     useEffect(() => {
         adjustSize();
     }, [strong]);
@@ -44,6 +44,7 @@ export const Strong = () => {
 
     const adjustSize = () => {
         if (inputRef.current) {
+            inputRef.current.style.height = 'min-content';
             inputRef.current.style.width = 'auto'; // Сброс ширины
             inputRef.current.style.width = `${inputRef.current.scrollWidth + 2}px`; // Устанавливаем на основе содержимого
         }

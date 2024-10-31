@@ -4,7 +4,6 @@
 
 .strong_list {
     display: flex;
-    flex-wrap: wrap;
     border-radius: 3px;
     outline: none;
     font-size: inherit;
@@ -17,6 +16,9 @@
     -khtml-border-radius: 3px;
     background: #ffffff !important;
     word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    overflow: hidden;
     height: min-content!important;
 }
 
