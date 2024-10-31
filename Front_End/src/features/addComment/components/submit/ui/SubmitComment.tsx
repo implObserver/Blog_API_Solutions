@@ -21,7 +21,16 @@ export const SubmitComment = () => {
         context.comment.setState('')
     }
 
-    
+    useEffect(() => {
+        socket.on('addComment', (totalComments) => {
+            console.log("Received addComment:", addComment);
+            dispatch(commentsActions.updateTotalComments(totalComments));
+        });
+
+        return () => {
+            socket.off('addComment');
+        };
+    }, [dispatch]);
 
     return (
         <div className={styles.submit} onClick={handleClick}>
