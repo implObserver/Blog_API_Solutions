@@ -17,6 +17,7 @@
     -khtml-border-radius: 3px;
     background: #ffffff !important;
     word-break: break-word;
+    height: min-content!important;
 }
 
 .strong_list::placeholder {
