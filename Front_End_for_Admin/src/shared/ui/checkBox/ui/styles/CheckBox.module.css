@@ -1,3 +1,7 @@
 .checkbox {
     display: flex;
 }
+
+.checkbox>input {
+    cursor: pointer;
+}

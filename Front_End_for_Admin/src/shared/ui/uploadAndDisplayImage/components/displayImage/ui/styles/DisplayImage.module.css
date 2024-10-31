@@ -9,6 +9,7 @@
     background-color: #ffffff !important;
     border: 1px rgb(201, 201, 201) solid;
     padding: 6px;
+    cursor: pointer;
 }
 
 .img {

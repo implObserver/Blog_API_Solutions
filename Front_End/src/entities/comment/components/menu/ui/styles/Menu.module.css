@@ -1,5 +1,8 @@
 .menu {
+    width: 50px;
     display: grid;
+    cursor: pointer;
+    justify-content: center;
 }
 
 .container {
@@ -9,4 +12,9 @@
     border-radius: 5px;
     padding: 10px;
     gap: 5px;
+}
+
+
+.menu:active {
+    border: 1px var(--color__main-theme_accent) solid;
 }

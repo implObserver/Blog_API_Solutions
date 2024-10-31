@@ -36,10 +36,13 @@
 }
 
 .container_time_ago {
+    width: 30vw;
+    max-width: 500px;
     opacity: 0.5;
 }
 
 .update {
+    width: 20vw;
     opacity: 0.8;
     font-size: 12px;
 }

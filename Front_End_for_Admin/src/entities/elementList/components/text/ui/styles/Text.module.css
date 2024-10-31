@@ -6,6 +6,7 @@
     border: 1px solid var(--color__border); /* Более светлая граница */
     border-radius: 5px; /* Закругленные углы для элементов */
     transition: background-color 0.3s, transform 0.2s; /* Плавные переходы для эффектов */
+    cursor: pointer;
 }
 
 .inner:hover {

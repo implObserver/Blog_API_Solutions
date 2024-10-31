@@ -4,6 +4,7 @@
     display: block;
     fill: inherit;
     flex-shrink: 0;
+    cursor: pointer;
 }
 
 .minus:hover {

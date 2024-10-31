@@ -30,11 +30,21 @@
         min-width: 200px;
         min-height: 200px;
     }
+
+    .edit {
+        bottom: 50px;
+        left: 0px;
+    }
 }
 
 @media screen and (max-width:400px) {
     .wrapper_avatar_in_profile {
         min-width: 150px;
         min-height: 150px;
+    }
+
+    .edit {
+        bottom: 40px;
+        left: 0px;
     }
 }

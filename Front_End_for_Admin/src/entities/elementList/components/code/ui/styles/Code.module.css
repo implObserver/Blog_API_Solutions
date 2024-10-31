@@ -1,5 +1,6 @@
 .inner {
     display: grid;
+    cursor: pointer;
     width: 100%; /* Занимает всю ширину родителя */
     padding: 10px;
     background-color: var(--color__main-theme);
