@@ -5,4 +5,5 @@ export const initialState: Comments = {
     totalPages: 1,
     currentPage: 1,
     totalComments: 0,
+    isEmit: null,
 }
