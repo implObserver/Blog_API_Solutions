@@ -6,7 +6,6 @@
 }
 
 .list {
-    border:1px red solid;
     display: flex; /* Flexbox для упрощенного расположения в контейнере */
     flex-direction: column; /* вертикальное расположение элементов */
     gap: 10px; /* отступы между элементами */
