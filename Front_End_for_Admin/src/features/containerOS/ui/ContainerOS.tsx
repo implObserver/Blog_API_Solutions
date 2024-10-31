@@ -18,21 +18,23 @@ export const ContainerOS = ({ children }) => {
     };
 
     return (
-        <EmptyContext.Provider value={isEmpty}>
-            <ExternalResetContext.Provider value={externalResetContext}>
-                <ExternalReset>
-                    <Dropdown>
-                        <ElementList />
-                    </Dropdown>
-                </ExternalReset>
-            </ExternalResetContext.Provider>
-            <Focus>
-                <Add>
-                    <Remove>
-                        {children}
-                    </Remove>
-                </Add>
-            </Focus>
-        </EmptyContext.Provider>
+        <div>
+            <EmptyContext.Provider value={isEmpty}>
+                <ExternalResetContext.Provider value={externalResetContext}>
+                    <ExternalReset>
+                        <Dropdown>
+                            <ElementList />
+                        </Dropdown>
+                    </ExternalReset>
+                </ExternalResetContext.Provider>
+                <Focus>
+                    <Add>
+                        <Remove>
+                            {children}
+                        </Remove>
+                    </Add>
+                </Focus>
+            </EmptyContext.Provider>
+        </div>
     );
 };
