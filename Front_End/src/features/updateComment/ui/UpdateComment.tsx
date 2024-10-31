@@ -2,10 +2,7 @@ import { useParams } from "react-router-dom";
 import styles from './styles/UpdateComment.module.css'
 import { useAppDispatch } from "@/shared/lib";
 import { useCommentContext } from "@/shared/ui/comment";
-import { commentsActions, putComment } from "@/entities/comment";
-import { useEffect } from "react";
-import { io } from "socket.io-client";
-const socket = io(import.meta.env.VITE_SERVER_URL);
+import { putComment } from "@/entities/comment";
 
 export const UpdateComment = () => {
     const dispatch = useAppDispatch();
@@ -21,18 +18,6 @@ export const UpdateComment = () => {
         await dispatch(putComment(comment));
         context.update.setState(false);
     }
-
-    useEffect(() => {
-        console.log("Setting up updateComment listener");
-        socket.on('updateComment', (updatedComments) => {
-            console.log("Received updateComment:", updatedComments);
-            dispatch(commentsActions.updateComment(updatedComments));
-        });
-    
-        return () => {
-            socket.off('updateComment');
-        };
-    }, [dispatch]);
 
     return (
         <button className={styles.button} onClick={handleClick}>

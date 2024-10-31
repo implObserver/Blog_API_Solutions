@@ -9,6 +9,8 @@ import {
     selectComments
 } from "@/entities/comment";
 import { Comment } from "../components";
+import { io } from "socket.io-client";
+const socket = io(import.meta.env.VITE_SERVER_URL);
 
 export const PaginationCommentsShowcase = () => {
     const dispatch = useAppDispatch();
@@ -35,7 +37,19 @@ export const PaginationCommentsShowcase = () => {
     useEffect(() => {
         dispatch(commentsActions.setCurrentPage(1));
         loadComments();
-    }, [postid, totalComments])
+    }, [postid, totalComments]);
+
+    useEffect(() => {
+        console.log("Setting up updateComment listener");
+        socket.on('updateComment', (updatedComments) => {
+            console.log("Received updateComment:", updatedComments);
+            dispatch(commentsActions.updateComment(updatedComments));
+        });
+    
+        return () => {
+            socket.off('updateComment');
+        };
+    }, [dispatch]);
 
     const loadMorePostsUp = () => {
         if (currentPage < totalPages) {
