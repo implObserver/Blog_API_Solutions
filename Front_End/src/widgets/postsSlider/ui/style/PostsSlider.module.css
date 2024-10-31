@@ -15,7 +15,6 @@
 .slider>div>div>div {
     display: flex;
     width: 80vw !important;
-    border:1px rgb(47, 0, 255) solid;
 }
 
 .container {

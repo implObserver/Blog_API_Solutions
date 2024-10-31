@@ -6,6 +6,7 @@ import { UpdateComment } from "@/features/updateComment";
 import { useCustomState } from "@/shared/lib";
 import { CommentContext } from "@/shared/ui/comment";
 import { useSelector } from "react-redux";
+import styles from './styles/Comment.module.css'
 
 export const Comment = ({ comment }) => {
     const update = useCustomState();
@@ -32,7 +33,7 @@ export const Comment = ({ comment }) => {
     }
 
     return (
-        <div key={comment.id}>
+        <div className={styles.comment} key={comment.id}>
             <CommentContext.Provider value={context}>
                 <EntityComment isMyComment={isMycomment}></EntityComment>
             </CommentContext.Provider>

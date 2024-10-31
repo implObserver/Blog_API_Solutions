@@ -5,13 +5,15 @@
     border-radius: 5px;
     row-gap: 15px;
     justify-items: center;
-    width: 80vw;
     padding: 5px;
+    width: 100%;
+    max-width: 1000px;
 }
 
 .comment_header {
     display: flex;
     flex-wrap: wrap;
+    width: inherit;
     gap: 15px;
     padding: 5px;
     align-items: center;
@@ -26,8 +28,7 @@
 
 .comment_body {
     display: flex;
-    width: max-content;
-    max-width: 75vw;
+    width: inherit;
 }
 
 .container_nickname {

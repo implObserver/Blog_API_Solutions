@@ -3,7 +3,8 @@
     grid-template-areas: 'once';
     justify-self: center;
     gap: 15px;
-    width: inherit;
+    width: 80vw;
+    max-width: 1000px;
 }
 
 .menu {

@@ -11,34 +11,22 @@
 .add_btn {
     background-color: transparent;
     border: 2px solid #007bff;
-    /* Цвет бордюра */
     color: #007bff;
-    /* Цвет текста */
     padding: 10px 20px;
-    /* Отступы кнопки */
     font-size: 16px;
-    /* Размер шрифта */
     border-radius: 5px;
-    /* Скругление углов */
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
-    /* Плавный переход */
 }
 
 .add_btn:hover {
     background-color: #007bff;
-    /* Цвет фона при наведении */
     color: white;
-    /* Цвет текста при наведении */
 }
 
 .add_btn:active {
     background-color: #0056b3;
-    /* Цвет фона при нажатии */
     border-color: #0056b3;
-    /* Цвет бордюра при нажатии */
     transform: scale(0.95);
-    /* Уменьшение кнопки при нажатии */
     transition: background-color 0.1s ease;
-    /* Быстрый переход */
 }

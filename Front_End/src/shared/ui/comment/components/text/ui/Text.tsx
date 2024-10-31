@@ -17,7 +17,7 @@ export const Text = () => {
 
     if (context.update.getState()) {
         return (
-            <div className={styles.container_edit}>
+            <div className={styles.container}>
                 <TextareaAutosize
                     id={`${comment.id}_edit`}
                     onKeyUp={cnahgeHandle}
@@ -34,7 +34,7 @@ export const Text = () => {
     } else {
         return (
             <div className={styles.container}>
-                <div className={styles.span}>{comment.text}</div>
+                <span className={styles.span}>{comment.text}</span>
             </div>
         )
     }

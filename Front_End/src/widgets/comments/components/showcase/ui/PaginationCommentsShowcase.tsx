@@ -70,7 +70,7 @@ export const PaginationCommentsShowcase = () => {
     };
 
     return (
-        <div className={styles.container}>
+        <div className={styles.comments}>
             <div className={styles.container}>
                 {fill()}
             </div>

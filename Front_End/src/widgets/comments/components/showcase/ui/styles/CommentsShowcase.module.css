@@ -1,7 +1,13 @@
+.comments {
+    width: inherit;
+    display: grid;
+}
 .container {
     display: grid;
     justify-self: center;
-    gap: 15px;
+    width: inherit;
+    justify-content: center;
+    gap: 20px;
 }
 
 .pagination {
@@ -9,6 +15,7 @@
     justify-content: space-between;
     padding: 20px;
     align-items: center;
+    
 }
 
 .block {

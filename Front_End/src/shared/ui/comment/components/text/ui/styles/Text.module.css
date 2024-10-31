@@ -1,19 +1,22 @@
 .container {
-    display: flex;
-    width: 80vw;
+    display: grid;
     padding: 5px;
+    width: 100%;
     gap: 15px;
+    font-size: 20px;
 }
 .container_edit {
     display: grid;
-    width: 80vw;
-    gap: 15px;
+    padding: 5px;
+    width: 100%;
+    gap: 15px
 }
+
 .area_text {
-    display: grid;
+    display: flex;
     width: inherit;
     font-family: var(--font_family);
-    font-size: 16px;
+    font-size: 20px;
     color-scheme: light dark;
     border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -24,15 +27,19 @@
     outline: none;
     resize: none;
     padding: 5px;
-
-    max-width: 75vw;
-    word-break: break-all;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
     overflow: hidden;
 }
 
 .span {
-    width: 100%;
-    word-break: break-all;
+    display: flex;
+    width: inherit;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    padding: 15px;
 }
 
 .buttons {
@@ -47,34 +54,22 @@
     align-content: center;
     background-color: transparent;
     border: 2px solid #007bff;
-    /* Цвет бордюра */
     color: #007bff;
-    /* Цвет текста */
     padding: 10px 20px;
-    /* Отступы кнопки */
     font-size: 16px;
-    /* Размер шрифта */
     border-radius: 5px;
-    /* Скругление углов */
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
-    /* Плавный переход */
 }
 
 .button:hover {
     background-color: #007bff;
-    /* Цвет фона при наведении */
     color: white;
-    /* Цвет текста при наведении */
 }
 
 .button:active {
     background-color: #0056b3;
-    /* Цвет фона при нажатии */
     border-color: #0056b3;
-    /* Цвет бордюра при нажатии */
     transform: scale(0.95);
-    /* Уменьшение кнопки при нажатии */
     transition: background-color 0.1s ease;
-    /* Быстрый переход */
 }
