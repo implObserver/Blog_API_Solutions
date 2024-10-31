@@ -1,14 +1,11 @@
 import asyncHandler from 'express-async-handler';
-import { __dirname } from '../../../../app/dirname/dirname.js';
-import fs from 'fs';
 import path from 'path';
-import { prismaDB } from '../../../../database/prisma/queries.js';
 import {
   getFileFromBucket,
   getFileFromFolder,
   getObjectMetadata,
 } from '../../../../app/cloudStore/yandexStorage/yandexStorage.js';
-import { getContentTypeByExtension } from '../../helper/getters/getContentTypeByExtension.js';
+import { prismaDB } from '../../../../database/prisma/queries/queries.js';
 
 const pagination_posts_of_user_get = asyncHandler(async (req, res, next) => {
   const page = parseInt(req.query.page) || 1; // Текущая страница

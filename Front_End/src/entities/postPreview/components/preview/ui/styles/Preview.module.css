@@ -56,8 +56,8 @@
 
 .container_slider {
     display: grid;
-    width: max(30vw, 150px);
-    height: max(20vw, 75px);
+    width: max(16vw, 160px);
+    height: max(12vw, 120px);
     border: 2px var(--color__main-theme_accent) solid;
     border-bottom: none;
     border-radius: 5px 5px 0px 0px;
@@ -67,16 +67,16 @@
 
 .image_slider {
     display: grid;
-    width: inherit;
-    height: inherit;
+    width: max(16vw, 160px);
+    height: max(12vw, 120px);
     object-fit: cover;
     border-bottom: none;
 }
 
 .link_slider {
     display: grid;
-    width: max(30vw, 150px);
-    height: max(20vw, 75px);
+    width: max(16vw, 160px);
+    height: max(12vw, 120px);
 }
 
 @media screen and (max-width:700px) {

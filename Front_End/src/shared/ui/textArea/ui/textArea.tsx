@@ -10,7 +10,7 @@ export const TextArea = () => {
             <div
                 id={`${context.value.id}`}
                 className={styles.area_text}>
-                {value}
+                <span>{value}</span>
             </div>
         </div>
     )

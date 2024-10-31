@@ -1,9 +1,7 @@
 import asyncHandler from 'express-async-handler';
-import { prismaDB } from '../../../../database/prisma/queries.js';
-import { __dirname } from '../../../../app/dirname/dirname.js';
-import fs from 'fs';
 import path from 'path';
 import { getFileFromBucket } from '../../../../app/cloudStore/yandexStorage/yandexStorage.js';
+import { prismaDB } from '../../../../database/prisma/queries/queries.js';
 
 const profile_detail_api = asyncHandler(async (req, res, next) => {
   const profile = prismaDB.findProfile(req.id);

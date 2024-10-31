@@ -1,9 +1,7 @@
 .slider {
     display: flex;
     width: 80vw;
-}
-
-.slider>div {
+    height: min-content;
 }
 
 .slider>div>div {
@@ -14,7 +12,8 @@
 
 .slider>div>div>div {
     display: flex;
-    width: 80vw !important;
+    width: max(16vw, 160px);
+    height: max(24vw, 240px);
 }
 
 .container {

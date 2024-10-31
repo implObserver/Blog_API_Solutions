@@ -20,7 +20,7 @@ const getPaginationPostsOfUser = async (id, offset, limit) => {
     skip: offset,
     take: limit,
     orderBy: {
-      postingDate: 'desc', // Сортируем по полю createdAt в порядке убывания
+      postingDate: 'desc',
     },
     where: { userId: id },
   });
@@ -102,7 +102,6 @@ const dropUsers = async () => {
   await prisma.comment.findMany({});
   await prisma.profile.findMany({});
   await prisma.post.findMany({});
-  //await prisma.$queryRaw('DROP schema users CASCADE')
 };
 
 const updateTag = async (user_id, post_id, tag) => {
@@ -449,55 +448,49 @@ const removeComment = async (userId, comment) => {
 };
 
 const addComment = async (userId, comment) => {
-  // Извлекаем текст и пост ID из объекта комментария
   const text = comment.text;
-  const postId = parseInt(comment.post_id); // Убедитесь, что post_id является числом
+  const postId = parseInt(comment.post_id);
 
-  // Проверка на наличие обязательных данных
   if (!text || isNaN(postId)) {
     console.error('Ошибка: текст комментария и ID поста обязательны.');
     return;
   }
 
   try {
-    // Создание нового комментария в базе данных
     const res = await prisma.comment.create({
       data: {
-        text: text, // Текст комментария
+        text: text,
         user: {
           connect: {
-            id: userId, // Подключение к пользователю
+            id: userId,
           },
         },
         post: {
           connect: {
-            id: postId, // Подключение к посту
+            id: postId,
           },
         },
       },
     });
 
-    console.log('Комментарий добавлен:', res); // Вывод результата в консоль
-    return res; // Вернем добавленный комментарий
+    console.log('Комментарий добавлен:', res);
+    return res;
   } catch (error) {
-    console.error('Ошибка при добавлении комментария:', error); // Обработка ошибок
-    throw error; // Опционально: пробрасываем ошибку дальше
+    console.error('Ошибка при добавлении комментария:', error);
+    throw error;
   }
 };
 
 const updateComment = async (userId, comment) => {
-  // Извлекаем текст и пост ID из объекта комментария
   const text = comment.text;
-  const postId = parseInt(comment.post_id); // Убедитесь, что post_id является числом
+  const postId = parseInt(comment.post_id);
   const commeintId = parseInt(comment.id);
-  // Проверка на наличие обязательных данных
   if (!text || isNaN(postId)) {
     console.error('Ошибка: текст комментария и ID поста обязательны.');
     return;
   }
 
   try {
-    // Создание нового комментария в базе данных
     const res = await prisma.comment.update({
       where: {
         userId: userId,
@@ -505,7 +498,7 @@ const updateComment = async (userId, comment) => {
         id: commeintId,
       },
       data: {
-        text: text, // Текст комментария
+        text: text,
         isUpdate: true,
         updatingDate: new Date(),
       },
@@ -519,11 +512,11 @@ const updateComment = async (userId, comment) => {
       },
     });
 
-    console.log('Комментарий обновлен:', res); // Вывод результата в консоль
-    return res; // Вернем добавленный комментарий
+    console.log('Комментарий обновлен:', res);
+    return res;
   } catch (error) {
-    console.error('Ошибка при обновлении комментария:', error); // Обработка ошибок
-    throw error; // Опционально: пробрасываем ошибку дальше
+    console.error('Ошибка при обновлении комментария:', error);
+    throw error;
   }
 };
 
@@ -555,7 +548,7 @@ const signupUser = async (userId) => {
   return user;
 };
 
-export const prismaDB = {
+export const prismaDBB = {
   findUserByUsername,
   getAllUsers,
   getAllPosts,

@@ -20,7 +20,6 @@
 .container_slider {
     width: inherit;
     height: max-content;
-    padding: 15px;
 }
 
 .container_alter:hover,

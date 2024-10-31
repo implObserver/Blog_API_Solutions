@@ -1,9 +1,7 @@
 import asyncHandler from 'express-async-handler';
 import { body, validationResult } from 'express-validator';
-import { prismaDB } from '../../../../database/prisma/queries.js';
-import { uploadFileToBucket } from '../../../../app/cloudStore/yandexStorage/yandexStorage.js';
-import path from 'path';
 import { handleAvatarUpload } from '../../helper/middlewares/multer/avatarMulter.js';
+import { prismaDB } from '../../../../database/prisma/queries/queries.js';
 
 const user_profile_update_put = [
   body('name')

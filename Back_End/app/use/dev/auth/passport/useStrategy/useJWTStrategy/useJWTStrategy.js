@@ -3,7 +3,7 @@ import { Strategy as JwtStrategy } from 'passport-jwt';
 import fs from 'fs';
 import { __pathToKeyFolder } from './keypair/generateKeypair.js';
 import path from 'path';
-import { prismaDB } from '../../../../../../../database/prisma/queries.js';
+import { prismaDB } from '../../../../../../../database/prisma/queries/queries.js';
 
 const pathToKey = path.join(__pathToKeyFolder, 'id_rsa_pub.pem');
 const PUB_KEY = fs.readFileSync(pathToKey, 'utf8');

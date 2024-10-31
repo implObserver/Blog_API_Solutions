@@ -10,18 +10,34 @@ export const PostsSlider = () => {
     const posts = useSelector(selectPosts).posts;
 
     const settings = {
-        dots: true, // Пункты навигации
-        infinite: true, // Зацикливание
-        speed: 500, // Скорость перехода
-        slidesToShow: posts.length > 6 ? 3 : 2, // Количество отображаемых слайдов
-        slidesToScroll: 1 // Количество слайдов, прокручиваемых за один раз
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        responsive: [
+            {
+                breakpoint: 800,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                }
+            },
+            {
+                breakpoint: 400,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            }
+        ]
     };
 
     return (
         <div className={style.container}>
             <Slider {...settings} className={style.slider}>
-                {posts.map(post => (
-                    <Item post={post} key={post.id}></Item>
+                {posts.map((post, index) => (
+                    <Item post={post} key={`${post.id}-${index}`}></Item>
                 ))}
             </Slider>
         </div>

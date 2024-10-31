@@ -1,5 +1,5 @@
 import asyncHandler from 'express-async-handler';
-import { prismaDB } from '../../../../database/prisma/queries.js';
+import { prismaDB } from '../../../../database/prisma/queries/queries.js';
 
 const pagination_comments_get = asyncHandler(async (req, res) => {
   const page = parseInt(req.query.page) || 1;

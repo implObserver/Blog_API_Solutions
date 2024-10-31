@@ -3,8 +3,8 @@ import asyncHandler from 'express-async-handler';
 import passport from 'passport';
 import bcrypt from 'bcryptjs';
 import { getRefreshToken } from '../../../../app/use/dev/auth/token/JWT/issueJWT.js';
-import { prismaDB } from '../../../../database/prisma/queries.js';
 import { validateUsernameOrMail } from '../../helper/middlewares/validate/usernameOrMailValidation.js';
+import { prismaDB } from '../../../../database/prisma/queries/queries.js';
 
 const user_create_post = [
   body('username')

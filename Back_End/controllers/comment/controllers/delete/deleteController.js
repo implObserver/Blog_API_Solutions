@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler';
-import { prismaDB } from '../../../../database/prisma/queries.js';
 import { io } from '../../../../bin/server/server.js';
+import { prismaDB } from '../../../../database/prisma/queries/queries.js';
 
 const comment_of_user_delete = [
   asyncHandler(async (req, res, next) => {

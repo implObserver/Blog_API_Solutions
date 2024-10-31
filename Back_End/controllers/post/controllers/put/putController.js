@@ -1,10 +1,10 @@
 import asyncHandler from 'express-async-handler';
-import { prismaDB } from '../../../../database/prisma/queries.js';
 import { body, validationResult } from 'express-validator';
 import {
   sanitizeInput,
   validateModels,
 } from '../../helper/validation/postValidation.js';
+import { prismaDB } from '../../../../database/prisma/queries/queries.js';
 
 const post_update_put = [
   body('models')
@@ -43,9 +43,7 @@ const post_update_put = [
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
-    console.log(req.body);
     if (!errors.isEmpty()) {
-      console.log(errors.errors[0].msg);
       return res.status(400).send({ error: errors.errors[0].msg });
     }
     const post = req.body;
@@ -75,7 +73,7 @@ const post_update_models_put = [
       return res.status(400).send({ error: errors.errors[0].msg });
     }
     const snapshot = req.body;
-    await prismaDB.updateModelsOfPost(req.user, snapshot);
+    await prismaDB.updateModels(snapshot);
     res.json('done');
   }),
 ];

@@ -30,7 +30,6 @@ export const Preview = () => {
                     formData.append('postid', post.id.toString());
                     formData.append('folderName', folderName);
                     const lastVersion = await getLastModified(formData);
-                    console.log(`last ${lastVersion} current ${image.version}`)
                     if (lastVersion !== image.version) {
                         loadPreviewOnServer();
                     } else {
@@ -47,7 +46,6 @@ export const Preview = () => {
             formData.append('postid', post.id.toString());
             formData.append('folderName', folderName);
             const blob = await loadImage(formData);
-            console.log(blob.lastModified)
             const image: ImageType = {
                 code: folderName,
                 version: blob.lastModified,

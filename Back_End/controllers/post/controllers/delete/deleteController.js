@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler';
-import { prismaDB } from '../../../../database/prisma/queries.js';
 import { deleteAllFilesInFolder } from '../../../../app/cloudStore/yandexStorage/yandexStorage.js';
+import { prismaDB } from '../../../../database/prisma/queries/queries.js';
 
 const image_of_post_delete = asyncHandler(async (req, res) => {
   const postid = req.params.postid;

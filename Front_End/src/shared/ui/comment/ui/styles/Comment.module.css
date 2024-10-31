@@ -21,6 +21,8 @@
 
 .info {
     display: flex;
+    border:1px red solid;
+    width: 55%;
     column-gap: 5px;
     align-items: center;
     flex-wrap: wrap;
@@ -36,13 +38,11 @@
 }
 
 .container_time_ago {
-    width: 30vw;
     max-width: 500px;
     opacity: 0.5;
 }
 
 .update {
-    width: 20vw;
     opacity: 0.8;
     font-size: 12px;
 }

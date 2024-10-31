@@ -1,9 +1,9 @@
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from 'bcryptjs';
-import { prismaDB } from '../../../../../../../database/prisma/queries.js';
 import validator from 'validator';
-//for postgresDB
+import { prismaDB } from '../../../../../../../database/prisma/queries/queries.js';
+
 const verifyCallbackPg = async (identifier, password, done) => {
   try {
     let user;

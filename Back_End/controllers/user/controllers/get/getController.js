@@ -1,9 +1,9 @@
 import asyncHandler from 'express-async-handler';
-import { prismaDB } from '../../../../database/prisma/queries.js';
 import {
   getAccessToken,
   getRefreshToken,
 } from '../../../../app/use/dev/auth/token/JWT/issueJWT.js';
+import { prismaDB } from '../../../../database/prisma/queries/queries.js';
 
 const failureProtected = (req, res) => {
   res.status(401).json({ message: 'unauthorized' });
@@ -20,7 +20,6 @@ const authProtected = asyncHandler(async (req, res, next) => {
     res.locals.accessToken = accessToken;
     return next();
   } else {
-    // Вернем 401 статус и сообщение об ошибке
     return res.status(401).json({ error: 'User is not authenticated' });
   }
 });

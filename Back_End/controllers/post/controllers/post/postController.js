@@ -1,7 +1,7 @@
 import asyncHandler from 'express-async-handler';
-import { prismaDB } from '../../../../database/prisma/queries.js';
 import { body, validationResult } from 'express-validator';
 import { sanitizeInput } from '../../helper/validation/postValidation.js';
+import { prismaDB } from '../../../../database/prisma/queries/queries.js';
 
 const user_post_add_post = [
   body('title')

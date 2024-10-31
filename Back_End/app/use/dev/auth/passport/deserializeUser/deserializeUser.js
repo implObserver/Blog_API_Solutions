@@ -1,5 +1,5 @@
 import passport from 'passport';
-import { prismaDB } from '../../../../../../database/prisma/queries.js';
+import { prismaDB } from '../../../../../../database/prisma/queries/queries.js';
 
 export const setDeserializeUser = () => {
   passport.deserializeUser(async (id, done) => {

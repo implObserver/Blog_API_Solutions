@@ -35,6 +35,12 @@
 }
 
 .intro {
+    display: flex;
+    flex-wrap: wrap;
+    gap:10px;
+}
+
+.intro>span {
     display: -webkit-box;
     width: inherit;
     padding: 5px;
