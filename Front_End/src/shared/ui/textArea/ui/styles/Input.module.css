@@ -1,11 +1,8 @@
 .area_text {
     display: grid;
     word-wrap: break-word;
-    /* Перенос длинных слов */
     overflow-wrap: break-word;
-    /* Перенос длинных слов */
     white-space: normal;
-    border: 1px red solid;
 }
 
 .area_text>span {
