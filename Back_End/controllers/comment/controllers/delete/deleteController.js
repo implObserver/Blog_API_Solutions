@@ -1,9 +1,6 @@
 import asyncHandler from 'express-async-handler';
-import { body, validationResult } from 'express-validator';
-import fs from 'fs';
-import path from 'path';
 import { prismaDB } from '../../../../database/prisma/queries.js';
-import { validateComment } from '../../helper/validation/commentValidation.js';
+import { io } from '../../../../bin/server/server.js';
 
 const comment_of_user_delete = [
   asyncHandler(async (req, res, next) => {
@@ -18,6 +15,7 @@ const comment_of_user_delete = [
     );
     await prismaDB.removeComment(userid, comment);
     const totalComments = await prismaDB.countComments(comment.postid);
+    io.emit('deleteComment', totalComments);
     res.json({
       totalComments,
     });
