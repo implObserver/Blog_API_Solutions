@@ -24,3 +24,4 @@
 [![My Skills](https://skillicons.dev/icons?i=react,redux)](https://skillicons.dev) (toolkit,persist)
 ### Архитектура 
 ## FSD
+#### [Ссылка на сайт](https://blogapifront.netlify.app/)
