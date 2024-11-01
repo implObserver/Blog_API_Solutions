@@ -1,5 +1,8 @@
 .list_header {
+    display: grid;
     padding-top: 20px;
     margin-bottom: 5px;
     font-size: 20px;
+    padding-left: 10vw;
+    padding-right: 10vw;
 }
