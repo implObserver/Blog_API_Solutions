@@ -1,27 +1,38 @@
 .h1 {
     display: grid;
     font-size: 34px;
+    justify-content: center;
 }
 
 .h2 {
+    display: grid;
+    justify-content: left;
     font-size: 32px;
 }
 
 .h3 {
+    display: grid;
+    justify-content: left;
+    padding-left: 5vw;
+    padding-right: 5vw;
     font-size: 26px;
 }
 
 .h1,
 .h2,
 .h3 {
+    display: flex;
     width: 100%;
 }
 
 .main_title {
+    display: grid;
+    justify-self: center!important;
     text-align: center;
 }
 
 .title {
+    display: flex;
     padding-top: 20px;
     padding-bottom: 20px;
 }

@@ -4,6 +4,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { ContainerContext } from "../lib";
 import { selectPosts } from "@/entities/postState";
+import styles from './styles/Canvas.module.css'
 
 export const Canvas = React.memo(() => {
     const params = useParams();

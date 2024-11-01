@@ -1,7 +1,7 @@
 .container {
     display: grid;
-    width: 30vw;
-    max-width: 400px;
+    width: max-content;
+
 }
 
 .strong_list {

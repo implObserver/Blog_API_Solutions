@@ -19,13 +19,11 @@ export const UpdateAvatar = () => {
     const loadAvatar = async () => {
         try {
             const avatar = await getAvatar();
-            console.log(`AVATAAR ${avatar}`)
             if (avatar === 401) {
                 dispatch(servicesActions.reset());
             }
             setAvatar(URL.createObjectURL(avatar));
         } catch (error) {
-            console.log(`LOOOG ${error}`);
         }
     }
 

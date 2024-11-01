@@ -10,7 +10,7 @@ export const Wrapper = React.memo(() => {
     }, [context.featuresContext.container.features]);
 
     return (
-        <div className={styles.container}>
+        <div>
             {features}
         </div>
     );
