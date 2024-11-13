@@ -4,12 +4,12 @@
 
 .form_group {
     display: grid;
-    width: min-content;
     margin-top: 5px;
     row-gap: 5px;
 }
 
 .input {
+    display: grid;
     outline: 0px rgba(0, 123, 255, 0.6) solid;
     appearance: none;
     transition:
@@ -38,4 +38,16 @@
     cursor: pointer;
     padding-left: 8px;
     padding-right: 8px;
+}
+
+@media screen and (max-width:400px) {
+    .input {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:400px) {
+    .input {
+        min-width: 300px;
+    }
 }

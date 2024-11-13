@@ -4,7 +4,6 @@
 
 .form_group {
     display: grid;
-    width: min-content;
     margin-top: 5px;
     row-gap: 5px;
 }
@@ -38,4 +37,16 @@
     cursor: pointer;
     padding-left: 8px;
     padding-right: 8px;
+}
+
+@media screen and (max-width:400px) {
+    .input {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:400px) {
+    .input {
+        min-width: 300px;
+    }
 }
