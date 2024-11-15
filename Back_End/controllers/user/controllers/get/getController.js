@@ -88,7 +88,7 @@ const refresh_accessToken = asyncHandler(async (req, res, next) => {
 
 const refresh_refreshToken = asyncHandler(async (req, res, next) => {
   const tokens = req.cookies;
-  const refreshToken = tokens.refreshToken;
+  let refreshToken = tokens.refreshToken;
 
   if (!refreshToken)
     return res.status(401).send({ error: 'Ошибка авторизации' });
