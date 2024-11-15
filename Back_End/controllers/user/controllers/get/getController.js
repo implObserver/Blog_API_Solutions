@@ -88,7 +88,7 @@ const refresh_accessToken = asyncHandler(async (req, res, next) => {
 
 const refresh_refreshToken = asyncHandler(async (req, res, next) => {
   const tokens = req.cookies;
-  let refreshToken = tokens.refreshToken;
+  const refreshToken = tokens.refreshToken;
 
   if (!refreshToken)
     return res.status(401).send({ error: 'Ошибка авторизации' });
@@ -97,12 +97,12 @@ const refresh_refreshToken = asyncHandler(async (req, res, next) => {
 
   if (!user) return res.sendStatus(401);
   if (!user.isAuthenticated) return res.sendStatus(401);
-  refreshToken = getRefreshToken(user.id).token;
+  const newRefreshToken = getRefreshToken(user.id).token;
   const accessToken = getAccessToken(user.id).token;
-  await prismaDB.setToken(user.id, refreshToken);
+  await prismaDB.setToken(user.id, newRefreshToken);
 
   res.locals.user = user;
-  res.locals.refreshToken = refreshToken;
+  res.locals.refreshToken = newRefreshToken;
   res.locals.accessToken = accessToken;
   next();
 });
